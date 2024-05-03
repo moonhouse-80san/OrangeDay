@@ -15,19 +15,19 @@
 		</div>
 	<!--@else-->
 	<div loop="$document_list =>$no,$document" class="box<!--@if(isset($document_srl) && $document_srl == $document->document_srl)--> readActive<!--@end-->">
-		<div class="number">
-		<!--@if($document->isSecret() && !$oDocument->isGranted())-->
-			<i class='bx bxs-lock'></i>
-		<!--@else-->
-			<block cond="isset($document_srl) && $document_srl == $document->document_srl"><i class='bx bx-play'></i></block>
-			<block cond="!isset($document_srl) || $document_srl != $document->document_srl">{$no}</block>
-		<!--@end-->
+		<div cond="$list_config['no']->idx" class="number">
+			<!--@if($document->isSecret() && !$oDocument->isGranted())-->
+				<i class='bx bxs-lock'></i>
+			<!--@else-->
+				<block cond="isset($document_srl) && $document_srl == $document->document_srl"><i class='bx bx-play'></i></block>
+				<block cond="!isset($document_srl) || $document_srl != $document->document_srl">{$no}</block>
+			<!--@end-->				
 		</div>
 		<div class="list">
 			<div cond="$category_list[$document->get('category_srl')]->title" class="category">
 				{$category_list[$document->get('category_srl')]->title}
 			</div>
-			<div class="title">
+			<div cond="$list_config['title']->idx" class="title">
 				<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}" rel="nofollow">
 				<!--@if($document->isSecret() && !$document->isGranted())-->
 					{$lang->msg_is_secret} 
@@ -47,8 +47,9 @@
 				</block>
 				</div>
 			</div>
-			<span cond="$document->getCommentCount()"  class="count vp"><i class='bx bxs-message-rounded-dots com'></i>&nbsp;{$document->getCommentCount()}</span>
-			<span cond="$document->get('voted_count')!=0" class="count vp"><i class='bx bxs-heart'></i>&nbsp;{$document->get('voted_count')}</span>
+			<span cond="$list_config['comment_count']->idx" cond="$document->getCommentCount()"  class="count vp"><i class='bx bxs-message-rounded-dots com'></i>&nbsp;{$document->getCommentCount()}</span>
+			<span cond="$list_config['voted_count']->idx" cond="$document->get('voted_count')!=0" class="count vp"><i class='bx bxs-heart'></i>&nbsp;{$document->get('voted_count')}</span>
+			
 			<span cond="$document->printExtraImages(60*60*$mi->duration_new)" class="newicon<!--@foreach($document->getExtraImages(60*60*$mi->duration_new) as $key=>$val)--><!--@if($val == 'secret')--> S<!--@end--><!--@if($val == 'new')--> N<!--@end--><!--@if($val == 'update')--> U<!--@end--><!--@if($val == 'file')--> F<!--@end--><!--@end-->">
 				<block loop="$document->getExtraImages(60*60*$mi->duration_new) => $val, $key">
 					<block cond="$key == 'new'">N</block>
@@ -56,13 +57,30 @@
 				</block>
 			</span>
 			<div class="end" style="order:1">
-				<span class="author">{$document->getNickName()}</span>
-				<span class="od_date">{getTimeGap($document->get('regdate'), "Y.m.d - H:i")}</span>
-				<span class="read" cond="$document->get('readed_count')>0">
-					<i class='bx bxs-show' ></i>&nbsp;{$document->get('readed_count')>0?$document->get('readed_count'):'0'}
+				<a cond="$document->getMemberSrl()" cond="$list_config['nick_name']->idx"  href="#popup_menu_area" class="member_{$document->get('member_srl')} author" onclick="return false">{$document->getNickName()}</a>
+				<p cond="!$document->getMemberSrl()" class="author">{$document->getNickName()}</p>
+				<a cond="$document->getMemberSrl()" cond="$list_config['user_id']->idx" href="#popup_menu_area" class="member_{$document->get('member_srl')} author" onclick="return false">{$document->getUserID()}</a>
+				<a cond="$document->getMemberSrl()" cond="$list_config['user_name']->idx" href="#popup_menu_area" class="member_{$document->get('member_srl')} author" onclick="return false">{$document->getUserName()}</a>
+				
+				
+				<span cond="$list_config['regdate']->idx" class="od_date">{getTimeGap($document->get('regdate'), "Y.m.d - H:i")}</span>
+				<span cond="$list_config['last_update']->idx" cond="$document->get('last_update')" class="od_date">{getTimeGap($document->get('last_update'), "Y.m.d - H:i")}</span>
+				<span cond="$list_config['last_post']->idx" cond="(int)($document->get('comment_count'))>0" class="od_date">
+					<block cond="(int)($document->get('comment_count'))>0">
+						<a href="{$document->getUrl()}#comment" title="Last Reply">
+							{getTimeGap($document->get('last_update'), "Y.m.d")}
+							<span cond="$document->getLastUpdater()">
+								<i>by</i> {$document->getLastUpdater()}
+							</span>
+						</a>
+					</block>
 				</span>
-				<span cond="$document->getCommentCount()"  class="count vm"><i class='bx bxs-message-rounded-dots com'></i>&nbsp;{$document->getCommentCount()}</span>
-				<span cond="$document->get('voted_count')!=0" class="count vm"><i class='bx bxs-heart'></i>&nbsp;{$document->get('voted_count')}</span>				
+				
+				<span cond="$list_config['readed_count']->idx" class="read" cond="$document->get('readed_count')>0">
+					{$document->get('readed_count')>0?$document->get('readed_count'):'0'}
+				</span>
+				<span cond="$list_config['comment_count']->idx" cond="$document->getCommentCount()"  class="count vm"><i class='bx bxs-message-rounded-dots com'></i>&nbsp;{$document->getCommentCount()}</span>
+				<span cond="$list_config['voted_count']->idx" cond="$document->get('voted_count')!=0" class="count vm"><i class='bx bxs-heart'></i>&nbsp;{$document->get('voted_count')}</span>				
 				<span cond="$grant->manager">
 					<input type="checkbox" name="cart" value="{$document->document_srl}" class="listchk" title="Check this" onclick="doAddDocumentCart(this)" <!--@if($document->isCarted())-->checked="checked"<!--@end--> />
 				</span>

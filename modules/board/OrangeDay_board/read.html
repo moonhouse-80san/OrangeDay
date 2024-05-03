@@ -53,30 +53,34 @@
 	</block>
 {@ break;}
 </block>
-
+<script>//<![CDATA[
+var lang_type = "{$lang_type}";
+jQuery(function($){
+	board('#bd_{$mi->module_srl}_{$oDocument->document_srl}');
+});
+//]]></script>
 <!--@if($mi->default_style=='gallery')--> 
-<div class="widthSideNavi ifrm">
-<!--@if(Mobile::isMobileCheckByAgent())-->
-<include target="_read_galleryView.html" />
-<!--@else-->
-<include target="_read_gallery.html" />
-<!--@end-->
-</div>
+	<div class="widthSideNavi ifrm">
+	<!--@if(Mobile::isMobileCheckByAgent())-->
+		<include target="_read_galleryView.html" />
+	<!--@else-->
+		<include target="_read_gallery.html" />
+	<!--@end-->
+	</div>
 <!--@elseif($mi->default_style=='galleryView')-->
-<div class="widthSideNavi">
-<include target="_read_galleryView.html" />
-</div>
-<!--@elseif($mi->default_style=='guest')-->
-<div class="widthSideNavi ifrm">
-<include target="_read_guest.html" />
-</div>
+	<div class="widthSideNavi">
+	<include target="_read_galleryView.html" />
+	</div>
 <!--@elseif($mi->default_style=='blog')-->
-<include target="_read_blog.html" />
-<style>footer, .pagelocation, .board-message { display:none}</style>
+	<include target="_read_blog.html" />
+	<style>footer, .pagelocation, .board-message { display:none}</style>
+<!--@elseif($mi->default_style=='history_step')-->
+	<include target="_read_history_step.html" />
+	<style>footer, .pagelocation, .board-message { display:none}</style>
 <!--@else-->
-<div class="widthSideNavi">
-<include target="_read_normal.html" />
-</div>
+	<div class="widthSideNavi">
+	<include target="_read_normal.html" />
+	</div>
 <!--@end-->
 
 <div class="loading-page" title="Loading...."><i class='bx bx-loader-circle bx-spin bx-flip-horizontal' ></i></div>
@@ -103,11 +107,32 @@
 			.loading-page { padding-left:0; font-size:3em; }
 		}	
 	<!--@end-->
-
 </style>
 <script>
+function board(bdObj){
+	
+	(function($){
+		var bd = $(bdObj);
+		var default_style = bd.attr('data-default_style');
+		
+		// Read Page Only
+		if(bd.find('#readBox').length){		
+			if(bd.find('form.bd_wrt').length){
+				if(bd.find('form>div.wysiwyg').length){
+					editorStartTextarea(2,'content','comment_srl');
+				} else {
+					$.getScript(request_uri+'modules/editor/tpl/js/editor_common.min.js',function(){
+						editorStartTextarea(2,'content','comment_srl');
+						var cmtWrt = bd.find('form.cmt_wrt textarea');
+						//editorStartTextarea(cmtWrt.attr('id').split('_')[1],'content','comment_srl');
+					});
+				};
+			};
+		};	
+	
+	})(jQuery)
+}
 window.onload = function(){
-	$('html, body').animate({scrollTop: 0}, 1);
 	$(".widthSideNavi").addClass("loading-done");
 	$(".loading-page").hide();
 }

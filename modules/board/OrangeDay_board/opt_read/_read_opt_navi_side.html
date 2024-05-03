@@ -31,8 +31,12 @@
 		<li class="btngolist<!--@if($mi->list_in_read == 'use')--><!--@if($mi->default_style=='webzine' || $mi->default_style=='webzinelist' || $mi->default_style=='list' || $mi->default_style=='listtable')--> combo<!--@end--><!--@end-->">
 			<div class="yellow"><i class='bx bxs-chevron-left'></i> 목록</div>
 			<a onclick="golistPage();" title="목록 보기" class="iframe-o"><i class='bx bxs-grid-alt' ></i></a>
-			<a href="{getUrl('document_srl','','page',$page,'listStyle',$listStyle)}" title="목록 보기" class="iframe-x"><i class='bx bxs-grid-alt' ></i></a>
-			
+			<!-- a href="{getUrl('document_srl','','page',$page,'listStyle',$listStyle)}" title="목록 보기" class="iframe-x"><i class='bx bxs-grid-alt' ></i></a -->
+			<!--@if($listStyle)-->
+			<a href="/{$mid}?page={$page}&listStyle={$listStyle}" title="목록 보기" class="iframe-x"><i class='bx bxs-grid-alt' ></i></a>
+			<!--@else-->
+			<a href="/{$mid}?page={$page}" title="목록 보기" class="iframe-x"><i class='bx bxs-grid-alt' ></i></a>
+			<!--@end-->
 		</li>
 		<!--@if($mi->list_in_read == 'use')--><!--@if($mi->default_style=='webzine' || $mi->default_style=='webzinelist' || $mi->default_style=='list' || $mi->default_style=='listtable')-->
 		<li class="btngolist" cond="$mi->is_notice=='Y'">

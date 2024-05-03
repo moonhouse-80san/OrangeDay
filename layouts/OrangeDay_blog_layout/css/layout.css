@@ -184,8 +184,21 @@ header { display:none}
 #ol_left .lt_gnb a span.new i {font-size:12px;}
 #ol_left .lt_gnb a span.new.docu { color: #ff9500; }
 #ol_left .lt_gnb a span.new.com { color: #00aaff; }
-#ol_left .lt_gnb a span.material-symbols-sharp { font-size: 12px; opacity: .5; margin-right: 3px; }
+#ol_left .lt_gnb a span.material-symbols-sharp { font-size: 12px; margin-right: 3px; }
 #ol_left .lt_gnb a.morelist { position:absolute; top:0; right:0; border:none; height:var(--oday_gnbHeight); width:var(--oday_gnbHeight); padding-left:0; justify-content: center; }
+#ol_left .lt_gnb a.orange,
+#ol_left .lt_gnb a.red,
+#ol_left .lt_gnb a.blue { margin:2px; border-radius:6px; border:none !important; color:#fff;}
+#ol_left .lt_gnb a.orange + a,
+#ol_left .lt_gnb a.red + a,
+#ol_left .lt_gnb a.blue + a {color:#fff;}
+#ol_left .lt_gnb a.orange { background-color:#e99e10; }
+#ol_left .lt_gnb a.orange:hover {background-color:#ffa700; color:#fff;}
+#ol_left .lt_gnb a.blue { background-color:#2187c5; }
+#ol_left .lt_gnb a.blue:hover { background-color:#009fff; color:#fff;}
+#ol_left .lt_gnb a.red { background-color:#d71616;  }
+#ol_left .lt_gnb a.red:hover { background-color:#ff0000; color:#fff}
+#ol_left .lt_gnb a.big { height: calc(var(--oday_gnbHeight) * 1.2); font-size:calc(var(--oday_gnbFontSize) * 1.2); }
 
 #ol_left .lt_gnb .depth2 { background-color:var(--oday_gnbBgColorSub); display:none; }
 #ol_left .lt_gnb .depth3 { background-color:var(--oday_gnbBgColorSub); }
@@ -196,6 +209,8 @@ header { display:none}
 #ol_left .lt_lnb div { padding:2px 5px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
 #ol_left .lt_lnb div + div { margin-left:0; }
 #ol_left .meta li.mod-color.vm { display:none; }
+
+
 .layout .powered { text-align:unset}
 .layout .powered a { margin:4px 0 0 0}
 /**/
@@ -213,7 +228,7 @@ header { display:none}
 #ol_left .meta li.login_before a + a { margin-left:10px; }
 
 #ol_left .meta li.login_after { align-items: center; }
-#ol_left .meta li.login_after .profile { width:30px; height:30px; border-radius:100%; margin-right:10px; background-color:#00000080; color:#97979780; font-size:2em; display:flex; justify-content: center; align-items: center; }
+#ol_left .meta li.login_after .profile { width:30px; height:30px; border-radius:100%; margin-right:10px; background-color:var(--oday_metaBgColor); color:var(--oday_metaColor); font-size:15px; display:flex; justify-content: center; align-items: center; }
 #ol_left .meta li.login_after a.uname { padding:0; margin:0;line-height:1; font-size: 12px; color: var(--oday_mainColor); }
 #ol_left .meta li.login_after a.uname span { display:block; padding:0; margin:0;line-height:1; font-size:11px; color:#6c6c6c}
 #ol_left .meta li.login_after a.uname em { font-size:8px; font-weight:700; color:#bbb}

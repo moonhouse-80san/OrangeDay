@@ -1,7 +1,10 @@
 {@ Context::set('layout','none');}
-<!--@if($from == 'home')-->
-<script>location.href = "{$oDocument->getPermanentUrl()}?listStyle=galleryView";</script>
-<!--@end-->
+<script>
+	if (window.self == window.top) {
+		location.href = "{$oDocument->getPermanentUrl()}?listStyle=galleryView";
+	}	
+</script>
+
 <load target="/_asset/_Oday_script.js" />
 <load target="/_asset/_Oday_default.css" />
 <load target="/_asset/_Oday_rhymix_fix.css" /> 
@@ -49,8 +52,8 @@ body {background-color:transparent}
 		 window.addEventListener('mouseout', function(event) {                
 			window.innerDoc = false;
 		 });
+		 history.pushState({}, '', '');
 		parent.history.replaceState({}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}?listStyle=galleryView');
-		history.pushState({}, 'c1', '');
 		window.addEventListener('popstate', function(event) { 
 			event.preventDefault();
 			if (!window.innerDoc) { 

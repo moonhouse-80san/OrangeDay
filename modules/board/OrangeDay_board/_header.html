@@ -82,6 +82,8 @@
 <load target="asset/nice-select.js" type="body" />
 <load target="asset/nice-select.css" />
 <load target="asset/jscookie.js" />
+
+
 <script>
 var $ = jQuery;
 function scrollDisable(){
@@ -93,10 +95,20 @@ function scrollAble(){
     $('body').removeClass('scrollDisable').off('scroll touchmove mousewheel');
 }
 </script>
+
 <!--@end-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">	
+<load target="../../../editor/skins/xpresseditor/js/xe_textarea.min.js" type="body" />
+<load target="asset/board.js" type="body" />
+<load target="asset/autosize.min.js" type="body" />
 <load target="css/default.css" />
+<script>//<![CDATA[
+$(function(){
+	autosize($('textarea'));
+});
+//]]></script>
+
 <style>
 :root {
 	--oday_listHeight:{$mi->normal_list_height}px;
@@ -172,8 +184,6 @@ function scrollAble(){
 </style>
 <!--@end-->
 
-
-<div class="od-bord">
 <div cond="$mi->preview=='use' || $mi->theme_use == 'use'" class="preview_btn">
 	<a class="view_opt"><i class='bx bx-cog' ></i></a>
 	<ul class="cate1" cond="$mi->preview=='use'" style="display:none">
@@ -203,6 +213,9 @@ function scrollAble(){
 		</li>			
 		<li class="on"|cond="$mi->default_style=='history'">
 			<a class="bubble tooltip" href="{getUrl('listStyle','history','act','','document_srl','')}" title="히스토리"><span class="material-symbols-sharp">history</span></a>
+		</li>
+		<li class="on"|cond="$mi->default_style=='history_step'">
+			<a class="bubble tooltip" href="{getUrl('listStyle','history_step','act','','document_srl','')}" title="히스토리 스텝"><span class="material-symbols-sharp">history Step</span></a>
 		</li>
 		<li class="on"|cond="$mi->default_style=='youtube'">
 			<a class="bubble tooltip" href="{getUrl('listStyle','youtube','act','','document_srl','')}" title="유튜브"><i class='bx bxl-youtube'></i></a>
@@ -235,21 +248,23 @@ function scrollAble(){
 		<li><a onclick="setTheme_color('red');" class=""><i class='bx bxs-palette red' ></i></a></li>
 	</ul>
 
-	<script>
+	<script>			
 	$(function(){
 	   $(".tooltip").tooltip({
 		delay:0,
 		opacity:1,
 		position: { my: "left center", at: "right center" }
 	   });
-
+	   
 	});	
 	$(".view_opt").click(function(){
 		$(this).parent().find('ul').slideUp(200);
 		if(!$(this).parent().find('ul').is(":visible")){
 			$(this).parent().find('ul').slideDown(200);
 		}
-	});
-	</script>
+	});	
+	</script>		
 </div>
+<div class="od-bord" id="bd_{$mi->module_srl}_{$oDocument->document_srl}" data-default_style="{$mi->default_style}" >
+
 

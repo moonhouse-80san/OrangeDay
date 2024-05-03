@@ -1,8 +1,18 @@
 <load target="css/home.css" />
+<!--@if($oi->use_main_img == 'yes')-->
+<!--@if($oi->site_bg)-->
 <load target="asset/parallax.js" type="body" />
+<!--@end-->
+<!--@end-->
 <article>
-	<ul class="sectionIdx intro" data-parallax="scroll" data-position="center" data-bleed="0" data-speed="0.5" data-image-src="{$oi->site_bg}" data-natural-width="1920" >
+	<!--@if($oi->use_main_img == 'yes')-->
+	<!--@if($oi->site_bg)-->
+	<ul class="sectionIdx intro cover" data-parallax="scroll" data-position="center" data-bleed="0" data-speed="0.5" data-image-src="{$oi->site_bg}" data-natural-width="1920" >
+	<!--@else-->
+	<ul class="sectionIdx intro">
+	<!--@end-->
 		<li>
+			<!--@if($oi->use_main_text == 'yes')-->
 			<h1 class="<!--@if($oi->site_title_lang == 'kor')--> korean<!--@end-->">
 				<!--@if($oi->site_title1)-->
 				<span>{$oi->site_title1}</span>
@@ -14,13 +24,17 @@
 				<!--@if(!$oi->site_title1 && !$oi->site_title2)-->
 				<span>{$oi->site_title_temp}</span>
 				<!--@end-->				
-				</h1>
+			</h1>
+			<!--@end-->
 			<p cond="$oi->site_dec">
 				{nl2br($oi->site_dec)}
 			</p>
+			<!--@if($oi->use_visitor == 'yes')-->
 			<img class="zbxe_widget_output" widget="counter_status" skin="OrangeDay_counter_status" />
+			<!--@end-->
 		</li>
 	</ul>
+	<!--@end-->
 {@
 	if(!$oi->site_new_con_num) $oi->site_new_con_num = 20;
 	if(!$oi->site_new_com_num) $oi->site_new_com_num = 20;	

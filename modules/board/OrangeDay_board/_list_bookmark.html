@@ -74,7 +74,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
 :root {
-	--cellWidth : calc(100vw - {$mi->layout_gap}px -  var(--oday_scrollWidth)); /* 3px 스크롤바 폭 */
+	--cellWidth : calc(100vw - {$mi->layout_gap}px - {$mi->gall_cell_gap}px - var(--oday_scrollWidth)); /* 3px 스크롤바 폭 */
 	--cellGap : calc({$mi->gall_cell_gap}px * .5);
 }
 #list-book { margin-top: {$mi->gall_cell_gap}px !important; }

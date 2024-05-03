@@ -50,7 +50,9 @@
 	function golistPage() {
 		location.href = "/{$mid}?page={$page}&listStyle=gallery";
 	}
-
+window.onload = function(){
+	$('html, body').animate({scrollTop: 0}, 1);
+}
 </script>
 <style>
 .iframe-o { display: flex !important;}

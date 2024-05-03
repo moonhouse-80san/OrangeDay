@@ -13,6 +13,8 @@
 	<include target="_list_webzine.html" />
 	<!--@elseif($mi->default_style=='webzinelist' && $mi->list_in_read == 'use')-->
 	<include target="_list_webzinelist.html" />
+	<!--@elseif($mi->default_style=='history_step')-->
+	<include target="_list_normal_table.html" />
 	<!--@end-->
 </block>
 <block cond="!$oDocument->isExists()">
@@ -83,7 +85,32 @@
 		<!--@else-->
 		<include target="_read_blog.html" />
 		<style>footer, .pagelocation, .board-message { display:none}</style>
-		<!--@end-->	
+		<!--@end-->
+		
+	<!--@elseif($mi->default_style=='history_step')-->
+	
+		<!--@if($notice_list)-->
+		<block loop="$notice_list=>$no,$oDocument">
+			<!--@if($oDocument->document_srl)-->
+			<script>location.href = "{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle)}";</script>
+			<!--@else-->
+			<include target="_read_history_step.html" />
+			<!--@end-->
+			<style>footer, .pagelocation, .board-message { display:none}</style>
+		</block>	
+		<!--@elseif($document_list)-->
+		<block loop="$document_list=>$no,$oDocument" cond="$no == number_format($total_count)">
+			<!--@if($oDocument->document_srl)-->
+			<script>location.href = "{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle)}";</script>
+			<!--@else-->
+			<include target="_read_history_step.html" />
+			<!--@end-->	
+			<style>footer, .pagelocation, .board-message { display:none}</style>
+		</block>
+		<!--@else-->
+		<include target="_read_history_step.html" />
+		<style>footer, .pagelocation, .board-message { display:none}</style>
+		<!--@end-->
 		
 	<!--@else-->
 	<include target="_list_normal_table.html" />

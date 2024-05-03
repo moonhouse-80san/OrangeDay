@@ -16,7 +16,7 @@
 			</li>
 			<li>
 				<span class="od_date" cond="$oDocument->get('regdate') != $oDocument->get('last_update')">{getTimeGap($oDocument->get('last_update'), "Y.m.d - H:i")}</span>
-				<span class="od_date" cond="$oDocument->get('regdate') != $oDocument->get('last_update')"><i class='bx bxs-chevron-left' ></i></span>
+				<span class="" cond="$oDocument->get('regdate') != $oDocument->get('last_update')"><i class='bx bxs-chevron-left' ></i></span>
 				<span class="od_date">{getTimeGap($oDocument->get('regdate'), "Y.m.d - H:i")}</span>		
 				<span class="count"><i class='bx bxs-show' ></i>&nbsp;{$oDocument->get('readed_count')}</span>
 				<span class="count" cond="$oDocument->getCommentCount()"><i class='bx bxs-message-rounded-dots'></i>&nbsp;{$oDocument->getCommentCount()}</span>

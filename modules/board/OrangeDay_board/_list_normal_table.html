@@ -86,7 +86,10 @@
 						</block>
 					</span>
 				</td>
-				<td class="author" cond="$val->type=='nick_name' && $val->idx==-1"><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">{$document->getNickName()}</a></td>
+				<td class="author" cond="$val->type=='nick_name' && $val->idx==-1">
+					<a cond="$document->getMemberSrl()" href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false">{$document->getNickName()}</a>
+					<p cond="!$document->getMemberSrl()" class="author">{$document->getNickName()}</p>
+				</td>
 				<td class="author" cond="$val->type=='user_id' && $val->idx==-1">{$document->getUserID()}</td>
 				<td class="author" cond="$val->type=='user_name' && $val->idx==-1">{$document->getUserName()}</td>
 				<td class="date" cond="$val->type=='regdate' && $val->idx==-1"><span>{getTimeGap($document->get('regdate'), "Y.m.d<br>H:i")}</span></td>
@@ -94,13 +97,12 @@
 				<td class="date vp" cond="$val->type=='last_post' && $val->idx==-1">
 					<block cond="(int)($document->get('comment_count'))>0">
 						<a href="{$document->getUrl()}#comment" title="Last Reply">
-							{getTimeGap($document->get('last_update'), "Y.m.d")}
+							{getTimeGap($document->get('last_update'), "Y.m.d")}							
+							<span cond="$document->getLastUpdater()">
+									<i>by</i> {$document->getLastUpdater()}
+							</span>
 						</a>
-						<span cond="$document->getLastUpdater()">
-								<i>by</i> {$document->getLastUpdater()}
-						</span>
 					</block>
-					<block cond="(int)($document->get('comment_count'))==0"></block>
 				</td>
 				<td class="read vp" cond="$val->type=='readed_count' && $val->idx==-1">{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</td>
 				<td class="voteNum vp" cond="$val->type=='voted_count' && $val->idx==-1">{$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</td>

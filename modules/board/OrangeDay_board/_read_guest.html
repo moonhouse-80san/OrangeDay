@@ -21,12 +21,28 @@
 	<include target="opt_read/_read_opt_btnbox.html" />
 </article>
 <include target="opt_read/_read_opt_navi_side.html" />
+
 <style>
 .iframe-o { display: none !important;}
 .iframe-x { display: flex !important;}
 </style>
+<!--@if(!$comment_srl)-->
+<script>
 
-
-
-
-
+$(function(){
+	var currentURL = window.location.href;
+	var fragment = currentURL.split('#')[1];
+	if (fragment) {
+		var commentID = fragment.split('_')[1];
+		var t = "/index.php?mid={$mid}&document_srl={$oDocument->document_srl}&act=dispBoardReplyComment&comment_srl="+commentID;
+		var o = jQuery('#re_cmt').eq(0);
+		o.find('input[name=mid]').val(current_mid);
+		o.appendTo(jQuery('#comment_'+commentID)).fadeIn().find('input[name=parent_srl]').val(commentID);
+		o.find('a.wysiwyg').attr('href',t);
+		setTimeout(function() { 
+			o.find('textarea').focus();
+		}, 1000);	
+	}
+});
+</script>
+<!--@end-->
