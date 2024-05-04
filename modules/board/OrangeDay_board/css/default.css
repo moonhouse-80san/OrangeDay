@@ -751,7 +751,7 @@ body { overflow-y:scroll; }
 		읽기 - 댓글
 
 //////////*/
-.feedback { background:linear-gradient(transparent, rgba(0,0,0,.04) calc( var(--oday_iptHeight) + 10px),transparent  calc( var(--oday_iptHeight) + 10px)); margin-top: 2em; }
+.feedback { background:linear-gradient(transparent, rgba(0,0,0,.04) calc( var(--oday_iptHeight) + 10px),transparent  calc( var(--oday_iptHeight) + 10px)); margin-top: .5em; }
 .feedback h2 { 
 	display: flex; align-items: center; 
 	border: var(--oday_listBorder); background-color: var(--oday_listBgColor); border-bottom:none; 
@@ -761,7 +761,7 @@ body { overflow-y:scroll; }
 .feedback h2 em { color: var(--oday_mainColor); }
 .feedback h2 + * { border-top: var(--oday_listBorder); }
 .comList {padding: var(--oday_sideGap); background-color: var(--oday_listBgColor); }
-.comList > li {padding-top: 1.5em; padding-bottom:1.5em;  position:relative; border-left:var(--oday_listBorderStress); border-right:var(--oday_listBorderStress)}
+.comList > li {padding-top: .5em; padding-bottom:.5em;  position:relative; border-left:var(--oday_listBorderStress); border-right:var(--oday_listBorderStress)}
 .comList > li.nodepth {padding-top: 1em; padding-bottom:1em; border:none;}
 .comList > li.nodepth + li.nodepth,
 .comList > li + li {  border-top: var(--oday_listBorder); border-radius:0; border-top-style:dashed}
