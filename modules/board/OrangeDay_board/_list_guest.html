@@ -1,19 +1,21 @@
 <load target="../../../editor/skins/xpresseditor/js/xe_textarea.min.js" type="body" />
-<load target="asset/autosize.min.js" type="body" />
-{@
-	$listCheck = 1; <!--// 리스트에서 코멘트 관리 버튼 안보이게 -->
-}
 <script>//<![CDATA[
 var lang_type = "{$lang_type}";
-jQuery(function($){ board('#bd_{$mi->module_srl}_{$oDocument->document_srl}'); });
+jQuery(function($){
+	board('#bd_{$mi->module_srl}_{$oDocument->document_srl}');
+});
 //]]></script>
+{@
+	$guest_comment_btn = "N"; <!--// 리스트에서 코멘트 관리 버튼 안보이게 -->
+	$mi->cmt_wrt ='textarea';
+}
 <!--%import("filter/insert.xml")-->
 <div class='stickyTopBox'>
 	<include target="opt_list/_list__opt_category.html" />
 	<include target="opt_list/_list__opt_search.html" />
 </div>
 
-<include target="opt_list/_list__opt_notice_pop.html" />
+<include target="opt_list/_list__opt_notice.html" />
 
 <div id="bd_{$mi->module_srl}_{$oDocument->document_srl}" class="list_guest_write bd-all">
 	<div class="box">
@@ -25,9 +27,12 @@ jQuery(function($){ board('#bd_{$mi->module_srl}_{$oDocument->document_srl}'); }
 			<input type="hidden" name="content" value="{$mi->content_default}"|cond="$mi->content_default" />
 			<input type="hidden" name="document_srl" value="" />
 
-			<input type="hidden" name="use_html" value="Y" />
-			<input type="hidden" id="htm_1" value="n" />
-			<textarea id="editor_1" cols="50"></textarea>
+			<div cond="$mi->cmt_wrt=='editor'" class="wysiwyg">{$oDocument->getEditor()}</div>
+			<div cond="$mi->cmt_wrt=='textarea'" class="simple_wrt">
+				<input type="hidden" name="use_html" value="Y" />
+				<input type="hidden" id="htm_1" value="n" />
+				<textarea id="editor_1" cols="50"></textarea>
+			</div>
 			<ul class="formBox split">
 				<li class="front">
 					<ul cond="!$is_logged" class="namepass">
@@ -48,10 +53,11 @@ jQuery(function($){ board('#bd_{$mi->module_srl}_{$oDocument->document_srl}'); }
 					</div>
 					<div  cond="$module_info->secret=='Y'">
 						<input type="checkbox" name="is_secret" value="Y" id="is_secret" class="iCheck" />
-						<label for="is_secret">{$lang->secret}</label> 
+						<label for="is_secret">{$lang->secret}</label>
 					</div>
 					&nbsp;
 					<button type="submit" class="obtn"><i class='bx bx-book-bookmark'></i> 방명록 작성하기</button>
+					<a href="{getUrl('act','dispBoardWrite','document_srl','')}" class="obtn"><i class='bx bx-book-bookmark'></i> 에디터 사용</a>
 				</li>
 			</ul>
 		</form>
@@ -68,52 +74,63 @@ jQuery(function($){ board('#bd_{$mi->module_srl}_{$oDocument->document_srl}'); }
 			검색된 글이 없습니다.
 		<!--@else-->
 			{$lang->no_documents}
-			<!-- include target="opt_read/_read_opt_urlinfo.html" / -->
 		<!--@end-->
 		</div>
 	<!--@else-->
-	<div loop="$document_list=>$no,$oDocument" class="box">		
+	<div loop="$document_list=>$no,$oDocument" class="box">
 		<ul class="grid">
 			<li class="meta size2">
+				<span class="number">{$no}</span>
 				<img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" alt="profile" title="{$oDocument->getNickName()}" class="profile" />
 				<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}"></div>
 			</li>
 			<li class="gCon">
-				<div cond="$oDocument->getTitle()" class="conTop">
-						<span cond="$oDocument->printExtraImages(60*60*$mi->duration_new)" class="newicon 
-							<!--@foreach($oDocument->getExtraImages(60*60*$mi->duration_new) as $key=>$val)-->
-								<!--@if($val == 'secret')-->S<!--@end-->
-								<!--@if($val == 'new')--> Fbox left N<!--@end-->
-								<!--@if($val == 'update')--> Fbox left U<!--@end-->
-								<!--@if($val == 'file')-->F<!--@end-->
-							<!--@end-->
-						">
-							<block loop="$oDocument->getExtraImages(60*60*$mi->duration_new) => $val, $key">
-							<block cond="$key == 'new'">N</block>
-							<block cond="$key == 'update'">U</block>
-							</block>
-						</span>
-					<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
-						<span class="newicon Fbox secret"><i class='bx bxs-lock'></i></span>
+				<span cond="$oDocument->printExtraImages(60*60*$mi->duration_new)" class="newicon
+					<!--@foreach($oDocument->getExtraImages(60*60*$mi->duration_new) as $key=>$val)-->
+						<!--@if($val == 'secret')-->S<!--@end-->
+						<!--@if($val == 'new')--> Fbox left N<!--@end-->
+						<!--@if($val == 'update')--> Fbox left U<!--@end-->
+						<!--@if($val == 'file')-->F<!--@end-->
 					<!--@end-->
-					<span class="number">{$no}</span>
+				">
+					<block loop="$oDocument->getExtraImages(60*60*$mi->duration_new) => $val, $key">
+					<block cond="$key == 'new'">N</block>
+					<block cond="$key == 'update'">U</block>
+					</block>
+				</span>
+				<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
+					<span class="newicon Fbox secret"><i class='bx bxs-lock'></i></span>
+				<!--@end-->
+
+				<div cond="$list_config['title']->idx" class="title">
+					<a href="{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle, '','')}">
+						{strip_tags($oDocument->getTitle())}
+					</a>
+				</div>
+				<div class="metabox">
 					<span cond="$category_list[$oDocument->get('category_srl')]->title" class="category">{$category_list[$oDocument->get('category_srl')]->title}</span>
-					<span class="title">
-						<a href="{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle, '','')}">
-							{strip_tags($oDocument->getTitle())}
-						</a>
+
+					<a cond="$oDocument->getMemberSrl()" cond="$list_config['nick_name']->idx"  href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getNickName()}</a>
+					<p cond="!$oDocument->getMemberSrl()" class="author">{$oDocument->getNickName()}</p>
+					<a cond="$oDocument->getMemberSrl()" cond="$list_config['user_id']->idx" href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getUserID()}</a>
+					<a cond="$oDocument->getMemberSrl()" cond="$list_config['user_name']->idx" href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getUserName()}</a>
+
+					<span cond="$list_config['regdate']->idx" class="od_date">{getTimeGap($oDocument->get('regdate'), "Y.m.d - H:i")}</span>
+					<span cond="$list_config['last_update']->idx" cond="$oDocument->get('last_update')" class="od_date">{getTimeGap($oDocument->get('last_update'), "Y.m.d - H:i")}</span>
+					<span cond="$list_config['last_post']->idx" cond="(int)($oDocument->get('comment_count'))>0" class="od_date">
+						<block cond="(int)($oDocument->get('comment_count'))>0">
+							<a href="{$oDocument->getUrl()}#comment" title="Last Reply">
+								{getTimeGap($oDocument->get('last_update'), "Y.m.d")}
+								<span cond="$oDocument->getLastUpdater()">
+									<i>by</i> {$oDocument->getLastUpdater()}
+								</span>
+							</a>
+						</block>
 					</span>
-					<br />
-					<span class="author" style="margin-top:.5em;">
-						<a cond="!$oDocument->getMemberSrl() && $oDocument->isExistsHomepage()" href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false">{$oDocument->getNickName()}</a>
-						<p cond="!$oDocument->getMemberSrl() && !$oDocument->isExistsHomepage()">{$oDocument->getNickName()}</p>
-						<a cond="$oDocument->getMemberSrl()" href="#popup_menu_area" class="member_{$oDocument->get('member_srl')}" onclick="return false">{$oDocument->getNickName()}</a>
-					</span>
-					<span class="od_date">{getTimeGap($oDocument->get('regdate'), "Y.m.d - H:i")}</span>
 					<span cond="$oDocument->get('readed_count')>0" class="color" style="float:right; margin-right:10px"><i class='bx bx-registered'></i> {$oDocument->get('readed_count')>0?$oDocument->get('readed_count'):'0'} Views</span>
 					<input cond="$grant->manager" type="checkbox" name="cart" value="{$oDocument->document_srl}" title="Check this" onclick="doAddDocumentCart(this)" <!--@if($oDocument->isCarted())-->checked="checked"<!--@end--> />
 				</div>
-				
+
 				<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
 				<div class="utilityMessage">{$lang->msg_is_secret} {$lang->msg_input_password}</div>
 				<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretMessage secretForm">
@@ -131,9 +148,80 @@ jQuery(function($){ board('#bd_{$mi->module_srl}_{$oDocument->document_srl}'); }
 			</li>
 		</ul>
 
-		<include target="_comment.html" />
+		<div class="feedback" id="comment" cond="$oDocument->getCommentcount()">
+			<h2><i class="xi-comment"></i>&nbsp;{$lang->comment}&nbsp;<em>{$oDocument->getCommentcount()}</em></h2>
+			<ul class="guest_comments" style="border: var(--oday_listBorderStress); box-shadow: var(--oday_listShadow); border-radius:10px; padding:10px 10px 10px 0; margin:0 20px 5px; ">
+				<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')" id="comment_{$comment->comment_srl}" style="padding-left:calc({($comment->get('depth'))}0px * 2);">
+					<ul class="comListSub">
+						<li style="font-size:2em; margin:2px 10px 0 10px; color:var(--oday_mainColorLight)"><i class='bx bxs-share bx-rotate-180'></i></li>
+						<li class="meta">
+							<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
+							<span cond="!$comment->getProfileImage()" class="profile" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($comment->getNickName())}') 2px 2px no-repeat; width:55px; height:55px; color:#fff; text-shadow:1px 1px 0 #444,1px 1px 0 #222; font-weight:bold; border:1px solid #ddd; padding:2px;"></span>
+						</li>
+						<li class="comCon">
+							<div class="authorwrap">
+								<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="author">{$comment->getNickName()}</a>
+								<span cond="!$comment->member_srl && !$comment->homepage" class="author">{$comment->getNickName()}</span>
+								<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl} author" onclick="return false">{$comment->getNickName()}</a>
+								<span class="od_date" cond="$grant->is_admin">({$comment->getIpaddress()})</span>
+								<span class="od_date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span> 
+								<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
 
-		<details cond="$grant->write_document" class="accordion">
+							</div>
+							<!--@if(!$comment->isAccessible())-->
+							<form action="./" method="get" class="secretForm" onsubmit="return procFilter(this, input_password)">
+								<input type="hidden" name="mid" value="{$mid}" />
+								<input type="hidden" name="page" value="{$page}" />
+								<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
+								<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
+								<div class="utilityMessage">{$lang->msg_is_secret} {$lang->msg_input_password}</div>
+								<div class="formBoxCenter">
+									<input type="password" name="password" id="cpw_{$comment->comment_srl}" class="iText" />
+									<input type="submit" class="obtn" value="{$lang->cmd_input}" />
+								</div>
+							</form>
+							<!--@else-->
+							{$comment->getContent(false)|noescape}
+
+							<div class="sbtn_mini sbtn-white" style="float:right; margin:5px 0 0 10px">
+								<a href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" class="reply" rel="nofollow"><i class='bx bx-chat bx-flip-horizontal' ></i> 답글</a>
+							</div>
+
+							<block cond="!$listCheck">
+							<ul cond="$comment->hasUploadedFiles()" class="fileList">
+								<li loop="$comment->getUploadedFiles()=>$key,$file">
+									<a href="{getUrl('')}{$file->download_url}" rel="nofollow">{$file->source_filename} 
+										<span class="fileSize">{FileHandler::filesize($file->file_size)} / <i class='bx bxs-downvote'></i> {number_format($file->download_count)}</span>
+									</a>
+								</li>
+							</ul>
+							<div class="action">
+								<div>
+								<a class="bd_login" href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" title="{$lang->cmd_vote}">
+								<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->">favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+								</div>
+
+								<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class="xi-eraser"></i> {$lang->cmd_modify}</a>
+								<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete" rel="nofollow"><i class="xi-trash"></i> {$lang->cmd_delete}</a>
+								<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false">{$lang->cmd_comment_do}</a>
+							</div>
+							</block>
+							<!--@end-->
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div cond="$oDocument->comment_page_navigation" class="pagination">
+				<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',1)}#comment" class="direction prev"><span></span><span></span><i class='bx bxs-chevron-left' ></i></a>
+				<block loop="$page_no=$oDocument->comment_page_navigation->getNextPage()">
+					<strong cond="$cpage==$page_no">{$page_no}</strong>
+					<a cond="$cpage!=$page_no" href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$page_no)}#comment">{$page_no}</a>
+				</block>
+				<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="direction next"><i class='bx bxs-chevron-right'></i><span></span><span></span></a>
+			</div>
+		</div>
+
+		<details cond="$grant->write_document" class="accordion" style="margin-top:1.5em">
 			<summary class="notice_fold">
 				<div class="obtn"><i class='bx bx-chat'></i> 댓글창</div>
 			</summary>
@@ -145,7 +233,7 @@ jQuery(function($){ board('#bd_{$mi->module_srl}_{$oDocument->document_srl}'); }
 					<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
 					<input type="hidden" name="comment_srl" value="" />
 
-					<div class="editorBox" style="margin-top:-3em"><textarea name="content" rows="2" cols="20" class="textarea"></textarea></div>
+					<div class="editorBox" style="margin:-3em 0 .3em 0"><textarea name="content" rows="2" cols="20" class="textarea"></textarea></div>
 
 					<ul class="formBox split">
 						<li class="front">
@@ -187,8 +275,6 @@ jQuery(function($){ board('#bd_{$mi->module_srl}_{$oDocument->document_srl}'); }
 	</div>
 	<!--@end-->
 </div>
-<div class="iframeCon"><iframe src ="" width="100%" height="100%" frameborder="no" id="iframeWin" name="viewgall"></iframe><div class="iframeBg"></div></div>
-
 <include target="opt_list/_list__opt_pagenavi.html" />
 <include target="opt_list/_list__opt_btnbox.html" />
 <style>
@@ -199,30 +285,14 @@ jQuery(function($){ board('#bd_{$mi->module_srl}_{$oDocument->document_srl}'); }
 function board(bdObj){
 	(function($){
 		var bd = $(bdObj);
+		if(bd.find('form.bd_guest').length){
 			$.getScript("modules/editor/tpl/js/editor_common.min.js",function(){
-				if(bd.find('form.bd_guest textarea').length){
-					$.getScript('files/cache/js_filter_compiled/35d29adbe4b14641f9eac243af40093b.'+lang_type+'.compiled.js');
-					editorStartTextarea(1,'content','document_srl');
-				};
-			});
+					if(bd.find('form.bd_guest textarea').length){
+					//	$.getScript('files/cache/js_filter_compiled/35d29adbe4b14641f9eac243af40093b.'+lang_type+'.compiled.js');
+						editorStartTextarea(1,'content','document_srl');
+					};
+				});
+		}
 	})(jQuery)
 }
-function viewCon() {
-	scrollDisable();
-	setTimeout(function() { 
-		$(".iframeCon").show();
-	}, 200);
-}
-var tUrl = "{getUrl('document_srl','')}";
-function closeCon() {
-	document.title = "{Context::getBrowserTitle()}";
-	scrollAble();
-	$(".iframeCon").hide();
-	$("#iframeWin").attr('src',"");
-	history.replaceState({ data: 'end' }, '', tUrl);
-}
-$(function(){
-	autosize($('textarea'));
-});
-
 </script>
