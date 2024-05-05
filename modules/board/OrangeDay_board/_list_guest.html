@@ -127,7 +127,8 @@ jQuery(function($){
 							</a>
 						</block>
 					</span>
-					<span cond="$oDocument->get('readed_count')>0" class="color" style="float:right; margin-right:10px"><i class='bx bx-registered'></i> {$oDocument->get('readed_count')>0?$oDocument->get('readed_count'):'0'} Views</span>
+					<span cond="$oDocument->get('voted_count')!=0" class="color" style="margin:0 5px 0 10px"><i class='bx bxs-heart'></i> {$oDocument->get('voted_count')!=0?$oDocument->get('voted_count'):'0'}&nbsp;<span class="irt">Likes</span></span>
+					<span cond="$oDocument->get('readed_count')>0" class="color" style="margin:0 5px 0 10px"><i class='bx bx-registered'></i> {$oDocument->get('readed_count')>0?$oDocument->get('readed_count'):'0'}&nbsp;<span class="irt">Views</span></span>
 					<input cond="$grant->manager" type="checkbox" name="cart" value="{$oDocument->document_srl}" title="Check this" onclick="doAddDocumentCart(this)" <!--@if($oDocument->isCarted())-->checked="checked"<!--@end--> />
 				</div>
 

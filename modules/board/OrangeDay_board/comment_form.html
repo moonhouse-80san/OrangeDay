@@ -21,12 +21,11 @@
 				{$oComment->getEditor()}
 				<ul class="formBox">
 					<li class="front">
-						<button  cond="$is_logged" class="obtn" type="button" onclick="history.go(-1);" ><i class='bx bxs-left-arrow-alt'></i> BACK</button>
 						<div cond="!$is_logged">
 							<label for="userName" class="iLabel">{$lang->writer}</label>
-							<input type="text" name="nick_name" id="userName" class="iText userName" value="{$oComment->getNickName()}" />
+							<input type="text" name="nick_name" id="userName" class="iText userName" value="{$oComment->getNickName()}"/>
 							<label for="userPw" class="iLabel">{$lang->password}</label>
-							<input type="password" name="password" id="userPw" class="iText userPw" autocomplete="new-password" />
+							<input type="password" name="password" id="userPw" class="iText userPw" autocomplete="new-password"/>
 						</div>
 					</li>
 					<li class="end">
@@ -43,7 +42,7 @@
 						<div>
 					</li>
 				</ul>
-				<div  cond="!$is_logged" class="formBoxCenter"><br /><br />
+				<div class="formBoxCenter">
 					<button class="obtn" type="button" onclick="history.go(-1);" ><i class='bx bxs-left-arrow-alt'></i> BACK</button>
 				</div>
 			</form>
