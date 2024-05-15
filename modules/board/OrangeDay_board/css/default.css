@@ -315,7 +315,7 @@ body { overflow-y:scroll; }
 
 //////////*/
 #list-bd {border-top: var(--oday_listBorderStress); border-bottom: var(--oday_listBorderStress); background-color: var(--oday_listBgColor); }
-#list-bd .box { display: flex; justify-content: flex-start; align-items: center; min-height: var(--oday_listHeight); padding: 19px; }
+#list-bd .box { display: flex; justify-content: flex-start; align-items: center; min-height: var(--oday_listHeight); padding: 20px; }
 #list-bd.list-bd-ul .box { padding: 10px 10px;}
 #list-bd .readActive { background-color: var(--oday_listBgColorStress1); }
 #list-bd .box + .box { border-top: var(--oday_listBorder); }
@@ -1038,6 +1038,7 @@ ul.naviBtn li { display: flex; justify-content: center; }
 #bd_ft .NameDate { float:left; line-height:26px; }
 #bd_ft .EndButton { float:right; margin-top:3px; text-align:right; }
 #bd_ft .Area { display:table; width:100%; box-sizing:border-box; padding:10px; }
+#bd_ft .number { font-size: 0.9em; color:#fff; background-color:var(--oday_mainColor); padding:2px 3px; margin:0 5px 0 0; }
 #bd_ft .title a { font-size:20px; font-weight:bold; }
 #bd_ft .tag a { margin-left:2px; background-color:#EAEAEA; border-radius:4px; padding:2px 5px; font-size:11px; color:#000; }
 #bd_ft .mt { line-height:30px; }

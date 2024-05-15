@@ -73,6 +73,7 @@
 			<div class="Area">
 				<!--// 제목 -->
 				<div class="title">
+					<span class="number" style="font-size: 0.9em; color:#fff; background-color:var(--oday_mainColor); padding:2px 3px; margin:0 5px 0 0;">{$no}.</span>
 					<a class="mt" href="{getUrl('document_srl', $document->document_srl)}" target="_blank"|cond="$module_info->new_window" style="font-size:{$mi->ft_fontsize}">
 						<!--@if($document->isSecret() && !$document->isGranted())-->
 							비밀글 입니다. <i class='bx bx-lock' style="color:var(--oday_mainColor)"></i>
