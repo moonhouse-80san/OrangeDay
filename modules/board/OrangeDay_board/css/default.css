@@ -315,7 +315,7 @@ body { overflow-y:scroll; }
 
 //////////*/
 #list-bd {border-top: var(--oday_listBorderStress); border-bottom: var(--oday_listBorderStress); background-color: var(--oday_listBgColor); }
-#list-bd .box { display: flex; justify-content: flex-start; align-items: center; min-height: var(--oday_listHeight); padding: 20px; }
+#list-bd .box { display: flex; justify-content: flex-start; align-items: center; min-height: var(--oday_listHeight); padding: 19px; }
 #list-bd.list-bd-ul .box { padding: 10px 10px;}
 #list-bd .readActive { background-color: var(--oday_listBgColorStress1); }
 #list-bd .box + .box { border-top: var(--oday_listBorder); }
