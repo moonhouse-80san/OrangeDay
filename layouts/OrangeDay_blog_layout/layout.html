@@ -148,7 +148,7 @@
 			<ul class="lt_gnb">
 				<li loop="$GNB->list => $key1, $val1"  cond="$val1['href']">
 					<a cond="$val1['href']" href="{$val1['href']}" class="<!--@if($val1['class'])-->{$val1['class']}<!--@end--><!--@if($val1['selected'])--> active1<!--@end-->" target="_blank"|cond="$val1['open_window'] == 'Y'" title="">
-						{$val1['icon']}&nbsp;&nbsp;{$val1['link']|noescape}&nbsp;&nbsp;<span cond="$val1['open_window'] == 'Y'" class="material-symbols-sharp">open_in_new</span>
+						<i cond="$val1['icon']" class="{$val1['icon']}"></i>&nbsp;&nbsp;{$val1['link']|noescape}&nbsp;&nbsp;<span cond="$val1['open_window'] == 'Y'" class="material-symbols-sharp">open_in_new</span>
 					</a>
 					<a cond="$val1['list']" class="morelist"><i class='bx bx-list-plus'></i></a>
 					<ul cond="$val1['list']" class="depth2">
@@ -245,8 +245,9 @@
 					</div>
 				</li>
 				<li class="comsummury vp" cond="$oi->site_address || $oi->site_copyright">
+					<span class="address" cond="$oi->site_address">{$oi->site_address}</span>
 					<span class="copy"><i class='bx bx-copyright'></i>&nbsp;{$oi->site_copyright}&nbsp;all rights reserved.</span>
-					<span class="address"><i class="fa-brands fa-xing" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></span>
+					<span class="address"><i class="fa-brands fa-rockrms" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></span>
 				</li>
 
 				<!--@if($oi->site_badge=='yes')-->
@@ -298,8 +299,9 @@
 					</block>
 				</block>
 				</li>
+				<li class="address" cond="$oi->site_address">{$oi->site_address}</li>
 				<li class="copy"><i class='bx bx-copyright'></i>&nbsp;{$oi->site_copyright}&nbsp;all rights reserved.</li>
-				<li class="address"><i class="fa-brands fa-xing" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></li>
+				<li class="address" style="margin-top:5px"><i class="fa-brands fa-rockrms" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></li>
 			</ul>
 		</footer>
 	</li>
