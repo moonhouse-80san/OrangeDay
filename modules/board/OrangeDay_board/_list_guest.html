@@ -67,6 +67,8 @@ jQuery(function($){
 	</div>
 </div>
 
+<include target="opt_list/_list__opt_ads.html" />
+
 <div id="list_guest" class="bd-all">
 	<!--@if(!$document_list && !$notice_list)-->
 		<div class="no_documents box">
@@ -157,7 +159,7 @@ jQuery(function($){
 						<li style="font-size:2em; margin:2px 10px 0 10px; color:var(--oday_mainColorLight)"><i class='bx bxs-share bx-rotate-180'></i></li>
 						<li class="meta">
 							<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-							<span cond="!$comment->getProfileImage()" class="profile" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($comment->getNickName())}') 2px 2px no-repeat; width:55px; height:55px; color:#fff; text-shadow:1px 1px 0 #444,1px 1px 0 #222; font-weight:bold; border:1px solid #ddd; padding:2px;"></span>
+							<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="30"></div>
 						</li>
 						<li class="comCon">
 							<div class="authorwrap">
@@ -276,24 +278,27 @@ jQuery(function($){
 	</div>
 	<!--@end-->
 </div>
+
 <include target="opt_list/_list__opt_pagenavi.html" />
 <include target="opt_list/_list__opt_btnbox.html" />
+
 <style>
-#list_guest,
-#list_guest .box + .box {margin-top:{$mi->gall_cell_gap}px;}
+	#list_guest,
+	#list_guest .box + .box {margin-top:{$mi->gall_cell_gap}px;}
 </style>
+
 <script>
-function board(bdObj){
-	(function($){
-		var bd = $(bdObj);
-		if(bd.find('form.bd_guest').length){
-			$.getScript("modules/editor/tpl/js/editor_common.min.js",function(){
-					if(bd.find('form.bd_guest textarea').length){
-					//	$.getScript('files/cache/js_filter_compiled/35d29adbe4b14641f9eac243af40093b.'+lang_type+'.compiled.js');
-						editorStartTextarea(1,'content','document_srl');
-					};
-				});
-		}
-	})(jQuery)
-}
+	function board(bdObj){
+		(function($){
+			var bd = $(bdObj);
+			if(bd.find('form.bd_guest').length){
+				$.getScript("modules/editor/tpl/js/editor_common.min.js",function(){
+						if(bd.find('form.bd_guest textarea').length){
+						//	$.getScript('files/cache/js_filter_compiled/35d29adbe4b14641f9eac243af40093b.'+lang_type+'.compiled.js');
+							editorStartTextarea(1,'content','document_srl');
+						};
+					});
+			}
+		})(jQuery)
+	}
 </script>

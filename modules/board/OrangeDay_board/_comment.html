@@ -18,7 +18,7 @@
 			<ul class="comListSub">
 				<li class="meta<!--@if($comment->get('depth'))--> depth<!--@end-->">
 					<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-					<span cond="!$comment->getProfileImage()" class="profile" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($comment->getNickName())}') 2px 2px no-repeat; width:55px; height:55px; color:#fff; text-shadow:1px 1px 0 #444,1px 1px 0 #222; font-weight:bold; border:1px solid #ddd; padding:2px;"></span>
+					<span cond="!$comment->getProfileImage()" class="profile" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($comment->getNickName())}') no-repeat; width:50px; height:50px"></span>
 				</li>
 				<li class="comCon">
 					<div class="authorwrap">

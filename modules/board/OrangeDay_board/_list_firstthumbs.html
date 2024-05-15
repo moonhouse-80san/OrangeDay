@@ -33,6 +33,7 @@
 </div>
 
 <include target="opt_list/_list__opt_notice_pop.html" cond="$notice_list" />
+<include target="opt_list/_list__opt_ads.html" />
 
 <!--@if(!$document_list && !$notice_list)-->
 	<div class="no_documents">
@@ -125,7 +126,7 @@
 					<div class="InfoRight">
 						<a cond="$document->getCommentCount()" href="{getUrl('document_srl', $document->document_srl)}#{$document->document_srl}_comment" class="color line_right" title="{$lang->comment}"><img src="img/chat-1-line.svg"> {$document->getCommentCount()}<span class="irt">Replies</span></a>
 						<span cond="$document->get('voted_count')!=0" class="color line_right"><img src="img/heart-2-line.svg"> {$document->get('voted_count')!=0?$document->get('voted_count'):'0'}<span class="irt">Likes</span></span>
-						<span cond="$document->get('readed_count')>0" class="color"><img src="img/registered-line.svg"> {$document->get('readed_count')>0?$document->get('readed_count'):'0'}<span class="irt">Views</span></span>
+						<span cond="$document->get('readed_count')>0" class="color"><img src="img/registered-line.svg"> {number_format($document->get('readed_count')>0?$document->get('readed_count'):'0')}<span class="irt">Views</span></span>
 					</div>
 				</div>
 

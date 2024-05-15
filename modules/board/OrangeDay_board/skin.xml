@@ -50,13 +50,12 @@
 				</options>
 				<!-- options value="history_step">
 					<title xml:lang="ko">히스토리 스텝</title>
-				</options -->				
+				</options -->
 			</var>
 		</group>
 
 		<group>
 			<title xml:lang="ko">공통 설정</title>
-
 			<var name="site_badge" type="radio">
 				<title xml:lang="ko">오렌지데이 뱃지</title>
 				<description xml:lang="ko">게시판 하단의 오렌지데이 바로 가기 배너</description>
@@ -66,8 +65,7 @@
 				<options value="use_no">
 					<title xml:lang="ko">비사용</title>
 				</options>
-			</var>		
-			
+			</var>
 			<var name="preview" type="radio">
 				<title xml:lang="ko">게시판 유형 전환 버튼</title>
 				<description xml:lang="ko">게시판 유형을 바꿀수 있는 버튼이 노출됩니다.
@@ -79,7 +77,6 @@
 					<title xml:lang="ko">사용</title>
 				</options>
 			</var>
-
 			<var name="theme_use" type="radio">
 				<title xml:lang="ko">컬러 테마 설정</title>
 				<description xml:lang="ko">주요색상 컬러와 다크모드를 설정할 수 있습니다.
@@ -141,7 +138,7 @@
 				<title xml:lang="ko">갤러리창 간격</title>
 				<description xml:lang="ko">갤러리창사이 간격. (기본 2px)
 				- 갤러리형, 북마크형, 웹진형, 유투브형 에 적용됩니다.</description>
-			</var>			
+			</var>
 			<var name="bg_use" type="radio">
 				<title xml:lang="ko">배경색 사용</title>
 				<description xml:lang="ko">목록과 글읽기의 배경색, 테두리선 사용여부를 정할수 있습니다.
@@ -153,13 +150,35 @@
 					<title xml:lang="ko">사용 안함</title>
 				</options>
 			</var>
-			
+			<var name="notice_view_slide" type="radio">
+				<title xml:lang="ko">공지글 폴딩 출력</title>
+				<options value="">
+					<title xml:lang="ko">일반출력(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">폴딩출력</title>
+				</options>
+				<description xml:lang="ko">공지글 클릭시 폴딩 형식 출력을 선택합니다.</description>
+			</var>
+			<var name="list_ads" type="radio">
+				<title>★웹진형 리스트에 광고 삽입</title>
+				<description>웹진형 리스트에 광고 기능 사용하기</description>
+				<options value="">
+					<title>사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title>사용</title>
+				</options>
+			</var>
+			<var name="ads_code" type="textarea">
+				<title>　┖ 광고 코드</title>
+				<description>광고(에드센스) 코드를 입력</description>
+			</var>
 		</group>
 
 		<group>
 			<title xml:lang="ko">읽기 페이지 설정</title>
-			
-			<var name="read_meta" type="radio">
+				<var name="read_meta" type="radio">
 				<title xml:lang="ko">작성자 정보</title>
 				<options value="use">
 					<title xml:lang="ko">보기</title>
@@ -168,7 +187,6 @@
 					<title xml:lang="ko">감추기</title>
 				</options>
 			</var>
-
 			<var name="read_vote" type="radio">
 				<title xml:lang="ko">추천</title>
 				<options value="use">
@@ -233,7 +251,7 @@
 				<options value="no_use">
 					<title xml:lang="ko">감추기</title>
 				</options>
-			</var>		
+			</var>
 		</group>
 
 		<group>
@@ -305,7 +323,7 @@
 				<description>입력하지 않으면 기본 설정은 240 입니다.</description>
 			</var>
 			<var name="show_cate" type="radio">
-				<title>카테고리 표시(FT)</title>
+				<title>카테고리 표시</title>
 				<description>목록에서 제목 앞에 카테고리를 표시합니다.</description>
 				<options value="">
 					<title>표시(기본)</title>
@@ -449,7 +467,7 @@
 				</options>
 			</var>
 			<var name="select_icons" type="text">
-				<title>★제목앞	분류 버턴 확장변수 ID(FT)</title>
+				<title>★제목앞	분류 버턴 확장변수 ID</title>
 				<description>제목앞에 분류 버턴을 출력할 확장변수 ID를 작성(기본	change)
 				https://moonhouse.co.kr/qa/543730#comment_543791
 				</description>
@@ -638,7 +656,6 @@
 
 		<group>
 			<title xml:lang="ko">갤러리형 게시판 설정</title>
-
 			<var name="view_cell" type="radio">
 				<title xml:lang="ko">목록 형식</title>
 				<description xml:lang="ko">썸네일+내용 보기, 썸네일만, 내용만을 선택할 수 있습니다.</description>
@@ -662,7 +679,6 @@
 					<title xml:lang="ko">전체 보기</title>
 				</options>
 			</var>
-
 			<var name="layout_fix" type="radio">
 				<title xml:lang="ko">갤러리창 가로크기</title>
 				<description xml:lang="ko">갤러리창 가로크기를 레이아웃 넓이에 맞게 자동으로 할지, 고정값으로 할지 정하수 있습니다.</description>
@@ -673,14 +689,11 @@
 					<title xml:lang="ko">사용자 지정</title>
 				</options>
 			</var>
-
 			<var name="gall_cell_width" type="text" default="300">
 				<title xml:lang="ko">갤러리창 가로크기 지정</title>
 				<description xml:lang="ko">"갤러리창 가로크기 >사용자 지정"으로 선택시 넓이을 지정할 수 있습니다.  (기본 300px)
 				- 화면 양쪽으로 여백이 생길수 있습니다.</description>
 			</var>
-
-
 			<var name="thumbnail_type" type="radio">
 				<title xml:lang="ko">썸네일 생성 방법</title>
 				<description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
@@ -704,22 +717,22 @@
 			</var>
 			<var name="infinity_use" type="radio">
 				<title xml:lang="ko">무한스크롤 사용</title>
-				<description xml:lang="ko">무한스크롤 사용 여부 설정, 
+				<description xml:lang="ko">무한스크롤 사용 여부 설정,
 				사용안함 : 버튼으로 추가 페이지 로드</description>
 				<options value="no">
 					<title xml:lang="ko">사용안함</title>
 				</options>
 				<options value="yes">
 					<title xml:lang="ko">사용</title>
-				</options>				
+				</options>
 			</var>
 		</group>
-		
+
 		<group>
 			<title xml:lang="ko">유투브 설정</title>
 			<var name="youtube_infinity_use" type="radio">
 				<title xml:lang="ko">무한스크롤 사용</title>
-				<description xml:lang="ko">무한스크롤 사용 여부 설정, 
+				<description xml:lang="ko">무한스크롤 사용 여부 설정,
 				사용안함 : 버튼으로 추가 페이지 로드</description>
 				<options value="no">
 					<title xml:lang="ko">사용안함</title>
@@ -742,10 +755,10 @@
 				</options>
 				<options value="1">
 					<title xml:lang="ko">가로 1개</title>
-				</options>				
+				</options>
 			</var>
 		</group>
-		
+
 		<group>
 			<title xml:lang="ko">블로그 설정</title>
 			<var name="blog_layout" type="radio">
@@ -767,9 +780,8 @@
 				<description xml:lang="ko">상단 여백 설정 (기본 0px)
 				- 상단에 메뉴가 있다면 메뉴 높이값 입력</description>
 			</var -->
-			
 		</group>
-		
+
 		<group>
 			<title xml:lang="ko">히스토리 게시판 설정</title>
 			<var name="con_date" type="text">
