@@ -152,13 +152,13 @@
 			</var>
 			<var name="notice_view_slide" type="radio">
 				<title xml:lang="ko">공지글 폴딩 출력</title>
-				<description xml:lang="ko">공지글 클릭시 폴딩 형식 출력을 선택합니다.</description>
 				<options value="">
 					<title xml:lang="ko">일반출력(기본)</title>
 				</options>
 				<options value="Y">
 					<title xml:lang="ko">폴딩출력</title>
 				</options>
+				<description xml:lang="ko">공지글 클릭시 폴딩 형식 출력을 선택합니다.</description>
 			</var>
 			<var name="list_ads" type="radio">
 				<title>★웹진형 리스트에 광고 삽입</title>

@@ -1,5 +1,4 @@
-
-<div class="naviBoxSide"> 
+<div class="naviBoxSide">
 	<ul>
 		 <!--@if($mi->is_notice=='N')-->
 			<!--@if($document_list[$no+1]->document_srl)-->
@@ -7,7 +6,7 @@
 			<!--@else-->
 				<!--@if(!$is_prevnext=='P')-->
 					<li class="disabled"><a> <i class='bx bxs-chevron-left' ></i></a></li>
-				<!--@end-->	
+				<!--@end-->
 			<!--@end-->
 			<!--// 현재목록 외 이전글-다음글 -->
 			<block cond="$is_prevnext">
@@ -27,7 +26,7 @@
 		<!--@else-->
 			<li class="disabled"><a><i class='bx bxs-chevron-left'></i></a></li>
 			<li class="disabled"><a><i class='bx bxs-chevron-right'></i></a></li>
-		<!--@end-->	
+		<!--@end-->
 		<li class="btngolist<!--@if($mi->list_in_read == 'use')--><!--@if($mi->default_style=='webzine' || $mi->default_style=='webzinelist' || $mi->default_style=='list' || $mi->default_style=='listtable')--> combo<!--@end--><!--@end-->">
 			<div class="yellow"><i class='bx bxs-chevron-left'></i> 목록</div>
 			<a onclick="golistPage();" title="목록 보기" class="iframe-o"><i class='bx bxs-grid-alt' ></i></a>
@@ -62,7 +61,7 @@
 .gotoTopInNavi a { background-color: var(--oday_mainColor); color: var(--oday_primaryBtnColor); border:none}
 @media screen and (max-width:768px){
 	.naviBoxSide.is-pinned { border-radius:30px 30px 0 0; padding:5px; box-shadow:0px -1px 20px 4px rgba(0,0,0,.4);  background-color: var(--oday_bodyBgColor); }
-	.naviBoxSide.is-pinned ul { box-shadow:unset;  background-color:unset;} 
+	.naviBoxSide.is-pinned ul { box-shadow:unset;  background-color:unset;}
 	.gotoTopInNavi { display:block !important}
 }
 </style>
@@ -96,7 +95,7 @@
 
 	$(function() {
 		const el = document.querySelector(".naviBoxSide")
-		const observer = new IntersectionObserver( 
+		const observer = new IntersectionObserver(
 		  ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
 		  { threshold: [1] }
 		);
