@@ -43,7 +43,7 @@
 						</div>
 					</form>
 					<!--@else-->
-					{$comment->getContent(false)|noescape}
+					<span class="urllink">{$comment->getContent(false)|noescape}</span>
 					<ul cond="$comment->hasUploadedFiles()" class="fileList">
 						<li loop="$comment->getUploadedFiles()=>$key,$file">
 							<a href="{getUrl('')}{$file->download_url}" rel="nofollow">{$file->source_filename}

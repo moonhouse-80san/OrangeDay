@@ -1,4 +1,11 @@
 <include target="_header.html" />
+
+<!--// Wizard -->
+<block cond="$grant->manager && $mi->wizard!='N' && !Mobile::isMobileCheckByAgent()">
+	<load target="./css/wizard.css" />
+	<include target="_wizard.php" />
+</block>
+
 <block cond="$oDocument->isExists()">
 	<include target="read.html" />
 	<!--@if($mi->list_in_read == 'use')-->

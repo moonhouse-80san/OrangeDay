@@ -1047,6 +1047,7 @@ ul.naviBtn li { display: flex; justify-content: center; }
 #bd_ft .InfoRight { text-align:right; }
 #bd_ft .InfoRight .irt { margin-left:5px; }
 #bd_ft .line_right { background:url(../img/line_1x10_e0e0e0.gif) no-repeat right 3px; padding-right:1em; margin-right:.5em; }
+#bd_ft .listchk { float:left; margin:-4px 10px 0 0; }
 #bd_ft img.tmb:hover { transform:scale(1.05); }
 #bd_ft .no_img{ display:block;overflow:hidden;position:relative;margin:0 auto;background:#F3F3F3;font-weight:700;font-size:1.1em;color:#CCC;text-align:center;white-space:nowrap;*margin:0; }
 #bd_ft .summary { overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; line-height:20px; }

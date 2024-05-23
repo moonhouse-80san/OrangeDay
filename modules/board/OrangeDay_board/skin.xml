@@ -56,6 +56,16 @@
 
 		<group>
 			<title xml:lang="ko">공통 설정</title>
+			<var name="wizard" type="radio">
+				<title xml:lang="ko">위저드 사용</title>
+				<description xml:lang="ko">스킨 설정을 할 수 있는 내비게이션을 게시판 브라우저 좌측에 출력합니다.</description>
+				<options value="">
+					<title xml:lang="ko">관리자만(기본)</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안함</title>
+				</options>
+			</var>
 			<var name="site_badge" type="radio">
 				<title xml:lang="ko">오렌지데이 뱃지</title>
 				<description xml:lang="ko">게시판 하단의 오렌지데이 바로 가기 배너</description>
@@ -266,7 +276,7 @@
 					<title>모든 게시글 썸네일 출력</title>
 				</options>
 			</var>
-			<var name="ft_fontsize"	type="text">
+			<var name="ft_fontsize" type="text">
 				<title>　┖ 제목글 폰트 크기</title>
 				<description>제목글 폰트	크기 (기본 20px)</description>
 			</var>
@@ -320,7 +330,11 @@
 			</var>
 			<var name="content_cut_size" type="text">
 				<title>내용 글자 수</title>
-				<description>입력하지 않으면 기본 설정은 240 입니다.</description>
+				<description>입력하지 않으면 기본 설정은 320 입니다.</description>
+			</var>
+			<var name="sumline_no" type="text">
+				<title>내용 칸수</title>
+				<description>입력하지 않으면 기본 설정은 2줄 입니다.</description>
 			</var>
 			<var name="show_cate" type="radio">
 				<title>카테고리 표시</title>
