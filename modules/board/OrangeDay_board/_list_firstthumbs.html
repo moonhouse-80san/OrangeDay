@@ -71,10 +71,12 @@
 			<!--@elseif($mi->first_thumb_user =='all')-->
 				<include target="list_ft.html" />
 			<!--@end-->
-			{@ $fisrt_nick_str = mb_substr($document->getNickName(),0,2)}
 			<div cond="!$mi->profile_img" class="pf">
 				<img cond="$document->getProfileImage()" class="profile1" src="{$document->getProfileImage()}" alt="profile" />
-				<span cond="!$document->getProfileImage() && !$mi->pname == ''" class="profile1 no_img" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($document->getNickName())}') 2px 2px  no-repeat; width:55px; height:55px; border-radius:100%; border:0px solid #fff;"><span style="position:absolute; font-size:14px; color:#fff; text-shadow:1px 1px 0 #444,1px 1px 0 #222; font-weight:bold; left:15px; top:20px">{$fisrt_nick_str}</span></span>
+				<span cond="!$document->getProfileImage() && !$mi->pname == ''" class="profile1 no_img" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($document->getNickName())}') 1px 1px no-repeat">
+					{@ $fisrt_nick_str = mb_substr($document->getNickName(),0,2)}
+					<span class="nick">{$fisrt_nick_str}</span>
+				</span>
 			</div>
 
 			<div class="NameDate">
