@@ -2,14 +2,14 @@
 	if(!$mi->gall_cell_width) $mi->gall_cell_width = 300;
 	if(!$mi->gall_cell_gap) $mi->gall_cell_gap = 2;
 	$gall_cell_2width = ($mi->gall_cell_width * 2) + $mi->gall_cell_gap;
-	if($layout_info->gnb_width) :
+	if($layout_info->gnb_width) : 
 		$mi->layout_gap  = $layout_info->gnb_width;
 	elseif(!$layout_info->gnb_width) :
 		if(!$mi->layout_gap) $mi->layout_gap = 0;
 	endif;
-	if(!$mi->view_cell_sum) $mi->view_cell_sum = 'summ';
+	if(!$mi->view_cell_sum) $mi->view_cell_sum = 'summ';	
 	if(!$mi->layout_fix) $mi->layout_fix  = "no";
-	if(!$mi->infinity_use) $mi->infinity_use  = "no";
+	if(!$mi->infinity_use) $mi->infinity_use  = "no";	
 	$page_tno = $page ;
 	$page_no = $page + 1;
 }
@@ -66,13 +66,13 @@
 						<img src='{$document->getThumbnail($mi->thumbnail_width, $mi->thumbnail_height, $mi->thumbnail_type)}'  class="thum viewthum" />
 					<!--@else-->
 						<img src="img/noimg.png"  class="thum" />
-					<!--@end-->
+					<!--@end--> 
 				<!--@else-->
 					<!--@if($document->thumbnailExists())-->
 						<img src='{$document->getThumbnail($mi->thumbnail_width, $mi->thumbnail_height, $mi->thumbnail_type)}'  class="thum viewthum" />
 					<!--@else-->
 						<img src="img/noimg.png"  class="thum" />
-					<!--@end-->
+					<!--@end--> 
 				<!--@end-->
 				<ul cond="$mi->view_cell=='thum'" class="titlebox titleInbox">
 					<li class="columns">
@@ -80,7 +80,7 @@
 					</li>
 					<li class="title">
 						<!--@if($document->isSecret() && !$document->isGranted())-->
-							{$lang->msg_is_secret}
+							{$lang->msg_is_secret} 
 						<!--@elseif($document->isSecret() && $document->isGranted())-->
 							{strip_tags($document->getTitle())}
 						<!--@else-->
@@ -93,14 +93,14 @@
 							<span cond="!$document->getProfileImage()" class="profile"><i class='bx bxs-ghost'></i></span>
 							<span class="uname">{$document->getNickName()}</span>
 						</div>
-						<div class="od_date">{getTimeGap($document->get('regdate'), "Y.m.d - H:i")}</div>
+						<div class="od_date">{getTimeGap($document->get('regdate'), "Y.m.d - H:i")}</div>					
 					</li>
 					<li class="columns bottom">
 						<span class="read"><i class='bx bxs-show' ></i>&nbsp;{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</span>
 						<span cond="$document->getCommentCount()" class="count"><i class='bx bxs-message-rounded-dots'></i>&nbsp;{$document->getCommentCount()}</span>
 						<span class="count" cond="$document->get('voted_count')!=0"><i class='bx bxs-heart'></i>&nbsp;{$document->get('voted_count')}</span>
 					</li>
-				</ul>
+				</ul>                   
 			</a>
 		</block>
 		<ul cond="$mi->view_cell=='all' || $mi->view_cell=='sum'" class="titlebox">
@@ -114,7 +114,7 @@
 				<a href="{getUrl('document_srl',$document->document_srl,'listStyle',$listStyle, '','')}" onClick="viewCon('{strip_tags($document->getTitle())}','{getUrl('document_srl',$document->document_srl,'listStyle','galleryView')}');" target="viewgall">
 				<!--@end-->
 				<!--@if($document->isSecret() && !$document->isGranted())-->
-					{$lang->msg_is_secret}
+					{$lang->msg_is_secret} 
 				<!--@elseif($document->isSecret() && $document->isGranted())-->
 					{strip_tags($document->getTitle())}
 				<!--@else-->
@@ -126,7 +126,7 @@
 			<li class="summary">{$document->getSummary(300)}</li>
 			<!--@else-->
 			<li class="full">{$document->getContent(false)} </li>
-			<!--@end-->
+			<!--@end-->     
 			<li class="columns middle">
 				<div class="meta">
 					<img cond="$document->getProfileImage()" src="{$document->getProfileImage()}" alt="Profile" class="profile" />
@@ -140,7 +140,7 @@
 				<span cond="$document->getCommentCount()" class="count"><i class='bx bxs-message-rounded-dots'></i>&nbsp;{$document->getCommentCount()}</span>
 				<span class="count" cond="$document->get('voted_count')!=0"><i class='bx bxs-heart'></i>&nbsp;{$document->get('voted_count')}</span>
 			</li>
-		</ul>
+		</ul>  
 	</div>
 </div>
 <div class="wrap-infinity">
@@ -172,15 +172,15 @@
 	@media screen and (max-width:2200px){
 		.box, .boxsize { width:calc(((var(--cellWidth) - 2px) / 7) - {$mi->gall_cell_gap}px); }
     		.wrapGall.changeWidth .boxsize2 { width:calc((((var(--cellWidth) - 2px) / 7) * 2) - {$mi->gall_cell_gap}px); }
-	}
+	}	
 	@media screen and (max-width:2000px){
 		.box, .boxsize { width:calc(((var(--cellWidth) - 2px) / 6) - {$mi->gall_cell_gap}px); }
     		.wrapGall.changeWidth .boxsize2 { width:calc((((var(--cellWidth) - 2px) / 6) * 2) - {$mi->gall_cell_gap}px); }
-	}
+	}	
 	@media screen and (max-width:1800px){
 		.box, .boxsize { width:calc(((var(--cellWidth) - 2px) / 5) - {$mi->gall_cell_gap}px); }
     		.wrapGall.changeWidth .boxsize2 { width:calc((((var(--cellWidth) - 2px) / 5) * 2) - {$mi->gall_cell_gap}px); }
-	}
+	}	
 	@media screen and (max-width:1600px){
 		.box, .boxsize { width:calc(((var(--cellWidth) - 2px) / 4) - {$mi->gall_cell_gap}px); }
    		.wrapGall.changeWidth .boxsize2 { width:calc(((var(--cellWidth) - 2px) / 2) - {$mi->gall_cell_gap}px); }
@@ -198,7 +198,7 @@
    		.wrapGall.changeWidth .boxsize2 {  width:calc((((100vw - 2px) / 3) * 2) - {$mi->gall_cell_gap}px); }
 		.searchBox div.sort a.viewOne,
 		.searchBox div.sort a.viewTwo { display:none ;}
-	}
+	}	
 	@media screen and (max-width:700px){
 		.box, .boxsize,
    		.wrapGall.changeWidth .boxsize2 { width:calc(((100vw - 2px) / 2) - {$mi->gall_cell_gap}px); }
@@ -222,7 +222,7 @@
 <script>
 function viewCon(ta,tb) {
 	scrollDisable();
-	setTimeout(function() {
+	setTimeout(function() { 
 		$(".iframeCon").fadeIn();
 	}, 100);
 	document.getElementById('iframeWin').contentWindow.focus();
@@ -230,7 +230,7 @@ function viewCon(ta,tb) {
 }
 var tUrl = "{getUrl('document_srl','')}";
 function closeCon() {
-
+	
 	scrollAble();
 	$(".iframeCon").hide();
 	$("#iframeWin").attr('src',"");
@@ -258,7 +258,7 @@ $(function(){
 	});
  	let msnry = $grid.data('masonry');
 	$grid.imagesLoaded( function() {
-		//$(".boxsize img").css({ "width" : "100%" });
+		//$(".boxsize img").css({ "width" : "100%" }); 
 		$grid.masonry( 'option', { itemSelector: '.box' });
 		let $items = $grid.find('.box');
 		$grid.masonry( 'appended', $items );
@@ -274,7 +274,7 @@ $(function(){
 		history: false,
 		outlayer: msnry
 	});
-<!--@else-->
+<!--@else-->	
 	$grid.infiniteScroll({
 		path: '.pagination__next',
 		append: '.box',
@@ -290,11 +290,11 @@ $(function(){
 		$inficon.masonry();
 	});
 /* 셀 사이즈 변환 */
-	$('.viewOne').click(function(){
+	$('.viewOne').click(function(){ 
 		viewOne();
 		$inficon.masonry();
 	});
-	$('.viewTwo').click(function(){
+	$('.viewTwo').click(function(){ 
 		viewTwo();
 		$inficon.masonry();
 	});
@@ -317,15 +317,15 @@ if ( $getColor == "one" ){
 function viewOne() {
 	setCookie( "setOdayGallWidth_{$mid}", "one");
 	doViewOne();
-}
+} 
 function viewTwo() {
 	setCookie( "setOdayGallWidth_{$mid}", "two");
 	doViewTwo();
-}
+} 
 function doViewOne(){
 	$('.viewOne').addClass('acitvegall');
 	$('.viewTwo').removeClass('acitvegall');
-	$('.wrapGall').removeClass('changeWidth');
+	$('.wrapGall').removeClass('changeWidth');	
 }
 function doViewTwo(){
 	$('.viewTwo').addClass('acitvegall');
@@ -334,13 +334,13 @@ function doViewTwo(){
 }
 /* 가로형 이미지 체크 */
 function setDouble() {
-	$('.box').each(function() {
+	$('.box').each(function() { 
 		var w = $(this).find(".viewthum").width();
 		var h = $(this).find(".viewthum").height();
 		var r = w/h;
 		if(r > 1 ) {
 			$(this).addClass('boxsize2');
 		}
-	});
-}
+	});	
+} 
 </script>

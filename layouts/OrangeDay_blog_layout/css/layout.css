@@ -19,7 +19,6 @@ body, a, p, div, span, table, ul, li, img, h1, h2, h3, h4, h5, h6, header, texta
 }
 :is(.color_scheme_dark),
 :root[color-theme='dark'] {
-
 /* GNB */
 	--oday_gnbBgColor:rgb(30,30,30);
 	--oday_gnbBgColorSub: rgba(0,0,0,.4);

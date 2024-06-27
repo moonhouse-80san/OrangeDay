@@ -5,18 +5,18 @@
 <!--@else-->
 {@ $order_type = "desc"; }
 <!--@end-->
-{@
-	$current_version = '1.0.2';
+{@ 
+	$current_version = '1.0.3';
 	$mi->duration_new = 24;
 	if(!$mi->preview) $mi->preview = "use_no";
 	if(!$mi->theme_use) $mi->theme_use = "use_no";
 	if(!$mi->search_sticky) $mi->search_sticky = 0;
-	if(!$mi->list_in_read) $mi->list_in_read = "use_no";
+	if(!$mi->list_in_read) $mi->list_in_read = "use_no";	
 	if(!$mi->normal_list_height) $mi->normal_list_height = 60;
 	if(!$mi->bg_use) $mi->bg_use = "yes";
 	if(!$mi->page_align) $mi->page_align = "full";
-	if(!$mi->page_width) $mi->page_width = "1000";
-
+	if(!$mi->page_width) $mi->page_width = "1000";	
+	
 	if(!$mi->read_meta) $mi->read_meta = "use";
 	if(!$mi->read_vote) $mi->read_vote = "use";
 	if(!$mi->read_tag) $mi->read_tag = "use";
@@ -71,17 +71,20 @@
 {@ $mi->default_style = 'history'}
 <!--@elseif($listStyle=='youtube')-->
 {@ $mi->default_style = 'youtube'}
-<!--@elseif(!in_array($mi->default_style,array('list','listtable','gallery','firstthumbs','webzine','webzinelist','bookmark','guest','inputform','blog','history','youtube')))-->
+<!--@elseif($listStyle=='history_step')-->
+{@ $mi->default_style = 'history_step'}
+<!--@elseif(!in_array($mi->default_style,array('list','listtable','gallery','firstthumbs','webzine','webzinelist','bookmark','guest','inputform','blog','history','youtube','history_step')))-->
 {@ $mi->default_style = 'list'}
 <!--@end-->
 
 <!--@if($oday_srl->homepage!='https://www.orangeday.com')-->
 <load target="/_asset/_Oday_script.js" />
 <load target="/_asset/_Oday_default.css" />
-<load target="/_asset/_Oday_rhymix_fix.css" />
+<load target="/_asset/_Oday_rhymix_fix.css" /> 
 <load target="asset/nice-select.js" type="body" />
 <load target="asset/nice-select.css" />
 <load target="asset/jscookie.js" />
+
 
 <script>
 var $ = jQuery;
@@ -97,7 +100,7 @@ function scrollAble(){
 
 <!--@end-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">	
 <load target="../../../editor/skins/xpresseditor/js/xe_textarea.min.js" type="body" />
 <load target="asset/board.js" type="body" />
 <load target="asset/autosize.min.js" type="body" />
@@ -143,12 +146,12 @@ $(function(){
 	<!--@else-->
 		:root {
 			--oday_maxWidth: 100%;
-		}
+		}	
 	<!--@end-->
 <!--@end-->
 
 /* 상단 검색박스 위치 */
-.stickyTopBox { top:{$mi->search_sticky}px; }
+.stickyTopBox { top:{$mi->search_sticky}px; } 
 @media screen and (max-width:768px){
 	:root {
 		--oday_maxWidth:100%;
@@ -156,7 +159,7 @@ $(function(){
 	.stickyTopBox { top:0px; }
 	.pagelocation,
 	footer,
-	.od-bord { max-width:calc(100vw - 10px); margin-left:5px; margin-right:0}
+	.od-bord { max-width:calc(100vw - 10px); margin-left:5px; margin-right:0}	
 }
 </style>
 
@@ -203,13 +206,13 @@ $(function(){
 		</li>
 		<li class="on"|cond="$mi->default_style=='bookmark'">
 			<a class="bubble tooltip" href="{getUrl('listStyle','bookmark','act','','document_srl','')}" title="북마크"><span class="material-symbols-sharp">star</span></a>
-		</li>
+		</li>	
 		<li class="on"|cond="$mi->default_style=='inputform'">
 			<a class="bubble tooltip" href="{getUrl('listStyle','inputform','act','','document_srl','')}" title="입력폼"><span class="material-symbols-sharp">inventory</span></a>
 		</li>
 		<li class="on"|cond="$mi->default_style=='blog'">
 			<a class="bubble tooltip" href="{getUrl('listStyle','blog','act','','document_srl','')}" title="블로그(매뉴얼/강좌)"><span class="material-symbols-sharp">feed</span></a>
-		</li>
+		</li>			
 		<li class="on"|cond="$mi->default_style=='history'">
 			<a class="bubble tooltip" href="{getUrl('listStyle','history','act','','document_srl','')}" title="히스토리"><span class="material-symbols-sharp">history</span></a>
 		</li>
@@ -234,7 +237,7 @@ $(function(){
 				<li class="on"|cond="$mi->view_cell=='sum'">
 					<a class="bubble tooltip" href="{getUrl('onlyimg','sum','act','','document_srl','')}" title="제목">C</a>
 				</li>
-			</ul>
+			</ul>			
 		</li>
 	</ul>
 	<ul cond="$mi->theme_use == 'use'" class="cate1" style="display:none">
@@ -247,22 +250,22 @@ $(function(){
 		<li><a onclick="setTheme_color('red');" class=""><i class='bx bxs-palette red' ></i></a></li>
 	</ul>
 
-	<script>
+	<script>			
 	$(function(){
 	   $(".tooltip").tooltip({
 		delay:0,
 		opacity:1,
 		position: { my: "left center", at: "right center" }
 	   });
-
-	});
+	   
+	});	
 	$(".view_opt").click(function(){
 		$(this).parent().find('ul').slideUp(200);
 		if(!$(this).parent().find('ul').is(":visible")){
 			$(this).parent().find('ul').slideDown(200);
 		}
-	});
-	</script>
+	});	
+	</script>		
 </div>
 <div class="od-bord" id="bd_{$mi->module_srl}_{$oDocument->document_srl}" data-default_style="{$mi->default_style}" >
 

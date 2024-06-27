@@ -2,26 +2,26 @@
 {@ $_is_indexmodule = ($site_module_info->module_srl === $current_module_info->module_srl)}
 {@
 	$oi = $layout_info;
-
+	
 	if(!$oi->gnb_width) $oi->gnb_width = '180';
 	if(!$oi->site_sign_meta) $oi->site_sign_meta = 'yes';
 	if(!$oi->site_badge) $oi->site_badge = 'yes';
-
+	
 	if(!$oi->lgo_view_img) $oi->lgo_view_img = 'yes';
 	if(!$oi->lgo_view_text) $oi->lgo_view_text = 'yes';
 	if(!$oi->site_title_lang) $oi->site_title_lang = 'eng';
 	if(!$oi->logo_img_round) $oi->logo_img_round = '0';
-
+	
 	if(!$oi->use_index) $oi->use_index = 'yes';
-
+	
 	if(!$oi->use_main_img) $oi->use_main_img = 'yes';
 	if(!$oi->use_main_text) $oi->use_main_text = 'yes';
-	if(!$oi->use_visitor) $oi->use_visitor = 'yes';
+	if(!$oi->use_visitor) $oi->use_visitor = 'yes';	
 }
 <!--// 쪽지  -->
-{@
-	$args = new stdClass();
-	$args->receiver_srl = $logged_info->member_srl;
+{@ 
+	$args = new stdClass(); 
+	$args->receiver_srl = $logged_info->member_srl; 
 	$output = executeQuery('communication.getNewMessage', $args);
 }
 <!--// 레벨 -->
@@ -40,7 +40,7 @@
 
 <load target="/_asset/_Oday_script.js" />
 <load target="/_asset/_Oday_default.css" />
-<load target="/_asset/_Oday_rhymix_fix.css" />
+<load target="/_asset/_Oday_rhymix_fix.css" /> 
 <load target="asset/nice-select.js" type="body" />
 <load target="asset/nice-select.css" />
 <load target="asset/jscookie.js" />
@@ -55,7 +55,7 @@
 				<input type="hidden" name="mid" value="" />
 				<input type="text" name="is_keyword" value="{$is_keyword}" title="{$lang->cmd_search}" />
 				<!-- input type="submit" value="{$lang->cmd_search}" / -->
-				<button type="submit"><i class='bx bx-search'></i></button>
+				<button type="submit"><i class='bx bx-search'></i></button>									
 			</form>
 		</div>
 	</li>
@@ -74,7 +74,7 @@
 		<!--@end-->
 		<!--@if(!$oi->site_title1 && !$oi->site_title2)-->
 		{$oi->site_title_temp}
-		<!--@end-->
+		<!--@end-->	
 	</a>
 	<a onclick="viewGnb();" class="viewgnb"><span class="material-symbols-sharp sharp bold">menu</span></a>
 </header>
@@ -101,9 +101,9 @@
 						<li class="titlecon mod-color">
 							<span>Color <i class='bx bxs-square light'></i> <i class='bx bxs-square main'></i> <i class='bx bxs-square dark'></i></span>
 							<div>
-								<a onclick="setTheme_color('white');"><i class='bx bxs-palette default' ></i></a>
-								<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a>
-								<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a>
+								<a onclick="setTheme_color('white');"><i class='bx bxs-palette default' ></i></a> 
+								<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a> 
+								<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a> 
 								<a onclick="setTheme_color('green');"><i class='bx bxs-palette green' ></i></a>
 								<a onclick="setTheme_color('red');"><i class='bx bxs-palette red' ></i></a>
 							</div>
@@ -117,7 +117,7 @@
 				<li class="since">SINCE <span>{$oi->site_birthday}</span></li>
 				<!--@end-->
 				<li class="gnbtitle<!--@if($oi->site_title_lang == 'kor')--> korean<!--@end-->">
-
+					
 					<!--@if($oi->logo_img && $oi->lgo_view_img == 'yes')-->
 						<a href="{geturl('')}">
 						{@ if(!$oi->logo_img_width) $oi->logo_img_width = '80'; }
@@ -136,7 +136,7 @@
 						<span class="eng">{$oi->site_title_temp}</span>
 						<!--@end-->
 						</a>
-					<!--@end-->
+					<!--@end-->					
 					<div class="dec vp" cond="$oi->site_title3">
 						{nl2br($oi->site_title3)}
 					</div>
@@ -237,9 +237,9 @@
 					<div>
 						<a onclick="setThemeDark()" class="ovt viewDark"><i class='bx bxs-moon'></i></a>
 						<a onclick="setThemeLight()" class="ovt viewLight"><i class='bx bxs-sun' ></i></a>
-						<a onclick="setTheme_color('white');"><i class='bx bxs-palette default' ></i></a>
-						<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a>
-						<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a>
+						<a onclick="setTheme_color('white');"><i class='bx bxs-palette default' ></i></a> 
+						<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a> 
+						<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a> 
 						<a onclick="setTheme_color('green');"><i class='bx bxs-palette green' ></i></a>
 						<a onclick="setTheme_color('red');"><i class='bx bxs-palette red' ></i></a>
 					</div>
@@ -249,21 +249,21 @@
 					<span class="copy"><i class='bx bx-copyright'></i>&nbsp;{$oi->site_copyright}&nbsp;all rights reserved.</span>
 					<span class="address"><i class="fa-brands fa-rockrms" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></span>
 				</li>
-
+				
 				<!--@if($oi->site_badge=='yes')-->
 				<!-- Powered by Orangeday.com 夜飛  -->
 				<li class="layout"><div class="powered"><a href="https://www.orangeday.com/" target="_blank">by <span>Orangeday</span></a></div></li>
 				<!--@end-->
-
+				
 			</ul>
 		</div>
 	</li>
-	<li id="ol_right" class="content">
-		<!--@if($oi->use_index == 'yes')-->
+	<li id="ol_right" class="content">	
+		<!--@if($oi->use_index == 'yes')-->		
 			<!--@if($_is_indexmodule && $module_info && $act != 'IS')-->
 				<include target="home.html" />
 				{$content}
-			<!--@end-->
+			<!--@end-->			
 			<!--@if($act == 'IS')-->
 				<include target="pagetitle.html" />
 				<div class="templatepage">{$content}</div>
@@ -275,14 +275,14 @@
 			<!--@if(!$module_info)-->
 				{$content}
 			<!--@end-->
-		<!--@else-->
+		<!--@else-->			
 			<!--@if(!$module_info)-->
 				{$content}
 			<!--@else-->
 				<include target="pagetitle.html" />
 				<div class="templatepage">{$content}</div>
 			<!--@end-->
-		<!--@end-->
+		<!--@end-->		
 		<footer>
 			<ul class="comsummury">
 				<li class="location">
@@ -396,7 +396,7 @@ $(function(){
 			$(".morelist").show();
 			$(".morelist").html("<i class='bx bx-list-plus'></i>");
 			$(".lt_gnb li").has(".active1, .active2").find(".depth2").slideDown();
-			$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-list-minus'></i>");
+			$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-list-minus'></i>");			
 			setCookie( "setOdayGnbopen", "" , 365 );
 		}
 	});
@@ -410,7 +410,7 @@ $(function(){
 	/* 설정메뉴 잠깐 보이기 - 메인에서만 */
 	<!--@if($_is_indexmodule && $oi->use_index == 'yes')--><!--@if($act != 'IS')-->
 		$(".setBoxlist").addClass('active');
-		setTimeout(function() {
+		setTimeout(function() { 
 			$(".setBoxlist").removeClass('active');
 		}, 500);
 	<!--@end--><!--@end-->
