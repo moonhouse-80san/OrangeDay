@@ -123,7 +123,7 @@ jQuery(function($){
 					<span cond="$list_config['last_post']->idx" cond="(int)($oDocument->get('comment_count'))>0" class="od_date">
 						<block cond="(int)($oDocument->get('comment_count'))>0">
 							<a href="{$oDocument->getUrl()}#comment" title="Last Reply">
-								{getTimeGap($oDocument->get('last_update'), "Y.m.d")}							
+								{getTimeGap($oDocument->get('last_update'), "Y.m.d")}
 								<span cond="$oDocument->getLastUpdater()">
 									<i>by</i> {$oDocument->getLastUpdater()}
 								</span>
@@ -211,7 +211,6 @@ jQuery(function($){
 												<a href="{getUrl('document_srl',$oDocument->document_srl, 'listStyle', $listStyle, '','')}#comment_{$comment->comment_srl}"><i class='bx bx-reply bx-rotate-180' ></i> {$lang->cmd_reply}</a>
 											<!--@end-->
 
-											<!-- a cond="$oDocument->allowComment()" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" class="reply" rel="nofollow"><i class='bx bx-reply bx-rotate-180' ></i> {$lang->cmd_reply}</a -->
 											<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
 											<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete" rel="nofollow"><i class='bx bxs-trash' ></i> {$lang->cmd_delete}</a>
 											<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class='bx bx-check' ></i> {$lang->cmd_comment_do}</a>

@@ -25,6 +25,9 @@ body, a, p, div, span, table, ul, li, img, h1, h2, h3, h4, h5, h6, header, texta
 	
 	--oday_gnbBorder:  1px solid rgba(150,150,150, 0.1);
 }
+
+.layout_btnbox { padding:20px; display:flex; justify-content: center;}
+
 /* 검색 */
 .search-btn a.search-open { display: flex; align-items: center; justify-content: flex-end; padding-top:5px; font-size:8px}
 .search-btn a.search-open i { font-size:1.4em}
@@ -89,10 +92,10 @@ header { display:none}
 		#ol_left 
 
 //////////*/
-#odaylayout #ol_left { height:100vh; z-index: 10; }
+#odaylayout #ol_left { height:100vh; z-index:2 }
 #odaylayout #ol_left > div { 
-	position:fixed; top:0; height:100vh; z-index:2; 	
-	background-color:var(--oday_gnbBgColor); box-shadow: 2px 0px 5px rgba(0,0,0,.1);
+	position:fixed; top:0; height:100vh; 
+	background-color:var(--oday_listBgColor); box-shadow: var(--oday_listShadowStress);
 	display: flex; flex-direction: column; justify-content: space-between;
 	}
 #ol_left a,
@@ -102,24 +105,31 @@ header { display:none}
 #ol_left a:active { }
 #ol_left a:hover, 
 #ol_left a:focus { }
+
+
 .setBox {
-	position:absolute; top:0; z-index:20;
+	position:fixed; top:0; z-index:4;
 }
 .setBox li.cog { position:absolute; top:0; left:-20px; margin:0; width:20px; height:20px; color:var(--oday_mainColorOpt); display:flex; justify-content:center;align-items: center }
 .setBox li.setBoxlist {
 	position:absolute; top:0; left:0;
 	font-size:13px !important; font-weight:400; 
-	width:fit-content; padding:5px 15px; border-radius:0 0 10px 0; background-color:var(--oday_listBgColorStress1); box-shadow:var(--oday_listShadowStress); border:var(--oday_listBorder); 
+	width:fit-content; padding:5px 15px; border-radius:0 0 10px 0; background-color:var(--oday_listBgColor); box-shadow:var(--oday_listShadowStress); border:var(--oday_listBorder); 
 	transition: 0.3s ease;
+	/*  */
 	opacity:0;
 	visibility: hidden;
 	transform: translateX(-10px);
+	
 }
 .setBox li.setBoxlist li { margin:8px 0; white-space:nowrap}
-.setBox .titlecon { display:flex; justify-content:space-between;align-items: center; }
-.setBox .titlecon span { font-size:10px; padding-right:20px; }
+.setBox .mod-theme-pc { display:flex; justify-content:space-between;align-items: center; }
+.setBox .mod-theme-pc span { display:flex; font-size:10px; padding-right:20px; }
+.setBox .mod-theme-pc div {display:flex;}
+.setBox .mod-theme-pc a + a { margin-left:5px;}
 .setBox .bxs-square { font-size:6px; }
 .setBox .bxs-palette { font-size:18px; }
+.setBox .bright i.bx { font-size:18px; }
 .setBox .ovt { font-size:16px; }
 .setBox li.setBoxlist.active,
 .setBox:hover li.setBoxlist {

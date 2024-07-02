@@ -426,9 +426,9 @@ body { overflow-y:scroll; }
 #list_guest .grid .gCon .metabox > * + * { margin-left:5px}
 #list_guest .grid .gCon .xe_content {padding: 1.5em 0 0 0}
 #list_guest .grid .gCon .xe_content img { max-width: 300px; max-height: 300px; }
-#list_guest .formBox { padding: 0 1em 1em 1em; margin-top:0; }
+#list_guest .formBox { padding: 0 1em 1em 1em; margin-top:0px; }
 #list_guest .feedback { margin-top:0}
-#list_guest .commentWrite { width:70%; float:right; }
+#list_guest .commentWrite { width:70%; float:right; margin-top:30px;}
 @media screen and (max-width: 768px){
 #list_guest .commentWrite { width:100%; }
 #list_guest .grid .meta .number {  margin-top:0;  font-size:.8em;  }

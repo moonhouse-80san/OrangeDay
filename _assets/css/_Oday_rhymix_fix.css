@@ -4,6 +4,15 @@
 		XE MEMBER
 
 //////////*/
+.x {color:#333}
+.x a { color:#0075dd}
+.x a:hover { color:#f50}
+.x ::-webkit-scrollbar { width: auto !important; height: auto !important; }
+.x ::-webkit-scrollbar-track { background: #c7c7c7 !important; border-radius: 0; border-radius:0;}
+.x ::-webkit-scrollbar-thumb {	background: #ededed !important; border-radius:0px !important; border:1px solid #a7a7a7 !important; }
+
+.fix_width {width:100%; max-width:var(--oday_maxWidth); margin:0 auto; }
+
 .minfo { font-size:12px;}
 .minfo input, .minfo textarea, .minfo select {  
 	font-weight:400; font-size: 13px; color:var(--oday_iptFontColor); 
@@ -36,7 +45,7 @@
     box-shadow: 0 0 0px 1000px var(--oday_iptBgHoverColor) inset;
     transition: background-color 100s ease-in-out 0s;
 }
-.signin.minfo .message { padding:20px 10px; font-weight:var(--oday_fw-normal);  background-color: var(--oday_bodyBgColor); text-shadow:unset; border:var(--oday_listBorder)}
+.signin.minfo .message { padding:20px 10px; font-weight:var(--oday_fw-regular);  background-color: var(--oday_bodyBgColor); text-shadow:unset; border:var(--oday_listBorder)}
 
 .signin > div {background-color:var(--oday_listBgColor); }
 .signin a { color:var(--oday_fontLinkColor)}
@@ -62,8 +71,10 @@
 
 
 
-.nav.nav-tabs { display:flex; justify-content: center; align-items: flex-start; /*  background:linear-gradient(var(--oday_bodyBgColor), rgba(0,0,0,.2) 100px); box-shadow: 0 0 10px 10px var(--oday_bodyBgColor); */ font-size:12px; position: sticky; top: 0px;     background-color: var(--oday_bodyBgColor); box-shadow: 0 0 10px 10px var(--oday_bodyBgColor); padding-bottom:0px; margin-bottom:15px;  z-index:1; min-width:var(--oday_maxWidth) }
-.nav.nav-tabs li { border:var(--oday_listBorder); border-top:none; background-color:var(--oday_listBgColor); display:flex; align-items: center; height:38px; padding:0 10px; border-radius:0 0 5px 5px; }
+.nav.nav-tabs { display:flex; justify-content: center; align-items: flex-start; /*  background:linear-gradient(var(--oday_bodyBgColor), rgba(0,0,0,.2) 100px); box-shadow: 0 0 10px 10px var(--oday_bodyBgColor); */ font-size:12px; position: sticky; top: 0px;     background-color: var(--oday_bodyBgColor); /*box-shadow: 0 0 10px 10px var(--oday_bodyBgColor); */ padding-bottom:10px; margin-bottom:15px;  z-index:1; }
+.nav.nav-tabs:after { content:""; position:absolute; display:block; width:100%; height:20px; bottom:-20px; background-image: linear-gradient(var(--oday_bodyBgColor), transparent)}	
+
+.nav.nav-tabs li { border:var(--oday_listBorder); border-top:none; background-color:var(--oday_listBgColor); display:flex; align-items: center; height:38px; padding:0 10px; border-radius:0 0 5px 5px; text-align: center; word-break: keep-all;}
 .nav.nav-tabs li.active {  border-color:var(--oday_mainColor)}
 .nav.nav-tabs li.active a {color:var(--oday_mainColor); font-weight:500;  }
 .nav.nav-tabs li + li { margin-left:2px;}
@@ -77,7 +88,7 @@
 .term .help-inline { margin-top:5px;}
 .agreement + .agreement {border-top:var(--oday_listBorder)}
 .minfo #profile_imagetag button,
-.minfo .xbtn { color:var(--oday_fontLinkColor); font-size:12px; cursor:pointer; border:var(--oday_listBorder); background-color:var(--oday_listBgColorStress1); box-shadow:var(--oday_listShadow); display:flex; align-items: center; height:var(--oday_iptHeight); padding:0 20px; border-radius:5px; }
+.minfo .xbtn { color:var(--oday_fontLinkColor); font-size:12px; cursor:pointer; border:var(--oday_listBorder); background-color:var(--oday_listBgColorStress1); /*box-shadow:var(--oday_listShadow); */display:flex; align-items: center; height:var(--oday_iptHeight); padding:0 20px; border-radius:5px; }
 .minfo .xbtn.big {height:40px; font-size:14px; padding:0 25px;  }
 .minfo #profile_imagetag button,
 .minfo .xbtn.small { height:25px; font-size:12px; padding:0 10px; }
@@ -88,8 +99,10 @@
 .minfo .dl-horizontal { margin:0 auto; width:100%; max-width:var(--oday_maxWidth); padding:50px; background-color:var(--oday_listBgColor); border-radius:var(--oday_listBorderRadius); border:var(--oday_listBorder); box-shadow:var(--oday_listShadow)}
 .dl-horizontal.term {background-color:var(--oday_listBgColor); }
 
+.message_btn { padding:30px;display: flex;
+    justify-content: center; }
 
-table.mtbl {width:100%; border-top:var(--oday_listBorder); font-family:inherit; font-size:inherit; border-spacing: 0;}
+table.mtbl {  width:100%; max-width:var(--oday_maxWidth); margin:0 auto; border-top:var(--oday_listBorder); font-family:inherit; font-size:inherit; border-spacing: 0;}
 table.mtbl tr th { width:120px}
 table.mtbl tr th,
 table.mtbl tr td { border-bottom:var(--oday_listBorder); padding:15px 10px;  }
@@ -129,8 +142,8 @@ table.mtbl.list tr td.messageview * + * { margin-top:10px;}
 .bd_head  > * + *,
 .bd_head .xbtnArea > * + * { margin-left:5px;}
 
-.bd_head.mess { justify-content: center; border-bottom:var(--oday_listBorder); padding-top:20px; background:linear-gradient( var(--oday_bodyBgColor), rgba(0,0,0,.2) 100%); }
-.bd_head.mess a.xbtn { border-bottom:none; border-radius:5px 5px 0 0; background-color:var(--oday_bodyBgColor); margin-bottom:-1px }
+.bd_head.mess { justify-content: center; border-bottom:var(--oday_listBorder); padding-top:20px; /*background:linear-gradient( var(--oday_bodyBgColor), rgba(0,0,0,.2) 100%); */}
+.bd_head.mess a.xbtn { border-bottom:none; border-radius:5px 5px 0 0; /*background-color:var(--oday_bodyBgColor);*/ margin-bottom:-1px }
 .bd_head.mess + .bd_head {justify-content: flex-end;}
 .bd_con { margin:0 auto; width:100%; max-width:var(--oday_maxWidth); display:flex; flex-direction: column; align-items: center;}
 .bd_con.center {text-align:center}
@@ -138,7 +151,7 @@ table.mtbl.list tr td.messageview * + * { margin-top:10px;}
 .relogin { display: flex; flex-direction: column; align-items: center; padding:30px }
 .bd_con form * + * { margin-top:10px;}
 
-.bd_con .username {border:none !important;  background-color:unset; text-align:center; font-size:2em;     width: fit-content;}
+.bd_con .username {border:none !important;  background-color:transparent !important; text-align:center; font-size:2em; width: fit-content;}
 
 .subtab li { opacity:.4}
 .subtab .active { opacity:1}
@@ -334,7 +347,7 @@ a.cke_button:hover {
 .cke_notification_message { }
 body.cke_editable {
 	background-color: var(--oday_listBgColorStress1) !important; border-left: var(--oday_btnBorder) !important;border-right: var(--oday_btnBorder) !important;
-	color: var(--oday_fontColor) !important; font-weight: var(--oday_fw-normal) !important; font-size: var(--oday_fontSize) !important;
+	color: var(--oday_fontColor) !important; font-weight: var(--oday_fw-regular) !important; font-size: var(--oday_fontSize) !important;
 }
 .cke_bottom.cke_reset_all {
 	background: unset !important;
@@ -342,7 +355,7 @@ body.cke_editable {
 	box-shadow: unset !important;
 }
 /* 코멘트 */
-#write_comment { padding: var(--oday_sideGap); /*background-color: var(--oday_listBgColor); */ }
+.write_comment_inline { padding: var(--oday_sideGap); /*background-color: var(--oday_listBgColor); */ }
 /*업로드*/
 .xe-clearfix:before, .xe-clearfix:after { content: unset}
 .xefu-container {
@@ -363,9 +376,9 @@ body.cke_editable {
 .xefu-btn > span {
 	color: unset !important;
 }
-.xefu-dropzone p { font-size:.8em; font-weight: var(--oday_fw-normal); }
+.xefu-dropzone p { font-size:.8em; font-weight: var(--oday_fw-regular); }
 .xefu-controll { 
-	font-size: .9em; font-weight: var(--oday_fw-normal); 
+	font-size: .9em; font-weight: var(--oday_fw-regular); 
 	display: flex; justify-content: space-between; align-items: center; 
 	border-top: var(--oday_iptBorder); 
 	color:var(--oday_fontColor)
@@ -383,7 +396,9 @@ body.cke_editable {
 }
 .xefu-act-set-cover {height: auto; }
 .xefu-list-images input { position: absolute !important; mix-blend-mode:unset !important}
-.xefu-list-images .xefu-act-set-cover { height: fit-content; }
+.xefu-list-images .xefu-act-set-cover { height: fit-content !important; background-color: #6cbd7e !important; }
+.xefu-list-images .xefu-act-set-cover i { color:#fff }
+.xefu-is-cover-image {border-color:  var(--oday_mainColor) !important}
 .xefu-list-files {
 	border-top: var(--oday_iptBorderStress) !important;
 	padding: 10px;
@@ -392,7 +407,7 @@ body.cke_editable {
 .xefu-list-files li {
 	display: flex; justify-content: space-between; align-items: center; 
 	padding: 5px 0 5px 10px; 
-	font-weight: var(--oday_fw-normal);
+	font-weight: var(--oday_fw-regular);
 	color: var(--oday_fontColor);
 	font-size: 12px;
 }

@@ -2,26 +2,48 @@
 {@ $_is_indexmodule = ($site_module_info->module_srl === $current_module_info->module_srl)}
 {@
 	$oi = $layout_info;
-	
+
+	$domain = $_SERVER['HTTP_HOST'];
+
+	if(!$oi->layout_align) $oi->layout_align = 'full';
+	if(!$oi->layout_width) $oi->layout_width = '1100';
 	if(!$oi->gnb_width) $oi->gnb_width = '180';
+	$layout_apply_width = $oi->layout_width - $oi->gnb_width;
 	if(!$oi->site_sign_meta) $oi->site_sign_meta = 'yes';
 	if(!$oi->site_badge) $oi->site_badge = 'yes';
-	
+
 	if(!$oi->lgo_view_img) $oi->lgo_view_img = 'yes';
 	if(!$oi->lgo_view_text) $oi->lgo_view_text = 'yes';
 	if(!$oi->site_title_lang) $oi->site_title_lang = 'eng';
+	if(!$oi->lgo_font_size) $oi->lgo_font_size = '20';
+	if(!$oi->lgo_font_height) $oi->lgo_font_height = '0';
+	if(!$oi->lgo_box_padding) $oi->lgo_box_padding = '0';
 	if(!$oi->logo_img_round) $oi->logo_img_round = '0';
-	
+
 	if(!$oi->use_index) $oi->use_index = 'yes';
-	
+	if(!$oi->index_style) $oi->index_style = 'classic';
+
 	if(!$oi->use_main_img) $oi->use_main_img = 'yes';
 	if(!$oi->use_main_text) $oi->use_main_text = 'yes';
-	if(!$oi->use_visitor) $oi->use_visitor = 'yes';	
+	if(!$oi->use_visitor) $oi->use_visitor = 'yes';
+
+
+	if(!$oi->use_gnb) $oi->use_gnb = 'yes';
+	if(!$oi->use_gnb_allways_open) $oi->use_gnb_allways_open = 'no';
+	if(!$oi->use_gnb_max_height) $oi->use_gnb_max_height = 'no';
+
+	if(!$oi->use_darkMode) $oi->use_darkMode = 'yes';
+	if(!$oi->use_darkMode_set) $oi->use_darkMode_set = 'dark';
+
+	if(!$oi->use_colorTheme) $oi->use_colorTheme = 'yes';
+	if(!$oi->use_colorTheme_set) $oi->use_colorTheme_set = 'orange';
+	if(!$oi->use_brightTheme_set) $oi->use_brightTheme_set = 'd2';
+
 }
 <!--// 쪽지  -->
-{@ 
-	$args = new stdClass(); 
-	$args->receiver_srl = $logged_info->member_srl; 
+{@
+	$args = new stdClass();
+	$args->receiver_srl = $logged_info->member_srl;
 	$output = executeQuery('communication.getNewMessage', $args);
 }
 <!--// 레벨 -->
@@ -38,26 +60,67 @@
 	if($next_point > 0) $per = (int)($need_point2 / $need_point*1000);
 }
 
-<load target="/_asset/_Oday_script.js" />
-<load target="/_asset/_Oday_default.css" />
-<load target="/_asset/_Oday_rhymix_fix.css" /> 
-<load target="asset/nice-select.js" type="body" />
-<load target="asset/nice-select.css" />
-<load target="asset/jscookie.js" />
+<load target="/_assets/js/_Oday_script.js" index="-100000000" />
+<!--@if($oi->use_darkMode == 'yes')-->
+<load target="/_assets/js/_Oday_script_darkMode.js" index="-100000000" />
+<!--@else-->
+<script>
+	setColorScheme("{$oi->use_darkMode_set}");
+	$('iframe.cke_wysiwyg_frame').contents().find('body').removeClass("color_scheme_dark, color_scheme_light");
+	$('iframe.cke_wysiwyg_frame').contents().find('body').addClass("color_scheme_{$oi->use_darkMode_set}");
+	document.documentElement.setAttribute('color-theme', '{$oi->use_darkMode_set}');
+	//$('body').addClass("color_scheme_{$oi->use_darkMode_set}");
+</script>
+<!--@end-->
+<!--@if($oi->use_colorTheme == 'yes')-->
+<load target="/_assets/js/_Oday_script_colorTheme.js" index="-100000000" />
+<!--@else-->
+<script>
+	$('body').removeClass("color_theme_white color_theme_gray color_theme_orange color_theme_blue color_theme_green color_theme_red bright_theme_d1 bright_theme_d2 bright_theme_d3");
+	$('body').addClass("color_theme_{$oi->use_colorTheme_set} bright_theme_{$oi->use_brightTheme_set}");
+</script>
+<!--@end-->
+
+<load target="/_assets/js/jscookie.js" index="-100000000" />
+<load target="/_assets/js/nice-select.js" />
+<load target="/_assets/css/nice-select.css" />
+<load target="/_assets/css/_Oday_default.css" />
+<load target="/_assets/css/_Oday_rhymix_fix.css" />
+
+<load target="/_assets/js/jquery-ui.min.js" />
+<load target="/_assets/css/jquery-ui.min.css" />
+
+<load target="/_assets/css/nprogress.css" />
+<load target="/_assets/js/nprogress.js" />
+
 <load target="css/layout.css" />
+<script>
+jQuery(function($){
+	NProgress.start();
+	setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+});
+</script>
 
 <ul class="searchWrap">
 	<li>
 		<h3>SEARCH</h3>
 		<div class="wrapsearch">
+			통합검색
 			<form action="{getUrl()}" method="get" class="searchall" no-error-return-url="true">
 				<input type="hidden" name="act" value="IS" />
 				<input type="hidden" name="mid" value="" />
 				<input type="text" name="is_keyword" value="{$is_keyword}" title="{$lang->cmd_search}" />
 				<!-- input type="submit" value="{$lang->cmd_search}" / -->
-				<button type="submit"><i class='bx bx-search'></i></button>									
+				<button type="submit"><i class='bx bx-search'></i></button>
 			</form>
 		</div>
+		<!--@if($oi->googleSearch)-->
+		<div class="wrapsearch">
+			구글검색
+			<script async src="https://cse.google.com/cse.js?cx={$oi->googleSearch}"></script>
+			<div class="gcse-searchbox-only"></div>
+		</div>
+		<!--@end-->
 	</li>
 	<li><a class="search-close"><i class='bx bxs-x-circle'></i></a></li>
 	<li class="searchBg"></li>
@@ -73,51 +136,78 @@
 		{$oi->site_title2}
 		<!--@end-->
 		<!--@if(!$oi->site_title1 && !$oi->site_title2)-->
-		{$oi->site_title_temp}
-		<!--@end-->	
+		사이트명을<br />설정해 주세요.
+		<!--@end-->
 	</a>
-	<a onclick="viewGnb();" class="viewgnb"><span class="material-symbols-sharp sharp bold">menu</span></a>
+	<a onclick="viewGnb();" class="viewgnb"><i class='bx bx-menu' ></i></a>
 </header>
-<ul id="odaylayout">
-	<li id="ol_left">
-		<div>
-			<ul class="setBox vp">
-				<li class="cog"><i class='bx bxs-cog' ></i></li>
-				<li class="setBoxlist">
-					<ul>
-						<li class="titlecon mod-dark">
-							<span>Dark Mode</span>
-							<div>
-								<a onclick="setThemeDark()" class="ovt viewDark"><i class='bx bxs-moon'></i></a>
-								<a onclick="setThemeLight()" class="ovt viewLight"><i class='bx bxs-sun' ></i></a>
-							</div>
-						</li>
-						<li class="titlecon mod-gnb">
-							<span>GNB Open</span>
-							<div>
-								<input type="checkbox" class="checkonoff" id="gnbsubopen" /><label for="gnbsubopen"></label>
-							</div>
-						</li>
-						<li class="titlecon mod-color">
-							<span>Color <i class='bx bxs-square light'></i> <i class='bx bxs-square main'></i> <i class='bx bxs-square dark'></i></span>
-							<div>
-								<a onclick="setTheme_color('white');"><i class='bx bxs-palette default' ></i></a> 
-								<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a> 
-								<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a> 
-								<a onclick="setTheme_color('green');"><i class='bx bxs-palette green' ></i></a>
-								<a onclick="setTheme_color('red');"><i class='bx bxs-palette red' ></i></a>
-							</div>
-						</li>
-					</ul>
+
+<ul class="setBox vp" cond="$oi->use_gnb == 'yes' || $oi->use_darkMode == 'yes' || $oi->use_colorTheme == 'yes'">
+	<li class="cog"><i class='bx bxs-cog' ></i></li>
+	<li class="setBoxlist">
+		<ul>
+		<!--@if($oi->use_darkMode == 'yes')-->
+			<li class="mod-theme-pc mod-dark">
+				<span>Dark Mode</span>
+				<div>
+					<a onclick="setThemeDark()" class="ovt viewDark"><i class='bx bxs-moon'></i></a>
+					<a onclick="setThemeLight()" class="ovt viewLight"><i class='bx bxs-sun' ></i></a>
+				</div>
+			</li>
+		<!--@end-->
+		<!--@if($oi->use_gnb == 'yes')-->
+			<li class="mod-theme-pc mod-gnb">
+				<span>GNB Always Open</span>
+				<div>
+					<input type="checkbox" class="checkonoff" id="gnbsubopen" /><label for="gnbsubopen"></label>
+				</div>
+			</li>
+		<!--@end-->
+		<!--@if(!Mobile::isMobileCheckByAgent())-->
+			<!--@if($oi->use_gnb == 'yes')-->
+				<li class="mod-theme-pc mod-gnb">
+					<span>GNB Height Maximize</span>
+					<div>
+						<input type="checkbox" class="checkonoff" id="gnbheightmaximize" /><label for="gnbheightmaximize"></label>
+					</div>
 				</li>
-			</ul>
+			<!--@end-->
+		<!--@end-->
+		<!--@if($oi->use_colorTheme == 'yes')-->
+			<li class="mod-theme-pc mod-theme color">
+				<span>Color</span>
+				<div>
+					<a onclick="setTheme_color('white');" class="tooltip tooltipSet" title="화이트"><i class='bx bxs-palette white' ></i></a>
+					<a onclick="setTheme_color('gray');" class="tooltip tooltipSet" title="블루그레이"><i class='bx bxs-palette gray' ></i></a>
+					<a onclick="setTheme_color('orange');" class="tooltip tooltipSet" title="오렌지"><i class='bx bxs-palette orange' ></i></a>
+					<a onclick="setTheme_color('blue');" class="tooltip tooltipSet" title="블루"><i class='bx bxs-palette blue' ></i></a>
+					<a onclick="setTheme_color('green');" class="tooltip tooltipSet" title="그린"><i class='bx bxs-palette green' ></i></a>
+					<a onclick="setTheme_color('red');" class="tooltip tooltipSet" title="레드"><i class='bx bxs-palette red' ></i></a>
+				</div>
+			</li>
+			<li class="mod-theme-pc mod-theme bright">
+				<span>Brightness </span>
+				<div>
+					<a onclick="setTheme_bright('d1');" class="tooltip tooltipSet" title="저대비"><i class='bx bx-signal-1 d1' ></i></a>
+					<a onclick="setTheme_bright('d2');" class="tooltip tooltipSet" title="중대비"><i class='bx bx-signal-3 d2' ></i></a>
+					<a onclick="setTheme_bright('d3');" class="tooltip tooltipSet" title="고대비"><i class='bx bx-signal-5 d3' ></i></a>
+				</div>
+			</li>
+		<!--@end-->
+		</ul>
+	</li>
+</ul>
+
+<ul id="odaylayout">
+	<li id="ol_left" <!--@if(Mobile::isMobileCheckByAgent())-->class="gnbfull"<!--@end-->>
+		<div>
 			<a class="closegnb vm" onclick="closeGnb();"><i class='bx bx-x'></i></a>
 			<ul id="logo">
 				<!--@if($oi->site_birthday)-->
 				<li class="since">SINCE <span>{$oi->site_birthday}</span></li>
 				<!--@end-->
 				<li class="gnbtitle<!--@if($oi->site_title_lang == 'kor')--> korean<!--@end-->">
-					
+
 					<!--@if($oi->logo_img && $oi->lgo_view_img == 'yes')-->
 						<a href="{geturl('')}">
 						{@ if(!$oi->logo_img_width) $oi->logo_img_width = '80'; }
@@ -136,7 +226,7 @@
 						<span class="eng">{$oi->site_title_temp}</span>
 						<!--@end-->
 						</a>
-					<!--@end-->					
+					<!--@end-->
 					<div class="dec vp" cond="$oi->site_title3">
 						{nl2br($oi->site_title3)}
 					</div>
@@ -148,7 +238,17 @@
 			<ul class="lt_gnb">
 				<li loop="$GNB->list => $key1, $val1"  cond="$val1['href']">
 					<a cond="$val1['href']" href="{$val1['href']}" class="<!--@if($val1['class'])-->{$val1['class']}<!--@end--><!--@if($val1['selected'])--> active1<!--@end-->" target="_blank"|cond="$val1['open_window'] == 'Y'" title="">
-						<i cond="$val1['icon']" class="{$val1['icon']}"></i>&nbsp;&nbsp;{$val1['link']|noescape}&nbsp;&nbsp;<span cond="$val1['open_window'] == 'Y'" class="material-symbols-sharp">open_in_new</span>
+						<span cond="$val1['icon']" style="display:block; text-align:center; line-height:15px">
+							{@$val_icon1 = preg_match('/-/is', $val1['icon'])}
+							{@$val_icon2 = preg_match('/./is', $val1['icon'])}
+							<!--@if($val_icon1===1)-->
+								<i class="{$val1['icon']}"></i>
+							<!--@elseif($val_icon2===1)-->
+								<img src="{$val1['icon']}" width="15" align="absmiddle" />
+							<!--@else-->
+								{$val1['icon']}
+							<!--@end-->
+						</span>&nbsp;&nbsp;{$val1['link']|noescape}&nbsp;&nbsp;<span cond="$val1['open_window'] == 'Y'" class="material-symbols-sharp">open_in_new</span>
 					</a>
 					<a cond="$val1['list']" class="morelist"><i class='bx bx-list-plus'></i></a>
 					<ul cond="$val1['list']" class="depth2">
@@ -233,37 +333,49 @@
 						<a cond="$val1['href']" href="{$val1['href']}" class="active1"|cond="$val1['selected']" target="_top">{$val1['link']|noescape}</a>
 					</div>
 				</li>
-				<li class="mod-color vm">
-					<div>
-						<a onclick="setThemeDark()" class="ovt viewDark"><i class='bx bxs-moon'></i></a>
-						<a onclick="setThemeLight()" class="ovt viewLight"><i class='bx bxs-sun' ></i></a>
-						<a onclick="setTheme_color('white');"><i class='bx bxs-palette default' ></i></a> 
-						<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a> 
-						<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a> 
-						<a onclick="setTheme_color('green');"><i class='bx bxs-palette green' ></i></a>
-						<a onclick="setTheme_color('red');"><i class='bx bxs-palette red' ></i></a>
-					</div>
+				<li class="mod-theme-mobile vm">
+					<!--@if($oi->use_darkMode == 'yes')-->
+						<div class="mod-theme dark">
+							<a onclick="setThemeDark()" class="ovt viewDark"><i class='bx bxs-moon'></i></a>
+							<a onclick="setThemeLight()" class="ovt viewLight"><i class='bx bxs-sun' ></i></a>
+						</div>
+					<!--@end-->
+					<!--@if($oi->use_colorTheme == 'yes')-->
+						<div class="mod-theme color">
+							<a onclick="setTheme_color('white');"><i class='bx bxs-palette white' ></i></a>
+							<a onclick="setTheme_color('gray');"><i class='bx bxs-palette gray' ></i></a>
+							<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a>
+							<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a>
+							<a onclick="setTheme_color('green');"><i class='bx bxs-palette green' ></i></a>
+							<a onclick="setTheme_color('red');"><i class='bx bxs-palette red' ></i></a>
+						</div>
+						<div class="mod-theme bright">
+							<a onclick="setTheme_bright('d1');" class="tooltip tooltipSet" title="저대비"><i class='bx bx-signal-1 d1' ></i></a>
+							<a onclick="setTheme_bright('d2');" class="tooltip tooltipSet" title="중대비"><i class='bx bx-signal-3 d2' ></i></a>
+							<a onclick="setTheme_bright('d3');" class="tooltip tooltipSet" title="고대비"><i class='bx bx-signal-5 d3' ></i></a>
+						</div>
+					<!--@end-->
 				</li>
 				<li class="comsummury vp" cond="$oi->site_address || $oi->site_copyright">
 					<span class="address" cond="$oi->site_address">{$oi->site_address}</span>
 					<span class="copy"><i class='bx bx-copyright'></i>&nbsp;{$oi->site_copyright}&nbsp;all rights reserved.</span>
 					<span class="address"><i class="fa-brands fa-rockrms" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></span>
 				</li>
-				
+
 				<!--@if($oi->site_badge=='yes')-->
 				<!-- Powered by Orangeday.com 夜飛  -->
 				<li class="layout"><div class="powered"><a href="https://www.orangeday.com/" target="_blank">by <span>Orangeday</span></a></div></li>
 				<!--@end-->
-				
+
 			</ul>
 		</div>
 	</li>
-	<li id="ol_right" class="content">	
-		<!--@if($oi->use_index == 'yes')-->		
+	<li id="ol_right" class="content">
+		<!--@if($oi->use_index == 'yes')-->
 			<!--@if($_is_indexmodule && $module_info && $act != 'IS')-->
 				<include target="home.html" />
 				{$content}
-			<!--@end-->			
+			<!--@end-->
 			<!--@if($act == 'IS')-->
 				<include target="pagetitle.html" />
 				<div class="templatepage">{$content}</div>
@@ -275,14 +387,14 @@
 			<!--@if(!$module_info)-->
 				{$content}
 			<!--@end-->
-		<!--@else-->			
+		<!--@else-->
 			<!--@if(!$module_info)-->
 				{$content}
 			<!--@else-->
 				<include target="pagetitle.html" />
 				<div class="templatepage">{$content}</div>
 			<!--@end-->
-		<!--@end-->		
+		<!--@end-->
 		<footer>
 			<ul class="comsummury">
 				<li class="location">
@@ -307,119 +419,183 @@
 	</li>
 </ul>
 <!--@if($module_info->module != 'board')-->
-<div class="gototop layout" style="display:none;"><a><i class='bx bx-chevron-up'></i></a></div>
+	<div class="gototop layout" style="display:none;"><a><i class='bx bx-chevron-up'></i></a></div>
 <!--@end-->
+
 <style>
-.viewTraffic .xe-widget-wrapper { overflow: unset;}
-.tviewer .pop,
-#ol_left .meta li.login_info .levelbarWrap .levelinfo { left: {$oi->gnb_width}px; }
-#odaylayout { background-color:{$oi->contact_color}; }
-#odaylayout #ol_left { width:{$oi->gnb_width}px;}
-#odaylayout #ol_left > div { width:calc({$oi->gnb_width}px - 0px); }
-.setBox { left: calc({$oi->gnb_width}px - 0px); }
-#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px);  max-width:{$oi->max_width}px; margin: 0 auto; }
-@media screen and (max-width:768px){
-	#odaylayout #ol_left { width:100%;}
-	#odaylayout #ol_left > div { width:100%; }
-	#odaylayout #ol_right { width:100% }
-}
+	.viewTraffic .xe-widget-wrapper { overflow: unset;}
+	.tviewer .pop,
+	#ol_left .meta li.login_info .levelbarWrap .levelinfo { left: {$oi->gnb_width}px; }
+	#odaylayout { background-color:{$oi->contact_color}; }
+	#odaylayout #ol_left { width:{$oi->gnb_width}px;}
+	#odaylayout #ol_left > div { width:calc({$oi->gnb_width}px - 0px); }
+	.setBox { left: calc({$oi->gnb_width}px - 0px); }
+	#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px);  max-width:{$oi->max_width}px; margin: 0 auto; }
+	@media screen and (max-width:768px){
+		#odaylayout #ol_left { width:100%;}
+		#odaylayout #ol_left > div { width:100%; }
+		#odaylayout #ol_right { width:100% }
+	}
 </style>
+
 <script>
-var $ = jQuery;
-/* 바닥 스크롤 잠금 */
-function scrollDisable(){
-    $('body').addClass('scrollDisable').on('scroll touchmove mousewheel', function(e){
-        e.preventDefault();
-    });
-}
-function scrollAble(){
-    $('body').removeClass('scrollDisable').off('scroll touchmove mousewheel');
-}
-/* GNB 열고 닫기 - 모바일 */
-function viewGnb() {
-	scrollDisable();
-	$("#ol_left").show();
-}
-function closeGnb() {
-	scrollAble();
-	$("#ol_left").hide();
-}
-//서브메뉴 펼치기
-$(".morelist").click(function(){
-	$("#ol_left .lt_gnb .depth2").slideUp();
-	$(".morelist").html("<i class='bx bx-list-plus'></i>");
-	if(!$(this).next().is(":visible")){
-		$(this).next().slideDown();
-		$(this).html("<i class='bx bx-list-minus'></i>");
+	var $ = jQuery;
+	/* 바닥 스크롤 잠금 */
+	function scrollDisable(){
+		$('body').addClass('scrollDisable').on('scroll touchmove mousewheel', function(e){
+		   // e.preventDefault();
+		});
 	}
-});
-//서브 메뉴 이동시 해당 메뉴 열어 놓기
-$(".lt_gnb li").has(".active1, .active2").find(".depth2").show();
-$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-list-minus'></i>");
-//스크롤시 액션
-$(window).scroll(function () {
-	Yposition = $(this).scrollTop();
-	if (Yposition >= 100) {
-		$(".gototop.layout").fadeIn();
-		$("header").addClass("scrollchange");
-	}else {
-		$(".gototop.layout").fadeOut();
-		$("header").removeClass("scrollchange");
+	function scrollAble(){
+		$('body').removeClass('scrollDisable').off('scroll touchmove mousewheel');
 	}
-});
-//상단이동
-$(".gototop").click(function(){
-	$('html, body').animate({scrollTop: 0}, 500);
-});
-//어드민 페이지 / 세팅 페이지에서 제목 감추기
-var itemsWithOnClassaAdmin = $('.x, .xm, .xc, #access, .signin');
-if (itemsWithOnClassaAdmin.length > 0) {
-	$('.pagelocation').hide();
-}
-/* GNB 항상 열기 체크 */
-var $getGnbopen = XE.cookie.get('setOdayGnbopen');
-if( $getGnbopen == "open" ) {
-	$("#ol_left .lt_gnb .depth2").show();
-	$(".morelist").hide();
-	setCookie( "setOdayGnbopen", "open" , 365 );
-	$("input:checkbox[id='gnbsubopen']").prop("checked", true);
-}
-$(function(){
-	/* GNB 열고 닫기 */
-	$("#gnbsubopen").change(function(){
-		if($(this).is(":checked")){
-			$("#ol_left .lt_gnb .depth2").slideDown();
-			$(".morelist").hide();
-			setCookie( "setOdayGnbopen", "open" , 365 );
-		}else{
-			$("#ol_left .lt_gnb .depth2").slideUp();
-			$(".morelist").show();
-			$(".morelist").html("<i class='bx bx-list-plus'></i>");
-			$(".lt_gnb li").has(".active1, .active2").find(".depth2").slideDown();
-			$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-list-minus'></i>");			
-			setCookie( "setOdayGnbopen", "" , 365 );
+	/* GNB 열고 닫기 - 모바일 */
+	function viewGnb() {
+		scrollDisable();
+		$("#ol_left").show();
+	}
+	function closeGnb() {
+		scrollAble();
+		$("#ol_left").hide();
+	}
+	//서브메뉴 펼치기
+	$(".morelist").click(function(){
+		$("#ol_left .lt_gnb .depth2").slideUp();
+		$(".morelist").html("<i class='bx bx-list-plus'></i>");
+		if(!$(this).next().is(":visible")){
+			$(this).next().slideDown();
+			$(this).html("<i class='bx bx-list-minus'></i>");
 		}
 	});
-	/* 활성메뉴 열때 바로 위 뎁스 액티브 제거 */
-	$itemsWithClass2 = $('.active3');
-	$itemsWithClass3 = $('.active4');
-	$itemsWithClass4 = $('.active5');
-	if ($itemsWithClass2.length > 0) { $('a.active2').removeClass('active2'); }
-	if ($itemsWithClass3.length > 0) { $('a.active3').removeClass('active3'); }
-	if ($itemsWithClass4.length > 0) { $('a.active4').removeClass('active4'); }
-	/* 설정메뉴 잠깐 보이기 - 메인에서만 */
-	<!--@if($_is_indexmodule && $oi->use_index == 'yes')--><!--@if($act != 'IS')-->
-		$(".setBoxlist").addClass('active');
-		setTimeout(function() { 
-			$(".setBoxlist").removeClass('active');
-		}, 500);
-	<!--@end--><!--@end-->
-});
-/* 검색 열고 닫기 */
-$(".search-open").click(function(){
-	$('.searchWrap').addClass('active');
-});
-$(".search-close, .searchBg").click(function(){
-	$('.searchWrap').removeClass('active');
-});
+	//서브 메뉴 이동시 해당 메뉴 열어 놓기
+	$(".lt_gnb li").has(".active1, .active2").find(".depth2").show();
+	$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-list-minus'></i>");
+	//스크롤시 액션
+	$(window).scroll(function () {
+		Yposition = $(this).scrollTop();
+		if (Yposition >= 100) {
+			$(".gototop.layout").fadeIn();
+			$("header").addClass("scrollchange");
+		}else {
+			$(".gototop.layout").fadeOut();
+			$("header").removeClass("scrollchange");
+		}
+	});
+	//상단이동
+	$(".gototop").click(function(){
+		$('html, body').animate({scrollTop: 0}, 500);
+	});
+	//상단이동 - 메뉴
+	$(".gnbup a").click(function(){
+		$('#odaylayout #ol_left.gnbfull > div').animate({scrollTop: 0}, 0);
+	});
+	//어드민 페이지 / 세팅 페이지에서 제목 감추기
+	var itemsWithOnClassaAdmin = $('.x, .xm, .xc, #access, .signin');
+	if (itemsWithOnClassaAdmin.length > 0) {
+		$('.pagelocation').hide();
+	}
+
+	<!--@if($oi->use_gnb == 'yes')-->
+		/* GNB 항상 열기 체크 */
+		var $getGnbopen = XE.cookie.get('setOdayGnbopen');
+		if( $getGnbopen == "open" ) {
+			$("#ol_left .lt_gnb .depth2").show();
+			$(".morelist").hide();
+			$(".gnbup").addClass("active");
+			$("input:checkbox[id='gnbsubopen']").prop("checked", true);
+		}
+		/* GNB 높이 체크 */
+		var $getGnbheight = XE.cookie.get('setOdayGnbheight');
+		if( $getGnbheight == "maximize" ) {
+			$("#odaylayout #ol_left").addClass("gnbfull");
+			$("input:checkbox[id='gnbheightmaximize']").prop("checked", true);
+		}
+
+	<!--@else-->
+		<!--@if($oi->use_gnb_allways_open == 'yes')-->
+			$("#ol_left .lt_gnb .depth2").show();
+			$(".morelist").hide();
+			$(".gnbup").addClass("active");
+			$("input:checkbox[id='gnbsubopen']").prop("checked", true);
+		<!--@else-->
+
+		<!--@end-->
+
+		<!--@if($oi->use_gnb_max_height == 'yes')-->
+			$("#odaylayout #ol_left").addClass("gnbfull");
+		<!--@else-->
+
+		<!--@end-->
+	<!--@end-->
+
+	$(function(){
+		/* GNB 열고 닫기 */
+		$("#gnbsubopen").change(function(){
+			if($(this).is(":checked")){
+				$("#ol_left .lt_gnb .depth2").slideDown();
+				$(".morelist").hide();
+				$(".gnbup").addClass("active");
+				setCookie( "setOdayGnbopen", "open" , 365 );
+			}else{
+				$("#ol_left .lt_gnb .depth2").slideUp();
+				$(".morelist").show();
+				$(".gnbup").removeClass("active");
+				$(".morelist").html("<i class='bx bx-list-plus'></i>");
+				$(".lt_gnb li").has(".active1, .active2").find(".depth2").slideDown();
+				$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-list-minus'></i>");
+				setCookie( "setOdayGnbopen", "" , 365 );
+			}
+		});
+		/* GNB 높이 꽉채우기 */
+		$("#gnbheightmaximize").change(function(){
+			if($(this).is(":checked")){
+				$("#odaylayout #ol_left").addClass("gnbfull");
+				setCookie( "setOdayGnbheight", "maximize" , 365 );
+			}else{
+				$("#odaylayout #ol_left").removeClass("gnbfull");
+				setCookie( "setOdayGnbheight", "" , 365 );
+			}
+		});
+		/* 활성메뉴 열때 바로 위 뎁스 액티브 제거 */
+		$itemsWithClass2 = $('.active3');
+		$itemsWithClass3 = $('.active4');
+		$itemsWithClass4 = $('.active5');
+		if ($itemsWithClass2.length > 0) { $('a.active2').removeClass('active2'); }
+		if ($itemsWithClass3.length > 0) { $('a.active3').removeClass('active3'); }
+		if ($itemsWithClass4.length > 0) { $('a.active4').removeClass('active4'); }
+
+		/* 설정메뉴 잠깐 보이기 - 메인에서만 */
+		<!--@if($_is_indexmodule && $oi->use_index == 'yes')--><!--@if($act != 'IS')-->
+			$(".setBoxlist").addClass('active');
+			setTimeout(function() {
+				$(".setBoxlist").removeClass('active');
+			}, 500);
+		<!--@end--><!--@end-->
+
+	/*
+		$(".tooltipSet").tooltip({
+			delay:0,
+			opacity:1,
+			position: {
+				my: "center bottom-20", at: "center top+10",
+				using: function( position, feedback ) {
+					$( this ).css( position );
+					$( "<div>" )
+					.addClass( "ui-tooltip-arrow" )
+					.addClass( feedback.vertical )
+					.addClass( feedback.horizontal )
+					.appendTo( this );
+				}
+			}
+		});
+	*/
+	});
+	/* 검색 열고 닫기 */
+	$(".search-open").click(function(){
+		$('.searchWrap').addClass('active');
+		$('.gsc-search-button-v2').html('<i class="bx bx-search"></i>');
+	});
+	$(".search-close, .searchBg").click(function(){
+		$('.searchWrap').removeClass('active');
+	});
 </script>

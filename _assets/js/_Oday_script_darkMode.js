@@ -1,10 +1,4 @@
 $(function(){
-	$getColor = XE.cookie.get('setOdayColor');
-	if( $getColor != undefined ) {
-		$('body').addClass("color_theme_"+$getColor);
-	} else {
-		setTheme_color('orange');
-	}
 	$getTheme = XE.cookie.get('setOdayDarkmode');	
 	if( $getTheme != undefined ) {
 		if ( $getTheme == "dark" ){
@@ -20,11 +14,6 @@ $(function(){
 	}
 });
 
-function setCookie( name, value, expiredays ) {
-	var todayDate = new Date();
-	todayDate.setDate( todayDate.getDate() + expiredays ); 
-	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-}
 function setThemeDark() {
 	setCookie( "setOdayDarkmode", "dark" , 365 );
 	doThemeDark();
@@ -51,16 +40,4 @@ function doThemeLight() {
 	$(".viewDark").show();
 	$(".viewLight").hide();
 }
-/* 주요 색상 변경 */
-function setTheme_remove(dColor) {
-	if( dColor != "white" ) { $('body').removeClass("color_theme_white"); }
-	if( dColor != "orange" ) { $('body').removeClass("color_theme_orange"); }
-	if( dColor != "blue" ) { $('body').removeClass("color_theme_blue"); }
-	if( dColor != "green" ) { $('body').removeClass("color_theme_green"); }
-	if( dColor != "red" ) { $('body').removeClass("color_theme_red"); }
-}
-function setTheme_color(tColor) {
-	setTheme_remove(tColor);
-	$('body').addClass("color_theme_"+tColor);
-	setCookie( "setOdayColor", tColor , 365 );
-}
+
