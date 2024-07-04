@@ -135,9 +135,9 @@
 					<title xml:lang="ko">사용 안함</title>
 				</options>
 			</var>
-			<var name="font_size" type="text" default="13">
+			<var name="font_size" type="text" default="14">
 				<title xml:lang="ko">폰트크기</title>
-				<description xml:lang="ko">게시판 목록 폰트 크기 (기본 13px)</description>
+				<description xml:lang="ko">게시판 목록 폰트 크기 (기본 14px)</description>
 			</var>
 			<var name="site_badge" type="radio">
 				<title xml:lang="ko">오렌지데이 뱃지</title>
@@ -405,6 +405,9 @@
 				</options>
 				<options value="all">
 					<title>모든 게시글 썸네일 출력</title>
+				</options>
+				<options value="none">
+					<title>썸네일 출력 안함</title>
 				</options>
 			</var>
 			<var name="ft_fontsize" type="text">

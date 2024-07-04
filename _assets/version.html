@@ -1,4 +1,4 @@
-<!--@if($_is_indexmodule && $logged_info->is_admin == 'Y')-->
+<!--@if($logged_info->is_admin == 'Y')-->
 {@
 	$url = 'https://raw.githubusercontent.com/OrangeDayCom/rhymix-layout/main/version.txt';
 	$curl = curl_init();
@@ -16,7 +16,7 @@
 	$l_ver = preg_replace('/\./', '', $last_version);
 	if ( $c_ver < $l_ver ) $updt = "Y";
 }
-	<!--@if($updt=='Y')-->
+
 		<div class="last_version">
 			 테스트&nbsp;&nbsp;
 			<span><i class='bx bxs-bell'></i> {$current_version} <i class='bx bxs-right-arrow' ></i> {$last_version}</span>
@@ -45,5 +45,5 @@
 			$('.last_version').hide();
 		}
 		</script>
-	<!--@end-->
+
 <!--@end-->

@@ -70,6 +70,8 @@
 				<include target="list_ft.html" />
 			<!--@elseif($mi->first_thumb_user =='all')-->
 				<include target="list_ft.html" />
+			<!--@elseif($mi->first_thumb_user =='none')-->
+				<include target="list_ft.html" />
 			<!--@end-->
 			<div cond="!$mi->profile_img" class="pf">
 				<img cond="$document->getProfileImage()" class="profile1" src="{$document->getProfileImage()}" alt="profile" />

@@ -26,7 +26,7 @@
 						</span>
 					</div>
 					<div class="com">
-						<div class="content">{$comment->getContent(false)|noescape}</div>
+						<div class="content urllink">{$comment->getContent(false)|noescape}</div>
 						<div class="meta">
 							<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="name">{$comment->getNickName()}</a>
 							<span cond="!$comment->member_srl && !$comment->homepage" class="name">{$comment->getNickName()}</span>
@@ -66,7 +66,7 @@
 							</span>
 						</div>
 						<div class="com">
-							<div class="content">{$comment->getContent(false)|noescape}</div>
+							<div class="content urllink">{$comment->getContent(false)|noescape}</div>
 							<div class="meta">
 								<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="name">{$comment->getNickName()}</a>
 								<span cond="!$comment->member_srl && !$comment->homepage" class="name">{$comment->getNickName()}</span>
@@ -137,7 +137,7 @@
 								<span cond="!$comment->member_srl && !$comment->homepage" class="author">{$comment->getNickName()}</span>
 								<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl} author" onclick="return false">{$comment->getNickName()}</a>
 								<span class="od_ip"  cond="$mi->read_meta_ip == 'use'">({$comment->getIpaddress()})</span>
-								<span class="od_date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span> 
+								<span class="od_date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span>
 								<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
 							</div>
 							<!--@if(!$comment->isAccessible())-->
@@ -153,7 +153,7 @@
 								</div>
 							</form>
 							<!--@else-->
-							{$comment->getContent(false)|noescape}
+							<span class="urllink">{$comment->getContent(false)|noescape}</span>
 							<div cond="$comment->hasUploadedFiles()" class="fileList downlist">
 								<a class="down_onoff">Attached file <i class='bx bxs-plus-square'></i></a>
 								<div style="display:none;">

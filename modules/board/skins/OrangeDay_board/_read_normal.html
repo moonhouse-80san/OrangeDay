@@ -5,7 +5,7 @@
 	<!--@else--><!-- 비밀글 분기 -->
 		<include target="opt_read/_read_opt_title.html" />	
 		<include target="opt_read/_read_opt_meta.html" cond="$mi->read_meta == 'use'"/>
-		<div class="rMain">
+		<div class="rMain urllink">
 		{$oDocument->getContent(false)|noescape}
 		</div>
 		<include target="opt_read/_read_opt_extravar.html" />

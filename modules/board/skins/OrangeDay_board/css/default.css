@@ -1352,5 +1352,5 @@ ul.naviBtn li { display: flex; justify-content: center; }
 
 @media only screen and (max-width:768px){
 	.irt { display:none !important; }
-	#bd_ft .tmb{width:100%}
+	#bd_ft .tmb { max-width:100% }
 }

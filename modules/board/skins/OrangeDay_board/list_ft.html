@@ -1,8 +1,9 @@
 <div cond="$list_config['thumbnail']" class="tmb_wrp ribbon_v{$mi->ribbon_style}">
 	<!--// 썸네일 -->
-	<a href="{getUrl('document_srl',$document->document_srl,'listStyle',$listStyle,'cpage','')}">
+	<a cond="$mi->first_thumb_user =='' ||  $mi->first_thumb_user =='all'" href="{getUrl('document_srl',$document->document_srl,'listStyle',$listStyle,'cpage','')}">
 		<img class="tmb" src="{$document->getThumbnail($mi->zine_thumb_width,$mi->zine_thumb_height,$mi->zine_thumb_type)}" alt="" />
 	</a>
+	<img cond="$mi->first_thumb_user =='none'" class="tmb" src="{$document->getThumbnail(1,1)}" alt="" />
 	<!--// 리본 -->
 	<block cond="$mi->zine_ribbon!='N'">
 		<block cond="!$mi->zine_ribbon || $mi->zine_ribbon=='new_date'">
