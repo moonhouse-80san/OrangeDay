@@ -1,0 +1,288 @@
+{@
+	$rd_idx=0;
+	$mi->guest_main = "Yes";
+}
+<script>
+var lang_type = "{$lang_type}";
+jQuery(function($){
+	board('#bd_{$mi->module_srl}_{$oDocument->document_srl}');
+});
+</script>
+
+<!--%import("filter/insert.xml")-->
+<div class='stickyTopBox'>
+	<include target="opt_list/_list__opt_category.html" />
+	<include target="opt_list/_list__opt_search.html" />
+</div>
+
+<include target="opt_list/_list__opt_notice.html" />
+
+<div class="list_guest_write bd-all" style="font-size:{$mi->font_size}px">
+	<div class="box">
+		<ul class="formTitle">
+			<li class="front">
+				<i class='bx bx-paper-plane'></i> 방명록 작성
+			</li>
+			<li class="end">
+				<a cond="$grant->write_document" href="{getUrl('act','dispBoardWrite','document_srl','')}"><i class='bx bxs-edit'></i> 에디터 사용</a>
+			</li>
+		</ul>
+		<!--// 상단 쓰기 --> 
+		<form cond="$grant->write_document" action="./" method="post" onsubmit="return procFilter(this, window.insert)" class="bd_guest bd_wrt bd_wrt_main">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="comment_status" value="ALLOW" id="comment_status" />
+			<input type="hidden" name="allow_trackback" value="Y" id="allow_trackback" />
+			<input type="hidden" name="content" value="{$mi->content_default}"|cond="$mi->content_default" />
+			<input type="hidden" name="document_srl" value="" />
+			<div  class="simple_wrt">
+				<input type="hidden" name="use_html" value="Y" />
+				<input type="hidden" id="htm_1" value="n" />
+				<textarea id="editor_1" rows="10" cols="50"></textarea>
+			</div>
+			<ul class="formBox split">
+				<li class="front">
+					<ul cond="!$is_logged" class="namepass">
+						<li>
+							<label for="userName1" class="iLabel">{$lang->writer}</label>
+							<input type="text" name="nick_name" id="userName1" value="{htmlspecialchars($oDocument->get('nick_name'))}" />
+						</li>
+						<li>
+							<label for="userPw1" class="iLabel">{$lang->password}</label>
+							<input type="password" name="password" id="userPw1" autocomplete="new-password" />
+						</li>
+					</ul>
+				</li>
+				<li class="end">
+					<div cond="$is_logged">
+						<input type="checkbox" name="notify_message" value="Y" id="notify_message_con" class="iCheck" />
+						<label for="notify_message_con">{$lang->notify}</label>
+					</div>
+					<div  cond="$module_info->secret=='Y'">
+						<input type="checkbox" name="is_secret" value="Y" id="is_secret1" class="iCheck" />
+						<label for="is_secret1">{$lang->secret}</label> 
+					</div>
+					&nbsp;
+					<button type="submit" class="obtn"><i class='bx bx-book-bookmark'></i> 방명록 작성하기</button>
+				</li>
+			</ul>
+		</form>
+		<div cond="!$grant->write_document" class="bd_guest_no">
+			{$lang->cmd_write} {$lang->msg_not_permitted}
+		</div>
+	</div>
+</div>
+
+<include target="opt_list/_list__opt_ads.html" />
+
+<div id="list_guest" class="bd-all" style="font-size:{$mi->font_size}px">
+	<!--@if(!$document_list && !$notice_list)-->
+		<div class="no_documents box">
+		<!--@if($search_keyword)-->
+			검색된 글이 없습니다.
+		<!--@else-->
+			{$lang->no_documents}
+		<!--@end-->
+		</div>
+	<!--@else-->
+	<div loop="$document_list=>$no,$oDocument" class="box">
+		<ul class="grid">
+			<li class="meta size2">
+				<span class="number">{$no}</span>
+				<img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" alt="profile" title="{$oDocument->getNickName()}" class="profile" />
+				<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}"></div>
+			</li>
+			<li class="gCon">
+				<span cond="$oDocument->printExtraImages(60*60*$mi->duration_new)" class="newicon 
+					<!--@foreach($oDocument->getExtraImages(60*60*$mi->duration_new) as $key=>$val)-->
+						<!--@if($val == 'secret')-->S<!--@end-->
+						<!--@if($val == 'new')--> Fbox left N<!--@end-->
+						<!--@if($val == 'update')--> Fbox left U<!--@end-->
+						<!--@if($val == 'file')-->F<!--@end-->
+					<!--@end-->
+				">
+					<block loop="$oDocument->getExtraImages(60*60*$mi->duration_new) => $val, $key">
+					<block cond="$key == 'new'">N</block>
+					<block cond="$key == 'update'">U</block>
+					</block>
+				</span>
+				<!--@if($oDocument->isSecret())-->
+					<span class="newicon Fbox secret left"><i class='bx bxs-lock'></i></span>
+				<!--@end-->				
+				<div cond="$list_config['title']->idx" class="title">
+					<a href="{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle, '','')}">
+						{strip_tags($oDocument->getTitle())}
+					</a>
+				</div>
+				<div class="metabox">
+					<span cond="$category_list[$oDocument->get('category_srl')]->title" class="category" onclick="showUpdateExtraModal(this, {$document->document_srl}, {$document->get('category_srl')}, 'category')"|cond="$grant->manager && $use_category_update">{$category_list[$oDocument->get('category_srl')]->title}</span>					
+					<a cond="$oDocument->getMemberSrl()" cond="$list_config['nick_name']->idx"  href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getNickName()}</a>
+					<p cond="!$oDocument->getMemberSrl()" class="author">{$oDocument->getNickName()}</p>
+					<a cond="$oDocument->getMemberSrl()" cond="$list_config['user_name']->idx" href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getUserName()}</a>
+					<span cond="$list_config['regdate']->idx" class="od_date">{getTimeGap($oDocument->get('regdate'), "Y.m.d - H:i")}</span>
+					<span cond="$list_config['last_update']->idx" cond="$oDocument->get('last_update')" class="od_date">{getTimeGap($oDocument->get('last_update'), "Y.m.d - H:i")}</span>
+					<span cond="$list_config['last_post']->idx" cond="(int)($oDocument->get('comment_count'))>0" class="od_date">
+						<block cond="(int)($oDocument->get('comment_count'))>0">
+							<a href="{$oDocument->getUrl()}#comment" title="Last Reply">
+								{getTimeGap($oDocument->get('last_update'), "Y.m.d")}
+								<span cond="$oDocument->getLastUpdater()">
+									<i>by</i> {$oDocument->getLastUpdater()}
+								</span>
+							</a>
+						</block>
+					</span>
+					<input cond="$grant->manager" type="checkbox" name="cart" value="{$oDocument->document_srl}" title="Check this" onclick="doAddDocumentCart(this)" <!--@if($oDocument->isCarted())-->checked="checked"<!--@end--> />
+				</div>				
+				<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
+				<div class="utilityMessage">{$lang->msg_is_secret} {$lang->msg_input_password}</div>
+				<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretMessage secretForm">
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="page" value="{$page}" />
+					<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+					<div class="formBoxCenter">
+						<input type="password" name="password" id="cpw_{$oDocument->document_srl}" class="iText userPw" />
+						<input class="obtn ipt" type="submit" value="{$lang->cmd_input}" />
+					</div>
+				</form>
+				<!--@else-->
+				{$oDocument->getContent(false)}
+				<!--@end-->
+			</li>
+		</ul>
+
+		<div class="feedback" id="comment" cond="$oDocument->getCommentcount()">
+			<h2><i class="xi-comment"></i>&nbsp;{$lang->comment}&nbsp;<em>{$oDocument->getCommentcount()}</em></h2>
+			<ul class="guest_comments" style="border: var(--oday_listBorderStress); box-shadow: var(--oday_listShadow); border-radius:10px; padding:10px 10px 10px 0; margin:0 20px 5px; ">
+				<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')" id="comment_{$comment->comment_srl}" style="padding-left:calc({($comment->get('depth'))}0px * 2);">
+					<ul class="comListSub">
+						<li style="font-size:2em; margin:2px 10px 0 10px; color:var(--oday_mainColorLight)"><i class='bx bxs-share bx-rotate-180'></i></li>
+						<li class="meta">
+							<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
+							<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="30"></div>
+						</li>
+						<li class="comCon">
+							<div class="authorwrap">
+								<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="author">{$comment->getNickName()}</a>
+								<span cond="!$comment->member_srl && !$comment->homepage" class="author">{$comment->getNickName()}</span>
+								<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl} author" onclick="return false">{$comment->getNickName()}</a>
+								<span class="od_date" cond="$grant->is_admin">({$comment->getIpaddress()})</span>
+								<span class="od_date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span> 
+								<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
+							</div>
+							<!--@if(!$comment->isAccessible())-->
+								<form action="./" method="get" class="secretForm" onsubmit="return procFilter(this, input_password)">
+									<input type="hidden" name="mid" value="{$mid}" />
+									<input type="hidden" name="page" value="{$page}" />
+									<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
+									<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
+									<div class="utilityMessage">{$lang->msg_is_secret} {$lang->msg_input_password}</div>
+									<div class="formBoxCenter">
+										<input type="password" name="password" id="cpw_{$comment->comment_srl}" class="iText" />
+										<input type="submit" class="obtn" value="{$lang->cmd_input}" />
+									</div>
+								</form>
+								<!--@else-->
+								{$comment->getContent(false)|noescape}
+
+								<block cond="!$listCheck">
+									<ul cond="$comment->hasUploadedFiles()" class="fileList">
+										<li loop="$comment->getUploadedFiles()=>$key,$file">
+											<a href="{getUrl('')}{$file->download_url}" rel="nofollow">{$file->source_filename} 
+												<span class="fileSize">{FileHandler::filesize($file->file_size)} / <i class='bx bxs-downvote'></i> {number_format($file->download_count)}</span>
+											</a>
+										</li>
+									</ul>
+									<div class="action">
+										<div>
+										<a class="bd_login" href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" title="{$lang->cmd_vote}">
+										<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->">favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+										</div>
+
+										<div class="actionpack">
+											<a href="{getUrl('document_srl',$oDocument->document_srl, 'listStyle', $listStyle, '','')}#comment_{$comment->comment_srl}"><i class='bx bx-reply bx-rotate-180' ></i> {$lang->cmd_reply}</a>
+											<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
+											<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete" rel="nofollow"><i class='bx bxs-trash' ></i> {$lang->cmd_delete}</a>
+											<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class='bx bx-check' ></i> {$lang->cmd_comment_do}</a>
+										</div>
+									</div>
+								</block>
+							<!--@end-->
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div cond="$oDocument->comment_page_navigation" class="pagination">
+				<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',1)}#comment" class="direction prev"><span></span><span></span><i class='bx bxs-chevron-left' ></i></a>
+				<block loop="$page_no=$oDocument->comment_page_navigation->getNextPage()">
+					<strong cond="$cpage==$page_no">{$page_no}</strong>
+					<a cond="$cpage!=$page_no" href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$page_no)}#comment">{$page_no}</a>
+				</block>
+				<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="direction next"><i class='bx bxs-chevron-right'></i><span></span><span></span></a>
+			</div>
+		</div>
+
+		<details cond="$grant->write_document" class="accordion" style="margin-top:1.5em">
+			<summary class="notice_fold">
+				<div class="obtn"><i class='bx bx-chat'></i> 댓글창</div>
+			</summary>
+
+			<!-- 댓글 입력 폼 -->
+			<div cond="$grant->write_comment" class="commentWrite">
+				<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" id="write_comment" >
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+					<input type="hidden" name="comment_srl" value="" />
+
+					<div class="editorBox" style="margin:-3em 0 .3em 0"><textarea name="content" rows="2" cols="20" class="textarea"></textarea></div>
+
+					<ul class="formBox split">
+						<li class="front">
+							<ul cond="!$is_logged" class="namepass">
+								<li>
+									<label for="userName" class="iLabel">{$lang->writer}</label>
+									<input type="text" name="nick_name" id="userName" class="iText userName" />
+								</li>
+								<li>
+									<label for="userPw" class="iLabel">{$lang->password}</label>
+									<input type="password" name="password" id="userPw" class="iText userPw"  autocomplete="new-password"  />
+								</li>
+							</ul>
+						</li>
+						<li class="end">
+							<div cond="$is_logged">
+								<input type="checkbox" name="notify_message" value="Y" id="notify_message" class="iCheck" />
+								<label for="notify_message">{$lang->notify}</label>
+							</div>
+							<div cond="$module_info->secret=='Y'">
+								<input type="checkbox" name="is_secret" value="Y" id="is_secret" class="iCheck" />
+								<label for="is_secret">{$lang->secret}</label>
+							</div>
+							<div class="tCenter">
+								<input type="submit" value="{$lang->cmd_comment_registration}" accesskey="s" />
+							</div>
+						</li>
+					</ul>
+				</form>
+			</div>
+
+			<style>
+				summary.notice_fold::-webkit-details-marker { display: none; }
+				summary.notice_fold { display: block; }
+				summary.notice_fold { position: relative; padding:0 10px 10px; cursor: pointer; float:right; }
+				summary.notice_fold::before { content: ""; }
+			</style>
+		</details>
+
+		<div cond="!$grant->write_document" style="height:3em">&nbsp;</div>
+		{@ $rd_idx=1}
+	</div>
+	<!--@end-->
+</div>
+
+<include target="opt_list/_list__opt_pagenavi.html" />
+<include target="opt_list/_list__opt_btnbox.html" />
+
+<style>
+	#list_guest,
+	#list_guest .box + .box {margin-top:{$mi->gall_cell_gap}px;}
+</style>
+
