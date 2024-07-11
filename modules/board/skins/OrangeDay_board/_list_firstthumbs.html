@@ -24,7 +24,7 @@
 	$page_no = $page + 1;
 }
 
-<load target="asset/infinite-scroll.pkgd.min.js" />
+<load cond="$mi->ft_infinity_use =='yes'" target="asset/infinite-scroll.pkgd.min.js" />
 <load target="asset/masonry.pkgd.min.js" />
 
 <div class='stickyTopBox wide'>
@@ -46,7 +46,7 @@
 <!--@else-->
 	<div cond="$page > 1" class="infinitiNotice">전체 <span>{$page_navigation->last_page}</span>페이지 중 <span>{$page}</span>번째 페이지부터 시작되었습니다.<br class="vm" /> 첫 페이지 부터 보시려면 <a href="{getUrl('listStyle',$mi->default_style,'page','','','')}">여기</a>를 클릭해 주세요.</div>
 
-	<div id="bd_ft">
+	<div id="bd_ft" class="bd-all" style="font-size:{$mi->font_size}px">
 		<div loop="$document_list =>$no,$document" class="box boxsize <!--@if($document_srl==$document->document_srl)-->select <!--@end-->clear">
 
 			<span cond="$document->printExtraImages(60*60*$mi->duration_new)" class="newicon

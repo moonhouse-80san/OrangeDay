@@ -149,8 +149,6 @@ $(function(){
 			.od-bord { max-width:var(--oday_maxWidth); }
 		<!--@elseif($mi->default_style=='webzine')-->
 			.od-bord { max-width:var(--oday_maxWidth);  width:var(--oday_maxWidth); }
-		<!--@elseif($mi->default_style=='firstthumbs')-->
-			.od-bord { max-width:var(--oday_maxWidth);  width:var(--oday_maxWidth); }
 		<!--@end-->
 	<!--@elseif($mi->page_align=='full')-->
 		<!--@if($mi->default_style=='gallery')-->
@@ -274,11 +272,17 @@ $(function(){
 	</style>
 <!--@end-->
 
-<div cond="$grant->manager && $_SERVER['HTTP_SEC_FETCH_DEST']=='document'" class="bd_num vp" 
-style="z-index:3; position: fixed; top:0;
-font-weight:700; font-size:1em; clip-path: polygon(50% 0, 100% 0, 100% 80%, 50% 100%, 0 80%, 0 0); 
-background-color: var(--oday_mainColor); color:var(--oday_primaryBtnColor); 
-padding:5px 10px 10px 10px;">{$mi->module_srl} </div>
+<div cond="$grant->manager && $_SERVER['HTTP_SEC_FETCH_DEST']=='document'" class="bd_num vp" style="z-index:3; position: fixed; top:0; font-weight:700; font-size:1em; clip-path: polygon(50% 0, 100% 0, 100% 80%, 50% 100%, 0 80%, 0 0); background-color: var(--oday_mainColor); color:var(--oday_primaryBtnColor); padding:5px 10px 10px 10px; cursor:pointer;" onclick="copyToClipboard('{$mi->module_srl}')">{$mi->module_srl}
+	<script>
+		function copyToClipboard(text) {
+			navigator.clipboard.writeText(text).then(function() {
+				alert('모듈 번호가 클립보드에 복사되었습니다: ' + text);
+			}, function(err) {
+				console.error('클립보드 복사 실패:', err);
+			});
+		}
+	</script>
+</div>
 
 <div cond="$mi->preview=='use' || $mi->theme_use == 'use'" class="preview_btn">
 	<a class="view_opt"><i class='bx bx-cog' ></i></a>

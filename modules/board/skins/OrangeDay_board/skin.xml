@@ -393,6 +393,17 @@
 					<title xml:lang="ko">6</title>
 				</options>
 			</var>
+			<var name="vote_cmd" type="radio">
+				<title>댓글 + 추천 버턴 출력</title>
+				<description>댓글등록 버턴과 추천버턴을 함께 출력합니다.
+				</description>
+				<options value="">
+					<title>등록버턴만(기본)</title>
+				</options>
+				<options value="Y">
+					<title>둘다 출력</title>
+				</options>
+			</var>
 		</group>
 
 		<group>
@@ -478,6 +489,17 @@
 				</options>
 				<options value="N">
 					<title>표시 안함</title>
+				</options>
+			</var>
+			<var name="ft_infinity_use" type="radio">
+				<title xml:lang="ko">무한스크롤 사용</title>
+				<description xml:lang="ko">무한스크롤 사용	여부 설정,
+				사용안함 : 버튼으로	추가 페이지 로드</description>
+				<options value="no">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">사용</title>
 				</options>
 			</var>
 			<var name="rating_output" type="radio">
@@ -602,17 +624,6 @@
 			<var name="d_day_title" type="text">
 				<title>　┖ D-Day</title>
 				<description>D-Day 제목을 적어주세요</description>
-			</var>
-			<var name="ft_infinity_use" type="radio">
-				<title xml:lang="ko">무한스크롤 사용</title>
-				<description xml:lang="ko">무한스크롤 사용	여부 설정,
-				사용안함 : 버튼으로	추가 페이지 로드</description>
-				<options value="no">
-					<title xml:lang="ko">사용안함</title>
-				</options>
-				<options value="yes">
-					<title xml:lang="ko">사용</title>
-				</options>
 			</var>
 			<var name="select_icons" type="text">
 				<title>★제목앞	분류 버턴 확장변수 ID</title>

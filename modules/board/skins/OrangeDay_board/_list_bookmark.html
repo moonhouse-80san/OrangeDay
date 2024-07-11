@@ -30,7 +30,7 @@
 	<div id="list-book" style="font-size:{$mi->font_size}px">
 		<div class="boxsize"></div>
 	
-		<div loop="$document_list =>$no,$oDocument" class="box boxsize cellMove">			
+		<div loop="$document_list =>$no,$oDocument" class="box boxsize cellMove">
 			<a <!--@if($oDocument->getExtraValue(1))-->href="{$oDocument->getExtraValue(1)}"  target="blank"<!--@else-->onclick="alert('링크가 없습니다.');"<!--@end-->>
 				<!--@if($oDocument->thumbnailExists($module_info->thumbnail_width, $module_info->thumbnail_height, $module_info->thumbnail_type))-->
 				<img src="{$oDocument->getThumbnail($module_info->thumbnail_width, $module_info->thumbnail_height, $module_info->thumbnail_type)}">

@@ -32,7 +32,7 @@
 				</block>
 			</a>
 		</div>
-		<a class="open_catemenu"><i class='bx bx-right-indent'></i></a>		
+		<a class="open_catemenu"><i class='bx bx-right-indent'></i></a>
 	</li>	
 	<li  cond="$grant->write_document" class="blogbtnbox">
 	<!--@if($document_list || $notice_list)-->
@@ -40,8 +40,8 @@
 		<a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}" cond="$oDocument->isEditable()" class="obtn middle"><i class='bx bx-trash'></i> 삭제</a>	
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<!--@end-->	
-		<a cond="$grant->write_document" href="{getUrl('act','dispBoardWrite','document_srl','')}" class="obtn primary middle"><i class='bx bxs-pencil'></i> 글쓰기</a>				
-		<a cond="$grant->manager" href="{getUrl('act','dispBoardAdminBoardInfo')}" class="obtn middle"><i class='bx bx-slider'></i> 설정</a>		
+		<a cond="$grant->write_document" href="{getUrl('act','dispBoardWrite','document_srl','')}" class="obtn primary middle"><i class='bx bxs-pencil'></i> 글쓰기</a>
+		<a cond="$grant->manager" href="{getUrl('act','dispBoardAdminBoardInfo')}" class="obtn middle"><i class='bx bx-slider'></i> 설정</a>
 	</li>
 	<!--@if(!Mobile::isMobileCheckByAgent())-->
 	<li class="vp">

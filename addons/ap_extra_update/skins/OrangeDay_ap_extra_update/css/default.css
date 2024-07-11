@@ -45,7 +45,7 @@ mix-blend-mode: unset;
 .ap_extra_update_wrapper {
 	width: 100%;
 	min-width: 320px;
-	max-width: 570px;
+	max-width: 620px;
 	padding: 20px 40px;
 	background-color:rgb(245 245 245);
 	border:1px solid rgba(150,150,150,.1);
@@ -56,7 +56,19 @@ mix-blend-mode: unset;
 .ap_extra_update_formHTML li {
 	display: inline-block;
 	margin-right: 8px;
+	vertical-align: middle;
 }
+
+.ap_extra_update_formHTML li input[type="radio"] {
+    vertical-align: middle;
+    margin-right:5px;
+}
+
+.ap_extra_update_formHTML li label {
+    vertical-align: middle;
+    display: inline-block;
+}
+
 .ap_extra_update_formHTML.category_list input { margin-right:5px;}
 .ap_extra_update_formHTML.category_list > ul {
 	display: flex;
@@ -102,7 +114,7 @@ mix-blend-mode: unset;
 .btn-n:hover{ color:white; background:#8bcc62; border-color:#326612; box-shadow:inset 0 1px 0 #c6e5b3, inset 0 -1px 0 #79b356, inset 0 0 0 1px #a4cc8b; }
 
 .btn-m { background-color:#42b0e3; background-image:linear-gradient(to bottom, #42b0e3, #2ba9e3); border:1px solid #107db0; box-shadow:inset 0 1px 0 #7cd4fc, inset 0 -1px 0 #2696c9, inset 0 0 0 1px #59b7e3, 0 2px 4px rgba(0, 0, 0, 0.2); color:white; text-shadow:0 1px 2px rgba(0, 0, 0, 0.3); border-radius:3px; cursor:pointer; display:inline-block; font-size:14px; font-weight:400; line-height:20px; padding:9px 16px 9px; margin:0px; transition:all 20ms ease-out; vertical-align:middle; text-align:center; text-decoration:none; }
-.btn-m:hover{ color:white; background:#2ba9e3; border-color:#004c6f; box-shadow:inset 0 1px 0 #7cd4fc, inset 0 -1px 0 #2696c9, inset 0 0 0 1px #59b7e3;  }
+.btn-m:hover{ color:white; background:#2ba9e3; border-color:#004c6f; box-shadow:inset 0 1px 0 #7cd4fc, inset 0 -1px 0 #2696c9, inset 0 0 0 1px #59b7e3; }
 
 .btn-c { background-color:#f58a38; background-image:linear-gradient(to bottom, #f58a38, #f57c20); border:1px solid #c25706; box-shadow:inset 0 1px 0 #ffb984, inset 0 -1px 0 #db6f1d, inset 0 0 0 1px #f59851, 0 2px 4px rgba(0, 0, 0, 0.2); color:white; text-shadow:0 1px 2px rgba(0, 0, 0, 0.3); border-radius:3px; cursor:pointer; display:inline-block; font-size:14px; font-weight:400; line-height:20px; padding:9px 16px 9px; margin:0px; transition:all 20ms ease-out; vertical-align:middle; text-align:center; text-decoration:none; }
 .btn-c:hover{ color:white; background:#f57c20; border-color:#773300; box-shadow:inset 0 1px 0 #ffb984, inset 0 -1px 0 #db6f1d, inset 0 0 0 1px #f59851; }

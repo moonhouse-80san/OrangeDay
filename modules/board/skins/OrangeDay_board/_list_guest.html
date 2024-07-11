@@ -107,7 +107,7 @@ jQuery(function($){
 				</span>
 				<!--@if($oDocument->isSecret())-->
 					<span class="newicon Fbox secret left"><i class='bx bxs-lock'></i></span>
-				<!--@end-->				
+				<!--@end-->
 				<div cond="$list_config['title']->idx" class="title">
 					<a href="{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle, '','')}">
 						{strip_tags($oDocument->getTitle())}
@@ -157,7 +157,7 @@ jQuery(function($){
 						<li style="font-size:2em; margin:2px 10px 0 10px; color:var(--oday_mainColorLight)"><i class='bx bxs-share bx-rotate-180'></i></li>
 						<li class="meta">
 							<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-							<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="30"></div>
+							<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="30"></div>
 						</li>
 						<li class="comCon">
 							<div class="authorwrap">
@@ -258,6 +258,8 @@ jQuery(function($){
 							</div>
 							<div class="tCenter">
 								<input type="submit" value="{$lang->cmd_comment_registration}" accesskey="s" />
+								<!-- 추천버튼 추가 -->
+								<input cond="$is_logged && $mi->vote_cmd == 'Y'" onclick="doCallModuleAction('document','procDocumentVoteUp',{$oDocument->document_srl});" type="submit" value="❤️ + {$lang->cmd_comment_registration}" class="obtn" style="margin-left:10px"/>
 							</div>
 						</li>
 					</ul>
