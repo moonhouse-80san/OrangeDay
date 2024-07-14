@@ -245,20 +245,6 @@
 				</options>
 				<description xml:lang="ko">공지글 클릭시 폴딩 형식 출력을 선택합니다.</description>
 			</var>
-			<var name="list_ads" type="radio">
-				<title>★웹진형 리스트에 광고 삽입</title>
-				<description>웹진형 리스트에 광고 기능 사용하기</description>
-				<options value="">
-					<title>사용 안함(기본)</title>
-				</options>
-				<options value="Y">
-					<title>사용</title>
-				</options>
-			</var>
-			<var name="ads_code" type="textarea">
-				<title>　┖ 광고 코드</title>
-				<description>광고(에드센스) 코드를 입력</description>
-			</var>
 		</group>
 
 		<group>
@@ -810,6 +796,36 @@
 				<options value="white">	<title>white</title></options>
 				<options value="dark"><title>dark</title></options>
 				<description>버턴의 색상을 선택하세요.</description>
+			</var>
+			<var name="list_ads" type="radio">
+				<title>★리스트에 광고 삽입</title>
+				<description>리스트에 광고 기능 사용하기</description>
+				<options value="">
+					<title>사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title>사용</title>
+				</options>
+			</var>
+			<var name="ad1" type="text">
+				<title>　┖ 목록 순번1</title>
+				<description>광고글이 순번1칸 다음 리스트줄에 출력</description>
+			</var>
+			<var name="ad2" type="text">
+				<title>　┖ 목록 순번2</title>
+				<description>광고글이 순번2칸 다음 리스트줄에 출력</description>
+			</var>
+			<var name="ad3" type="text">
+				<title>　┖ 목록 순번3</title>
+				<description>광고글이 순번3칸 다음 리스트줄에 출력</description>
+			</var>
+			<var name="ads_code" type="textarea">
+				<title>　┖ 광고 코드</title>
+				<description>광고(에드센스) 코드를 입력</description>
+			</var>
+			<var name="ads_mcode" type="textarea">
+				<title>　┖ 모바일 광고 코드</title>
+				<description>모바일 광고(에드센스) 코드를 입력</description>
 			</var>
 		</group>
 

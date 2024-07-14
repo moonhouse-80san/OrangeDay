@@ -47,6 +47,7 @@
 	<div cond="$page > 1" class="infinitiNotice">전체 <span>{$page_navigation->last_page}</span>페이지 중 <span>{$page}</span>번째 페이지부터 시작되었습니다.<br class="vm" /> 첫 페이지 부터 보시려면 <a href="{getUrl('listStyle',$mi->default_style,'page','','','')}">여기</a>를 클릭해 주세요.</div>
 
 	<div id="bd_ft" class="bd-all" style="font-size:{$mi->font_size}px">
+		{@$i=0}
 		<div loop="$document_list =>$no,$document" class="box boxsize <!--@if($document_srl==$document->document_srl)-->select <!--@end-->clear">
 
 			<span cond="$document->printExtraImages(60*60*$mi->duration_new)" class="newicon
@@ -169,6 +170,25 @@
 				</div>
 			</div>
 
+			<!--// 목록에 에드센스 출력 -->
+				<!--@if(in_array($i+1, array($mi->ad1, $mi->ad2, $mi->ad3)) && $mi->list_ads=='Y' && !$mo)-->
+					<div class="ads">
+						{$mi->ads_code}
+					</div>
+				<!--@end-->
+				<!--@if(in_array($i+1, array($mi->ad1, $mi->ad2, $mi->ad3)) && $mi->list_ads=='Y' && $mo)-->
+					<div class="adsm">
+						{$mi->ads_mcode}
+					</div>
+				<!--@end-->
+				<style>
+					.bd_zine .ads { margin:0 !important; padding:0; }
+
+					@media all and (max-width:480px) {
+						.bd_zine .ads { margin:25px 0 0 0 !important; border-top:1px solid #f1f1f1; }
+					}
+				</style>
+		{@$i++}
 		</div>
 	</div>
 
