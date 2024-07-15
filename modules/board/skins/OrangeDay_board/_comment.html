@@ -31,7 +31,7 @@
 							<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="name">{$comment->getNickName()}</a>
 							<span cond="!$comment->member_srl && !$comment->homepage" class="name">{$comment->getNickName()}</span>
 							<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl} name" onclick="return false">{$comment->getNickName()}</a>
-							<span class="ip" cond="$mi->read_meta_ip == 'use'">{$comment->getIpaddress()}</span>
+							<span class="ip" cond="$mi->read_meta_ip == 'use'"><!--@if($grant->is_admin)--><a href="https://ko.infobyip.com/ip-{$comment->getIpaddress()}.html" target="_blank">{$comment->getIpaddress()}</a><!--@else-->{$comment->getIpaddress()}<!--@end--></span>
 							<span class="date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span>
 							<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
 							<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete" rel="nofollow"><i class='bx bxs-trash' ></i> {$lang->cmd_delete}</a>
