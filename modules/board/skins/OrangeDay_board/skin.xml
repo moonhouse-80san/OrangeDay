@@ -797,6 +797,16 @@
 				<options value="dark"><title>dark</title></options>
 				<description>버턴의 색상을 선택하세요.</description>
 			</var>
+			<var name="list_top_ads" type="radio">
+				<title>리스트 상단에 광고 삽입</title>
+				<description>리스트 최상단에 광고 기능 사용하기</description>
+				<options value="">
+					<title>사용 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title>사용</title>
+				</options>
+			</var>
 			<var name="list_ads" type="radio">
 				<title>★리스트에 광고 삽입</title>
 				<description>리스트에 광고 기능 사용하기</description>
@@ -826,6 +836,66 @@
 			<var name="ads_mcode" type="textarea">
 				<title>　┖ 모바일 광고 코드</title>
 				<description>모바일 광고(에드센스) 코드를 입력</description>
+			</var>
+			<var name="list_replyContent" type="radio">
+				<title>★리스트 댓글 출력(FT)</title>
+				<options value="">
+					<title>출력하지 않음(기본)</title>
+				</options>
+				<options value="Y">
+					<title>출력</title>
+				</options>
+				<description>리스트내용글 아래에 댓글의 출력유무를 선택합니다.</description>
+			</var>
+			<var name="comment_cut_size" type="text">
+				<title>　┖ 댓글 글자수</title>
+				<description>댓글 글자수를 지정할 수 있습니다. (기본 90)</description>
+			</var>
+			<var name="comment_cut_size_m" type="text">
+				<title>　┖ 모바일 댓글 글자수</title>
+				<description>모바일에서 댓글 글자수를 지정할 수 있습니다. (기본 30)</description>
+			</var>
+			<var name="display_author" type="radio">
+				<title>　┖ 댓글작성자 표시</title>
+				<options value="Y">
+					<title>출력</title>
+				</options>
+				<options value="N">
+					<title>출력하지 않음</title>
+				</options>
+			</var>
+			<var name="display_regdate" type="radio">
+				<title>　┖ 댓글 작성일 표시</title>
+				<options value="Y">
+					<title>출력</title>
+				</options>
+				<options value="N">
+					<title>출력하지 않음</title>
+				</options>
+			</var>
+			<var name="comment_order" type="radio">
+				<title>　┖ 댓글 출력 순서</title>
+				<options value="">
+					<title>시간순</title>
+				</options>
+				<options value="N">
+					<title>새글순</title>
+				</options>
+				<description>댓글이 정렬하는 순서를 지정(새글순 - 새로운 댓글이 상위)</description>
+			</var>
+			<var name="comment_line" type="radio">
+				<title>　┖ 댓글 칸 출력형태</title>
+				<options value="">
+					<title>전체출력</title>
+				</options>
+				<options value="N">
+					<title>지정칸수출력</title>
+				</options>
+				<description>댓글의 수가 많은 경우 지정칸수 만큼만 출력</description>
+			</var>
+			<var name="comment_lineno" type="text">
+				<title>　┖ 댓글 칸수</title>
+				<description>댓글의 칸수를 지정할 수 있습니다. (기본 5)</description>
 			</var>
 		</group>
 

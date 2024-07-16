@@ -168,6 +168,31 @@
 						<span cond="$val->eid=='rating'">{$val->name} : <strong class="starRating"><span style="width:{$document->getExtraValueHTML($val->idx)*10}%">{$document->getExtraValueHTML($val->idx)}</span></strong></span>
 					</div>
 				</div>
+
+				<!-- 코멘트 리스트 시작 -->
+				<!--@if(!$mi->list_replyContent =='')-->
+					<!--@if(!($oDocument->isExists() && $grant->view))-->
+						{@if(!$mi->comment_lineno) $mi->comment_lineno = 5;}
+						{@$comments_list = $document->getComments();}
+						<!--@if(!$mi->comment_order == '')-->{@$comments_list = array_reverse($comments_list);}<!--@else-->{@$comments_list = array_slice($comments_list, -$mi->comment_lineno, $mi->comment_lineno);}<!--@end-->
+						{@$j = 0}
+						<!--@if($document->getCommentCount())-->
+							<div class="CommArea">
+								<a cond="$document->getCommentCount() > $mi->comment_lineno" href="{getUrl('document_srl', $document->document_srl)}#{$document->document_srl}_comment">
+									<span class="bookmark">댓글 [{$document->getCommentCount()}]</span>
+								</a>
+								<!--@foreach($comments_list as $key => $val)-->
+									<!--@if(!$mi->comment_line == '')-->
+										<include target="list_webzin_comment.html" cond="$j< $mi->comment_lineno"/>
+									<!--@else-->
+										<include target="list_webzin_comment.html" />
+									<!--@end-->
+								<!--@end-->
+							</div>
+						<!--@end-->
+					<!--@end-->
+				<!--@end-->
+				<!-- 코멘트 리스트 끝 -->
 			</div>
 
 			<!--// 목록에 에드센스 출력 -->
@@ -182,10 +207,10 @@
 					</div>
 				<!--@end-->
 				<style>
-					.bd_zine .ads { margin:0 !important; padding:0; }
+					.bd_ft .ads { margin:0 !important; padding:0; }
 
 					@media all and (max-width:480px) {
-						.bd_zine .ads { margin:25px 0 0 0 !important; border-top:1px solid #f1f1f1; }
+						.bd_ft .ads { margin:25px 0 0 0 !important; border-top:1px solid #f1f1f1; }
 					}
 				</style>
 		{@$i++}
