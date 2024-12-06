@@ -294,6 +294,65 @@
 					<title xml:lang="ko">감추기</title>
 				</options>
 			</var>
+			<var name="read_com_download" type="radio">
+				<title xml:lang="ko">댓글 첨부파일</title>
+				<options value="use">
+					<title xml:lang="ko">보기</title>
+				</options>
+				<options value="no_use">
+					<title xml:lang="ko">감추기</title>
+				</options>
+			</var>
+			<var name="files_type" type="radio">
+				<title>★확장자 필터 기능</title>
+				<description>첨부파일에서 이미지, 동영상, 음악 파일을 제외하는 기능을 사용합니다. 아래의 옵션에서 출력할 파일 타입을 선택하세요.</description>
+				<options value="Y">
+					<title>사용</title>
+				</options>
+				<options value="">
+					<title>사용 안함(기본)</title>
+				</options>
+			</var>
+			<var name="files_img" type="radio">
+				<title>　┖ 이미지 파일</title>
+				<description>첨부파일에서 이미지 파일(jpg, jpeg, gif, png, svg)의 출력 여부를 선택합니다.</description>
+				<options value="">
+					<title>출력 안함(기본)</title>
+				</options>
+				<options value="Y">
+					<title>출력</title>
+				</options>
+			</var>
+			<var name="files_video" type="radio">
+				<title>　┖ 동영상 파일</title>
+				<description>첨부파일에서 동영상 파일(mpg, mpeg, avi, wmv, mp4, mov, mkv, swf, flv, ogv, webm)의 출력 여부를 선택합니다.</description>
+				<options value="">
+					<title>출력(기본)</title>
+				</options>
+				<options value="N">
+					<title>출력 안함</title>
+				</options>
+			</var>
+			<var name="files_audio" type="radio">
+				<title>　┖ 음악 파일</title>
+				<description>첨부파일에서 음악 파일(mp3, ogg, wma, wav, ape, flac, mid)의 출력 여부를 선택합니다.</description>
+				<options value="">
+					<title>출력(기본)</title>
+				</options>
+				<options value="N">
+					<title>출력 안함</title>
+				</options>
+			</var>
+			<var name="files_etc" type="radio">
+				<title>　┖ 기타 파일</title>
+				<description>위의 3가지 파일 타입(이미지, 비디오, 오디오)을 제외한 나머지 파일의 출력 여부를 선택합니다.</description>
+				<options value="">
+					<title>출력(기본)</title>
+				</options>
+				<options value="N">
+					<title>출력 안함</title>
+				</options>
+			</var>
 			<var name="read_utility" type="radio">
 				<title xml:lang="ko">게시글 메뉴</title>
 				<description xml:lang="ko">"이 게시물을.." 메뉴 (신고, 스크랩 등)</description>
@@ -389,6 +448,94 @@
 				<options value="Y">
 					<title>둘다 출력</title>
 				</options>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">졸졸이스토커 설정</title>
+			<var name="side_alway_stalker" type="radio">
+				<title>졸졸이스토커</title>
+				<description>사이드 졸졸이스토커의 출력을 결정하세요.</description>
+				<options value="">
+					<title>출력안함</title>
+				</options>
+				<options value="Y">
+					<title>출력</title>
+				</options>
+			</var>
+			<var name="stalker_w" type="text">
+				<title>이미지가로 or 가로크기</title>
+				<description>이미지의 가로나 텍스트졸졸이 폭 크기를 입력하세요.(기본 150 숫자만)</description>
+			</var>
+			<var name="s_lm" type="text">
+				<title>스토커의 우측 위치</title>
+				<description>Contact와 스토커의 우측 마진을 선택하세요.(기본 40)</description>
+			</var>
+			<var name="stalker_top" type="text">
+				<title>스토커의 탑위치</title>
+				<description>스토커의 탑위치를 선택하세요.(기본 200)</description>
+			</var>
+			<var name="s_menu" type="radio">
+				<title>출력형태</title>
+				<description>사이드 졸졸이스토커의 출력형태를 결정하세요.</description>
+				<options value="stalker_img">
+					<title>이미지출력</title>
+				</options>
+				<options value="stalker_html">
+					<title>html출력</title>
+				</options>
+			</var>
+			<var name="stalker_img" type="image">
+				<title>이미지출력선택시 이미지 등록</title>
+				<description>이미지출력선택시 이미지를 등록하세요.</description>
+			</var>
+			<var name="stalker_img_url" type="text">
+				<title>이미지출력선택시 하이퍼링크 등록</title>
+				<description>이미지출력선택시 하이퍼링크를 등록하세요.(http:// 추가하세요)</description>
+			</var>
+			<var name="stalker_img_target" type="radio">
+				<title>하이퍼링크 Target</title>
+				<description>하이퍼링크 클릭시 창의 선택</description>
+				<options value="parent">
+					<title>현재창</title>
+				</options>
+				<options value="blank">
+					<title>새창</title>
+				</options>
+			</var>
+			<var name="stalker_html" type="textarea">
+				<title>html 출력선택시 내용 등록 / 이미지 아래 내용등록</title>
+				<description>html 출력선택시 내용을 등록하세요.(Widget 가능)</description>
+			</var>
+			<var name="stalker_border_px" type="text">
+				<title>스토커박스 테두리 두께</title>
+				<description>스토커박스의 테두리 두께를 지정할수 있습니다.(기본 0 -- 테두리없음 / 3이 예쁨^.^)</description>
+			</var>
+			<var name="stalker_bg_color" type="text">
+				<title>스토커박스의 배경색상</title>
+				<description>스토커박스안의 배경색상을 지정할수 있습니다.(기본 투명 transparent)</description>
+			</var>
+			<var name="stalker_line_color" type="text">
+				<title>스토커박스 테두리 색상</title>
+				<description>스토커박스의 테두리 색상를 지정할수 있습니다.(기본 투명 transparent)</description>
+			</var>
+			<var name="stalker_text_color" type="text">
+				<title>스토커박스안 텍스트색상</title>
+				<description>스토커박스안의 텍스트색상을 지정할수 있습니다.(기본 #888)</description>
+			</var>
+			<var name="stalker_arrow" type="radio">
+				<title>상하 화살표</title>
+				<description>스토커박스의 상하 화살표 출력</description>
+				<options value="">
+					<title>출력안함</title>
+				</options>
+				<options value="Y">
+					<title>출력</title>
+				</options>
+			</var>
+			<var name="stalker_arrow_c" type="text">
+				<title>스토커박스안 화살표색상</title>
+				<description>스토커박스안의 상하 화살표색상을 지정할수 있습니다.(기본 #444)</description>
 			</var>
 		</group>
 

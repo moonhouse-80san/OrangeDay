@@ -26,7 +26,10 @@
 						</span>
 					</div>
 					<div class="com">
-						<div class="content urllink">{$comment->getContent(false)|noescape}</div>
+						<div class="content urllink" style="overflow-wrap:break-work">
+							{$comment->getContent(false)|noescape}
+							<include target="opt_read/_read_opt_com_download.html" cond="$mi->read_com_download == 'use'" />
+						</div>
 						<div class="meta">
 							<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="name">{$comment->getNickName()}</a>
 							<span cond="!$comment->member_srl && !$comment->homepage" class="name">{$comment->getNickName()}</span>
@@ -67,7 +70,10 @@
 							</span>
 						</div>
 						<div class="com">
-							<div class="content urllink">{$comment->getContent(false)|noescape}</div>
+							<div class="content urllink" style="overflow-wrap:break-work">
+								{$comment->getContent(false)|noescape}
+								<include target="opt_read/_read_opt_com_download.html" cond="$mi->read_com_download == 'use'" />
+							</div>
 							<div class="meta">
 								<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="name">{$comment->getNickName()}</a>
 								<span cond="!$comment->member_srl && !$comment->homepage" class="name">{$comment->getNickName()}</span>
@@ -153,15 +159,8 @@
 								</div>
 							</form>
 							<!--@else-->
-							<span class="urllink">{$comment->getContent(false)|noescape}</span>
-							<div cond="$comment->hasUploadedFiles()" class="fileList downlist">
-								<a class="down_onoff">Attached file <i class='bx bxs-plus-square'></i></a>
-								<div style="display:none;">
-									<a loop="$comment->getUploadedFiles()=>$key,$file" href="{getUrl('')}{$file->download_url}" rel="nofollow"  class="tooltipimg"  data-photo="{$file->uploaded_filename}">{$file->source_filename} 
-										<span class="fileSize">{FileHandler::filesize($file->file_size)} / <i class='bx bxs-downvote'></i> {number_format($file->download_count)}</span>
-									</a>
-								</div>
-							</div>
+							<span class="urllink" style="overflow-wrap:break-work">{$comment->getContent(false)|noescape}</span>
+							<include target="opt_read/_read_opt_com_download.html" cond="$mi->read_com_download == 'use'" />
 							<div class="action">
 									<div>
 										<a class="bd_login" title="{$lang->cmd_vote}"

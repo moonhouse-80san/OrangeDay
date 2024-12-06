@@ -1,4 +1,5 @@
 <include target="_header.html" />
+<include cond="!$mo && $mi->side_alway_stalker == 'Y'" target="stalker.html" />
 
 <!--// Wizard -->
 <block cond="$grant->manager && $mi->wizard!='N' && !Mobile::isMobileCheckByAgent()">

@@ -1,0 +1,24 @@
+<load target="asset/stalker.js" />
+<load target="css/stalker.css" />
+
+<block cond="!$mi->stalker_bg_color">{@ $mi->stalker_bg_color = 'transparent'}</block>
+<block cond="!$mi->stalker_text_color">{@ $mi->stalker_text_color = '#444'}</block>
+<block cond="!$mi->stalker_border_px">{@ $mi->stalker_border_px = '0'}</block>
+<block cond="!$mi->stalker_top">{@ $mi->stalker_top = '200'}</block>
+<block cond="!$mi->stalker_w">{@ $mi->stalker_w = '150'}</block>
+<block cond="!$mi->s_lm">{@ $mi->s_lm = '40'}</block>
+<block cond="!$mi->stalker_line_color">{@ $mi->stalker_line_color = 'transparent'}</block>
+<block cond="!$mi->stalker_arrow_c">{@ $mi->stalker_arrow_c = '#444'}</block>
+
+<div id="alwayStalker" class="side" style="left:{$mi->page_width-120+$mi->s_lm}px; margin-top:{$mi->stalker_top}px; color:{$mi->stalker_text_color}">
+	<!--@if($mi->s_menu=='stalker_img')-->
+		<a cond="!$mi->stalker_arrow==''" href="#" class="pr_tooltip" pr_color="dark" pr_position="top" title="At The Top"><center><i class="fas fa-caret-up" cond="!$mi->stalker_arrow==''" style="color:{$mi->stalker_arrow_c}"></i></center></a>
+			<a href="{$mi->stalker_img_url}" target="_{$mi->stalker_img_target}""><img src="{$mi->stalker_img}" width="{$mi->stalker_w}"  style="background-color:{$mi->stalker_bg_color}; border:{$mi->stalker_border_px}px solid {$mi->stalker_line_color}; border-radius:10px; padding:10px"></a>
+			<div style="text-align:center">{$mi->stalker_html}</div>
+		<a cond="!$mi->stalker_arrow==''" onclick="pageScroll();" style="cursor:pointer;" class="pr_tooltip" pr_color="dark" pr_position="bottom" title="At The Bottom"><center><i class="fas fa-caret-down" cond="!$mi->stalker_arrow==''" style="color:{$mi->stalker_arrow_c}"></i></center></a>
+	<!--@else-->
+		<a cond="!$mi->stalker_arrow==''" href="#" class="pr_tooltip" pr_color="dark" pr_position="top" title="At The Top"><center><i class="fas fa-caret-up" cond="!$mi->stalker_arrow==''" style="color:{$mi->stalker_arrow_c}"></i></center></a>
+			<div style="width:{$mi->stalker_w}px; background-color:{$mi->stalker_bg_color}; border:{$mi->stalker_border_px}px solid {$mi->stalker_line_color}; border-radius:10px; padding:10px">{$mi->stalker_html}</div>
+		<a cond="!$mi->stalker_arrow==''" onclick="pageScroll();" style="cursor:pointer;" class="pr_tooltip" pr_color="dark" pr_position="bottom" title="At The Bottom"><center><i class="fas fa-caret-down" cond="!$mi->stalker_arrow==''" style="color:{$mi->stalker_arrow_c}"></i></center></a>
+	<!--@end-->
+</div>
