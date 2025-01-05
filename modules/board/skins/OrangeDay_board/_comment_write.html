@@ -45,7 +45,7 @@
 				</li>
 			</ul>
 		</li>
-		<li class="end">
+		<li class="end" style="position:absolute; right:25px">
 			<div cond="$is_logged">
 				<input type="checkbox" name="notify_message" value="Y" id="notify_message_{$oDocument->document_srl}" class="iCheck" />
 				<label for="notify_message_{$oDocument->document_srl}">{$lang->notify}</label>
@@ -54,7 +54,7 @@
 				<input type="checkbox" name="is_secret" value="Y" id="is_secret_{$oDocument->document_srl}" class="iCheck" />
 				<label for="is_secret_{$oDocument->document_srl}">{$lang->secret}</label>
 			</div>
-			<div style="line-height:500px">
+			<div>
 				<button type="submit" class="obtn">
 					<i class='bx bxs-message-square-detail' ></i>&nbsp; {$lang->cmd_comment_registration}
 				</button>

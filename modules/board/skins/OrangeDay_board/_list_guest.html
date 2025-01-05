@@ -84,8 +84,6 @@ jQuery(function($){
 		<!--@end-->
 		</div>
 	<!--@else-->
-
-	{@$i=0}
 	<div loop="$document_list=>$no,$oDocument" class="box">
 		<ul class="grid">
 			<li class="meta size2">
@@ -151,78 +149,82 @@ jQuery(function($){
 			</li>
 		</ul>
 
-		<div class="feedback" id="comment" cond="$oDocument->getCommentcount()">
-			<h2><i class="xi-comment"></i>&nbsp;{$lang->comment}&nbsp;<em>{$oDocument->getCommentcount()}</em></h2>
-			<ul class="guest_comments" style="border: var(--oday_listBorderStress); box-shadow: var(--oday_listShadow); border-radius:10px; padding:10px 10px 10px 0; margin:0 20px 5px; ">
-				<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')" id="comment_{$comment->comment_srl}" style="padding-left:calc({($comment->get('depth'))}0px * 2);">
-					<ul class="comListSub">
-						<li style="font-size:2em; margin:2px 10px 0 10px; color:var(--oday_mainColorLight)"><i class='bx bxs-share bx-rotate-180'></i></li>
-						<li class="meta">
-							<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-							<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="30"></div>
-						</li>
-						<li class="comCon">
-							<div class="authorwrap">
-								<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="author">{$comment->getNickName()}</a>
-								<span cond="!$comment->member_srl && !$comment->homepage" class="author">{$comment->getNickName()}</span>
-								<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl} author" onclick="return false">{$comment->getNickName()}</a>
-								<span class="od_date" cond="$grant->is_admin">({$comment->getIpaddress()})</span>
-								<span class="od_date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span> 
-								<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
-							</div>
-							<!--@if(!$comment->isAccessible())-->
-								<form action="./" method="get" class="secretForm" onsubmit="return procFilter(this, input_password)">
-									<input type="hidden" name="mid" value="{$mid}" />
-									<input type="hidden" name="page" value="{$page}" />
-									<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
-									<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
-									<div class="utilityMessage">{$lang->msg_is_secret} {$lang->msg_input_password}</div>
-									<div class="formBoxCenter">
-										<input type="password" name="password" id="cpw_{$comment->comment_srl}" class="iText" />
-										<input type="submit" class="obtn" value="{$lang->cmd_input}" />
-									</div>
-								</form>
-								<!--@else-->
-								{$comment->getContent(false)|noescape}
-
-								<block cond="!$listCheck">
-									<ul cond="$comment->hasUploadedFiles()" class="fileList">
-										<li loop="$comment->getUploadedFiles()=>$key,$file">
-											<a href="{getUrl('')}{$file->download_url}" rel="nofollow">{$file->source_filename} 
-												<span class="fileSize">{FileHandler::filesize($file->file_size)} / <i class='bx bxs-downvote'></i> {number_format($file->download_count)}</span>
-											</a>
-										</li>
-									</ul>
-									<div class="action">
-										<div>
-										<a class="bd_login" href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" title="{$lang->cmd_vote}">
-										<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->">favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+		<!--@if($oDocument->isEnableComment())-->
+			<div class="feedback" id="comment" cond="$oDocument->getCommentcount()">
+				<h2><i class="xi-comment"></i>&nbsp;{$lang->comment}&nbsp;<em>{$oDocument->getCommentcount()}</em></h2>
+				<ul class="guest_comments" style="border: var(--oday_listBorderStress); box-shadow: var(--oday_listShadow); border-radius:10px; padding:10px 10px 10px 0; margin:0 20px 5px; ">
+					<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')" id="comment_{$comment->comment_srl}" style="padding-left:calc({($comment->get('depth'))}0px * 2);">
+						<ul class="comListSub">
+							<li style="font-size:2em; margin:2px 10px 0 10px; color:var(--oday_mainColorLight)"><i class='bx bxs-share bx-rotate-180'></i></li>
+							<li class="meta">
+								<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
+								<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="30"></div>
+							</li>
+							<li class="comCon">
+								<div class="authorwrap">
+									<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}" rel="nofollow noopener"  class="author">{$comment->getNickName()}</a>
+									<span cond="!$comment->member_srl && !$comment->homepage" class="author">{$comment->getNickName()}</span>
+									<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl} author" onclick="return false">{$comment->getNickName()}</a>
+									<span class="od_date" cond="$grant->is_admin">({$comment->getIpaddress()})</span>
+									<span class="od_date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span> 
+									<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
+								</div>
+								<!--@if(!$comment->isAccessible())-->
+									<form action="./" method="get" class="secretForm" onsubmit="return procFilter(this, input_password)">
+										<input type="hidden" name="mid" value="{$mid}" />
+										<input type="hidden" name="page" value="{$page}" />
+										<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
+										<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
+										<div class="utilityMessage">{$lang->msg_is_secret} {$lang->msg_input_password}</div>
+										<div class="formBoxCenter">
+											<input type="password" name="password" id="cpw_{$comment->comment_srl}" class="iText" />
+											<input type="submit" class="obtn" value="{$lang->cmd_input}" />
 										</div>
+									</form>
+									<!--@else-->
+									{$comment->getContent(false)|noescape}
 
-										<div class="actionpack">
-											<!--@if($mi->comment_count >= $comment->get('depth'))-->
-												<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" onclick="reComment({$comment->get('document_srl')},{$comment->get('comment_srl')}, '{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}')"><i class='bx bx-subdirectory-right' ></i> 대댓글</a>
-											<!--@end-->
-											<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
-											<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete" rel="nofollow"><i class='bx bxs-trash' ></i> {$lang->cmd_delete}</a>
-											<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class='bx bx-check' ></i> {$lang->cmd_comment_do}</a>
+									<block cond="!$listCheck">
+										<ul cond="$comment->hasUploadedFiles()" class="fileList">
+											<li loop="$comment->getUploadedFiles()=>$key,$file">
+												<a href="{getUrl('')}{$file->download_url}" rel="nofollow">{$file->source_filename} 
+													<span class="fileSize">{FileHandler::filesize($file->file_size)} / <i class='bx bxs-downvote'></i> {number_format($file->download_count)}</span>
+												</a>
+											</li>
+										</ul>
+										<div class="action">
+											<div>
+											<a class="bd_login" href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" title="{$lang->cmd_vote}">
+											<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->" style="color:red">favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+											</div>
+
+											<div class="actionpack">
+												<!--@if($mi->comment_count >= $comment->get('depth'))-->
+													<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" onclick="<!--@if(!$grant->write_comment || !$oDocument->isEnableComment())-->alert('{$lang->msg_not_permitted}')<!--@else-->reComment({$comment->get('document_srl')},{$comment->get('comment_srl')},'{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}')<!--@end-->;return false;"><i class='bx bx-subdirectory-right' ></i> 댓글</a>
+												<!--@end-->
+												<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
+												<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete" rel="nofollow"><i class='bx bxs-trash' ></i> {$lang->cmd_delete}</a>
+												<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class='bx bx-check' ></i> {$lang->cmd_comment_do}</a>
+											</div>
 										</div>
-									</div>
-								</block>
-							<!--@end-->
-						</li>
-					</ul>
-				</li>
-			</ul>
-			<div cond="$oDocument->comment_page_navigation" class="pagination">
-				<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',1)}#comment" class="direction prev"><span></span><span></span><i class='bx bxs-chevron-left' ></i></a>
-				<block loop="$page_no=$oDocument->comment_page_navigation->getNextPage()">
-					<strong cond="$cpage==$page_no">{$page_no}</strong>
-					<a cond="$cpage!=$page_no" href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$page_no)}#comment">{$page_no}</a>
-				</block>
-				<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="direction next"><i class='bx bxs-chevron-right'></i><span></span><span></span></a>
+									</block>
+								<!--@end-->
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div cond="$oDocument->comment_page_navigation" class="pagination">
+					<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',1)}#comment" class="direction prev"><span></span><span></span><i class='bx bxs-chevron-left' ></i></a>
+					<block loop="$page_no=$oDocument->comment_page_navigation->getNextPage()">
+						<strong cond="$cpage==$page_no">{$page_no}</strong>
+						<a cond="$cpage!=$page_no" href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$page_no)}#comment">{$page_no}</a>
+					</block>
+					<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="direction next"><i class='bx bxs-chevron-right'></i><span></span><span></span></a>
+				</div>
 			</div>
-		</div>
+		<!--@else-->
+			<div class="utilityMessage" style="padding:50px 0;"><i class='bx bxs-message-square-dots' ></i> 댓글 참여가 중지된 글입니다.</div>
+		<!--@end-->
 
 		<details cond="$grant->write_document" class="accordion" style="margin-top:1.5em">
 			<summary class="notice_fold">
@@ -276,27 +278,61 @@ jQuery(function($){
 				summary.notice_fold { position: relative; padding:0 10px 10px; cursor: pointer; float:right; }
 				summary.notice_fold::before { content: ""; }
 			</style>
+
+			<!--// 대댓글 -->
+			<div cond="$rd_idx==0" id="re_cmt">
+				<div>		
+					<strong><i class='bx bxs-comment-dots'></i> {$lang->write_comment}</strong>
+					<a class="wysiwyg vp" href="#"><i class='bx bx-edit' ></i> 에디터 사용하기</a>
+					<a class="close" href="#" onclick="jQuery('#re_cmt').fadeOut().parent().find('.re_comment').focus();return false"><i class='bx bx-x'></i> {$lang->cmd_close}</a>
+				</div>
+				<form action="./" method="post" onsubmit="return procFilter(this,insert_comment)" class="bd_wrt clear">
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+					<input type="hidden" name="content" value="" />
+					<input type="hidden" name="parent_srl" value="" />
+					<input type="hidden" name="use_html" value="Y" />
+					<div class="simple_wrt">
+						<input type="hidden" id="htm_2" value="n" />
+						<textarea id="editor_2" cols="50" rows="8"></textarea>
+					</div>	
+					<ul class="formBox split">
+						<li class="front">
+							<ul cond="!$is_logged" class="namepass">
+								<li>
+									<label for="userName" class="iLabel">{$lang->writer}</label>
+									<input type="text" name="nick_name" id="userName" class="iText userName" />
+								</li>
+								<li>
+									<label for="userPw" class="iLabel">{$lang->password}</label>
+									<input type="password" name="password" id="userPw" class="iText userPw"  autocomplete="new-password"  />
+								</li>
+							</ul>
+						</li>
+						<li class="end">
+							<div cond="$is_logged">
+								<input type="checkbox" name="notify_message" value="Y" id="notify_message" checked="checked"|cond="@in_array('notify',$mi->wrt_opt ?: [])" />
+								<label for="notify_message">{$lang->notify}</label>
+							</div>
+							<div cond="strpos($mi->use_status, 'SECRET') !== false">
+								<input type="checkbox" name="is_secret" value="Y" id="is_secret" checked="checked"|cond="@in_array('secret',$mi->wrt_opt ?: [])" />
+								<label for="is_secret">{$lang->secret}</label>
+							</div>
+							<div>
+								<button type="submit" class="obtn">
+									<i class='bx bxs-message-square-detail' ></i>&nbsp; {$lang->cmd_comment_registration}
+								</button>
+								<!-- 추천버튼 추가 -->
+								<input cond="$is_logged && $mi->vote_cmd == 'Y'" onclick="doCallModuleAction('document','procDocumentVoteUp',{$oDocument->document_srl});" type="submit" value="❤️ + {$lang->cmd_comment_registration}" class="obtn" style="margin-left:10px"/>
+							</div>
+						</li>
+					</ul>
+				</form>
+			</div>
 		</details>
 
-		<!--// 목록에 에드센스 출력 -->
-			<!--@if(in_array($i+1, array($mi->ad1, $mi->ad2, $mi->ad3)) && $mi->list_ads=='Y' && !$mo)-->
-				<div class="ads">
-					{$mi->ads_code}
-				</div>
-			<!--@end-->
-			<!--@if(in_array($i+1, array($mi->ad1, $mi->ad2, $mi->ad3)) && $mi->list_ads=='Y' && $mo)-->
-				<div class="adsm">
-					{$mi->ads_mcode}
-				</div>
-			<!--@end-->
-			<style>
-				.box .ads { margin:0 !important; padding:0; height:200px; }
-
-				@media all and (max-width:480px) {
-					.box .ads { margin:25px 0 0 0 !important; border-top:1px solid #f1f1f1; }
-				}
-			</style>
-		{@$i++}
+		<div cond="!$grant->write_document" style="height:3em">&nbsp;</div>
+		{@ $rd_idx=1}
 	</div>
 	<!--@end-->
 </div>
@@ -308,3 +344,4 @@ jQuery(function($){
 	#list_guest,
 	#list_guest .box + .box {margin-top:{$mi->gall_cell_gap}px;}
 </style>
+
