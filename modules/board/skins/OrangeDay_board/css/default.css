@@ -9,7 +9,7 @@ body { overflow-y:scroll; }
 		버튼 박스
 
 //////////*/
-.formBox { display: flex; justify-content: space-between; margin-top: 10px; }
+.formBox { display: flex; justify-content: space-between; margin:10px 0; }
 .formBox li { display: flex; align-items: center; }
 .formBox div { display: flex; align-items: center; }
 .formBox div * + * { margin-left: 5px; }
