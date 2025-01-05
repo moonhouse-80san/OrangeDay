@@ -200,6 +200,9 @@ jQuery(function($){
 										</div>
 
 										<div class="actionpack">
+											<!--@if($mi->comment_count >= $comment->get('depth'))-->
+												<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" onclick="reComment({$comment->get('document_srl')},{$comment->get('comment_srl')}, '{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}')"><i class='bx bx-subdirectory-right' ></i> 대댓글</a>
+											<!--@end-->
 											<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
 											<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete" rel="nofollow"><i class='bx bxs-trash' ></i> {$lang->cmd_delete}</a>
 											<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class='bx bx-check' ></i> {$lang->cmd_comment_do}</a>
@@ -250,11 +253,11 @@ jQuery(function($){
 						</li>
 						<li class="end">
 							<div cond="$is_logged">
-								<input type="checkbox" name="notify_message" value="Y" id="notify_message" class="iCheck" />
+								<input type="checkbox" name="notify_message" value="Y" id="notify_message" checked="checked"|cond="@in_array('notify',$mi->wrt_opt ?: [])" />
 								<label for="notify_message">{$lang->notify}</label>
 							</div>
-							<div cond="$module_info->secret=='Y'">
-								<input type="checkbox" name="is_secret" value="Y" id="is_secret" class="iCheck" />
+							<div cond="strpos($mi->use_status, 'SECRET') !== false">
+								<input type="checkbox" name="is_secret" value="Y" id="is_secret" checked="checked"|cond="@in_array('secret',$mi->wrt_opt ?: [])" />
 								<label for="is_secret">{$lang->secret}</label>
 							</div>
 							<div class="tCenter">
