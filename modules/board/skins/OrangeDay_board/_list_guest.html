@@ -152,8 +152,8 @@ jQuery(function($){
 		<!--@if($oDocument->isEnableComment())-->
 			<div class="feedback" id="comment" cond="$oDocument->getCommentcount()">
 				<h2><i class="xi-comment"></i>&nbsp;{$lang->comment}&nbsp;<em>{$oDocument->getCommentcount()}</em></h2>
-				<ul class="guest_comments" style="border: var(--oday_listBorderStress); box-shadow: var(--oday_listShadow); border-radius:10px; padding:10px 10px 10px 0; margin:0 20px 5px; ">
-					<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')" id="comment_{$comment->comment_srl}" style="padding-left:calc({($comment->get('depth'))}0px * 2);">
+				<ul class="guest_comments" style="border: var(--oday_listBorderStress); box-shadow: var(--oday_listShadow); border-radius:10px; padding:10px 10px 10px 0; margin:0 20px 5px">
+					<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')" id="comment_{$comment->comment_srl}" style="padding-left:calc({($comment->get('depth'))}0px * 2); margin:10px 0 0 10px">
 						<ul class="comListSub">
 							<li style="font-size:2em; margin:2px 10px 0 10px; color:var(--oday_mainColorLight)"><i class='bx bxs-share bx-rotate-180'></i></li>
 							<li class="meta">
@@ -194,8 +194,8 @@ jQuery(function($){
 										</ul>
 										<div class="action">
 											<div>
-											<a class="bd_login" href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" title="{$lang->cmd_vote}">
-											<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->" style="color:red">favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+												<a class="bd_login" href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" title="{$lang->cmd_vote}">
+												<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->" style="color:red">favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
 											</div>
 
 											<div class="actionpack">
