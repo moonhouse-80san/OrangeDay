@@ -114,7 +114,7 @@ jQuery(function($){
 					</a>
 				</div>
 				<div class="metabox">
-					<span cond="$category_list[$oDocument->get('category_srl')]->title" class="category" onclick="showUpdateExtraModal(this, {$document->document_srl}, {$document->get('category_srl')}, 'category')"|cond="$grant->manager && $use_category_update">{$category_list[$oDocument->get('category_srl')]->title}</span>					
+					<span cond="$category_list[$oDocument->get('category_srl')]->title" class="category" onclick="showUpdateExtraModal(this, {$document->document_srl}, {$document->get('category_srl')}, 'category')"|cond="$grant->manager && $use_category_update">{$category_list[$oDocument->get('category_srl')]->title}</span>
 					<a cond="$oDocument->getMemberSrl()" cond="$list_config['nick_name']->idx"  href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getNickName()}</a>
 					<p cond="!$oDocument->getMemberSrl()" class="author">{$oDocument->getNickName()}</p>
 					<a cond="$oDocument->getMemberSrl()" cond="$list_config['user_name']->idx" href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getUserName()}</a>
@@ -195,7 +195,7 @@ jQuery(function($){
 										<div class="action">
 											<div>
 												<a class="bd_login" href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" title="{$lang->cmd_vote}">
-												<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->" style="color:red">favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+												<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->" <!--@if($comment->get('voted_count') > 0)-->style="color:orange"<!--@end-->>favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
 											</div>
 
 											<div class="actionpack">
