@@ -1,4 +1,6 @@
 @charset "utf-8";
+body, a, p, div, span, table, ul, li, img, h1, h2, h3, h4, h5, h6, header, textarea, form, footer, caption, section, button, select, html, i, nav, iframe, ol, strong, tbody, tfoot, thead, th, tr, abbr, object, acronym, address, applet, article, aside, audio, b, blockquote, big, center, canvas, cite, code, command, datalist, dd, del, details, dfn, dl, dt, em, embed, fieldset, figcaption, figure, font, hgroup, ins, kbd, keygen, label, legend, meter, output, pre, progress, q, s, samp, small, source, strike, sub, sup, tdvideo, tt, u, var { font-family: "NanumSquareNeo", sans-serif; font-size:14px; font-weight:400; }
+
 :root {
 /* GNB > BOX */
 	--oday_gnbBgColor: rgba(255,255,255,1);
