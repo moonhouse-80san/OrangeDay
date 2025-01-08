@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skin version="0.2">
-    <title xml:lang="ko">OrangeDay 게시판 스킨 1.1.0</title>
-    <version>1.1.0</version>
-    <date>2024</date>
-    <author email_address="yabssabi@gmail.com" link="https://www.orangeday.com">
-        <name xml:lang="ko">Yabi 夜飛</name>
-    </author>
-    <license>LGPL v2</license>
-    <extra_vars>
+	<title xml:lang="ko">OrangeDay 게시판 스킨 2.0</title>
+	<version>2.0</version>
+	<date>2025</date>
+	<author email_address="yabssabi@gmail.com" link="https://www.orangeday.com">
+		<name xml:lang="ko">Yabi 夜飛</name>
+	</author>
+	<license>LGPL v2</license>
+	<extra_vars>
+		<group>
+			<title xml:lang="ko">레이아웃 제어</title>
+			<var name="use_sidewing" type="radio">
+				<title xml:lang="ko">사이드 사용</title>
+				<description xml:lang="ko">🚨 오렌지데이 호라이즌 레이아웃 전용 : 메인 레이아웃의 양쪽 사이드 섹션의 사용을 중지합니다.</description>
+				<options value="yes">
+					<title xml:lang="ko">사용</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">중지</title>
+				</options>
+			</var>
+			<var name="use_btitle" type="radio">
+				<title xml:lang="ko">게시판 제목 사용</title>
+				<description xml:lang="ko">오렌지 레이아웃을 사용하지 않을 시 게시판 제목 사용 여부
+				브라우저 타이틀을 사용합니다.</description>
+				<options value="yes">
+					<title xml:lang="ko">사용</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">비사용</title>
+				</options>
+			</var>
+		</group>
+
 		<group>
 			<title xml:lang="ko">테마</title>
 			<var name="use_darkMode" type="radio">
 				<title xml:lang="ko">다크모드 사용자 제어</title>
-				<description xml:lang="ko">오렌지데이 레이아웃 사용시 사용불가</description>
+				<description xml:lang="ko">방문자의 다크모드 제어판 사용 여부
+				🚨 오렌지데이 레이아웃 사용시 사용불가(레이아웃의 해당 기능 사용)</description>
 				<options value="yes">
 					<title xml:lang="ko">사용</title>
 				</options>
@@ -21,7 +47,7 @@
 				</options>
 			</var>
 			<var name="use_darkMode_set" type="radio">
-				<title xml:lang="ko">다크모드 설정</title>
+				<title xml:lang="ko">다크모드 강제 설정</title>
 				<description xml:lang="ko">다크모드 사용자 제어 중지시 모드를 설정할 수 있습니다.</description>
 				<options value="yes">
 					<title xml:lang="ko">다크</title>
@@ -32,7 +58,8 @@
 			</var>
 			<var name="use_colorTheme" type="radio">
 				<title xml:lang="ko">컬러테마 사용자 제어</title>
-				<description xml:lang="ko">오렌지데이 레이아웃 사용시 사용불가</description>
+				<description xml:lang="ko">방문자의 컬러테마 사용 여부
+				🚨 오렌지데이 레이아웃 사용시 사용불가(레이아웃의 해당 기능 사용)</description>
 				<options value="yes">
 					<title xml:lang="ko">사용</title>
 				</options>
@@ -41,7 +68,7 @@
 				</options>
 			</var>
 			<var name="use_colorTheme_set" type="radio">
-				<title xml:lang="ko">컬러테마 설정</title>
+				<title xml:lang="ko">컬러테마 강제 설정</title>
 				<description xml:lang="ko">컬러테마 사용자 제어 중지시 모드를 설정할 수 있습니다.</description>
 				<options value="white">
 					<title xml:lang="ko">화이트</title>
@@ -63,7 +90,7 @@
 				</options>
 			</var>
 			<var name="use_brightTheme_set" type="radio">
-				<title xml:lang="ko">밝기 고정</title>
+				<title xml:lang="ko">밝기 강제 설정</title>
 				<description xml:lang="ko">컬러테마 사용자 제어 중지시 모드를 설정할 수 있습니다.</description>
 				<options value="d1">
 					<title xml:lang="ko">저대비</title>
@@ -87,14 +114,11 @@
 				<options value="list">
 					<title xml:lang="ko">목록형-ul</title>
 				</options>
-				<options value="firstthumbs">
-					<title xml:lang="ko">처음만 썸네일형</title>
-				</options>
 				<options value="gallery">
 					<title xml:lang="ko">갤러리형</title>
 				</options>
-				<options value="webzine">
-					<title xml:lang="ko">웹진형</title>
+				<options value="firstthumbs">
+					<title xml:lang="ko">처음만 썸네일형</title>
 				</options>
 				<options value="webzinelist">
 					<title xml:lang="ko">웹진리스트형</title>
@@ -114,11 +138,14 @@
 				<options value="history">
 					<title xml:lang="ko">히스토리</title>
 				</options>
-				<options value="youtube">
+				<!--options value="youtube">
 					<title xml:lang="ko">유투브</title>
 				</options>
-				<!-- options value="history_step">
+				<options value="history_step">
 					<title xml:lang="ko">히스토리 스텝</title>
+				</options>
+				<options value="webzine">
+					<title xml:lang="ko">웹진형</title>
 				</options -->
 			</var>
 		</group>
@@ -135,9 +162,9 @@
 					<title xml:lang="ko">사용 안함</title>
 				</options>
 			</var>
-			<var name="font_size" type="text" default="14">
+			<var name="font_size" type="text" default="13">
 				<title xml:lang="ko">폰트크기</title>
-				<description xml:lang="ko">게시판 목록 폰트 크기 (기본 14px)</description>
+				<description xml:lang="ko">게시판 목록 폰트 크기 (기본 13px)</description>
 			</var>
 			<var name="site_badge" type="radio">
 				<title xml:lang="ko">오렌지데이 뱃지</title>
@@ -152,17 +179,6 @@
 			<var name="preview" type="radio">
 				<title xml:lang="ko">게시판 유형 전환 버튼</title>
 				<description xml:lang="ko">게시판 유형을 바꿀수 있는 버튼이 노출됩니다.
-				관리자 테스트용으로 사용 추천.</description>
-				<options value="use_no">
-					<title xml:lang="ko">비사용</title>
-				</options>
-				<options value="use">
-					<title xml:lang="ko">사용</title>
-				</options>
-			</var>
-			<var name="theme_use" type="radio">
-				<title xml:lang="ko">컬러 테마 설정</title>
-				<description xml:lang="ko">주요색상 컬러와 다크모드를 설정할 수 있습니다.
 				관리자 테스트용으로 사용 추천.</description>
 				<options value="use_no">
 					<title xml:lang="ko">비사용</title>
@@ -224,15 +240,14 @@
 				<description xml:lang="ko">갤러리창사이 간격. (기본 2px)
 				- 갤러리형, 북마크형, 웹진형, 유투브형 에 적용됩니다.</description>
 			</var>
-			<var name="bg_use" type="radio">
-				<title xml:lang="ko">배경색 사용</title>
-				<description xml:lang="ko">목록과 글읽기의 배경색, 테두리선 사용여부를 정할수 있습니다.
-				- 목록형, 웹진형, 웹진리스트형에 적용됩니다.</description>
+			<var name="use_backbg" type="radio">
+				<title xml:lang="ko">배경색</title>
+				<description xml:lang="ko">목록, 읽기페이지 등의 게시판의 배경색 사용 여부</description>
 				<options value="yes">
 					<title xml:lang="ko">사용</title>
 				</options>
 				<options value="no">
-					<title xml:lang="ko">사용 안함</title>
+					<title xml:lang="ko">투명</title>
 				</options>
 			</var>
 			<var name="notice_view_slide" type="radio">
@@ -287,15 +302,6 @@
 			</var>
 			<var name="read_download" type="radio">
 				<title xml:lang="ko">첨부파일</title>
-				<options value="use">
-					<title xml:lang="ko">보기</title>
-				</options>
-				<options value="no_use">
-					<title xml:lang="ko">감추기</title>
-				</options>
-			</var>
-			<var name="read_com_download" type="radio">
-				<title xml:lang="ko">댓글 첨부파일</title>
 				<options value="use">
 					<title xml:lang="ko">보기</title>
 				</options>
@@ -452,90 +458,135 @@
 		</group>
 
 		<group>
-			<title xml:lang="ko">졸졸이스토커 설정</title>
-			<var name="side_alway_stalker" type="radio">
-				<title>졸졸이스토커</title>
-				<description>사이드 졸졸이스토커의 출력을 결정하세요.</description>
-				<options value="">
-					<title>출력안함</title>
+			<title xml:lang="ko">갤러리형 게시판 설정</title>
+			<var name="view_cell" type="radio">
+				<title xml:lang="ko">목록 형식</title>
+				<description xml:lang="ko">썸네일+내용 보기, 썸네일만, 내용만을 선택할 수 있습니다.</description>
+				<options value="all">
+					<title xml:lang="ko">모두 보기 </title>
 				</options>
-				<options value="Y">
-					<title>출력</title>
+				<options value="thum">
+					<title xml:lang="ko">썸네일만 보기</title>
 				</options>
-			</var>
-			<var name="stalker_w" type="text">
-				<title>이미지가로 or 가로크기</title>
-				<description>이미지의 가로나 텍스트졸졸이 폭 크기를 입력하세요.(기본 150 숫자만)</description>
-			</var>
-			<var name="s_lm" type="text">
-				<title>스토커의 우측 위치</title>
-				<description>Contact와 스토커의 우측 마진을 선택하세요.(기본 40)</description>
-			</var>
-			<var name="stalker_top" type="text">
-				<title>스토커의 탑위치</title>
-				<description>스토커의 탑위치를 선택하세요.(기본 200)</description>
-			</var>
-			<var name="s_menu" type="radio">
-				<title>출력형태</title>
-				<description>사이드 졸졸이스토커의 출력형태를 결정하세요.</description>
-				<options value="stalker_img">
-					<title>이미지출력</title>
-				</options>
-				<options value="stalker_html">
-					<title>html출력</title>
+				<options value="sum">
+					<title xml:lang="ko">내용만 보기</title>
 				</options>
 			</var>
-			<var name="stalker_img" type="image">
-				<title>이미지출력선택시 이미지 등록</title>
-				<description>이미지출력선택시 이미지를 등록하세요.</description>
-			</var>
-			<var name="stalker_img_url" type="text">
-				<title>이미지출력선택시 하이퍼링크 등록</title>
-				<description>이미지출력선택시 하이퍼링크를 등록하세요.(http:// 추가하세요)</description>
-			</var>
-			<var name="stalker_img_target" type="radio">
-				<title>하이퍼링크 Target</title>
-				<description>하이퍼링크 클릭시 창의 선택</description>
-				<options value="parent">
-					<title>현재창</title>
+			<var name="view_cell_sum" type="radio">
+				<title xml:lang="ko">내용만 보기 형식</title>
+				<description xml:lang="ko">요약 또는 전체보기 선택</description>
+				<options value="summ">
+					<title xml:lang="ko">요약 보기</title>
 				</options>
-				<options value="blank">
-					<title>새창</title>
+				<options value="full">
+					<title xml:lang="ko">전체 보기</title>
 				</options>
 			</var>
-			<var name="stalker_html" type="textarea">
-				<title>html 출력선택시 내용 등록 / 이미지 아래 내용등록</title>
-				<description>html 출력선택시 내용을 등록하세요.(Widget 가능)</description>
-			</var>
-			<var name="stalker_border_px" type="text">
-				<title>스토커박스 테두리 두께</title>
-				<description>스토커박스의 테두리 두께를 지정할수 있습니다.(기본 0 -- 테두리없음 / 3이 예쁨^.^)</description>
-			</var>
-			<var name="stalker_bg_color" type="text">
-				<title>스토커박스의 배경색상</title>
-				<description>스토커박스안의 배경색상을 지정할수 있습니다.(기본 투명 transparent)</description>
-			</var>
-			<var name="stalker_line_color" type="text">
-				<title>스토커박스 테두리 색상</title>
-				<description>스토커박스의 테두리 색상를 지정할수 있습니다.(기본 투명 transparent)</description>
-			</var>
-			<var name="stalker_text_color" type="text">
-				<title>스토커박스안 텍스트색상</title>
-				<description>스토커박스안의 텍스트색상을 지정할수 있습니다.(기본 #888)</description>
-			</var>
-			<var name="stalker_arrow" type="radio">
-				<title>상하 화살표</title>
-				<description>스토커박스의 상하 화살표 출력</description>
-				<options value="">
-					<title>출력안함</title>
+			<var name="thumbnail_type" type="radio">
+				<title xml:lang="ko">썸네일 생성 방법</title>
+				<description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
+				<options value="fill">
+					<title xml:lang="ko">꽉 채우기</title>
 				</options>
-				<options value="Y">
-					<title>출력</title>
+				<options value="ratio">
+					<title xml:lang="ko">비율 맞추기</title>
 				</options>
 			</var>
-			<var name="stalker_arrow_c" type="text">
-				<title>스토커박스안 화살표색상</title>
-				<description>스토커박스안의 상하 화살표색상을 지정할수 있습니다.(기본 #444)</description>
+			<var name="thumbnail_width" type="text" default="500">
+				<title xml:lang="ko">썸네일 가로크기</title>
+				<description xml:lang="ko">썸네일의 가로 크기를 지정할 수 있습니다. (기본 500px)
+				- 이미지가 보이는 기본 크기는 300px 정도 입니다.
+				가로형 이미지 크게 보기 기능 사용시 썸네일 크기가 2배로 커지니 적당한 크기로 지정해 주세요.
+				- 트래픽을 생각해서 적당한 크기로 지정해 주세요.
+				- 가로형 이미지는 자동으로 인식합니다.</description>
+			</var>
+			<var name="thumbnail_height" type="text" default="500">
+				<title xml:lang="ko">썸네일 세로크기</title>
+				<description xml:lang="ko">썸네일의 세로 크기를 지정할 수 있습니다. (기본 500px)
+				-  비율 맞추기 설정시 : "auto" 입력</description>
+			</var>
+			<var name="infinity_use" type="radio">
+				<title xml:lang="ko">무한스크롤 사용</title>
+				<description xml:lang="ko">무한스크롤 사용 여부 설정,
+				사용안함 : 버튼으로 추가 페이지 로드</description>
+				<options value="no">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">블로그 설정</title>
+			<var name="blog_layout" type="radio">
+				<title xml:lang="ko">카테고리 메뉴 위치</title>
+				<description xml:lang="ko">메뉴 위치 선택</description>
+				<options value="left">
+					<title xml:lang="ko">왼쪽</title>
+				</options>
+				<options value="right">
+					<title xml:lang="ko">오른쪽</title>
+				</options>
+			</var>
+			<var name="blog_menu_width" type="text" default="200">
+				<title xml:lang="ko">블로그 메뉴 넓이</title>
+				<description xml:lang="ko">기본 200px</description>
+			</var>
+			<!-- var name="blog_top_gap" type="text" default="0">
+				<title xml:lang="ko">게시판 상단 여백</title>
+				<description xml:lang="ko">상단 여백 설정 (기본 0px)
+				- 상단에 메뉴가 있다면 메뉴 높이값 입력</description>
+			</var -->
+		</group>
+
+		<group>
+			<title xml:lang="ko">히스토리 게시판 설정</title>
+			<var name="con_date" type="text">
+				<title xml:lang="ko">시작년도</title>
+			</var>
+			<var name="con_title" type="text">
+				<title xml:lang="ko">큰 제목</title>
+			</var>
+			<var name="con_sum" type="textarea">
+				<title xml:lang="ko">요약 설명</title>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">배경 이미지</title>
+			<!-- var name="con_bg_type" type="radio">
+				<title xml:lang="ko">배경 : 타입</title>
+				<description xml:lang="ko">링크 또는 첨부한 배경 이미지의 밝기를 정해 주세요.
+				페이지 타이틀에 영향을 줍니다.</description>
+				<options value="white">
+					<title xml:lang="ko">밝은 이미지</title>
+				</options>
+				<options value="black">
+					<title xml:lang="ko">어두운 이미지</title>
+				</options>
+			</var -->
+			<var name="con_font_color" type="radio">
+				<title xml:lang="ko">페이지 타이틀 폰트 컬러</title>
+				<description xml:lang="ko">배경 이미지 사용 시. 사용된 이미지에 맞춰 폰트 컬러를 정해 주세요.(기본 : 화이트)</description>
+				<options value="white">
+					<title xml:lang="ko">화이트</title>
+				</options>
+				<options value="black">
+					<title xml:lang="ko">블랙</title>
+				</options>
+			</var>
+			<var name="con_bg" type="text">
+				<title xml:lang="ko">배경 : 외부링크</title>
+				<description xml:lang="ko">외부링크 이미지를 배경으로 사용합니다.
+				외부링크와 업로드 동시에 존재할때 외부링크가 우선으로 적용됩니다.</description>
+			</var>
+			<var name="con_bg_dr" type="image">
+				<title xml:lang="ko">배경 : 업로드</title>
+				<description xml:lang="ko">외부 링크를 통하지 않고 업로드 파일로 대신합니다.
+				- 레이아웃 특성상 1500px × 1500px 이상의 이미지를 사용을 추천합니다.
+				- 무거운 이미지를 사용할 시 트래픽 발생할 수 있습니다.</description>
 			</var>
 		</group>
 
@@ -1047,181 +1098,93 @@
 		</group>
 
 		<group>
-			<title xml:lang="ko">갤러리형 게시판 설정</title>
-			<var name="view_cell" type="radio">
-				<title xml:lang="ko">목록 형식</title>
-				<description xml:lang="ko">썸네일+내용 보기, 썸네일만, 내용만을 선택할 수 있습니다.</description>
-				<options value="all">
-					<title xml:lang="ko">모두 보기 </title>
+			<title xml:lang="ko">졸졸이스토커 설정</title>
+			<var name="side_alway_stalker" type="radio">
+				<title>졸졸이스토커</title>
+				<description>사이드 졸졸이스토커의 출력을 결정하세요.</description>
+				<options value="">
+					<title>출력안함</title>
 				</options>
-				<options value="thum">
-					<title xml:lang="ko">썸네일만 보기</title>
-				</options>
-				<options value="sum">
-					<title xml:lang="ko">내용만 보기</title>
+				<options value="Y">
+					<title>출력</title>
 				</options>
 			</var>
-			<var name="view_cell_sum" type="radio">
-				<title xml:lang="ko">내용만 보기 형식</title>
-				<description xml:lang="ko">요약 또는 전체보기 선택</description>
-				<options value="summ">
-					<title xml:lang="ko">요약 보기</title>
+			<var name="stalker_w" type="text">
+				<title>이미지가로 or 가로크기</title>
+				<description>이미지의 가로나 텍스트졸졸이 폭 크기를 입력하세요.(기본 150 숫자만)</description>
+			</var>
+			<var name="s_lm" type="text">
+				<title>스토커의 우측 위치</title>
+				<description>Contact와 스토커의 우측 마진을 선택하세요.(기본 40)</description>
+			</var>
+			<var name="stalker_top" type="text">
+				<title>스토커의 탑위치</title>
+				<description>스토커의 탑위치를 선택하세요.(기본 200)</description>
+			</var>
+			<var name="s_menu" type="radio">
+				<title>출력형태</title>
+				<description>사이드 졸졸이스토커의 출력형태를 결정하세요.</description>
+				<options value="stalker_img">
+					<title>이미지출력</title>
 				</options>
-				<options value="full">
-					<title xml:lang="ko">전체 보기</title>
+				<options value="stalker_html">
+					<title>html출력</title>
 				</options>
 			</var>
-			<var name="layout_fix" type="radio">
-				<title xml:lang="ko">갤러리창 가로크기</title>
-				<description xml:lang="ko">갤러리창 가로크기를 레이아웃 넓이에 맞게 자동으로 할지, 고정값으로 할지 정하수 있습니다.</description>
-				<options value="no">
-					<title xml:lang="ko">자동 맞춤 </title>
+			<var name="stalker_img" type="image">
+				<title>이미지출력선택시 이미지 등록</title>
+				<description>이미지출력선택시 이미지를 등록하세요.</description>
+			</var>
+			<var name="stalker_img_url" type="text">
+				<title>이미지출력선택시 하이퍼링크 등록</title>
+				<description>이미지출력선택시 하이퍼링크를 등록하세요.(http:// 추가하세요)</description>
+			</var>
+			<var name="stalker_img_target" type="radio">
+				<title>하이퍼링크 Target</title>
+				<description>하이퍼링크 클릭시 창의 선택</description>
+				<options value="parent">
+					<title>현재창</title>
 				</options>
-				<options value="yes">
-					<title xml:lang="ko">사용자 지정</title>
+				<options value="blank">
+					<title>새창</title>
 				</options>
 			</var>
-			<var name="gall_cell_width" type="text" default="300">
-				<title xml:lang="ko">갤러리창 가로크기 지정</title>
-				<description xml:lang="ko">"갤러리창 가로크기 >사용자 지정"으로 선택시 넓이을 지정할 수 있습니다.  (기본 300px)
-				- 화면 양쪽으로 여백이 생길수 있습니다.</description>
+			<var name="stalker_html" type="textarea">
+				<title>html 출력선택시 내용 등록 / 이미지 아래 내용등록</title>
+				<description>html 출력선택시 내용을 등록하세요.(Widget 가능)</description>
 			</var>
-			<var name="thumbnail_type" type="radio">
-				<title xml:lang="ko">썸네일 생성 방법</title>
-				<description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
-				<options value="fill">
-					<title xml:lang="ko">꽉 채우기</title>
+			<var name="stalker_border_px" type="text">
+				<title>스토커박스 테두리 두께</title>
+				<description>스토커박스의 테두리 두께를 지정할수 있습니다.(기본 0 -- 테두리없음 / 3이 예쁨^.^)</description>
+			</var>
+			<var name="stalker_bg_color" type="text">
+				<title>스토커박스의 배경색상</title>
+				<description>스토커박스안의 배경색상을 지정할수 있습니다.(기본 투명 transparent)</description>
+			</var>
+			<var name="stalker_line_color" type="text">
+				<title>스토커박스 테두리 색상</title>
+				<description>스토커박스의 테두리 색상를 지정할수 있습니다.(기본 투명 transparent)</description>
+			</var>
+			<var name="stalker_text_color" type="text">
+				<title>스토커박스안 텍스트색상</title>
+				<description>스토커박스안의 텍스트색상을 지정할수 있습니다.(기본 #888)</description>
+			</var>
+			<var name="stalker_arrow" type="radio">
+				<title>상하 화살표</title>
+				<description>스토커박스의 상하 화살표 출력</description>
+				<options value="">
+					<title>출력안함</title>
 				</options>
-				<options value="ratio">
-					<title xml:lang="ko">비율 맞추기</title>
-				</options>
-			</var>
-			<var name="thumbnail_width" type="text" default="500">
-				<title xml:lang="ko">썸네일 가로크기</title>
-				<description xml:lang="ko">썸네일의 가로 크기를 지정할 수 있습니다. (기본 500px)
-				- 가로형 이미지 크게 보기 기능 사용시 썸네일 크기가 2배로 커집니다.
-				- 가로형 이미지는 자동으로 인식합니다.</description>
-			</var>
-			<var name="thumbnail_height" type="text" default="500">
-				<title xml:lang="ko">썸네일 세로크기</title>
-				<description xml:lang="ko">썸네일의 세로 크기를 지정할 수 있습니다. (기본 500px)
-				-  비율 맞추기 설정시 : "auto" 입력</description>
-			</var>
-			<var name="infinity_use" type="radio">
-				<title xml:lang="ko">무한스크롤 사용</title>
-				<description xml:lang="ko">무한스크롤 사용 여부 설정,
-				사용안함 : 버튼으로 추가 페이지 로드</description>
-				<options value="no">
-					<title xml:lang="ko">사용안함</title>
-				</options>
-				<options value="yes">
-					<title xml:lang="ko">사용</title>
+				<options value="Y">
+					<title>출력</title>
 				</options>
 			</var>
-		</group>
-
-		<group>
-			<title xml:lang="ko">유투브 설정</title>
-			<var name="youtube_infinity_use" type="radio">
-				<title xml:lang="ko">무한스크롤 사용</title>
-				<description xml:lang="ko">무한스크롤 사용 여부 설정,
-				사용안함 : 버튼으로 추가 페이지 로드</description>
-				<options value="no">
-					<title xml:lang="ko">사용안함</title>
-				</options>
-				<options value="yes">
-					<title xml:lang="ko">사용</title>
-				</options>
-			</var>
-			<var name="youtube_direct_play" type="radio">
-				<title xml:lang="ko">목록에서 재생</title>
-				<description xml:lang="ko">유투브 영상 목록에서 바로 재생하기</description>
-				<options value="no">
-					<title xml:lang="ko">사용안함</title>
-				</options>
-				<options value="yes">
-					<title xml:lang="ko">사용</title>
-				</options>
-			</var>
-			<var name="youtube_cell" type="radio">
-				<title xml:lang="ko">목록 유형</title>
-				<description xml:lang="ko">목록 생성 방식</description>
-				<options value="4">
-					<title xml:lang="ko">가로 4개</title>
-				</options>
-				<options value="3">
-					<title xml:lang="ko">가로 3개</title>
-				</options>
-				<options value="2">
-					<title xml:lang="ko">가로 2개</title>
-				</options>
-				<options value="1">
-					<title xml:lang="ko">가로 1개</title>
-				</options>
+			<var name="stalker_arrow_c" type="text">
+				<title>스토커박스안 화살표색상</title>
+				<description>스토커박스안의 상하 화살표색상을 지정할수 있습니다.(기본 #444)</description>
 			</var>
 		</group>
 
-		<group>
-			<title xml:lang="ko">블로그 설정</title>
-			<var name="blog_layout" type="radio">
-				<title xml:lang="ko">카테고리 메뉴 위치</title>
-				<description xml:lang="ko">메뉴 위치 선택</description>
-				<options value="left">
-					<title xml:lang="ko">왼쪽</title>
-				</options>
-				<options value="right">
-					<title xml:lang="ko">오른쪽</title>
-				</options>
-			</var>
-			<var name="blog_menu_width" type="text" default="200">
-				<title xml:lang="ko">블로그 메뉴 넓이</title>
-				<description xml:lang="ko">기본 200px</description>
-			</var>
-			<!-- var name="blog_top_gap" type="text" default="0">
-				<title xml:lang="ko">게시판 상단 여백</title>
-				<description xml:lang="ko">상단 여백 설정 (기본 0px)
-				- 상단에 메뉴가 있다면 메뉴 높이값 입력</description>
-			</var -->
-		</group>
-
-		<group>
-			<title xml:lang="ko">히스토리 게시판 설정</title>
-			<var name="con_date" type="text">
-				<title xml:lang="ko">시작년도</title>
-			</var>
-			<var name="con_title" type="text">
-				<title xml:lang="ko">큰 제목</title>
-			</var>
-			<var name="con_sum" type="textarea">
-				<title xml:lang="ko">요약 설명</title>
-			</var>
-		</group>
-
-		<group>
-			<title xml:lang="ko">배경 이미지</title>
-			<var name="con_bg_type" type="radio">
-				<title xml:lang="ko">배경 : 타입</title>
-				<description xml:lang="ko">링크 또는 첨부한 배경 이미지의 밝기를 정해 주세요.
-				페이지 타이틀에 영향을 줍니다.</description>
-				<options value="white">
-					<title xml:lang="ko">밝은 이미지</title>
-				</options>
-				<options value="black">
-					<title xml:lang="ko">어두운 이미지</title>
-				</options>
-			</var>
-			<var name="con_bg" type="text">
-				<title xml:lang="ko">배경 : 외부링크</title>
-				<description xml:lang="ko">외부링크 이미지를 배경으로 사용합니다.
-				외부링크와 업로드 동시에 존재할때 외부링크가 우선으로 적용됩니다.</description>
-			</var>
-			<var name="con_bg_dr" type="image">
-				<title xml:lang="ko">배경 : 업로드</title>
-				<description xml:lang="ko">외부 링크를 통하지 않고 업로드 파일로 대신합니다.
-				- 레이아웃 특성상 1500px × 1500px 이상의 이미지를 사용을 추천합니다.
-				- 무거운 이미지를 사용할 시 트래픽 발생할 수 있습니다.</description>
-			</var>
-		</group>
-    </extra_vars>
+	</extra_vars>
 </skin>
 

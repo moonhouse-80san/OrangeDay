@@ -1,7 +1,7 @@
 @charset "utf-8";
 p { margin-bottom:0px;}
 #bd_wizard{position:fixed;top:0px;left:-480px;z-index:10000;width:480px;height:100%;background:#FFF;box-shadow:3px 0 3px 0 rgba(0,0,0,.3);color:#000; }
-#bd_wizard_tg{display:block;position:absolute;top:95px;left:100%;width:20px;height:20px;margin:0;padding:0;border-radius:0 4px 4px 0;box-shadow:inset -1px 0 6px rgba(255,255,255,.2),inset 5px 0 8px rgba(0,0,0,.08),1px 1px 3px rgba(0,0,0,.2);cursor:pointer; background-color:transparent; border:1px solid transparent}
+#bd_wizard_tg{display:block;position:absolute;top:110px;left:100%;width:20px;height:20px;margin:0;padding:0;border-radius:0 4px 4px 0;box-shadow:inset -1px 0 6px rgba(255,255,255,.2),inset 5px 0 8px rgba(0,0,0,.08),1px 1px 3px rgba(0,0,0,.2);cursor:pointer; background-color:transparent; border:1px solid transparent}
 #bd_wizard_tg i{font-size:14px;color:#999;text-shadow:0 1px 0 rgba(0,0,0,.5)}
 #bd_wizard_tg:hover b,.open #bd_wizard_tg b{opacity:.8}
 #bd_wizard h1{margin:0;padding:12px;background:#444;font-size:14px;line-height:16px;color:#FFF}

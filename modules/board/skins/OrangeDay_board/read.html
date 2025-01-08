@@ -55,7 +55,7 @@
 {@ break;}
 </block>
 
-<!--@if($mi->default_style=='gallery')--> 
+<!--@if($mi->default_style=='gallery')-->
 	<div class="widthSideNavi ifrm">
 	<!--@if(Mobile::isMobileCheckByAgent())-->
 		<include target="_read_gallery.html" />
@@ -64,28 +64,30 @@
 	<!--@end-->
 	</div>
 		
-					<!--@elseif($mi->default_style=='galleryView')-->
-						<div class="widthSideNavi">
-						<include target="_read_galleryView.html" />
-						</div>
+<!--@elseif($mi->default_style=='galleryView')-->
+	<div class="widthSideNavi">
+	<include target="_read_galleryView.html" />
+	</div>
 		
 <!--@elseif($mi->default_style=='youtube')-->
 	<div class="widthSideNavi">
-	<include target="_read_youtube.html" />
+		<include target="_read_youtube.html" />
 	</div>	
 <!--@elseif($mi->default_style=='blog')-->
+	<div class="widthSideNavi4blog">
 	<include target="_read_blog.html" />
-	<style>footer, .pagelocation, .board-message { display:none}</style>
+	</div>
+	<style>.pagelocation, .board-message { display:none}</style>
 	
-					<!--@elseif($mi->default_style=='history_step')-->
-						<include target="_read_history_step.html" />
+<!--@elseif($mi->default_style=='history_step')-->
+	<include target="_read_history_step.html" />
 	
 <!--@else-->
 	<div class="widthSideNavi">
-	<include target="_read_normal.html" />
+		<include target="_read_normal.html" />
 	</div>
 <!--@end-->
-
+<div class="readend"></div>
 <div class="iframeBg4Click" style="display:none;"></div>
 <style>
 	.loading-page { width:100vw; height:100%; position:fixed; top:0; left:0; display:flex; font-size:8em; color:var(--oday_fontColor); align-items: center; justify-content: center;}

@@ -1,12 +1,14 @@
 {@ if($_SERVER['HTTP_SEC_FETCH_DEST']!="document") Context::set('layout','none');}
 {@
-	$layout_apply_width = $layout_info->layout_width - $layout_info->gnb_width;
+	if(!$layout_info->gnb_width) $layout_info->gnb_width = '180';
+	if(!$layout_info->site_width) $layout_info->site_width = '1200';
+	$layout_apply_width = $layout_info->site_width - $layout_info->gnb_width;
 }
 <!--@if($_SERVER['HTTP_SEC_FETCH_DEST']!='document')-->
 	<include target="__set_jscss.html" />
 <!--@end-->
 
-<article id="readBox" style="font-size:{$mi->font_size}px">
+<article id="readBox" style="font-size:{$mi->font_size}px"<!--@if($_SERVER['HTTP_SEC_FETCH_DEST']!='document')--> class="gallery"<!--@end-->>
 	<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
 		<include target="opt_read/_read_opt_secret.html" />
 		<include target="opt_read/_read_opt_navi_bottom.html" cond="$mi->read_bnavi == 'use'" />
@@ -35,6 +37,8 @@
 	body {background-color:transparent}
 	.preview_btn { display: none; }
 	.iframeBg4Click { display:block !important; }	
+	.od-bord { margin:0 auto; max-width:1000px;  padding-bottom:0; }
+	.powered {display: none;}
 	<!--@if($layout_info->layout_align=='left')-->
 		.od-bord { width:{$layout_apply_width}px; margin:0 auto; }
 	<!--@end-->
@@ -54,39 +58,35 @@
 			$("body").css('background-color','var(--oday_bodyBgColor)');
 		}		
 	});
-		//parent.history.pushState({}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}?listStyle=galleryView');
-		//history.pushState({}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}');
-	$(function() {
-		$('.iframeBg4Click').click(function(){ golistPage(); });
-		backControl(callbackFunction);
-	});
-	/* 브라우저 백 버튼 감지 */
-	var backControl = function(callbackFunction) {
-		 window.innerDoc = false; 		
-		 window.addEventListener('mouseover', function(event) {    
-			window.innerDoc = true;
-		 }); 
-		 window.addEventListener('mouseout', function(event) {                
-			window.innerDoc = false;
-		 });
-		// history.pushState({}, '', '');
-		// parent.history.replaceState({}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}?listStyle=galleryView');
-		parent.history.pushState({page:"child"}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}');
-		history.pushState({page:"child"}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}');
-		window.addEventListener('popstate', function(event) { 
-			event.preventDefault();
-			if (!window.innerDoc) { 
-				callbackFunction();
-			} 
-		});
-	}
-	var callbackFunction = function() {
-		golistPage();
-	}
-	function golistPage() {
-		//history.go(-1);
-		parent.closeCon();
-	}
-
+	<!--@if($_SERVER['HTTP_SEC_FETCH_DEST']!='document')-->
+		$(function() {
+			$('.iframeBg4Click').click(function(){ golistPage(); });
+			backControl(callbackFunction);
+		});	
+		/* 브라우저 백 버튼 감지 */
+		var backControl = function(callbackFunction) {
+			 window.innerDoc = false; 		
+			 window.addEventListener('mouseover', function(event) {    
+				window.innerDoc = true;
+			 }); 
+			 window.addEventListener('mouseout', function(event) {                
+				window.innerDoc = false;
+			 });
+			parent.history.pushState({page:"child"}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}');
+			history.pushState({page:"child"}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}');
+			window.addEventListener('popstate', function(event) { 
+				event.preventDefault();
+				if (!window.innerDoc) { 
+					callbackFunction();
+				} 
+			});
+		}
+		var callbackFunction = function() {
+			golistPage();
+		}
+		function golistPage() {
+			parent.closeCon();
+		}
+	<!--@end-->
 </script>
 

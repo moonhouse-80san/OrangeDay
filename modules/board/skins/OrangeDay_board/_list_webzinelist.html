@@ -4,8 +4,12 @@
 </div>
 
 <include target="opt_list/_list__opt_notice.html" />
-
-<div id="list-webzinelist" class="bd-all" style="font-size:{$mi->font_size}px">
+{@
+	$mi->thumbnail_width = '170';
+	$mi->thumbnail_height = '170';
+	$mi->thumbnail_type = 'crop';
+}
+<div id="list-webzinelist" class="bd-all webzinelist" style="font-size:{$mi->font_size}px">
 <!--@if(!$document_list && !$notice_list)-->
 	<div class="no_documents">
 	<!--@if($search_keyword)-->
@@ -17,14 +21,7 @@
 	</div>
 <!--@else-->
 	<div loop="$document_list =>$no,$document" class="box<!--@if(isset($document_srl) && $document_srl == $document->document_srl)--> readActive<!--@end-->">
-		<div class="number">
-			<!--@if($document->isSecret() && !$oDocument->isGranted())-->
-				<i class='bx bxs-lock'></i>
-			<!--@else-->
-				<block cond="isset($document_srl) && $document_srl == $document->document_srl"><i class='bx bx-play'></i></block>
-				<block cond="!isset($document_srl) || $document_srl != $document->document_srl">{$no}</block>
-			<!--@end-->
-		</div>
+
 		<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}" rel="nofollow">
 			<div class="wrapimg" style="background-image:url( '{$document->getThumbnail($mi->thumbnail_width, $mi->thumbnail_height, $mi->thumbnail_type)}');	">
 				<!--@if(!$document->thumbnailExists())-->
@@ -33,18 +30,26 @@
 			</div>
 		</a>
 		<ul>
-			<li class="t1">				
+			<li class="t1">		
 				<div class="title">
-				<span cond="$category_list[$document->get('category_srl')]->title" class="category" onclick="showUpdateExtraModal(this, {$document->document_srl}, {$document->get('category_srl')}, 'category')"|cond="$grant->manager && $use_category_update">{$category_list[$document->get('category_srl')]->title} &nbsp;</span>	
-				<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}" rel="nofollow">
-				<!--@if($document->isSecret() && !$document->isGranted())-->
-					{$lang->msg_is_secret} 
-				<!--@elseif($document->isSecret() && $document->isGranted())-->
-					{strip_tags($document->getTitle())}
-				<!--@else-->
-					{strip_tags($document->getTitle())}
-				<!--@end-->	
-				</a>
+					<span class="number">
+						<!--@if($document->isSecret() && !$oDocument->isGranted())-->
+							<i class='bx bxs-lock'></i>
+						<!--@else-->
+							<block cond="isset($document_srl) && $document_srl == $document->document_srl"><i class='bx bx-play'></i></block>
+							<block cond="!isset($document_srl) || $document_srl != $document->document_srl">{$no}</block>
+						<!--@end-->
+					</span>					
+					<span cond="$category_list[$document->get('category_srl')]->title" class="category" onclick="showUpdateExtraModal(this, {$document->document_srl}, {$document->get('category_srl')}, 'category')"|cond="$grant->manager && $use_category_update">{$category_list[$document->get('category_srl')]->title} &nbsp;</span>	
+					<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}" rel="nofollow">
+					<!--@if($document->isSecret() && !$document->isGranted())-->
+						{$lang->msg_is_secret} 
+					<!--@elseif($document->isSecret() && $document->isGranted())-->
+						{strip_tags($document->getTitle())}
+					<!--@else-->
+						{strip_tags($document->getTitle())}
+					<!--@end-->	
+					</a>
 				</div>
 				<span cond="$document->printExtraImages(60*60*$mi->duration_new)" class="newicon Fbox
 					<!--@foreach($document->getExtraImages(60*60*$mi->duration_new) as $key=>$val)-->

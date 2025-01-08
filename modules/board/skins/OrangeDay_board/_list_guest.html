@@ -112,6 +112,13 @@ jQuery(function($){
 					<a href="{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle, '','')}">
 						{strip_tags($oDocument->getTitle())}
 					</a>
+					<!--@if($oDocument->get('voted_count') > 0)-->
+						<div class="color" style="float:right; margin-left:10px">
+							<span class="material-symbols-sharp fill">favorite</span>
+							<span>{$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span>
+						</div>
+					<!--@end-->
+					<span cond="$oDocument->get('readed_count')>0" class="color" style="float:right"><i class='bx bxs-show' ></i> {number_format($oDocument->get('readed_count')>0?$oDocument->get('readed_count'):'0')}</span>
 				</div>
 				<div class="metabox">
 					<span cond="$category_list[$oDocument->get('category_srl')]->title" class="category" onclick="showUpdateExtraModal(this, {$document->document_srl}, {$document->get('category_srl')}, 'category')"|cond="$grant->manager && $use_category_update">{$category_list[$oDocument->get('category_srl')]->title}</span>
@@ -131,7 +138,7 @@ jQuery(function($){
 						</block>
 					</span>
 					<input cond="$grant->manager" type="checkbox" name="cart" value="{$oDocument->document_srl}" title="Check this" onclick="doAddDocumentCart(this)" <!--@if($oDocument->isCarted())-->checked="checked"<!--@end--> />
-				</div>				
+				</div>
 				<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
 				<div class="utilityMessage">{$lang->msg_is_secret} {$lang->msg_input_password}</div>
 				<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretMessage secretForm">

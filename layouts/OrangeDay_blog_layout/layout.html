@@ -6,9 +6,10 @@
 	$domain = $_SERVER['HTTP_HOST'];
 
 	if(!$oi->layout_align) $oi->layout_align = 'full';
-	if(!$oi->layout_width) $oi->layout_width = '1100';
+	if(!$oi->site_width) $oi->site_width = '1200';
 	if(!$oi->gnb_width) $oi->gnb_width = '180';
-	$layout_apply_width = $oi->layout_width - $oi->gnb_width;
+	if(!$oi->site_wwidth) $oi->site_wwidth = '';
+	$layout_apply_width = $oi->site_width - $oi->gnb_width;
 	if(!$oi->site_sign_meta) $oi->site_sign_meta = 'yes';
 	if(!$oi->site_badge) $oi->site_badge = 'yes';
 
@@ -20,11 +21,6 @@
 	if(!$oi->lgo_box_padding) $oi->lgo_box_padding = '0';
 	if(!$oi->logo_img_round) $oi->logo_img_round = '0';
 
-	if(!$oi->use_index) $oi->use_index = 'yes';
-	if(!$oi->index_style) $oi->index_style = 'classic';
-
-	if(!$oi->use_main_img) $oi->use_main_img = 'yes';
-	if(!$oi->use_main_text) $oi->use_main_text = 'yes';
 	if(!$oi->use_visitor) $oi->use_visitor = 'yes';
 
 	if(!$oi->use_gnb) $oi->use_gnb = 'yes';
@@ -60,12 +56,22 @@
 	if($next_point > 0) $per = (int)($need_point2 / $need_point*1000);
 }
 
-<load target="/_assets/js/_Oday_script.js" index="-100000000" />
+<!--@if($oi->googleAnalytics)-->
+	<script async src="https://www.googletagmanager.com/gtag/js?id={$oi->googleAnalytics}"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
 
+	  gtag('config', '{$oi->googleAnalytics}');
+	</script>
+<!--@end-->
+
+<load target="/_assets/js/_Oday_script.js" index="-100000000" />
 <!--@if($oi->use_darkMode == 'yes')-->
 	<load target="/_assets/js/_Oday_script_darkMode.js" index="-100000000" />
 <!--@else-->
-	 <script>
+	<script>
 		setColorScheme("{$oi->use_darkMode_set}");
 		$('iframe.cke_wysiwyg_frame').contents().find('body').removeClass("color_scheme_dark, color_scheme_light");
 		$('iframe.cke_wysiwyg_frame').contents().find('body').addClass("color_scheme_{$oi->use_darkMode_set}");
@@ -118,11 +124,11 @@
 			</form>
 		</div>
 		<!--@if($oi->googleSearch)-->
-			<div class="wrapsearch">
-				구글검색
-				<script async src="https://cse.google.com/cse.js?cx={$oi->googleSearch}"></script>
-				<div class="gcse-searchbox-only"></div>
-			</div>
+		<div class="wrapsearch">
+			구글검색
+			<script async src="https://cse.google.com/cse.js?cx={$oi->googleSearch}"></script>
+			<div class="gcse-searchbox-only" data-resultsUrl="/"></div>
+		</div>
 		<!--@end-->
 	</li>
 	<li><a class="search-close"><i class='bx bxs-x-circle'></i></a></li>
@@ -131,15 +137,15 @@
 
 <header>
 	<a class="search-open"><i class='bx bx-search'></i></a>
-	<a href="/" target="_top" class="hlogo">
+	<a href="{getUrl('')}" target="_top" class="hlogo">
 		<!--@if($oi->site_title1)-->
-			{$oi->site_title1}
+		{$oi->site_title1}
 		<!--@end-->
 		<!--@if($oi->site_title2)-->
-			{$oi->site_title2}
+		{$oi->site_title2}
 		<!--@end-->
 		<!--@if(!$oi->site_title1 && !$oi->site_title2)-->
-			사이트명을<br />설정해 주세요.
+		사이트명을 설정해 주세요.
 		<!--@end-->
 	</a>
 	<a onclick="viewGnb();" class="viewgnb"><i class='bx bx-menu' ></i></a>
@@ -207,25 +213,29 @@
 			<a class="closegnb vm" onclick="closeGnb();"><i class='bx bx-x'></i></a>
 			<ul id="logo">
 				<!--@if($oi->site_birthday)-->
-					<li class="since">SINCE <span>{$oi->site_birthday}</span></li>
+				<li class="since">SINCE <span>{$oi->site_birthday}</span></li>
 				<!--@end-->
 				<li class="gnbtitle<!--@if($oi->site_title_lang == 'kor')--> korean<!--@end-->"<!--@if(!Mobile::isMobileCheckByAgent())--> style="padding:{$oi->lgo_box_padding}px 0"<!--@end-->>
-					<!--@if($oi->logo_img && $oi->lgo_view_img == 'yes')-->
+
+					<!--@if($oi->logo_img && $oi->lgo_view_img == 'yes' && !Mobile::isMobileCheckByAgent())-->
 						<a href="{geturl('')}">
 							{@ if(!$oi->logo_img_width) $oi->logo_img_width = '80'; }
 							<img src="{$oi->logo_img}" alt="{$oi->site_title1} {$oi->site_title2}" class="vp" style="width: {$oi->logo_img_width}%; border-radius:{$oi->logo_img_round}px" />
+							<img src="{$oi->logo_img}" alt="{$oi->site_title1} {$oi->site_title2}" class="vm" />
 						</a>
 					<!--@end-->
+
 					<!--@if($oi->lgo_view_text == 'yes')-->
 						<a href="{geturl('')}" style="font-size:{$oi->lgo_font_size}px">
-						<!--@if($oi->site_title1)-->
-						<span>{$oi->site_title1}</span>
-						<!--@end-->
-						<!--@if($oi->site_title2)-->
-						<span style="margin-top:{$oi->lgo_font_height}px">{$oi->site_title2}</span>
-						<!--@end-->
-						<!--@if(!$oi->site_title1 && !$oi->site_title2)-->
-						<span class="eng">{$oi->site_title_temp}</span>
+						<!--@if(!Mobile::isMobileCheckByAgent())-->
+							<!--@if($oi->site_title1)-->
+								<span>{$oi->site_title1}</span>
+							<!--@end-->
+							<!--@if($oi->site_title2)-->
+								<span style="margin-top:{$oi->lgo_font_height}px">{$oi->site_title2}</span>
+							<!--@end-->
+						<!--@else-->
+							<span>{$oi->site_title1} {$oi->site_title2}</span>
 						<!--@end-->
 						</a>
 					<!--@end-->
@@ -233,105 +243,41 @@
 						{nl2br($oi->site_title3)}
 					</div>
 				</li>
-				<!--@if($oi->cafe24Traffic && $grant->manager)-->
-				<li class="viewTraffic vp">
-					<img class="zbxe_widget_output" widget="orange_traffic_ViewerCafe24" skin="default" widget_cache="0m" trafficview_url="{$oi->cafe24Traffic}" user_space="{$oi->cafe24Disk}" />
-				</li>
-				<!--@end-->
 				<li class="search-btn vp">
-					<!--@if($oi->cafe24Traffic)-->
-						{@
-							$url = $oi->cafe24Traffic;
-							$ch = curl_init();
-							curl_setopt($ch, CURLOPT_URL, $url);
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-							$html = curl_exec($ch);
-							curl_close($ch);
-							$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-							curl_close($ch);
-							if ($httpCode == 404) :
-								$percentValue = 0;
-								$limitValue = 0;
-							else :
-								$dom = new DOMDocument();
-								$dom->loadHTML($html);
-								$xpath = new DOMXPath($dom);
-								$percentElement = $xpath->query('//*[@id="percent"]')->item(0);
-								$limitElement = $xpath->query('//*[@id="limit"]')->item(0);
-								$percentValue = preg_replace('/[^0-9]/', '', $percentElement->nodeValue);
-								$limitValue = preg_replace('/[^0-9]/', '', $limitElement->nodeValue);
-							endif;
-
-							$user_space = $oi->cafe24Disk;
-							$save = (int)$user_space; //할당받은 계정용량, 단위 MBytes
-							set_time_limit(0);
-							$du_cgibin = `du -s ./`;
-							$du_root = `du -s ../`;
-							if($du_root) :
-								$du_m = (int)$du_root;
-							else :
-								$du_m = (int)$du_cgibin;
-							endif;
-							$du_m = $du_m/1000;
-							$percent_hdd = $du_m/$save*100;
-							$percentage_hdd = (int)($percent_hdd);
-							if($percentage_hdd < 1) $percentage_hdd = 1;
-							if($percentage_hdd > 100) $percentage_hdd = 99;
-							$left_hdd = 100-$percentage_hdd;
-
-							$percent_hdd = ((int)($percent_hdd*100))/100;
-							$percentage_hdd = $percentage_hdd;
-							$left_hdd = $left_hdd;
-							$used_space = ((int)($du_m*100))/100;
-						}
-						<span>
-							<i class='bx bxs-bar-chart-alt-2'></i> {$percentValue}%&nbsp;&nbsp;&nbsp; <i class='bx bxs-cylinder'></i> {$percent_hdd}%
-						</span>
-					<!--@else-->
-						<span>&nbsp;</span>
-					<!--@end-->
+					<span>&nbsp;</span>
 					<a class="search-open"><i class='bx bx-search'></i>SEARCH</a>
 				</li>
 			</ul>
 			<ul class="lt_gnb">
 				{@ $gnb_list_count = 0;  <!--// 비카테고리글 숫자 체크 -->}
 				<li loop="$GNB->list => $key1, $val1"  cond="$val1['href']">
-					<a cond="$val1['href']" href="{$val1['href']}" class="<!--@if($val1['class'])-->{$val1['class']}<!--@end--><!--@if($val1['selected'])--> active1<!--@end-->" target="_blank"|cond="$val1['open_window'] == 'Y'" title="">
-						<span cond="$val1['icon']" style="display:block; text-align:center; line-height:15px">
-							{@$val_icon1 = preg_match('/-/is', $val1['icon'])}
-							{@$val_icon2 = preg_match('/./is', $val1['icon'])}
-							<!--@if($val_icon1===1)-->
-								<i class="{$val1['icon']}"></i>
-							<!--@elseif($val_icon2===1)-->
-								<img src="{$val1['icon']}" width="15" align="absmiddle" />
-							<!--@else-->
-								{$val1['icon']}
-							<!--@end-->
-						</span>&nbsp;&nbsp;{$val1['link']|noescape}&nbsp;&nbsp;<span cond="$val1['open_window'] == 'Y'" class="material-symbols-sharp">open_in_new</span>
+					<a cond="$val1['href']" href="{$val1['href']}" class="depth1<!--@if($val1['class'])--> {$val1['class']}<!--@end--><!--@if($val1['selected'])--> active1<!--@end--><!--@if($val1['list'])--> more<!--@end-->" target="_blank"|cond="$val1['open_window'] == 'Y'">
+						<i cond="$val1['icon']" class="{$val1['icon']}"></i>{$val1['link']|noescape}<i cond="$val1['open_window'] == 'Y'" class='bx bx-link-external'></i>
+						{@ $gnb_list_count = $gnb_list_count +1; }
 					</a>
-					<a cond="$val1['list']" class="morelist"><i class='bx bx-list-plus'></i></a>
+					<a cond="$val1['list']" class="morelist"><i class='bx bx-plus'></i></a>
 					<ul cond="$val1['list']" class="depth2">
 						<li loop="$val1['list'] => $key2, $val2" class="more"|cond="$val2['list']">
 							<a href="{$val2['href']}" class="active2"|cond="$val2['selected']" target="_blank"|cond="$val2['open_window'] == 'Y'">
-								<i class='bx bx-subdirectory-right'></i>{$val2['link']|noescape}&nbsp;&nbsp;<i cond="$val2['open_window'] == 'Y'" class='bx bx-link-external'></i>
+								<i class='bx bx-subdirectory-right'></i>{$val2['link']|noescape}<i cond="$val2['open_window'] == 'Y'" class='bx bx-link-external'></i>
 								{@ $gnb_list_count = $gnb_list_count +1; }
 							</a>
 							<ul cond="$val2['list']" class="depth3">
 								<li loop="$val2['list'] => $key3, $val3">
 									<a href="{$val3['href']}" class="active3"|cond="$val3['selected']" target="_blank"|cond="$val3['open_window'] == 'Y'">
-										<i class='bx bx-subdirectory-right'></i>{$val3['link']|noescape}&nbsp;&nbsp;<i cond="$val3['open_window'] == 'Y'" class='bx bx-link-external'></i>
+										<i class='bx bx-subdirectory-right'></i>{$val3['link']|noescape}<i cond="$val3['open_window'] == 'Y'" class='bx bx-link-external'></i>
 										{@ $gnb_list_count = $gnb_list_count +1; }
 									</a>
 									<ul cond="$val3['list']" class="depth4">
 										<li loop="$val3['list'] => $key4, $val4">
 											<a href="{$val4['href']}" class="active4"|cond="$val4['selected']" target="_blank"|cond="$val4['open_window'] == 'Y'">
-												<i class='bx bx-subdirectory-right'></i>{$val4['link']|noescape}&nbsp;&nbsp;<i cond="$val4['open_window'] == 'Y'" class='bx bx-link-external'></i>
+												<i class='bx bx-subdirectory-right'></i>{$val4['link']|noescape}<i cond="$val4['open_window'] == 'Y'" class='bx bx-link-external'></i>
 												{@ $gnb_list_count = $gnb_list_count +1; }
 											</a>
 											<ul cond="$val4['list']" class="depth5">
 												<li loop="$val4['list'] => $key5, $val5">
 													<a href="{$val5['href']}" class="active5"|cond="$val5['selected']" target="_blank"|cond="$val5['open_window'] == 'Y'">
-														<i class='bx bx-subdirectory-right'></i>{$val5['link']|noescape}&nbsp;&nbsp;<i cond="$val5['open_window'] == 'Y'" class='bx bx-link-external'></i>
+														<i class='bx bx-subdirectory-right'></i>{$val5['link']|noescape}<i cond="$val5['open_window'] == 'Y'" class='bx bx-link-external'></i>
 														{@ $gnb_list_count = $gnb_list_count +1; }
 													</a>
 												</li>
@@ -344,9 +290,9 @@
 					</ul>
 				</li>
 				<!--@if(!Mobile::isMobileCheckByAgent())-->
-					<!--@if($gnb_list_count > 15)-->
-						<li class="gnbup" style="display:none;"><a>Scroll Up <i class='bx bxs-upvote' ></i></a></li>
-					<!--@end-->
+				<!--@if($gnb_list_count > 15)-->
+				<li class="gnbup" style="display:none;"><a>Scroll Up <i class='bx bxs-upvote' ></i></a></li>
+				<!--@end-->
 				<!--@end-->
 			</ul>
 
@@ -359,16 +305,16 @@
 				<li cond="$is_logged" class="login_after">
 					<a href="{getUrl('','act', 'dispMemberInfo','', '')}" rel="nofollow">
 						<!--@if($logged_info->profile_image->src)-->
-							<img src="{$logged_info->profile_image->src}" alt="{$logged_info->nick_name}"  class="profile"/>
+						<img src="{$logged_info->profile_image->src}" alt="{$logged_info->nick_name}"  class="profile"/>
 						<!--@else-->
-							<div class="profile"><i class='bx bxs-ghost'></i></div>
+						<div class="profile"><i class='bx bxs-ghost'></i></div>
 						<!--@end-->
 					</a>
 					<a href="{getUrl('','act', 'dispMemberInfo','', '')}" rel="nofollow" class="uname">{$logged_info->nick_name}<span><em>Lv.{$level}</em> {$logged_info->user_id}</span></a>
 					<!--@if($output->page_navigation->total_count>0)-->
-						<a href="{getUrl('','act', 'dispCommunicationMessages','','')}" class="pager">
-							<i class='bx bx-envelope' ></i>
-						</a>
+					<a href="{getUrl('','act', 'dispCommunicationMessages','','')}" class="pager">
+						<i class='bx bx-envelope' ></i>
+					</a>
 					<!--@end-->
 				</li>
 				<li cond="$is_logged" class="login_info">
@@ -401,6 +347,7 @@
 						<a cond="$val1['href']" href="{$val1['href']}" class="active1"|cond="$val1['selected']" target="_top">{$val1['link']|noescape}</a>
 					</div>
 				</li>
+
 				<li class="mod-theme-mobile vm">
 					<!--@if($oi->use_darkMode == 'yes')-->
 						<div class="mod-theme dark">
@@ -429,102 +376,84 @@
 					<span class="copy"><i class='bx bx-copyright'></i>&nbsp;{$oi->site_copyright}&nbsp;all rights reserved.</span>
 					<span class="address"><i class="fa-brands fa-rockrms" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></span>
 				</li>
-				<!--@if($oi->site_badge=='yes')--> <!-- Powered by Orangeday.com 夜飛  -->
-					<li class="layout">
-						<div class="powered">
-							<a href="https://www.orangeday.com/" target="_blank">by <span>ORANGEDAY</span></a>
-						</div>
-					</li>
+				<!--@if($oi->site_badge=='yes')-->
+				<li class="layout">
+					<div class="powered">
+						<a href="https://www.orangeday.com/" target="_blank">by <span>OrangeDay</span></a>
+					</div>
+				</li>
 				<!--@end-->
+
 			</ul>
 		</div>
 	</li>
 	<li id="ol_right" class="content">
 		<!--@if($q && $_is_indexmodule)-->
 			<div class="pagelocation"><a>구글 검색</a></div>
-			<div class="gcse-searchbox-only"></div>
+			<div class="gcse-searchbox-only" data-resultsUrl="/"></div>
 			<div class="gcse-searchresults-only"></div>
+		<!--@elseif($act && $_is_indexmodule)-->
+			<include target="pagetitle.html" />
+			<div class="templatepage vsearch">{$content}</div>
 		<!--@else-->
-			<!--@if($oi->use_index == 'yes')-->
-				<!--@if($_is_indexmodule && $module_info && $act != 'IS')-->
-					<!--@if($domain=='www.orangeday-.kr')-->
-						<!--@if($preview=='' || $preview=='basic')-->
-							<ul class="oi_preview">
-								<li class="change_btn"><span>베이직</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="/?preview=classic">클래식 보기</a></li>
-								<li class="oi_basic"><include target="home.html" /></li>
-							</ul>
-						<!--@elseif($preview=='classic')-->
-							<ul class="oi_preview">
-								<li class="change_btn"><a  href="/?preview=basic">베이직 보기</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>클래식</span></li>
-								<li class="oi_classic"><include target="home_classic.html" /></li>
-							</ul>
-						<!--@end-->
-						<style>
-							.oi_preview .change_btn {text-align:center; padding:20px 0; position:sticky; top:0; background-color:var(--oday_bodyBgColor); z-index:1; border-bottom:var(--oday_listBorder)}
-							.oi_preview .change_btn span {font-weight:900}
-						</style>
-					<!--@else-->
-						<!--@if($oi->index_style=='classic')-->
-							<include target="home_classic.html" />
-						<!--@elseif($oi->index_style=='basic')-->
-							<include target="home.html" />
-						<!--@end-->
-					<!--@end-->
-					{$content}
-				<!--@end-->
-
-				<!--@if($act == 'IS')-->
-					<include target="pagetitle.html" />
-					<div class="templatepage zx1">{$content}</div>
-				<!--@end-->
-
-				<!--@if($module_info && !$_is_indexmodule)-->
-					<include target="pagetitle.html" />
-					<div class="templatepage zx2">{$content}</div>
-				<!--@end-->
-
-				<!--@if(!$module_info)-->
-					{$content}
-				<!--@end-->
-
-			<!--@else-->
-
-				<!--@if(!$module_info)-->
-					{$content}
+			<!--@if($module_info->mid=='layoutblog')-->
+				<!--@if($oi->site_column_con)-->
+					{$oi->site_column_con}
 				<!--@else-->
-					<include target="pagetitle.html" />
-					<div class="templatepage">{$content}</div>
+					<include target="_page_con.html" />
 				<!--@end-->
-
+			<!--@else-->
+				<!--@if($_is_indexmodule && $module_info)-->
+					<!--@if($oi->site_column_con)-->
+						{$oi->site_column_con}
+					<!--@else-->
+						<include target="_page_con.html" />
+					<!--@end-->
+				<!--@else-->
+					<!--@if(strpos($act,"dispBoardAdmin") !== false || !$module_info || $module_info->module=='member')-->
+					<!--@else-->
+					<include target="pagetitle.html" />
+					<!--@end-->
+					<!--@if(strpos($act,"dispBoardAdmin") !== false)-->
+						<div class="templatepage vboard">{$content}</div>
+					<!--@elseif($module_info->module=='member')-->
+						<div class="templatepage vmember">{$content}</div>
+					<!--@elseif($module_info->module=='page')-->
+						<div class="templatepage vpage">{$content}</div>
+					<!--@else-->
+						<div class="templatepage" style="width:{$oi->site_wwidth}px; margin:0 auto">{$content}</div>
+					<!--@end-->
+				<!--@end-->
 			<!--@end-->
 		<!--@end-->
 		<div class="hr"></div>
+
 		<footer>
 			<ul class="comsummury">
 				<li class="location">
-					<block loop="$GNB->list=>$key1,$val1" cond="$val1['selected']">
-						<a href="{geturl('')}"><i class='bx bxs-home'></i></a> <a href="{$val1['href']}"> {$val1['text']}</a>
-						<block loop="$val1['list']=>$key2,$val2" cond="$val2['selected']">
-							<i class='bx bxs-chevron-right'></i><a href="{$val2['href']}"> {$val2['text']}</a>
-							<block loop="$val2['list']=>$key3,$val3" cond="$val3['selected']">
-								<i class='bx bxs-chevron-right'></i><a href="{$val3['href']}"> {$val3['text']}</a>
-								<block loop="$val3['list']=>$key4,$val4" cond="$val4['selected']">
-									<i class='bx bxs-chevron-right'></i><a href="{$val4['href']}"> {$val4['text']}</a>
-								</block>
+				<block loop="$GNB->list=>$key1,$val1" cond="$val1['selected']">
+					<a href="{geturl('')}"><i class='bx bxs-home'></i></a> <a href="{$val1['href']}"> {$val1['text']}</a>
+					<block loop="$val1['list']=>$key2,$val2" cond="$val2['selected']">
+						<i class='bx bxs-chevron-right'></i><a href="{$val2['href']}"> {$val2['text']}</a>
+						<block loop="$val2['list']=>$key3,$val3" cond="$val3['selected']">
+							<i class='bx bxs-chevron-right'></i><a href="{$val3['href']}"> {$val3['text']}</a>
+							<block loop="$val3['list']=>$key4,$val4" cond="$val4['selected']">
+								<i class='bx bxs-chevron-right'></i><a href="{$val4['href']}"> {$val4['text']}</a>
 							</block>
 						</block>
 					</block>
+				</block>
 				</li>
 				<li class="company_name" cond="$oi->site_company_name">{$oi->site_company_name}</li>
 				<li class="address" cond="$oi->site_address || $oi->site_address2">
 					<span cond="$oi->site_address">{$oi->site_address}</span><br class="vm" /><span cond="$oi->site_address2">{$oi->site_address2}</span>
 				</li>
 				<li class="copy" cond="$oi->site_copyright"><i class='bx bx-copyright'></i>{$oi->site_copyright}&nbsp;all rights reserved.</li>
-                <li class="address" style="margin-top:5px"><i class="fa-brands fa-rockrms" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></li>
 			</ul>
 		</footer>
 	</li>
 </ul>
+
 <!--@if($module_info->module != 'board')-->
 	<div class="gototop layout" style="display:none;"><a><i class='bx bx-chevron-up'></i></a></div>
 <!--@end-->
@@ -539,20 +468,18 @@
 	#odaylayout #ol_left > div{ width:{$oi->gnb_width}px; flex-shrink: 0;}
 
 	<!--@if($oi->layout_align=='full')-->
-		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); }
+		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); padding: 0 10px;}
 		.setBox { left: {$oi->gnb_width}px; }
 	<!--@elseif($oi->layout_align=='left')-->
-		body {  background-color : color-mix(in srgb, var(--oday_bodyBgColor), #000 15%); }
-		.parallax-mirror { z-index:1 !important}
-		#odaylayout { width:100%;  max-width:{$oi->layout_width}px; background-color: var(--oday_bodyBgColor);  }
-		#odaylayout #ol_right { width:100%; max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
+		body {  background-color : var(--oday_bodyBgColor); }
+		#odaylayout { width:100%;  max-width:{$oi->site_width}px;  }
+		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
 		.slidebanner {width:100%; max-width: calc(100vw - {$oi->gnb_width}px - var(--oday_scrollWidth)) }
 		.setBox { left: {$oi->gnb_width}px; }
 	<!--@elseif($oi->layout_align=='center')-->
-		body {  background-color : color-mix(in srgb, var(--oday_bodyBgColor), #000 15%); }
-		.parallax-mirror { z-index:1 !important}
-		#odaylayout { width:100%;  max-width:{$oi->layout_width}px; background-color: var(--oday_bodyBgColor);  margin:0 auto; box-shadow:var(--oday_listShadowR);}
-		#odaylayout #ol_right { width:100%; max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
+		body {  background-color : var(--oday_bodyBgColor); }
+		#odaylayout { width:100%;  max-width:{$oi->site_width}px; margin:0 auto; box-shadow:var(--oday_listShadowR);}
+		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px);max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
 		.slidebanner {width:100%; max-width: calc(100vw - {$oi->gnb_width}px - var(--oday_scrollWidth)) }
 		.setBox { left: 0px; }
 		.setBox li.cog { left:0; color:var(--oday_mainColorDark)}
@@ -560,15 +487,15 @@
 		:root[color-theme='dark'] {
 			.setBox li.cog { left:0; color:var(--oday_mainColorLight)}
 		}
-	<!--@elseif($oi->layout_align=='max-width')-->
-		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); max-width:{$oi->layout_width - $oi->gnb_width}px; margin:0 auto; }
+	<!--@else-->
+		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); }
 		.setBox { left: {$oi->gnb_width}px; }
 	<!--@end-->
 
 	@media screen and (max-width:768px){
 		#odaylayout #ol_left { width:100%;}
-		#odaylayout #ol_left > div { width:100%; flex-shrink: 0; }
-		#odaylayout #ol_right { width:100% }
+		#odaylayout #ol_left > div { width:100%; }
+		#odaylayout #ol_right { width:100%; padding:0 }
 		.slidebanner { max-width:100%;}
 	}
 </style>
@@ -596,15 +523,15 @@
 	//서브메뉴 펼치기
 	$(".morelist").click(function(){
 		$("#ol_left .lt_gnb .depth2").slideUp();
-		$(".morelist").html("<i class='bx bx-list-plus'></i>");
+		$(".morelist").html("<i class='bx bx-plus'></i>");
 		if(!$(this).next().is(":visible")){
 			$(this).next().slideDown();
-			$(this).html("<i class='bx bx-list-minus'></i>");
+			$(this).html("<i class='bx bx-minus'></i>");
 		}
 	});
 	//서브 메뉴 이동시 해당 메뉴 열어 놓기
 	$(".lt_gnb li").has(".active1, .active2").find(".depth2").show();
-	$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-list-minus'></i>");
+	$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-minus'></i>");
 	//스크롤시 액션
 	$(window).scroll(function () {
 		Yposition = $(this).scrollTop();
@@ -645,6 +572,7 @@
 			$("#odaylayout #ol_left").addClass("gnbfull");
 			$("input:checkbox[id='gnbheightmaximize']").prop("checked", true);
 		}
+
 	<!--@else-->
 		<!--@if($oi->use_gnb_allways_open == 'yes')-->
 			$("#ol_left .lt_gnb .depth2").show();
@@ -652,6 +580,7 @@
 			$(".gnbup").addClass("active");
 			$("input:checkbox[id='gnbsubopen']").prop("checked", true);
 		<!--@end-->
+
 		<!--@if($oi->use_gnb_max_height == 'yes')-->
 			$("#odaylayout #ol_left").addClass("gnbfull");
 		<!--@end-->
@@ -669,12 +598,13 @@
 				$("#ol_left .lt_gnb .depth2").slideUp();
 				$(".morelist").show();
 				$(".gnbup").removeClass("active");
-				$(".morelist").html("<i class='bx bx-list-plus'></i>");
+				$(".morelist").html("<i class='bx bx-plus'></i>");
 				$(".lt_gnb li").has(".active1, .active2").find(".depth2").slideDown();
-				$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-list-minus'></i>");
+				$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-minus'></i>");
 				setCookie( "setOdayGnbopen", "" , 365 );
 			}
 		});
+
 		/* GNB 높이 꽉채우기 */
 		$("#gnbheightmaximize").change(function(){
 			if($(this).is(":checked")){
@@ -694,13 +624,16 @@
 		if ($itemsWithClass4.length > 0) { $('a.active4').removeClass('active4'); }
 
 		/* 설정메뉴 잠깐 보이기 - 메인에서만 */
-		<!--@if($_is_indexmodule && $oi->use_index == 'yes')--><!--@if($act != 'IS')-->
-			$(".setBoxlist").addClass('active');
-			setTimeout(function() {
-				$(".setBoxlist").removeClass('active');
-			}, 500);
-		<!--@end--><!--@end-->
+		<!--@if($_is_indexmodule)-->
+			<!--@if($act != 'IS')-->
+				$(".setBoxlist").addClass('active');
+				setTimeout(function() {
+					$(".setBoxlist").removeClass('active');
+				}, 500);
+			<!--@end-->
+		<!--@end-->
 	});
+
 	/* 검색 열고 닫기 */
 	$(".search-open").click(function(){
 		$('.searchWrap').addClass('active');

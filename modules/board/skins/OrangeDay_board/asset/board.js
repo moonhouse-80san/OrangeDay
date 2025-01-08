@@ -35,7 +35,62 @@ function board(bdObj){
 					});
 				};
 			};
-		};	
+		};
+		
+		
+		if(bd.find('#list-bd-table').length){	
+			 let $wtable = $('#list-bd-table');
+			 let $table = $('#list-bd-table > table');
+			 /*
+			 if ($table.width() > $wtable.width()) {
+			*/
+			
+			
+				 /**/
+				const containers = document.querySelectorAll('#list-bd-table');
+
+				containers.forEach((container) => {
+				  let isDown = false;
+				  let startX;
+				  let scrollLeft;
+
+				  container.addEventListener('mousedown', (e) => {
+					isDown = true;
+					container.classList.add('active');
+					startX = e.pageX - container.offsetLeft;
+					scrollLeft = container.scrollLeft;
+					//container.style.cursor = 'grabbing'; // 드래그 중일 때 커서 변경
+					//document.onselectstart = () => false;
+				  });
+
+				  container.addEventListener('mouseleave', () => {
+					isDown = false;
+					container.classList.remove('active');
+					//container.style.cursor = 'grab'; // 커서 초기화
+				  });
+
+				  container.addEventListener('mouseup', () => {
+					isDown = false;
+					container.classList.remove('active');
+					//container.style.cursor = 'grab';
+				  });
+
+				  container.addEventListener('mousemove', (e) => {
+					if (!isDown) return;
+					e.preventDefault();
+					const x = e.pageX - container.offsetLeft;
+					const walk = (x - startX) * 1; // 스크롤 속도 조절
+					container.scrollLeft = scrollLeft - walk;
+				  });
+				});
+				/**/
+				
+				
+			/*
+			}
+			*/
+		}
+		
 	})(jQuery)
 }
 function reComment(doc_srl,cmt_srl,edit_url){
@@ -65,3 +120,4 @@ function copy(val) {
     document.execCommand('copy');
     document.body.removeChild(dummy)
 }
+

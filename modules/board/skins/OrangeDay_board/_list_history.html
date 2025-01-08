@@ -1,11 +1,11 @@
 <style>
 .pagelocation > * { font-size: 1em; }
 </style>
-<div class="greetinginpage">
+<div class="greetinginpage" cond="$mi->con_date || $mi->con_title || $mi->con_sum">
 	<ul>
-		<li class="since">SINCE <span>{$mi->con_date}</span></li>
-		<li class="title"><h1>{$mi->con_title}</h1></li>
-		<li class="sum">{nl2br($mi->con_sum)}</li>
+		<li class="since" cond="$mi->con_date">SINCE <span>{$mi->con_date}</span></li>
+		<li class="title" cond="$mi->con_title"><h1>{$mi->con_title}</h1></li>
+		<li class="sum" cond="$mi->con_sum">{nl2br($mi->con_sum)}</li>
 	</ul>
 </div>
 {@ $cate_list = array(); $current_key = null; }

@@ -33,18 +33,12 @@
 			<h3 cond="$member_info->mex_signtitle">{$member_info->mex_signtitle}</h3>
 			{$oDocument->getSignature()}
 			<div class="exp-info" cond="$oDocument->isEditable()">
-				 <div class="exp-graph"><div class="bar"></div></div>
+				 <div class="exp-graph"><div class="bar" style="width: {$percent}%;"></div></div>
 				<div class="exp-sum">다음 레벨 {$next_point} - 총 획득 {$point} ( 필요 {$need_point} = 획득 {$get_point} + 남음 {$remain_point} &nbsp;|&nbsp; <span>{$percent}</span>%)</div>
 			</div>
 		</div>
 	</li>
 </ul>
 <style>
-.smeta .level { margin-top:5px; font-size:10px}
-.smeta .level em {color:var(--oday_mainColor); font-weight:700; font-size:1.5em}
-.sign .stext div.exp-info { opacity:1; margin-top:10px}
-.exp-graph { position:relative; background-color:var(--oday_listBgColorStress2); height:2px; border-radius:15px; overflow:hidden}
-.exp-graph div { position:absolute; top:0; left:0; height:100%; background-color:var(--oday_mainColor); width: {$percent}%; }
-.exp-sum { margin-top:4px; width:100%; letter-spacing:.5px; font-size:.9em }
-.exp-sum span { font-weight:600; color:var(--oday_mainColor); }
+
 </style>

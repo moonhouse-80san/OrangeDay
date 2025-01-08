@@ -10,37 +10,42 @@
 <block cond="$oDocument->isExists()">
 	<include target="read.html" />
 	<!--@if($mi->list_in_read == 'use')-->
-	<br /><br /><br />
 	<style>.btnBox {position: relative;} .posi-chk-gototop{ height:50px;}</style>
 	<!--@end-->
 	<!--@if($mi->default_style=='list' && $mi->list_in_read == 'use')-->
+	<br /><br /><br />
 	<include target="_list_normal.html" />
 	<!--@elseif($mi->default_style=='listtable' && $mi->list_in_read == 'use')-->
+	<br /><br /><br />
 	<include target="_list_normal_table.html" />
 	<!--@elseif($mi->default_style=='webzine' && $mi->list_in_read == 'use')-->
+	<br /><br /><br />
 	<include target="_list_webzine.html" />
 	<!--@elseif($mi->default_style=='webzinelist' && $mi->list_in_read == 'use')-->
+	<br /><br /><br />
 	<include target="_list_webzinelist.html" />
 	<!--@elseif($mi->default_style=='history_step' && $mi->list_in_read == 'use')-->
+	<br /><br /><br />
 	<include target="_list_history_step.html" />
 	<!--@end-->
 </block>
 <block cond="!$oDocument->isExists()">
+
 	<!--@if(Mobile::isMobileCheckByAgent())-->
 		<!--@if($module_info->mobile_header_text)-->
 		<div class="board-message header_text">
 			{$module_info->mobile_header_text}
-		</div>	
+		</div>
 		<!--@elseif(!$module_info->mobile_header_text && $module_info->header_text)-->
 		<div class="board-message header_text">
 			{$module_info->header_text}
-		</div>	
+		</div>
 		<!--@end-->
 	<!--@else-->
 		<!--@if($module_info->header_text)-->
 		<div class="board-message header_text">
 			{$module_info->header_text}
-		</div>	
+		</div>
 		<!--@end-->
 	<!--@end-->
 	<!-- ////////////////////////
@@ -73,7 +78,13 @@
 	<!--@elseif($mi->default_style=='history_step')-->
 	<include target="_list_history_step.html" />
 	<!--@elseif($mi->default_style=='blog')-->
-	
+		<!--@if($layout_info->layout =='Oday_horizon')-->
+			{@
+			$oi = $layout_info;
+			$oi->site_column_c1 = 'no';
+			$oi->site_column_c3 = 'no';
+			}
+		<!--@end-->
 		<!--@if($notice_list)-->
 		<block loop="$notice_list=>$no,$oDocument">
 			<!--@if($oDocument->document_srl)-->
@@ -81,22 +92,22 @@
 			<!--@else-->
 			<include target="_read_blog.html" />
 			<!--@end-->
-			<style>footer, .pagelocation, .board-message { display:none}</style>
-		</block>	
+			<style>.pagelocation, .board-message { display:none}</style>
+		</block>
 		<!--@elseif($document_list)-->
 		<block loop="$document_list=>$no,$oDocument" cond="$no == number_format($total_count)">
 			<!--@if($oDocument->document_srl)-->
 			<script>location.href = "{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle)}";</script>
 			<!--@else-->
 			<include target="_read_blog.html" />
-			<!--@end-->	
-			<style>footer, .pagelocation, .board-message { display:none}</style>
+			<!--@end-->
+			<style>.pagelocation, .board-message { display:none}</style>
 		</block>
 		<!--@else-->
 		<include target="_read_blog.html" />
-		<style>footer, .pagelocation, .board-message { display:none}</style>
+		<style>.pagelocation, .board-message { display:none}</style>
 		<!--@end-->
-		
+
 	<!--@else-->
 	<include target="_list_normal_table.html" />
 	<!--@end-->
@@ -109,21 +120,21 @@
 		<!--@elseif(!$module_info->mobile_footer_text && $module_info->footer_text)-->
 		<div class="board-message footer_text">
 			{$module_info->footer_text}
-		</div>	
+		</div>
 		<!--@end-->
 	<!--@else-->
 		<!--@if($module_info->footer_text)-->
 		<div class="board-message footer_text">
 			{$module_info->footer_text}
-		</div>	
+		</div>
 		<!--@end-->
 	<!--@end-->
 
 	<div class="gototopboard" style="display:none;"><a><i class='bx bx-chevron-up'></i></a></div>
 	<style>
 		.gototopboard {position: fixed; bottom:5px; right:5px; z-index:3 }
-		.gototopboard a {display:flex; align-items: center; justify-content: center; height:40px; width:40px; background-color:var(--oday_mainColorDark); color:var(--oday_primaryBtnColor); font-size:2em; transition: 0.3s; border-radius:100%}
-		.gototopboard a:hover {background-color:var(--oday_mainColor); ; color:var(--oday_primaryBtnColor); }
+		.gototopboard a {display:flex; align-items: center; justify-content: center; height:40px; width:40px; background-color:var(--oday_mainColor); color:var(--oday_primaryBtnColor); font-size:2em; transition: 0.3s; border-radius:100%}
+		.gototopboard a:hover {background-color:var(--oday_mainColorDark); ; color:var(--oday_primaryBtnColor); }
 	</style>
 	<script>
 		$(".gototopboard").click(function(){
@@ -138,7 +149,9 @@
 				$(".gototopboard").fadeOut();
 			}
 		});
-	</script>	
+
+	</script>
+
 </block>
 <style>.gototop.layout { display:none !important}</style>
 <script>
@@ -148,7 +161,7 @@ $(".down_onoff").click(function(){
 		$(this).html("Attached file <i class='bx bxs-minus-square' ></i>");
 	} else {
 		$(this).next().slideUp();
-		$(this).html("Attached file <i class='bx bxs-plus-square' ></i>");		
+		$(this).html("Attached file <i class='bx bxs-plus-square' ></i>");
 	}
 });
 
@@ -160,8 +173,8 @@ $(function(){
 		content:function(){
 			var photo = $(this).data('photo');
 			return '<img src="'+photo+'" style="max-width:200px; " />';
-		},		
-		position: { 
+		},
+		position: {
 			my: "center bottom-20", at: "center top+10",
 			using: function( position, feedback ) {
 				$( this ).css( position );
@@ -170,9 +183,9 @@ $(function(){
 				.addClass( feedback.vertical )
 				.addClass( feedback.horizontal )
 				.appendTo( this );
-			}		
+			}
 		}
-	});	   
+	});
 });
 </script>
 <include target="_footer.html" />

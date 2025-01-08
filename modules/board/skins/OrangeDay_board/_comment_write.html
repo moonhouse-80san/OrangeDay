@@ -45,7 +45,7 @@
 				</li>
 			</ul>
 		</li>
-		<li class="end" style="position:absolute; right:25px">
+		<li class="end">
 			<div cond="$is_logged">
 				<input type="checkbox" name="notify_message" value="Y" id="notify_message_{$oDocument->document_srl}" class="iCheck" />
 				<label for="notify_message_{$oDocument->document_srl}">{$lang->notify}</label>
@@ -58,12 +58,11 @@
 				<button type="submit" class="obtn">
 					<i class='bx bxs-message-square-detail' ></i>&nbsp; {$lang->cmd_comment_registration}
 				</button>
-				<!-- 추천버튼 추가 -->
-				<input cond="$is_logged && $mi->vote_cmd == 'Y'" onclick="doCallModuleAction('document','procDocumentVoteUp',{$oDocument->document_srl});" type="submit" value="❤️ + {$lang->cmd_comment_registration}" class="obtn" style="margin-left:10px"/>
 			<div>
 		</li>
 	</ul>
 </form>
+
 
 <!--// 대댓글 -->
 <div cond="$rd_idx==0" id="re_cmt">
@@ -110,8 +109,6 @@
 					<button type="submit" class="obtn">
 						<i class='bx bxs-message-square-detail' ></i>&nbsp; {$lang->cmd_comment_registration}
 					</button>
-					<!-- 추천버튼 추가 -->
-					<input cond="$is_logged && $mi->vote_cmd == 'Y'" onclick="doCallModuleAction('document','procDocumentVoteUp',{$oDocument->document_srl});" type="submit" value="❤️ + {$lang->cmd_comment_registration}" class="obtn" style="margin-left:10px"/>
 				</div>
 			</li>
 		</ul>

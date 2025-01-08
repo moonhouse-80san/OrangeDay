@@ -31,6 +31,12 @@
 		<a href="{getUrl('sort_index','comment_count','order_type',$order_type,'listStyle',$listStyle)}" rel="nofollow" class="on"|cond="$sort_index=='comment_count'">
 			{$lang->comment_count} <i cond="$sort_index=='comment_count'" class='bx bxs-chevron-{$order_icon}' ></i>
 		</a>
+		<a href="{getUrl('sort_index','voted_count','order_type',$order_type,'listStyle',$listStyle)}" rel="nofollow" class="on"|cond="$sort_index=='voted_count'">
+			{$lang->voted_count} <i cond="$sort_index=='voted_count'" class='bx bxs-chevron-{$order_icon}' ></i>
+		</a>
+		<a href="{getUrl('sort_index','blamed_count','order_type',$order_type,'listStyle',$listStyle)}" rel="nofollow" class="on"|cond="$sort_index=='blamed_count'">
+			{$lang->blamed_count} <i cond="$sort_index=='blamed_count'" class='bx bxs-chevron-{$order_icon}' ></i>
+		</a>
 		<!--@if(!Mobile::isMobileCheckByAgent())-->
 		<a cond="$mi->default_style=='gallery' || $mi->default_style=='galleryai'" class="viewOne"><i class='bx bxs-grid-alt' ></i></a>
 		<a cond="$mi->default_style=='gallery' || $mi->default_style=='galleryai'" class="viewTwo"><i class='bx bxs-dashboard'></i></a>
@@ -52,12 +58,45 @@
 </div>
  <script>
 	$(document).ready(function() { $('select.niceselect').niceSelect(); });	
-	$(window).scroll(function () {
-		Yposition = $(this).scrollTop();
-		if (Yposition >= 100) {
-			$(".searchBox").addClass("scrollchange");
-		}else {
-			$(".searchBox").removeClass("scrollchange");
-		}
+ </script>
+ 
+ <!--@if($layout_info->layout =='Oday_horizon')-->
+ <script>
+	$(function(){
+		if($('.od-bord').find('.stickyTopBox').length){
+			const el = document.querySelector(".stickyTopBox");
+			const observer = new IntersectionObserver( 
+				([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
+				{ rootMargin: "-51px 0px 0px 0px", threshold: [1] }
+			);
+			observer.observe(el);
+		};
 	});
 </script>
+<!--@elseif($layout_info->layout =='Oday_blog')-->
+ <script>
+	$(function(){
+		if($('.od-bord').find('.stickyTopBox').length){
+			const el = document.querySelector(".stickyTopBox");
+			const observer = new IntersectionObserver( 
+				([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
+				{ rootMargin: "-1px 0px 0px 0px", threshold: [1] }
+			);
+			observer.observe(el);
+		};
+	});
+</script>
+<!--@else-->
+ <script>
+	$(function(){
+		if($('.od-bord').find('.stickyTopBox').length){
+			const el = document.querySelector(".stickyTopBox");
+			const observer = new IntersectionObserver( 
+				([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
+				{ rootMargin: "-1px 0px 0px 0px", threshold: [1] }
+			);
+			observer.observe(el);
+		};
+	});
+</script>
+<!--@end-->

@@ -27,7 +27,11 @@
 	</div>		
 	<div class="voteGraph<!--@if($oDocument->get('voted_count') || $oDocument->get('blamed_count'))--> activeVs<!--@end-->">
 		<div class="perbar" style="width: <!--@if($oDocument->get('voted_count') || $oDocument->get('blamed_count'))-->{$totalVotePer}<!--@else-->0<!--@end-->%;">
-			<i class='bx bxs-heart bx-tada' cond="$oDocument->get('voted_count') || $oDocument->get('blamed_count')"></i>
+		<!--@if($oDocument->get('voted_count') || $oDocument->get('blamed_count'))-->
+			<i class='bx bxs-heart bx-tada' cond="$totalVotePer > 50"></i>
+			<i class='bx bxs-hot bx-tada' cond="$totalVotePer == 50"></i>
+			<i class='bx bxs-skull bx-tada'  cond="$totalVotePer < 50"></i>
+		<!--@end-->
 		</div>
 	</div>
 	<div class="voteA voteB">
@@ -72,14 +76,15 @@
 .voteA span { font-size:.9em;}
 .voteA i { font-size:1.4em;}
 .voteA > * + * { margin-left:5px;}
-.voteA.voteV {color:var(--oday_mainColor); padding-right:10px;}
+.voteA.voteV {color:var(--oday_mainColor); padding-right:20px;}
 .voteA.voteV a {color:var(--oday_mainColor); }
-.voteA.voteB {color:var(--oday_mainColorLight); padding-left:10px;}
+.voteA.voteB {color:var(--oday_mainColorLight); padding-left:20px;}
 .voteA.voteB a {color:var(--oday_mainColorLight);}
-.voteVs .voteGraph { background-color: color-mix(in srgb, var(--oday_mainColor), transparent 80%); border:4px solid var(--oday_listBgColor); width:100%; height:10px; border-radius:3px; display: flex; align-items: center;}
+.voteVs .voteGraph {  background-color: color-mix(in srgb, var(--oday_mainColor), transparent 80%);/* border:4px solid var(--oday_listBgColor);*/  width:100%; height:2px; border-radius:3px; display: flex; align-items: center;}
 .voteVs .voteGraph .perbar { height:2px; background-color:var(--oday_mainColor); border-radius:10px 0 0 10px;  display: flex; align-items: center; justify-content: flex-end;}
-.voteVs .voteGraph .perbar > * { color:var(--oday_mainColor); font-size:1.4em; margin-right: -9px; }
-
+.voteVs .voteGraph .perbar > * { color:var(--oday_mainColor); font-size:1.8em; margin-right: -15px; margin-top: -6px; }
+.voteVs .voteGraph .perbar > .bxs-skull { color:var(--oday_mainColorLight);}
+.voteVs .voteGraph .perbar > .bxs-hot { color:var(--oday_fontHoverColor);}
 .voteVsTitle { text-align:center; font-size:11px; font-weight:500; padding: var(--oday_sideGapLR); padding-bottom:5px; }
 .voteVsTitle i { font-size:1.4em}
 
@@ -87,7 +92,7 @@
 .voteVsList a { margin-bottom:2px}
 .voteVsList a + a { margin-left:2px;}
 .voteVsList a .profile { width: var(--oday_metaIconSize); height: var(--oday_metaIconSize);  display:flex; align-items: center; justify-content: center; border-radius:100%;
-border: var(--oday_listBorder); background-color: var(--oday_listBgColorStress1); font-size:calc(var(--oday_metaIconSize) * .5); color:var(--oday_fontColor);}
+border: var(--oday_listBorder); background-color: var(--oday_listBgColorUp1); font-size:calc(var(--oday_metaIconSize) * .5); color:var(--oday_fontColor);}
 .voteVsList a .profile i { opacity:.7}
 </style>
 <script>

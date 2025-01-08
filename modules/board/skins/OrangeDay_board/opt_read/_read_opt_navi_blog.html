@@ -12,7 +12,7 @@ $cu_categoy = $oDocument->get('category_srl');
 		class="<!--@if($document_srl==$document->document_srl)--> active<!--@end-->" 
 		title="{strip_tags($document->getTitle())}">
 			<!--@if($document_srl==$document->document_srl)-->
-			<i class='bx bxs-badge-check'></i>
+				<i class='bx bx-check'></i>
 			<!--@end-->
 			
 			<!--@if($document->isSecret())-->
@@ -35,14 +35,14 @@ $cu_categoy = $oDocument->get('category_srl');
 .blog_b_list:after { content:""; position:absolute; width:100%; height:10px; top:0; left:0; background: linear-gradient(rgba(0, 0, 0, .05), transparent);}
 .blog_b_list div.c_title { font-size:1em; font-weight:500; padding-bottom:10px; flex-shrink: 0;  width:100% }
 .blog_b_list div.list {display:flex; flex-wrap: wrap; border-top: var(--oday_listBorder);  border-left: var(--oday_listBorder); /*max-height:300px; overflow:auto; */}
-.blog_b_list a { display: flex; align-items: center; width:calc(100% / 3);  border-bottom: var(--oday_listBorder);  border-right: var(--oday_listBorder);  height:40px; padding:0 10px; background-color: var(--oday_listBgColorStress); font-size:.9em}
-.blog_b_list a.active {  background-color: var(--oday_listBgColorStress1);  }
+.blog_b_list a { display: flex; align-items: center; width:calc(100% / 3);  border-bottom: var(--oday_listBorder);  border-right: var(--oday_listBorder);  height:40px; padding:0 10px; background-color: var(--oday_listBgColorUp); font-size:.9em}
+.blog_b_list a.active {  background-color: var(--oday_listBgColorUp2);  font-weight:500;}
 .blog_b_list a .title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .blog_b_list a .number  {  font-size:.8em; white-space: nowrap; opacity:.5} 
-.blog_b_list a .read, .blog_b_list a .count { font-size:8px; white-space: nowrap; margin:0 5px}
-.blog_b_list a .read i, .blog_b_list a .count i { font-size:1.4em;}
-.blog_b_list a .od_date  { margin-left: auto; font-size:.8em; white-space: nowrap;}
-.blog_b_list a i.bxs-badge-check { color:#00a4ff; font-size:1.2em;}
+.blog_b_list a .read, .blog_b_list a .count { font-size:.9em; white-space: nowrap; margin:0 5px; font-weight:500;}
+.blog_b_list a .read i, .blog_b_list a .count i { font-size:1.2em;}
+.blog_b_list a .od_date  { margin-left: auto; font-size:.9em; white-space: nowrap;}
+.blog_b_list a i.bx-check  { color:var(--oday_fontHoverColor); font-size:1.3em;}
 @media screen and (max-width: 1200px){
 	.blog_b_list a { width:50%}
 }

@@ -273,7 +273,7 @@ $(function(){
 	</style>
 <!--@end-->
 
-<div cond="$grant->manager && $_SERVER['HTTP_SEC_FETCH_DEST']=='document'" class="bd_num vp" style="z-index:3; position: fixed; top:0; font-weight:700; font-size:1em; clip-path: polygon(50% 0, 100% 0, 100% 80%, 50% 100%, 0 80%, 0 0); background-color: var(--oday_mainColor); color:var(--oday_primaryBtnColor); padding:5px 10px 10px 10px; cursor:pointer;" onclick="copyToClipboard('{$mi->module_srl}')">{$mi->module_srl}
+<div cond="$grant->manager && $_SERVER['HTTP_SEC_FETCH_DEST']=='document'" class="bd_num vp" style="cursor:pointer" onclick="copyToClipboard('{$mi->module_srl}')">{$mi->module_srl}
 	<script>
 		function copyToClipboard(text) {
 			navigator.clipboard.writeText(text).then(function() {
