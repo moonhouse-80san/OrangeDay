@@ -11,20 +11,20 @@
 		$last_version = 0;
 	endif;
     
-	$current_version = "1.1.0";
+	$current_version = "2.2.0";
 	$c_ver = preg_replace('/\./', '', $current_version);
 	$l_ver = preg_replace('/\./', '', $last_version);
 	if ( $c_ver < $l_ver ) $updt = "Y";
 }
 
 		<div class="last_version">
-			 OrangeDay 버전 정보&nbsp;&nbsp;
+			 테스트&nbsp;&nbsp;
 			<span><i class='bx bxs-bell'></i> {$current_version} <i class='bx bxs-right-arrow' ></i> {$last_version}</span>
 			<a href="https://github.com/OrangeDayCom/rhymix-layout" target="_blank">Github</a>
 			&nbsp;&nbsp;|&nbsp;&nbsp;
 			<a href="https://xetown.com/download/1817419" target="_blank">xetown</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class="closeupt"  title="기본-table"><i class='bx bx-x'></i>7 Day</a>
+			<a class="closeupt"  title="기본-table"><i class='bx bx-x'></i>10Day</a>
 		</div>
 		<style>
 		.last_version { position:fixed; right:10px; top:10px; font-size:1em; z-index:99999; border:var(--oday_listBorder); background-color:var(--oday_mainColor); color:var(--oday_primaryBtnColor) !important; padding:10px 10px 10px 20px; border-radius:6px; text-align:center; display: flex; align-items: center;}
@@ -38,7 +38,7 @@
 		<script>
 		$(".closeupt").click(function(){
 			$('.last_version').hide();
-			setCookie( "setUdt", "done" , 7 );
+			setCookie( "setUdt", "done" , 10 );
 		});
 		var $getUdt = XE.cookie.get('setUdt');
 		if( $getUdt == "done" ) {
