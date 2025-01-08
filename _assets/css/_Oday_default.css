@@ -54,7 +54,7 @@
 	--oday_readRadius: 15px;
 
 /* FONT *//* Nanum 1,3,4,5,7 */ /* Google 1,3,4,5,7,9 */
-	--oday_fontFamily:"Roboto","Noto Sans KR";
+	--oday_fontFamily:"NanumSquareNeo","Noto Sans KR";
 	--oday_fontSize:14px;
 	/*
 	--oday_fontColor:#333;
