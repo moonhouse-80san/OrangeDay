@@ -112,12 +112,10 @@ jQuery(function($){
 					<a href="{getUrl('document_srl',$oDocument->document_srl,'listStyle',$listStyle, '','')}">
 						{strip_tags($oDocument->getTitle())}
 					</a>
-					<!--@if($oDocument->get('voted_count') > 0)-->
-						<div class="color" style="float:right; margin-left:10px">
-							<i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i>
-							<span>{$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span>
-						</div>
-					<!--@end-->
+					<div style="float:right; margin-left:10px">
+						<a class="color" cond="$oDocument->getMyVote() === false || $oDocument->getMyVote() < 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" title="{$lang->cmd_vote}"><i class='bx bxs-heart'></i><span> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
+						<a class="color" cond="$oDocument->getMyVote() > 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUpCancel','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" title="{$lang->cmd_vote}"><i class='bx bxs-heart color'></i><span class="color"> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
+					</div>
 					<span cond="$oDocument->get('readed_count')>0" class="color" style="float:right"><i class='bx bxs-show' ></i> {number_format($oDocument->get('readed_count')>0?$oDocument->get('readed_count'):'0')}</span>
 				</div>
 				<div class="metabox">
