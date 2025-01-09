@@ -114,7 +114,7 @@ jQuery(function($){
 					</a>
 					<!--@if($oDocument->get('voted_count') > 0)-->
 						<div class="color" style="float:right; margin-left:10px">
-							<span class="material-symbols-sharp fill">favorite</span>
+							<i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i>
 							<span>{$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span>
 						</div>
 					<!--@end-->
@@ -201,8 +201,7 @@ jQuery(function($){
 										</ul>
 										<div class="action">
 											<div>
-												<a class="bd_login" href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" title="{$lang->cmd_vote}">
-												<span class="material-symbols-sharp fill<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->" <!--@if($comment->get('voted_count') > 0)-->style="color:orange"<!--@end-->>favorite</span> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+												<a class="bd_login" title="{$lang->cmd_vote}" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"><i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
 											</div>
 
 											<div class="actionpack">

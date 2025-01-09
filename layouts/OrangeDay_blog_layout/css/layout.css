@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 @font-face{
 	font-display: swap;
 	font-family: NanumSquareNeo;
@@ -36,7 +37,7 @@
 	font-weight:700;
 }
 
-body, h1, h2, h3, h4, h5, h6, textarea, button, select, a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var, li { font-family: 'NanumSquareNeo' sans-serif; }
+body, a, p, div, span, table, ul, li, img, header, textarea, form, footer, caption, section, button, select, html, i, nav, iframe, ol, strong, tbody, tfoot, thead, th, tr, abbr, object, acronym, address, applet, article, aside, audio, b, blockquote, big, center, canvas, cite, code, command, datalist, dd, del, details, dfn, dl, dt, em, embed, fieldset, figcaption, figure, font, hgroup, ins, kbd, keygen, label, legend, meter, output, pre, progress, q, s, samp, small, source, strike, sub, sup, tdvideo, tt, u, var { font-family:'Apple SD Gothic Neo', "NanumSquareNeo", "Noto Sans Korean", 맑은 고딕, Malgun Gothic, sans-serif; }
 
 :root {
 /* GNB > BOX */
@@ -197,6 +198,7 @@ header { display:none}
 #logo li.gnbtitle.korean span + span { margin-top:-2px; }
 #logo li.gnbtitle .dec { line-height:1; font-size:.85em; }
 /**/
+#ol_left .left_box {border-right:var(--oday_iptBorderLight)}
 #ol_left .lt_gnb::-webkit-scrollbar {width: 1px;}
 #ol_left .lt_gnb::-webkit-scrollbar-thumb {background: var(--oday_mainColorDark) !important; border:none;}
 
@@ -235,14 +237,18 @@ header { display:none}
 #ol_left .lt_gnb a.morelist { position:absolute; top:0; right:0; border:none; height:var(--oday_gnbHeight); width:var(--oday_gnbHeight); padding-left:0; justify-content: center; }
 #ol_left .lt_gnb a.orange,
 #ol_left .lt_gnb a.red,
+#ol_left .lt_gnb a.dark,
 #ol_left .lt_gnb a.blue { margin:2px; border-radius:6px; border:none !important; color:#fff;}
 #ol_left .lt_gnb a.orange + a,
+#ol_left .lt_gnb a.dark + a,
 #ol_left .lt_gnb a.red + a,
 #ol_left .lt_gnb a.blue + a {color:#fff;}
 #ol_left .lt_gnb a.orange { background-color:#e99e10; }
 #ol_left .lt_gnb a.orange:hover {background-color:#ffa700; color:#fff;}
 #ol_left .lt_gnb a.blue { background-color:#2187c5; }
 #ol_left .lt_gnb a.blue:hover { background-color:#009fff; color:#fff;}
+#ol_left .lt_gnb a.dark { background-color:#000;  }
+#ol_left .lt_gnb a.dark:hover { background-color:#444; color:#fff}
 #ol_left .lt_gnb a.red { background-color:#d71616;  }
 #ol_left .lt_gnb a.red:hover { background-color:#ff0000; color:#fff}
 #ol_left .lt_gnb a.big { height: calc(var(--oday_gnbHeight) * 1.2); font-size:calc(var(--oday_gnbFontSize) * 1.2); }

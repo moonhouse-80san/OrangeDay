@@ -37,7 +37,7 @@
 	font-weight:700;
 }
 
-body, h1, h2, h3, h4, h5, h6, textarea, button, select, a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var, li { font-family: 'NanumSquareNeo' sans-serif; }
+body, a, p, div, span, table, ul, li, img, header, textarea, form, footer, caption, section, button, select, html, i, nav, iframe, ol, strong, tbody, tfoot, thead, th, tr, abbr, object, acronym, address, applet, article, aside, audio, b, blockquote, big, center, canvas, cite, code, command, datalist, dd, del, details, dfn, dl, dt, em, embed, fieldset, figcaption, figure, font, hgroup, ins, kbd, keygen, label, legend, meter, output, pre, progress, q, s, samp, small, source, strike, sub, sup, tdvideo, tt, u, var { font-family:'Apple SD Gothic Neo', "NanumSquareNeo", "Noto Sans Korean", ¸¼Àº °íµñ, Malgun Gothic, sans-serif; }
 
 :root {
 /* GNB > BOX */
