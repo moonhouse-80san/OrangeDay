@@ -16,8 +16,15 @@
 	--oday_listBorderRadius:10px;
 	--oday_readRadius: 15px;
 
+/* FONT *//* Nanum 1,3,4,5,7 */ /* Google 1,3,4,5,7,9 */
 	--oday_fontFamily:"NanumSquareNeo","Noto Sans KR";
 	--oday_fontSize:14px;
+	/*
+	--oday_fontColor:#333;
+	--oday_fontLinkColor:#666;
+	--oday_fontDimColor:#999;
+
+	*/
 	--oday_alertColor:#ff3100;
 	--oday_secretColor:#b80ecb;
 

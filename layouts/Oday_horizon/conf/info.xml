@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout version="0.2">
-    <title xml:lang="ko">OrangeDay 호라이즌</title>
-    <description xml:lang="ko">상단에 메뉴가 위치한 커뮤니티용 레이아웃</description>
-    <version>2.0</version>
-    <date>2024</date>
-    <author email_address="yabssabi@gmail.com" link="https://www.orangeday.com">
-        <name xml:lang="ko">Yabi 夜飛</name>
-    </author>
-    <menus>
-        <menu name="GNB" maxdepth="2" default="true">
-            <title xml:lang="ko">전역 네비게이션 바</title>
-            <title xml:lang="en">Global Navigation Bar</title>
-        </menu>
-        <menu name="LNB" maxdepth="2" default="true">
-            <title xml:lang="ko">LNB</title>
-            <title xml:lang="en">LNB</title>
-        </menu>
-    </menus>
-	
+	<title xml:lang="ko">OrangeDay 호라이즌</title>
+	<description xml:lang="ko">상단에 메뉴가 위치한 커뮤니티용 레이아웃</description>
+	<version>2.0</version>
+	<date>2024</date>
+	<author email_address="yabssabi@gmail.com" link="https://www.orangeday.com">
+		<name xml:lang="ko">Yabi 夜飛</name>
+	</author>
+	<menus>
+		<menu name="GNB" maxdepth="2" default="true">
+			<title xml:lang="ko">전역 네비게이션 바</title>
+			<title xml:lang="en">Global Navigation Bar</title>
+		</menu>
+		<menu name="LNB" maxdepth="2" default="true">
+			<title xml:lang="ko">LNB</title>
+			<title xml:lang="en">LNB</title>
+		</menu>
+	</menus>
 	<extra_vars>
-	
+
 		<group>
 			<title xml:lang="ko">기본</title>
-
-
 			<var name="site_title" type="text">
 				<title xml:lang="ko">사이트 명</title>
 				<description xml:lang="ko">사이트 명</description>
-			</var>			
+			</var>
 			<var name="logo_img" type="image">
 				<title xml:lang="ko">사이트 로고</title>
 				<description xml:lang="ko">사이트명으로 사용될 이미지 (배경이 없는 png, svg 사용 추천) </description>
@@ -41,7 +38,7 @@
 				<options value="yes">
 					<title xml:lang="ko">사이트 로고 사용</title>
 				</options>
-			</var>	
+			</var>
 			<var name="site_info1" type="textarea">
 				<title xml:lang="ko">사이트 설명1</title>
 				<description xml:lang="ko">하단 위치. 태그 사용. (주소, 대표자 명, 소개, 전화번호 등 기타)</description>
@@ -62,9 +59,37 @@
 				<title xml:lang="ko">카피라이트 주체</title>
 				<description xml:lang="ko">위치 : (C) 'OOO' all rights reserved.</description>
 			</var>
-
-	
+			<var name="font_selects" type="radio">
+				<title>★ 폰트 선택</title>
+				<description>Web Fonts 애드온에서 해당 폰트 선택 https://moonhouse.co.kr/xemy/395931</description>
+				<options value="ns">
+					<title>Noto Sans Korean</title>
+				</options>
+				<options value="g">
+					<title>Nanum Gothic</title>
+				</options>
+				<options value="n">
+					<title>NanumSquareNeo</title>
+				</options>
+				<options value="gb">
+					<title>NanumBarun Gothic</title>
+				</options>
+				<options value="no">
+					<title>Normal</title>
+				</options>
+			</var>
+			<var name="font_user" type="radio">
+				<title>폰트 사용형태</title>
+				<description>폰트 적용 방법</description>
+				<options value="">
+					<title>레이아웃에서 직접 사용(기본)</title>
+				</options>
+				<options value="N">
+					<title>외부(에드온 이나 레이아웃등)에서 사용중</title>
+				</options>
+			</var>
 		</group>
+
 		<group>
 			<title xml:lang="ko">홈 - 상단</title>
 			<var name="use_main_banner" type="radio">
@@ -75,15 +100,15 @@
 				</options>
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
-				</options>	
-			</var>			
+				</options>
+			</var>
 			<var name="use_main_banner_con" type="textarea">
 				<title xml:lang="ko">메인 상단 - 내용</title>
 				<description xml:lang="ko">위젯코드, HTML코드 등 을 사용 할 수 있습니다.
 				(미 입력시 폴더내 _page_top.html 파일을 불러 옵니다. )</description>
 			</var>
-			
 		</group>
+
 		<group>
 			<title xml:lang="ko">홈 - 메인</title>
 			<var name="widget_bg" type="radio">
@@ -94,8 +119,8 @@
 				</options>
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
-				</options>	
-			</var>			
+				</options>
+			</var>
 			<var name="layout_align" type="radio">
 				<title xml:lang="ko">메인 보기 설정</title>
 				<description xml:lang="ko">메인 폭 100% 또는 고정값 사용 여부</description>
@@ -104,19 +129,16 @@
 				</options>
 				<options value="num">
 					<title xml:lang="ko">입력된 값으로</title>
-				</options>	
+				</options>
 			</var>
-			
 			<var name="site_width" type="text">
 				<title xml:lang="ko">메인 크기</title>
 				<description xml:lang="ko">메인 넓이, 숫자만 입력, 최소 1000 이상 추천 (px)</description>
 			</var>
-		
 			<var name="site_wing_width" type="text">
 				<title xml:lang="ko">사이드 크기</title>
 				<description xml:lang="ko">사이드크기 숫자만 입력(px), 양쪽 동일</description>
 			</var>
-
 			<var name="site_column_c1" type="radio">
 				<title xml:lang="ko">사이드 왼쪽</title>
 				<description xml:lang="ko">왼쪽 사이드 사용 여부</description>
@@ -125,7 +147,7 @@
 				</options>
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
-				</options>	
+				</options>
 			</var>
 			<var name="site_column_c3" type="radio">
 				<title xml:lang="ko">사이드 오른쪽</title>
@@ -135,8 +157,8 @@
 				</options>
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
-				</options>	
-			</var>			
+				</options>
+			</var>
 			<var name="site_column_c1_con" type="textarea">
 				<title xml:lang="ko">사이드 왼쪽 - 내용</title>
 				<description xml:lang="ko">왼쪽 사이드 내용 입력 (HTML, 위젯코드 사용 가능) (미 입력시 폴더내 _page_left.html 파일을 불러 옵니다. )  (🚨 '_page_left.html' 기본 설정은 '메인 - 위젯 설정' 탭)</description>
@@ -150,19 +172,17 @@
 				<description xml:lang="ko">오른쪽 사이드 내용 입력 (HTML, 위젯코드 사용 가능) (미 입력시 폴더내 _page_right.html 파일을 불러 옵니다. )  (🚨 '_page_right.html' 기본 설정은 '메인 - 위젯 설정' 탭)</description>
 			</var>
 		</group>
-		
+
 		<group>
 			<title xml:lang="ko">홈 메인 - 위젯 설정</title>
-	
 			<var name="site_banner" type="text">
 				<title xml:lang="ko">📕 상단 슬라이드 배너</title>
 				<description xml:lang="ko">관리자만 볼 수 있는 전용 게시판 생성 후 srl 입력, 사용법 참고. </description>
 			</var>
-			
 			<var name="site_banner_num" type="text">
 				<title xml:lang="ko">슬라이드 배너 목록 수</title>
 				<description xml:lang="ko">기본 3개</description>
-			</var>	
+			</var>
 			<var name="site_new_con" type="text">
 				<title xml:lang="ko">📕 최신 글</title>
 				<description xml:lang="ko">게시판 srl 넘버입력,  ","로 여러개 입력 가능, 빈칸은 모든 게시판 적용, 🚨 최신글, 최신댓글, 최다조회, 최다추천, 랜덤에 모두 적용</description>
@@ -174,19 +194,19 @@
 			<var name="site_new_con_icon" type="text">
 				<title xml:lang="ko">최신 글 아이콘</title>
 				<description xml:lang="ko">아이콘 폰트 사용 추천 (추천 사이트 https://boxicons.com/)</description>
-			</var>				
+			</var>
 			<var name="site_new_con_num" type="text">
 				<title xml:lang="ko">목록 수 1</title>
 				<description xml:lang="ko">최신 글 목로수, 기본 20개</description>
-			</var>			
+			</var>
 			<var name="site_notice_num" type="text">
 				<title xml:lang="ko">목록 수 2</title>
 				<description xml:lang="ko">기본 3개, 🚨 공지사항, 최다조회, 최다추천, 랜덤 공통 적용 </description>
-			</var>			
+			</var>
 			<var name="site_new_com_num" type="text">
 				<title xml:lang="ko">최신 댓글 목록 수</title>
 				<description xml:lang="ko">기본 20개</description>
-			</var>			
+			</var>
 			<var name="site_notice" type="text">
 				<title xml:lang="ko">📕 공지사항</title>
 				<description xml:lang="ko">공지 게시판 생성 후 srl 입력. </description>
@@ -206,7 +226,7 @@
 			<var name="site_new_gall_icon" type="text">
 				<title xml:lang="ko">갤러리 아이콘</title>
 				<description xml:lang="ko">아이콘 폰트 사용 추천  (추천 사이트 https://boxicons.com/)</description>
-			</var>			
+			</var>
 			<var name="site_new_gall_num" type="text">
 				<title xml:lang="ko">갤러리 목록 수</title>
 				<description xml:lang="ko">기본 10개 </description>
@@ -227,10 +247,8 @@
 				<title xml:lang="ko">스페셜 배너 목록 수</title>
 				<description xml:lang="ko">기본 10개 </description>
 			</var>
-
-			
 		</group>
-		
+
 		<group>
 			<title xml:lang="ko">서브 페이지(서브 메뉴)</title>
 			<var name="use_sub_page" type="radio">
@@ -241,7 +259,7 @@
 				</options>
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
-				</options>	
+				</options>
 			</var>
 			<var name="use_snb" type="radio">
 				<title xml:lang="ko">서브 메뉴 사용</title>
@@ -251,7 +269,7 @@
 				</options>
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
-				</options>	
+				</options>
 			</var>
 			<var name="use_snb_force" type="radio">
 				<title xml:lang="ko">서브 메뉴 강제 사용</title>
@@ -261,7 +279,7 @@
 				</options>
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
-				</options>	
+				</options>
 			</var>
 			<var name="use_snb_location" type="radio">
 				<title xml:lang="ko">서브 메뉴 위치</title>
@@ -271,10 +289,10 @@
 				</options>
 				<options value="right">
 					<title xml:lang="ko">오른쪽</title>
-				</options>	
-			</var>		
+				</options>
+			</var>
 		</group>
-		
+
 		<group>
 			<title xml:lang="ko">테마</title>
 			<var name="use_darkMode" type="radio">
@@ -296,7 +314,6 @@
 					<title xml:lang="ko">라이트</title>
 				</options>
 			</var>
-			
 			<var name="use_colorTheme" type="radio">
 				<title xml:lang="ko">📕 컬러테마 사용자 제어</title>
 				<options value="yes">
@@ -342,7 +359,7 @@
 				</options>
 			</var>
 		</group>
-		
+
 		<group>
 			<title xml:lang="ko">기타</title>
 			<var name="use_member" type="radio">
@@ -354,7 +371,7 @@
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
 				</options>
-			</var>			
+			</var>
 			<var name="view_bottom_gnb" type="radio">
 				<title xml:lang="ko">하단 GNB 사용</title>
 				<description xml:lang="ko">하단에 위치한 사이트맵 형식의 메인메뉴 보이기 설정</description>
@@ -364,7 +381,7 @@
 				<options value="no">
 					<title xml:lang="ko">비사용</title>
 				</options>
-			</var>				
+			</var>
 			<var name="site_badge" type="radio">
 				<title xml:lang="ko">오렌지데이 뱃지</title>
 				<description xml:lang="ko">사이트 하단의 오렌지데이 바로 가기 배너</description>
@@ -384,7 +401,7 @@
 					<title xml:lang="ko">사용안함</title>
 				</options>
 				<description xml:lang="ko">방문자 카운트 사용 여부 설정</description>
-			</var>	
+			</var>
 			<var name="googleSearch" type="text">
 				<title xml:lang="ko">구글 검색</title>
 				<description xml:lang="ko">검색엔진 ID 값 입력  (입력 값 없으면 적용 안됨)</description>
@@ -414,7 +431,8 @@
 			<var name="use_kakao_layout" type="text">
 				<title xml:lang="ko">카카오톡 추가</title>
 				<description xml:lang="ko">카카오 앱키(JavaScript) 값을 입력.  (입력 값 없으면 적용 안됨, 추가로 오렌지데이 게시판사용 시 각각의 게시판에 카카오톡 앱키를 입력하지 않아도 전체에 적용, 게시판에서 설정한 값보다 우선 적용 됨)</description>
-			</var>			
+			</var>
 		</group>
+
 	</extra_vars>
 </layout>
