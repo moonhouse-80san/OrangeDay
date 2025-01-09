@@ -85,14 +85,14 @@
 			<var name="font_selects" type="radio">
 				<title>★ 폰트 선택</title>
 				<description>Web Fonts 애드온에서 해당 폰트 선택 https://moonhouse.co.kr/xemy/395931</description>
+				<options value="n">
+					<title>NanumSquareNeo</title>
+				</options>
 				<options value="ns">
 					<title>Noto Sans Korean</title>
 				</options>
 				<options value="g">
 					<title>Nanum Gothic</title>
-				</options>
-				<options value="n">
-					<title>NanumSquareNeo</title>
 				</options>
 				<options value="gb">
 					<title>NanumBarun Gothic</title>
@@ -105,7 +105,7 @@
 				<title>폰트 사용형태</title>
 				<description>폰트 적용 방법</description>
 				<options value="">
-					<title>레이아웃에서 직접 사용(기본)</title>
+					<title>레이아웃에서 직접 사용(기본 NanumSquareNeo)</title>
 				</options>
 				<options value="N">
 					<title>외부(에드온 이나 레이아웃등)에서 사용중</title>
