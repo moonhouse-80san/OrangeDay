@@ -190,15 +190,9 @@
 									</form>
 									<!--@else-->
 									{$comment->getContent(false)|noescape}
+									<include target="opt_read/_read_opt_com_download.html" cond="$mi->read_download == 'use'" />
 
 									<block cond="!$listCheck">
-										<ul cond="$comment->hasUploadedFiles()" class="fileList">
-											<li loop="$comment->getUploadedFiles()=>$key,$file">
-												<a href="{getUrl('')}{$file->download_url}" rel="nofollow">{$file->source_filename}
-													<span class="fileSize">{FileHandler::filesize($file->file_size)} / <i class='bx bxs-downvote'></i> {number_format($file->download_count)}</span>
-												</a>
-											</li>
-										</ul>
 										<div class="action">
 											<div>
 												<a class="bd_login pr_tooltip" pr_color="dark" pr_position="top" title="이 댓글이 {$lang->cmd_vote}" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"><i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
@@ -345,7 +339,6 @@
 
 <include target="opt_list/_list__opt_pagenavi.html" />
 <include target="opt_list/_list__opt_btnbox.html" />
-
 <style>
 	#list_guest,
 	#list_guest .box + .box {margin-top:{$mi->gall_cell_gap}px;}

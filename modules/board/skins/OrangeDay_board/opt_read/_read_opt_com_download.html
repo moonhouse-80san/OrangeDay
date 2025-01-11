@@ -1,0 +1,26 @@
+<div cond="$comment->hasUploadedFiles()" class="fileList downlist">
+	<a class="down_onoff">Attached file <i class='bx bxs-plus-square'></i></a>
+	<div style="display:none;">
+		<ul cond="!$mi->files_type" loop="$comment->getUploadedFiles()=>$key,$file">
+			{@
+				$ext = substr($file->source_filename, -4);
+				$ext_img = in_array($ext,array('.jpg','jpeg','.gif','.svg','.png'));
+			}
+			<li><a href="{getUrl('')}{$file->download_url}" <!--@if(!$mi->files_img && $ext_img)-->class="tooltipimg" data-photo="{$file->uploaded_filename}"<!--@end-->>{$file->source_filename} <span class="fileSize">{FileHandler::filesize($file->file_size)} <i class='bx bxs-downvote'></i>{number_format($file->download_count)}</span></a></li>
+		</ul>
+
+		<ul cond="$mi->files_type" loop="$comment->getUploadedFiles()=>$key,$file">
+			{@
+				$ext = substr($file->source_filename, -4);
+				$ext = strtolower($ext);
+				$ext_img = in_array($ext,array('.jpg','jpeg','.gif','.svg','.png'));
+				$ext_video = in_array($ext,array('.mpg','mpeg','.avi','.wmv','.mp4','.mov','.mkv','.swf','.flv','.ogv','webm'));
+				$ext_audio = in_array($ext,array('.mp3','.ogg','.wma','.wav','.ape','flac','.mid'));
+			}
+			<li cond="$mi->files_img && $ext_img"><a href="{getUrl('')}{$file->download_url}" class="tooltipimg" data-photo="{$file->uploaded_filename}">{$file->source_filename} <span class="fileSize">{FileHandler::filesize($file->file_size)} <i class='bx bxs-downvote'></i>{number_format($file->download_count)}</span></a></li>
+			<li cond="!$mi->files_video && $ext_video"><a href="{getUrl('')}{$file->download_url}">{$file->source_filename} <span class="fileSize">{FileHandler::filesize($file->file_size)} <i class='bx bxs-downvote'></i>{number_format($file->download_count)}</span></a></li>
+			<li cond="!$mi->files_audio && $ext_audio"><a href="{getUrl('')}{$file->download_url}">{$file->source_filename} <span class="fileSize">{FileHandler::filesize($file->file_size)} <i class='bx bxs-downvote'></i>{number_format($file->download_count)}</span></a></li>
+			<li cond="!$mi->files_etc && (!$ext_img && !$ext_video && !$ext_audio)"><a href="{getUrl('')}{$file->download_url}">{$file->source_filename} <span class="fileSize">{FileHandler::filesize($file->file_size)} <i class='bx bxs-downvote'></i>{number_format($file->download_count)}</span></a></li>
+		</ul>
+	</div>
+</div>
