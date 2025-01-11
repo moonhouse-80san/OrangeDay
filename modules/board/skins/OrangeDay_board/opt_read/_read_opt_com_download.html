@@ -1,4 +1,4 @@
-<div cond="$comment->hasUploadedFiles()" class="fileList downlist">
+<div cond="$comment->hasUploadedFiles()" class="downlist_com">
 	<a class="down_onoff">Attached file <i class='bx bxs-plus-square'></i></a>
 	<div style="display:none;">
 		<ul cond="!$mi->files_type" loop="$comment->getUploadedFiles()=>$key,$file">

@@ -829,13 +829,20 @@ border-radius: 3px;
 .sign .stext h3 { margin-bottom:.5em; font-size: 1em; }
 .sign .stext > div { opacity:.6; font-size: .9em; }
 /* 첨부파일 */
-.downlist  { display: flex;align-items: flex-end; flex-direction: column; padding: var(--oday_sideGapLR); margin: 10px 0 5px 0; }
-.downlist > a { font-size:10px; margin-bottom:5px}
-.downlist > a i { font-size:1.4em}
-.downlist div { display: flex; align-items: center;flex-wrap: wrap; justify-content: flex-end;  }
-.downlist div  a { padding: 5px 10px;  font-size:.7em; border: var(--oday_listBorder); background-color: color-mix(in srgb, var(--oday_mainColor), transparent 95%); border-radius: 3px; display: flex; align-items: center;  margin:0 2px 5px 2px}
-.downlist div a span { opacity:.8; margin-left:.5em; }
-.downlist div a span i { font-size:.8em; margin: 0 2px; color: var(--oday_mainColorLight); }
+.downlist  { display: flex; align-items: flex-end; flex-direction: column; padding: var(--oday_sideGapLR); margin: 10px 0 5px 0; }
+.downlist_com  { display: flex; align-items: flex-end; flex-direction: column; padding:0; margin: 10px 0 0 0; }
+.downlist > a,
+.downlist_com > a { font-size:10px; margin-bottom:5px}
+.downlist > a i,
+.downlist_com > a i { font-size:1.4em}
+.downlist div, 
+.downlist_com div { display: flex; align-items: center;flex-wrap: wrap; justify-content: flex-end;  }
+.downlist div  a, 
+.downlist_com div  a { padding: 5px 10px;  font-size:.7em; border: var(--oday_listBorder); background-color: color-mix(in srgb, var(--oday_mainColor), transparent 95%); border-radius: 3px; display: flex; align-items: center;  margin:0 2px 5px 2px}
+.downlist div a span, 
+.downlist_com div a span { opacity:.8; margin-left:.5em; }
+.downlist div a span i, 
+.downlist_com div a span i { font-size:.8em; margin: 0 2px; color: var(--oday_mainColorLight); }
 /* 도큐먼트 메뉴 */
 .doDocument { padding: var(--oday_sideGapLR); padding-top:10px;display: flex; justify-content: flex-end;  }
 .doDocument a {padding: 0 10px; border: var(--oday_listBorder); font-size:.8em; border-radius: 3px; height:25px; width: fit-content; display: flex; align-items: center; justify-content: center; line-height: 1; box-sizing:border-box;}
