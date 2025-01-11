@@ -117,8 +117,8 @@
 				<options value="gallery">
 					<title xml:lang="ko">갤러리형</title>
 				</options>
-				<options value="firstthumbs">
-					<title xml:lang="ko">처음만 썸네일형</title>
+				<options value="webzine">
+					<title xml:lang="ko">웹진형</title>
 				</options>
 				<options value="webzinelist">
 					<title xml:lang="ko">웹진리스트형</title>
@@ -137,6 +137,9 @@
 				</options>
 				<options value="history">
 					<title xml:lang="ko">히스토리</title>
+				</options>
+				<options value="firstthumbs">
+					<title xml:lang="ko">처음만 썸네일형</title>
 				</options>
 				<!--options value="youtube">
 					<title xml:lang="ko">유투브</title>
