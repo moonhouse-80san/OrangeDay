@@ -3,9 +3,9 @@
 		<h2><i class="xi-comment"></i>&nbsp;{$lang->comment}&nbsp;<em>{$oDocument->getCommentcount()}</em></h2>
 		<!--@if($mi->comment_style == 'chat')-->
 			<ul class="com_chat_list">
-			
+
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
-					<li class="comlist 
+					<li class="comlist
 					indent<!--@if($comment->get('depth'))-->{($comment->get('depth'))}<!--@end-->
 					<!--@if($comment->getUserID())-->
 					<!--@if($comment->getUserID() === $oDocument->getUserID())--> onwer<!--@else--> no_onwer<!--@end-->
@@ -13,11 +13,11 @@
 						<div class="tree"></div>
 						<div class="profilewrap">
 							<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-							<span cond="!$comment->getProfileImage()"  class="profile"><i class='bx bxs-ghost'></i></span>
+							<span cond="!$comment->getProfileImage()" class="profile" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($comment->getNickName())}') no-repeat; width:50px; height:50px"></span>
 							<span class="comvote">
 								<a class="bd_login" title="{$lang->cmd_vote}"
-								onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" 
-								onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" 
+								onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged"
+								onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"
 								>
 									<i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i>
 									{$comment->get('voted_count')?$comment->get('voted_count'):0}
@@ -33,20 +33,20 @@
 								<span class="ip"  cond="$mi->read_meta_ip == 'use'">{$comment->getIpaddress()}</span>
 								<span class="date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span>
 								<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
-								<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>							
+								<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
 							</div>
 
 						</div>
 					</li>
 				<!--@end-->
-				
-				
+
+
 			</ul>
 		<!--@elseif($mi->comment_style == 'chat_tree')-->
 			<ul class="com_chat_tree_list">
-			
+
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
-					<li class="comlist 
+					<li class="comlist
 					indent<!--@if($comment->get('depth'))-->{($comment->get('depth'))}<!--@end-->
 					<!--@if($comment->getUserID())-->
 					<!--@if($comment->getUserID() === $oDocument->getUserID())--> onwer<!--@else--> no_onwer<!--@end-->
@@ -56,11 +56,11 @@
 							<div class="tree"></div>
 							<div class="profilewrap">
 								<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-								<span cond="!$comment->getProfileImage()"  class="profile"><i class='bx bxs-ghost'></i></span>
+								<span cond="!$comment->getProfileImage()" class="profile" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($comment->getNickName())}') no-repeat; width:50px; height:50px"></span>
 								<span class="comvote">
 									<a class="bd_login" title="{$lang->cmd_vote}"
-									onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" 
-									onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" 
+									onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged"
+									onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"
 									>
 										<i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i>
 										{$comment->get('voted_count')?$comment->get('voted_count'):0}
@@ -75,28 +75,28 @@
 									<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl} name" onclick="return false">{$comment->getNickName()}</a>
 									<span class="ip"  cond="$mi->read_meta_ip == 'use'">{$comment->getIpaddress()}</span>
 									<span class="date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span>
-									
+
 									<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
 									<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
 
 									<!--@if($mi->comment_count >= $comment->get('depth'))-->
-									<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" 
+									<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}"
 									onclick="<!--@if(!$grant->write_comment || !$oDocument->isEnableComment())-->alert('{$lang->msg_not_permitted}')<!--@else-->
 									reComment({$comment->get('document_srl')},{$comment->get('comment_srl')},
 									'{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}')
 									<!--@end-->;return false;"><i class='bx bx-subdirectory-right' ></i> 댓글</a>
 									<!--@end-->
-	 
+
 
 								</div>
 							</div>
 						</div>
 					</li>
 				<!--@end-->
-				
+
 			</ul>
 			<script>
-				jQuery(document).ready(function($) {			
+				jQuery(document).ready(function($) {
 					$('li.indent').prev('li.comlist').css({
 						'border-bottom-left-radius' : '10px',
 						'border-bottom-right-radius' : '10px',
@@ -121,11 +121,11 @@
 					$('.indent, .indent1, .indent2, .indent3, .indent4').prev('.indent5').find('.tree').css({
 						'display' : 'none'
 					});
-				});			
-			</script>		
+				});
+			</script>
 		<!--@else-->
 			<ul class="comList">
-				
+
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
 					<li id="comment_{$comment->comment_srl}"  class="fbItem nodepth"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')"
 					<!--@if(Mobile::isMobileCheckByAgent())-->
@@ -137,7 +137,7 @@
 						<ul class="comListSub">
 							<li class="meta<!--@if($comment->get('depth'))--> depth<!--@end-->">
 								<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-								<span cond="!$comment->getProfileImage()" class="profile"><i class='bx bxs-ghost'></i></span>
+								<span cond="!$comment->getProfileImage()" class="profile" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($comment->getNickName())}') no-repeat; width:50px; height:50px"></span>
 							</li>
 							<li class="comCon">
 								<div class="authorwrap">
@@ -145,7 +145,7 @@
 									<span cond="!$comment->member_srl && !$comment->homepage" class="author">{$comment->getNickName()}</span>
 									<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl} author" onclick="return false">{$comment->getNickName()}</a>
 									<span class="od_ip"  cond="$mi->read_meta_ip == 'use'">({$comment->getIpaddress()})</span>
-									<span class="od_date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span> 
+									<span class="od_date">{getTimeGap($comment->get('regdate'), "Y.m.d a h:i")}</span>
 									<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
 								</div>
 								<!--@if(!$comment->isAccessible())-->
@@ -165,7 +165,7 @@
 								<div cond="$comment->hasUploadedFiles()" class="fileList downlist">
 									<a class="down_onoff">Attached file <i class='bx bxs-plus-square'></i></a>
 									<div style="display:none;">
-										<a loop="$comment->getUploadedFiles()=>$key,$file" href="{getUrl('')}{$file->download_url}" rel="nofollow"  class="tooltipimg"  data-photo="{$file->uploaded_filename}">{$file->source_filename} 
+										<a loop="$comment->getUploadedFiles()=>$key,$file" href="{getUrl('')}{$file->download_url}" rel="nofollow"  class="tooltipimg"  data-photo="{$file->uploaded_filename}">{$file->source_filename}
 											<span class="fileSize">{FileHandler::filesize($file->file_size)} / <i class='bx bxs-downvote'></i> {number_format($file->download_count)}</span>
 										</a>
 									</div>
@@ -174,14 +174,14 @@
 								<div class="action">
 										<div>
 											<a class="bd_login" title="{$lang->cmd_vote}"
-											onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" 
-											onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" 
+											onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged"
+											onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"
 											>
 											<i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
-										</div>									
+										</div>
 										<div class="actionpack">
 											<!--@if($mi->comment_count >= $comment->get('depth'))-->
-											<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" 
+											<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}"
 											onclick="<!--@if(!$grant->write_comment || !$oDocument->isEnableComment())-->alert('{$lang->msg_not_permitted}')<!--@else-->
 											reComment({$comment->get('document_srl')},{$comment->get('comment_srl')},
 											'{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}')
@@ -199,19 +199,19 @@
 				<!--@end-->
 			</ul>
 			<script>
-				jQuery(document).ready(function($) {			
+				jQuery(document).ready(function($) {
 					$('li.nodepth').prev('li.indent').css({
 						'border-bottom-left-radius' : '10px',
 						'border-bottom-right-radius' : '10px',
 						'border-bottom':'var(--oday_listBorderUp)'
 					});
-				});			
-			</script>			
+				});
+			</script>
 		<!--@end-->
 		<div cond="$oDocument->comment_page_navigation" class="pagination">
-			<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',1)}#comment" class="direction prev"><span></span><span></span><i class='bx bxs-chevron-left' ></i></a> 
+			<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',1)}#comment" class="direction prev"><span></span><span></span><i class='bx bxs-chevron-left' ></i></a>
 			<block loop="$page_no=$oDocument->comment_page_navigation->getNextPage()">
-				<strong cond="$cpage==$page_no">{$page_no}</strong> 
+				<strong cond="$cpage==$page_no">{$page_no}</strong>
 				<a cond="$cpage!=$page_no" href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$page_no)}#comment">{$page_no}</a>
 			</block>
 			<a href="{getUrl('document_srl',$oDocument->document_srl,'cpage',$oDocument->comment_page_navigation->last_page)}#comment" class="direction next"><i class='bx bxs-chevron-right'></i><span></span><span></span></a>
@@ -223,22 +223,22 @@
 
 <script>
   function adjustScrollPosition() {
-    const target = document.querySelector(location.hash); // 현재 URL의 해시값 가져오기
-    const offset = 100; // 조정할 위치 값
-    if (target) {
-      const elementPosition = target.offsetTop - offset;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth',
-      });
-    }
+	const target = document.querySelector(location.hash); // 현재 URL의 해시값 가져오기
+	const offset = 100; // 조정할 위치 값
+	if (target) {
+	  const elementPosition = target.offsetTop - offset;
+	  window.scrollTo({
+		top: elementPosition,
+		behavior: 'smooth',
+	  });
+	}
   }
 
   // 페이지 로드 시 해시 처리
   window.addEventListener('DOMContentLoaded', function () {
-    if (location.hash) {
-      setTimeout(adjustScrollPosition, 100); // 약간의 지연 추가
-    }
+	if (location.hash) {
+	  setTimeout(adjustScrollPosition, 100); // 약간의 지연 추가
+	}
   });
 
   // 해시 변경 시 처리
