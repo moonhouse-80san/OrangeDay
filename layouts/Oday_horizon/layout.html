@@ -325,7 +325,7 @@ jQuery(function($){
 				<ul class="depth0">
 					<li loop="$GNB->list => $key1, $val1" class="depth1">
 
-						<a href="{$val1['href']}" class="depth1<!--@if($val1['class'])--> {$val1['class']}<!--@end--><!--@if($val1['selected'])--> active1<!--@end-->" target="_blank"|cond="$val1['open_window'] == 'Y'">
+						<a href="{$val1['href']}" class="depth1<!--@if($val1['selected'])--> active1<!--@end-->" target="_blank"|cond="$val1['open_window'] == 'Y'">
 							<span cond="$val1['icon']" style="display:block; text-align:center; line-height:15px">
 								{@$val_icon1 = strpos($val1['icon'], '-')}
 								{@$val_icon2 = strpos($val1['icon'], '.')}
