@@ -8,7 +8,6 @@
 	if(!$oi->layout_align) $oi->layout_align = 'full';
 	if(!$oi->site_width) $oi->site_width = '1200';
 	if(!$oi->gnb_width) $oi->gnb_width = '180';
-	if(!$oi->site_wwidth) $oi->site_wwidth = '';
 	$layout_apply_width = $oi->site_width - $oi->gnb_width;
 	if(!$oi->site_sign_meta) $oi->site_sign_meta = 'yes';
 	if(!$oi->site_badge) $oi->site_badge = 'yes';
@@ -464,7 +463,7 @@
 					<!--@elseif($module_info->module=='page')-->
 						<div class="templatepage vpage">{$content}</div>
 					<!--@else-->
-						<div class="templatepage" style="width:{$oi->site_wwidth}px; margin:0 auto">{$content}</div>
+						<div class="templatepage">{$content}</div>
 					<!--@end-->
 				<!--@end-->
 			<!--@end-->

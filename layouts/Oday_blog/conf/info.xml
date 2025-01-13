@@ -171,10 +171,6 @@
 				<title xml:lang="ko">화면 사이즈</title>
 				<description xml:lang="ko">왼쪽 GNB 영역을 포함한 사이즈입니다. 메인 정렬 값이 왼쪽 정렬일때 적용됩니다. 왼쪽, 센터 정렬시 게시판에서 설정한 사이즈 값은 무시됩니다.</description>
 			</var>
-			<var name="site_wwidth" type="text">
-				<title xml:lang="ko">꽉찬화면 본문사이즈</title>
-				<description xml:lang="ko">왼쪽 GNB 영역을 포함한 사이즈입니다. 메인 정렬 값이 꽉찬화면일때 적용됩니다.(빈 값시 전체화면)</description>
-			</var>
 			<var name="site_column_con" type="textarea">
 				<title xml:lang="ko"> 메인 - 내용</title>
 				<description xml:lang="ko">메인 내용 입력 (HTML, 위젯코드 사용 가능) (미 입력시 폴더내 _page_con.html 파일을 불러 옵니다.) (🚨 '_page_con.html' 기본 설정은 '메인 - 위젯 설정' 탭)</description>

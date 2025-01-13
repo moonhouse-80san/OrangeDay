@@ -21,21 +21,23 @@
 				<span class="count"><i class='bx bxs-show' ></i>&nbsp;{$oDocument->get('readed_count')}</span>
 				<span class="count" cond="$oDocument->getCommentCount()"><i class='bx bxs-message-rounded-dots'></i>&nbsp;{$oDocument->getCommentCount()}</span>
 				<span class="count" cond="$oDocument->get('voted_count')!=0"><i class='bx bxs-heart'></i>&nbsp;{$oDocument->get('voted_count')}</span>
-
 				<!--게시물 주소 복사-->
-				<span cond="!$mi->url_copy=='N'" class="sbtn_mini sbtn-{$mi->url_copy_color} pr_tooltip" pr_color="dark" pr_position="t_left" title="클릭하면 주소가 복사됩니다." style="padding:3px 5px; margin-left:20px; text-align:right"><a href="#" onclick="copyItemLink(); return false;" class="sbtna" style="font-size:12px"><i class='bx bx-copy'></i> <b cond="!$mo">게시물 주소복사</b><input type="text" value="{$oDocument->getPermanentUrl()}" id="address" readonly style="position:absolute; top:1000px; width:1px; padding:0px; margin-left:5px; border:0px; background-color:transparent; display:inline-block;" /></a></span>
-				<script cond="!$mi->url_copy=='N'">
-					function copyItemLink(){
-						var copyText = document.getElementById("address");
-						copyText.select();
-						copyText.setSelectionRange(0, 99999)
-						document.execCommand("copy");
-						alert("게시글주소가 클립보드에 복사되었습니다.\n{$oDocument->getPermanentUrl()}");
-					}
-				</script>
-
+				<span cond="!$mi->url_copy=='N' && !$mo" class="sbtn_mini sbtn-{$mi->url_copy_color} pr_tooltip" pr_color="dark" pr_position="t_left" title="클릭하면 주소가 복사됩니다." style="padding:3px 5px; margin-left:20px"><a href="#" onclick="copyItemLink(); return false;" class="sbtna" style="font-size:12px"><i class='bx bx-copy'></i> 게시물 주소복사<input type="text" value="{$oDocument->getPermanentUrl()}" id="address" readonly style="position:absolute; top:1000px; width:1px; padding:0px; margin-left:5px; border:0px; background-color:transparent; display:inline-block;" /></a></span>
 			</li>
+
+			<!--게시물 주소 복사-->
+			<span cond="!$mi->url_copy=='N' && $mo" class="sbtn_mini sbtn-{$mi->url_copy_color} pr_tooltip" pr_color="dark" pr_position="t_left" title="클릭하면 주소가 복사됩니다." style="padding:3px 5px; margin-top:10px; float:right"><a href="#" onclick="copyItemLink(); return false;" class="sbtna" style="font-size:12px"><i class='bx bx-copy'></i> 게시물 주소복사<input type="text" value="{$oDocument->getPermanentUrl()}" id="address" readonly style="position:absolute; top:1000px; width:1px; padding:0px; margin-left:5px; border:0px; background-color:transparent; display:inline-block;" /></a></span>
 		</ul>
 	</li>
 </ul>
+
+<script cond="!$mi->url_copy=='N'">
+	function copyItemLink(){
+		var copyText = document.getElementById("address");
+		copyText.select();
+		copyText.setSelectionRange(0, 99999)
+		document.execCommand("copy");
+		alert("게시글주소가 클립보드에 복사되었습니다.\n{$oDocument->getPermanentUrl()}");
+	}
+</script>
 
