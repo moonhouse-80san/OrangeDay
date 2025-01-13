@@ -454,6 +454,7 @@ ul.searchWrap  {position:fixed; width:100vw; height:100vh; top:0; left:0; backgr
 ul.searchWrap li:first-child { background-color:var(--oday_listBgColor); padding:20px; box-shadow:var(--oday_listShadowUp); border-radius:10px; border: var(--oday_listBorder); text-align:center}
 ul.searchWrap li h3 { margin-bottom:15px;}
 ul.searchWrap li form	{ display: flex; align-items: center; justify-content: center; }
+ul.searchWrap li form	.inbox{ width:440px; height:40px; margin:0 10px; border:1px solid #444; padding:0 10px; }
 ul.searchWrap li a.search-close { display: inline-block; font-size:3em; margin:10px 0}
 ul.searchWrap .wrapsearch { display: flex; align-items: center;  }
 ul.searchWrap .wrapsearch + .wrapsearch { margin-top:5px}
