@@ -117,11 +117,11 @@
 				<options value="gallery">
 					<title xml:lang="ko">갤러리형</title>
 				</options>
-				<options value="webzine">
-					<title xml:lang="ko">웹진형</title>
-				</options>
 				<options value="webzinelist">
 					<title xml:lang="ko">웹진리스트형</title>
+				</options>
+				<options value="webzine">
+					<title xml:lang="ko">웹진박스형</title>
 				</options>
 				<options value="bookmark">
 					<title xml:lang="ko">북마크형</title>
@@ -141,15 +141,12 @@
 				<options value="firstthumbs">
 					<title xml:lang="ko">처음만 썸네일형</title>
 				</options>
-				<!--options value="youtube">
-					<title xml:lang="ko">유투브</title>
+				<options value="youtube">
+					<title xml:lang="ko">유튜브</title>
 				</options>
 				<options value="history_step">
 					<title xml:lang="ko">히스토리 스텝</title>
 				</options>
-				<options value="webzine">
-					<title xml:lang="ko">웹진형</title>
-				</options -->
 			</var>
 		</group>
 
@@ -267,8 +264,37 @@
 
 		<group>
 			<title xml:lang="ko">읽기 페이지 설정</title>
+			<var name="read_location" type="radio">
+				<title xml:lang="ko">현재 위치 바</title>
+				<options value="use">
+					<title xml:lang="ko">보기</title>
+				</options>
+				<options value="no_use">
+					<title xml:lang="ko">감추기</title>
+				</options>
+			</var>
+			<var name="read_title" type="radio">
+				<title xml:lang="ko">제목</title>
+				<options value="use">
+					<title xml:lang="ko">보기</title>
+				</options>
+				<options value="no_use">
+					<title xml:lang="ko">감추기</title>
+				</options>
+			</var>
 			<var name="read_meta" type="radio">
 				<title xml:lang="ko">작성자 정보</title>
+				<description xml:lang="ko">이름, 작성일, 조회수 등 일괄 보기 설정 
+				❤ 표시 항목</description>
+				<options value="use">
+					<title xml:lang="ko">보기</title>
+				</options>
+				<options value="no_use">
+					<title xml:lang="ko">감추기</title>
+				</options>
+			</var>
+			<var name="read_meta_name" type="radio">
+				<title xml:lang="ko">작성자 이름 ❤</title>
 				<options value="use">
 					<title xml:lang="ko">보기</title>
 				</options>
@@ -285,8 +311,26 @@
 					<title xml:lang="ko">감추기</title>
 				</options>
 			</var>
+			<var name="read_meta_date" type="radio">
+				<title xml:lang="ko">작성 일 ❤</title>
+				<options value="use">
+					<title xml:lang="ko">보기</title>
+				</options>
+				<options value="no_use">
+					<title xml:lang="ko">감추기</title>
+				</options>
+			</var>
+			<var name="read_meta_count" type="radio">
+				<title xml:lang="ko">조회, 추천, 댓글 수 ❤</title>
+				<options value="use">
+					<title xml:lang="ko">보기</title>
+				</options>
+				<options value="no_use">
+					<title xml:lang="ko">감추기</title>
+				</options>
+			</var>
 			<var name="read_vote" type="radio">
-				<title xml:lang="ko">추천</title>
+				<title xml:lang="ko">추천 하기</title>
 				<options value="use">
 					<title xml:lang="ko">보기</title>
 				</options>
@@ -517,9 +561,17 @@
 					<title xml:lang="ko">내용만 보기</title>
 				</options>
 			</var>
+			<var name="title_line" type="text" default="0">
+				<title xml:lang="ko">제목 줄 개수</title>
+				<description xml:lang="ko">제목의 줄 개수를 정할 수 있습니다.
+				1,2,3 등의 숫자로 입력해 주세요. 
+				0을 입력하시면 줄 잘림 없이 전체 제목이 출력됩니다.
+				</description>
+			</var>
 			<var name="view_cell_sum" type="radio">
 				<title xml:lang="ko">내용만 보기 형식</title>
-				<description xml:lang="ko">요약 또는 전체보기 선택</description>
+				<description xml:lang="ko">요약 또는 전체보기 선택
+				🚨 전체 보기는 본문내용을 그대로 출력합니다.</description>
 				<options value="summ">
 					<title xml:lang="ko">요약 보기</title>
 				</options>
@@ -527,14 +579,18 @@
 					<title xml:lang="ko">전체 보기</title>
 				</options>
 			</var>
+			<var name="summ_num" type="text" default="300">
+				<title xml:lang="ko">요약보기 글자 수</title>
+				<description xml:lang="ko">요약보기시에만 적용됩니다.</description>
+			</var>
 			<var name="thumbnail_type" type="radio">
 				<title xml:lang="ko">썸네일 생성 방법</title>
 				<description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
 				<options value="fill">
-					<title xml:lang="ko">꽉 채우기</title>
+					<title xml:lang="ko">꽉 채우기 (fill)</title>
 				</options>
 				<options value="ratio">
-					<title xml:lang="ko">비율 맞추기</title>
+					<title xml:lang="ko">비율 맞추기 (ratio)</title>
 				</options>
 			</var>
 			<var name="thumbnail_width" type="text" default="500">
@@ -558,6 +614,17 @@
 					<title xml:lang="ko">사용안함</title>
 				</options>
 				<options value="yes">
+					<title xml:lang="ko">사용</title>
+				</options>
+			</var>
+			<var name="gall_hint" type="radio">
+				<title xml:lang="ko">디버그용</title>
+				<description xml:lang="ko">갤러리 레이아웃 디버거용 힌트코드 출력
+				사용안함으로 유지해 주세요.</description>
+				<options value="use">
+					<title xml:lang="ko">사용안함</title>
+				</options>
+				<options value="no_use">
 					<title xml:lang="ko">사용</title>
 				</options>
 			</var>

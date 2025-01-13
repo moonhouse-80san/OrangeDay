@@ -4,7 +4,8 @@
 		<include target="opt_read/_read_opt_secret.html" />
 		<include target="opt_read/_read_opt_navi_bottom.html" cond="$mi->read_bnavi == 'use'" />
 	<!--@else--><!-- 비밀글 분기 -->
-		<include target="opt_read/_read_opt_title.html" />	
+		<include target="opt_read/_read_opt_location.html" cond="$mi->read_location == 'use'" />
+		<include target="opt_read/_read_opt_title.html" cond="$mi->read_title == 'use'" />
 		<include target="opt_read/_read_opt_meta.html" cond="$mi->read_meta == 'use'"/>
 		<div class="rMain">
 		{$oDocument->getContent(false)|noescape}

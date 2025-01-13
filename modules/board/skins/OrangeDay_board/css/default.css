@@ -668,7 +668,7 @@ border-radius: 3px;
 #list-gall .box .listchk { position:absolute; top: 10px; left: 10px; z-index: 1; mix-blend-mode: unset; }
 #list-gall .box .listchk.sum {  left: unset; right:10px; }
 #list-gall .box { position:relative; float:left; overflow:hidden; display:block; border-radius: var(--oday_listBorderRadius); background-color: var(--oday_listBgColor); border: var(--oday_listBorder); }
-#list-gall .box a { display: block; overflow: hidden;width: 100%; height: 100%}
+#list-gall .box a { display: block; overflow: hidden;width: 100%; height: 100%;	 word-break: break-all; overflow: hidden; text-overflow: ellipsis;	 display: -webkit-box; -webkit-box-orient: vertical;}
 #list-gall .box .thum { width: 100%; object-fit: cover; object-position: center top; transition-duration: .3s; }
 #list-gall .box:hover .thum {
 	--un-scale: 1.06;
@@ -760,23 +760,30 @@ border-radius: 3px;
 #readBox .rTitle + .rTitle { padding-top:0; border-top:none; /* margin-top: calc( var(--oday_sideGap) * -.5 );  margin-top: calc( var(--oday_sideGap) * -1 )*/ }
 #readBox .rMain + .rTitle { border-top: var(--oday_listBorder); } 
 #readBox .rTitle * { margin: 0; padding: 0;  }
-#readBox .rTitle .location,
+#readBox .location { padding:var(--oday_sideGapLR); padding-top:20px}
+#readBox .location,
 .writeLocation { font-size:.9em; }
-#readBox .rTitle .location > i,
+#readBox .location > i,
 .writeLocation div > I { color: var(--oday_mainColorLight); }
-#readBox .rTitle .title { font-size: 1.4em; margin: 1.5em 0 0 0; }
+#readBox .rTitle .title { font-size: 1.4em; }
 #readBox .rTitle .title h1 {line-height: 1.4;}
 #readBox .rTitle .meta { display: flex; align-items: center; }
 #readBox .rTitle .meta .author { font-weight:400}
 #readBox .rTitle .meta > * + * { margin-left: 10px; }
 #readBox .rTitle .meta ul li { display: flex; align-items: center; }
 #readBox .rTitle .meta ul li span { display: flex; align-items: center; font-size:.85em; }
-#readBox .rTitle .meta ul li span.count { font-size: 1em; margin-left: 1em; }
+#readBox .rTitle .meta ul li * + span.count {margin-left: 1em; }
+#readBox .rTitle .meta ul li span.count { font-size: 1em; }
 #readBox .rTitle .meta ul li span.count i { font-size: 1.2em; }
 #readBox .rTitle .meta ul li .date i { color: var(--oday_mainColorLight); }
 #readBox .rTitle .meta ul li + li { margin-top:.2em; }
 #readBox .rTitle .meta ul li > * + * { margin-left: .4em; }
-#readBox .rMain { padding: var(--oday_sideGap); margin: 0 0 1em 0; border-top: var(--oday_listBorder); } 
+#readBox .rMain { padding: var(--oday_sideGap); margin: 0 0 1em 0;  } 
+#readBox * + .rMain {border-top: var(--oday_listBorder);}
+.no_bd_bg #readBox:not(.gallery){
+	--oday_sideGap: 30px 10px 30px 10px;
+	--oday_sideGapLR:0 10px;
+}
 
 .no_bd_bg #readBox:not(.gallery){
 	--oday_sideGap: 30px 10px 30px 10px;

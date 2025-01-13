@@ -250,7 +250,7 @@ header { display:none}
 #ol_left .meta li.login_info .btnwrap a + a { margin-left:5px;}
 
 #ol_left .meta li.login_info .levelbarWrap { padding:5px 0 10px 0; position:relative; }
-#ol_left .meta li.login_info .levelbarWrap .levelbar {width:100%; background-color:var(--oday_listBgColorUp2); position:relative; text-align:center; border-radius:10px; height:2px; }
+#ol_left .meta li.login_info .levelbarWrap .levelbar {width:100%; background-color:var(--oday_listBgColorDown2); position:relative; text-align:center; border-radius:10px; height:2px; }
 #ol_left .meta li.login_info .levelbarWrap .levelbar div.perbar {position:absolute; left:0; top:0; height:100%; z-index:1; opacity:.7; background-color: var(--oday_mainColor); height:2px; }
 #ol_left .meta li.login_info .levelbarWrap .levelinfo { 
 	position:absolute; bottom:20px; z-index:20;

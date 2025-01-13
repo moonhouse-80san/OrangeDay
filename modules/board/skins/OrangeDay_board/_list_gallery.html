@@ -6,8 +6,11 @@
 		if(!$mi->layout_gap) $mi->layout_gap = 0;
 	endif;
 	if(!$mi->gall_cell_gap) $mi->gall_cell_gap = 2;
-	if(!$mi->view_cell_sum) $mi->view_cell_sum = 'summ';	
-	if(!$mi->infinity_use) $mi->infinity_use  = "no";	
+	if(!$mi->view_cell_sum) $mi->view_cell_sum = 'summ';
+	if(!$mi->infinity_use) $mi->infinity_use  = "no";
+	if(!$mi->title_line) $mi->title_line = 0;
+	if(!$mi->summ_num) $mi->summ_num = 300;
+	if(!$mi->gall_hint) $mi->gall_hint = 'no_use';
 	$page_tno = $page ;
 	$page_no = $page + 1;
 }
@@ -129,7 +132,9 @@
 	</div>
 <!--@else-->
 
+<!--@if($mi->gall_hint == 'use')-->
 <div class="ttdiv" cond="$grant->manager">hint code : {$cnd} / {$cnd2} / checkwidth_wide  {$checkwidth_wide } / checkwidth {$checkwidth} / gallWidth {$gallWidth}  / gallWidthMinus {$gallWidthMinus} / use_sidewing {$mi->use_sidewing} / cellnum {$cellnum} / cellnum2 {$cellnum2}</div>
+<!--@end-->
 <div cond="$page > 1" class="infinitiNotice">전체 <span>{$page_navigation->last_page}</span>페이지 중 <span>{$page}</span>번째 페이지부터 시작되었습니다.<br class="vm" /> 첫 페이지 부터 보시려면 <a href="{getUrl('listStyle',$mi->default_style,'page','','','')}">여기</a>를 클릭해 주세요.</div>
 <div id="list-gall" class="wrapGall" style="margin:0 auto; overflow:hidden; font-size:{$mi->font_size}px">
 	<div class="boxsize"></div>
@@ -221,7 +226,7 @@
 				</a>
 			</li>
 			<!--@if($mi->view_cell_sum=='summ')-->
-			<li class="summary">{$document->getSummary(300)}</li>
+			<li class="summary">{$document->getSummary($mi->summ_num)}</li>
 			<!--@else-->
 			<li class="full">{$document->getContent(false)} </li>
 			<!--@end-->     
@@ -260,6 +265,7 @@
 <style>
 #list-gall { margin-top:{$mi->gall_cell_gap}px !important; }
 #list-gall .box { margin-bottom:{$mi->gall_cell_gap}px; }
+#list-gall .box a { -webkit-line-clamp: {$mi->title_line};}
 .wrapGall .boxsize2 a img.thum  { min-height:300px;}
 .wrapGall.changeWidth .boxsize2 a img.thum  { min-height:unset;}
 .ttdiv { width:var(--cellWidth); padding:10px 0; margin-top:10px; font-size:.85em; text-align:center; background-color:var(--oday_listBgColor); border-radius:10px}

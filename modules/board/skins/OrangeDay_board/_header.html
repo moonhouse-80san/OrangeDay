@@ -21,7 +21,12 @@
 	if(!$mi->page_align) $mi->page_align = "full";
 	if(!$mi->page_width) $mi->page_width = "1000";
 
+	if(!$mi->read_location) $mi->read_location = "use";
+	if(!$mi->read_title) $mi->read_title = "use";
 	if(!$mi->read_meta) $mi->read_meta = "use";
+	if(!$mi->read_meta_name) $mi->read_meta_name = "use";
+	if(!$mi->read_meta_date) $mi->read_meta_date = "use";
+	if(!$mi->read_meta_count) $mi->read_meta_count = "use";
 	if(!$mi->read_meta_ip) $mi->read_meta_ip = "use";
 	if(!$mi->read_vote) $mi->read_vote = "use";
 	if(!$mi->read_tag) $mi->read_tag = "use";
@@ -302,11 +307,11 @@
 		<li class="on"|cond="$mi->default_style=='guest'">
 			<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','guest','act','','document_srl','')}" title="방명록"><i class='bx bxs-user' ></i></a>
 		</li>
-		<li class="on"|cond="$mi->default_style=='webzine'">
-			<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','webzine','act','','document_srl','')}" title="웹진"><i class='bx bxs-grid' ></i></a>
-		</li>
 		<li class="on"|cond="$mi->default_style=='webzinelist'">
 			<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','webzinelist','act','','document_srl','')}" title="웹진리스트"><i class='bx bx-list-ul' ></i></a>
+		</li>
+		<li class="on"|cond="$mi->default_style=='webzine'">
+			<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','webzine','act','','document_srl','')}" title="웹진박스"><i class='bx bxs-grid' ></i></a>
 		</li>
 		<li class="on"|cond="$mi->default_style=='bookmark'">
 			<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','bookmark','act','','document_srl','')}" title="북마크"><i class='bx bxs-star' ></i></a>

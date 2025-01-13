@@ -223,7 +223,10 @@
 				</div>
 			</div>
 		<!--@else-->
-			<div class="utilityMessage" style="padding:50px 0;"><i class='bx bxs-message-square-dots' ></i> 댓글 참여가 중지된 글입니다.</div>
+			<div class="admin_hint" cond="$grant->manager">
+				<h3><span>"댓글 참여가 중지된 글입니다."</span>가 출력되고 댓글이 안보이는 경우</h3>
+				설정 > 목록설정 > 표시 함목 및 순서 > "댓글 허용 여부" 항목 추가해 주세요.
+			</div>
 		<!--@end-->
 
 		<details cond="$grant->write_document" class="accordion" style="margin-top:1.5em">
