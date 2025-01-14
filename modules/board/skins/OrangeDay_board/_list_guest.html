@@ -114,11 +114,12 @@
 						{strip_tags($oDocument->getTitle())}
 					</a>
 
-					<div style="float:right; margin-left:10px">
-						<a class="color pr_tooltip" cond="$oDocument->getMyVote() === false || $oDocument->getMyVote() < 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" pr_color="dark" pr_position="top" title="이 글이 {$lang->cmd_vote}"><i class='bx bxs-heart'></i><span> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
-						<a class="color pr_tooltip" cond="$oDocument->getMyVote() > 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" pr_color="dark" pr_position="top" title="이 글이 {$lang->cmd_vote}"><i class='bx bxs-heart color'></i><span class="color"> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
+					<div style="float:right">
+						<span cond="$oDocument->get('readed_count')>0" class="color"><i class='bx bxs-show' ></i> {number_format($oDocument->get('readed_count')>0?$oDocument->get('readed_count'):'0')}</span>
+						<a class="color" cond="$oDocument->getMyVote() === false || $oDocument->getMyVote() < 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" title="이 글이 {$lang->cmd_vote}" style="margin-left:10px"><i class='bx bxs-heart'></i><span> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
+						<a class="color" cond="$oDocument->getMyVote() > 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" title="이 글이 {$lang->cmd_vote}" style="margin-left:10px"><i class='bx bxs-heart color'></i><span class="color"> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
+						<a cond="!$mi->scrap_user == ''" href="#" onclick="doCallModuleAction('member','procMemberScrapDocument','{$oDocument->document_srl}'); return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" title="스크랩 추가" style="margin-left:10px"><i class='bx bxs-customize color'></i></a>
 					</div>
-					<span cond="$oDocument->get('readed_count')>0" class="color" style="float:right"><i class='bx bxs-show' ></i> {number_format($oDocument->get('readed_count')>0?$oDocument->get('readed_count'):'0')}</span>
 				</div>
 				<div class="metabox">
 					<span cond="$category_list[$oDocument->get('category_srl')]->title" class="category" onclick="showUpdateExtraModal(this, {$document->document_srl}, {$document->get('category_srl')}, 'category')"|cond="$grant->manager && $use_category_update">{$category_list[$oDocument->get('category_srl')]->title}</span>
@@ -195,7 +196,7 @@
 									<block cond="!$listCheck">
 										<div class="action">
 											<div>
-												<a class="bd_login pr_tooltip" pr_color="dark" pr_position="top" title="이 댓글이 {$lang->cmd_vote}" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"><i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+												<a class="bd_login" title="이 댓글이 {$lang->cmd_vote}" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"><i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
 											</div>
 
 											<div class="actionpack">

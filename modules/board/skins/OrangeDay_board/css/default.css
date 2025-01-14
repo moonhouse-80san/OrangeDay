@@ -1320,6 +1320,10 @@ ul.naviBtn li { display: flex; justify-content: center; }
 .od-bord table .nice-select + input,
 .od-bord table input + input {margin-left:2px}
 
+.admin_hint { text-align:center; padding:20px; line-height:1.6}
+.admin_hint h3 { font-weight:400}
+.admin_hint h3 span { font-weight:600}
+
 /* 코드 하이라이트 예외 */
 .syntaxhighlighter  { padding: 10px 0;}
 .colorscripter-code-table td,

@@ -491,6 +491,16 @@
 					<title xml:lang="ko">감추기</title>
 				</options>
 			</var>
+			<var name="scrap_user" type="radio">
+				<title xml:lang="ko">목록 스크랩</title>
+				<description xml:lang="ko">방명록형태시 목록에서 스크랩 기능 출력</description>
+				<options value="">
+					<title xml:lang="ko">감추기(기본)</title>
+				</options>
+				<options value="use">
+					<title xml:lang="ko">보기</title>
+				</options>
+			</var>
 		</group>
 
 		<group>
