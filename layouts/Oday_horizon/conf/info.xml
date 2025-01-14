@@ -17,10 +17,11 @@
 			<title xml:lang="en">LNB</title>
 		</menu>
 	</menus>
-	<extra_vars>
 
+	<extra_vars>
 		<group>
 			<title xml:lang="ko">기본</title>
+
 			<var name="site_title" type="text">
 				<title xml:lang="ko">사이트 명</title>
 				<description xml:lang="ko">사이트 명</description>
@@ -92,6 +93,7 @@
 
 		<group>
 			<title xml:lang="ko">홈 - 상단</title>
+
 			<var name="use_main_banner" type="radio">
 				<title xml:lang="ko">메인 상단 꾸미기</title>
 				<description xml:lang="ko">메인 상단을 구성할 수 있습니다. 서브에서는 보이지 않습니다. (기본 : 비사용)</description>
@@ -112,6 +114,7 @@
 		<group>
 			<title xml:lang="ko">홈 - 메인</title>
 			<var name="widget_bg" type="radio">
+
 				<title xml:lang="ko">위젯 배경</title>
 				<description xml:lang="ko">최신글 등의 위젯의 박스형 배경 사용 여부</description>
 				<options value="yes">
@@ -175,6 +178,7 @@
 
 		<group>
 			<title xml:lang="ko">홈 메인 - 위젯 설정</title>
+
 			<var name="site_banner" type="text">
 				<title xml:lang="ko">📕 상단 슬라이드 배너</title>
 				<description xml:lang="ko">관리자만 볼 수 있는 전용 게시판 생성 후 srl 입력, 사용법 참고. </description>
@@ -251,6 +255,7 @@
 
 		<group>
 			<title xml:lang="ko">서브 페이지(서브 메뉴)</title>
+
 			<var name="use_sub_page" type="radio">
 				<title xml:lang="ko">서브페이지 사이드 사용</title>
 				<description xml:lang="ko">서브 페이지에서 양쪽 사이드 페이지 사용 여부, 비사용시 메인에서 보이는 사이드가 서브페이지에서는 보이지 않습니다.</description>
@@ -295,6 +300,7 @@
 
 		<group>
 			<title xml:lang="ko">테마</title>
+
 			<var name="use_darkMode" type="radio">
 				<title xml:lang="ko">📕 다크모드 사용자 제어</title>
 				<options value="yes">
@@ -362,6 +368,7 @@
 
 		<group>
 			<title xml:lang="ko">기타</title>
+
 			<var name="use_member" type="radio">
 				<title xml:lang="ko">회원가입</title>
 				<description xml:lang="ko">회원가입 사용 여부</description>
@@ -433,6 +440,5 @@
 				<description xml:lang="ko">카카오 앱키(JavaScript) 값을 입력.  (입력 값 없으면 적용 안됨, 추가로 오렌지데이 게시판사용 시 각각의 게시판에 카카오톡 앱키를 입력하지 않아도 전체에 적용, 게시판에서 설정한 값보다 우선 적용 됨)</description>
 			</var>
 		</group>
-
 	</extra_vars>
 </layout>

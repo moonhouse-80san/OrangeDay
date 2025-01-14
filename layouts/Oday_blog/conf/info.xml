@@ -19,6 +19,7 @@
 
 		<group>
 			<title xml:lang="ko">기본 - 타이틀</title>
+
 			<var name="gnb_width" type="text" default="180">
 				<title xml:lang="ko">메뉴-가로폭</title>
 				<description xml:lang="ko">메뉴-가로폭를 정할수 있습니다.(디폴트 : 180px)</description>
@@ -115,6 +116,7 @@
 
 		<group>
 			<title xml:lang="ko">기본 - 푸터</title>
+
 			<var name="site_company_name" type="text">
 				<title xml:lang="ko">사이트명 or 회사이름</title>
 			</var>
@@ -132,27 +134,6 @@
 
 		<group>
 			<title xml:lang="ko">홈 - 메인 (콘텐츠 영역)</title>
-
-			<!-- var name="use_index" type="radio">
-				<title xml:lang="ko">메인사용</title>
-				<options value="yes">
-					<title xml:lang="ko">사용</title>
-				</options>
-				<options value="no">
-					<title xml:lang="ko">사용안함</title>
-				</options>
-				<description xml:lang="ko">메인 사용 여부 설정</description>
-			</var -->
-			<!-- var name="index_style" type="radio">
-				<title xml:lang="ko">메인 스타일</title>
-				<options value="basic">
-					<title xml:lang="ko">베이직</title>
-				</options>
-				<options value="classic">
-					<title xml:lang="ko">클랙식</title>
-				</options>
-				<description xml:lang="ko">메인 페이지 스타일을 지정할 수 있습니다.</description>
-			</var -->
 
 			<var name="layout_align" type="radio">
 				<title xml:lang="ko">메인 정렬</title>
@@ -177,40 +158,9 @@
 			</var>
 		</group>
 
-		<!-- group>
-			<title xml:lang="ko">메인 베이직 - 상단 이미지</title>
-			<var name="use_main_img" type="radio">
-				<title xml:lang="ko">메인 이미지 박스 사용</title>
-				<options value="yes">
-					<title xml:lang="ko">사용</title>
-				</options>
-				<options value="no">
-					<title xml:lang="ko">사용안함</title>
-				</options>
-				<description xml:lang="ko">메인 이미지 사용 여부 설정</description>
-			</var>
-			<var name="site_bg" type="image">
-				<title xml:lang="ko">상단 배경</title>
-				<description xml:lang="ko">상단 박스 배경 이미지</description>
-			</var>
-			<var name="use_main_text" type="radio">
-				<title xml:lang="ko">이미지 내부 사이트 명</title>
-				<options value="yes">
-					<title xml:lang="ko">사용</title>
-				</options>
-				<options value="no">
-					<title xml:lang="ko">사용안함</title>
-				</options>
-				<description xml:lang="ko">메인 이미지 내부 사이트 제목 사용 여부 설정</description>
-			</var>
-			<var name="site_dec" type="textarea">
-				<title xml:lang="ko">사이트 설명</title>
-				<description xml:lang="ko">사이트 간단 설명</description>
-			</var>
-		</group -->
-
 		<group>
 			<title xml:lang="ko">홈 메인 - 위젯 설정</title>
+
 			<var name="site_banner" type="text">
 				<title xml:lang="ko">📕 상단 슬라이드 배너</title>
 				<description xml:lang="ko">관리자만 볼 수 있는 전용 게시판 생성 후 srl 입력, 사용법 참고. </description>
@@ -255,6 +205,7 @@
 
 		<group>
 			<title xml:lang="ko">테마</title>
+
 			<var name="use_gnb" type="radio">
 				<title xml:lang="ko">📕  GNB 사용자 제어</title>
 				<options value="yes">
@@ -351,6 +302,7 @@
 
 		<group>
 			<title xml:lang="ko">기타</title>
+
 			<var name="site_sign_meta" type="radio">
 				<title xml:lang="ko">회원가입 사용</title>
 				<description xml:lang="ko">로그인 / 회원가입 보이기</description>

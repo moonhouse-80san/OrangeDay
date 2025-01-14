@@ -1,4 +1,4 @@
-<!--@if($logged_info->is_admin == 'Y')-->
+<!--@if($_is_indexmodule && $logged_info->is_admin == 'Y')-->
 	{@
 		$url = 'https://raw.githubusercontent.com/OrangeDayCom/rhymix-layout/main/version.txt';
 		$curl = curl_init();
@@ -17,34 +17,39 @@
 		if ( $c_ver < $l_ver ) $updt = "Y";
 	}
 
-	<div class="last_version">
-		 테스트&nbsp;&nbsp;
-		<span><i class='bx bxs-bell'></i> {$current_version} <i class='bx bxs-right-arrow' ></i> {$last_version}</span>
-		<a href="https://github.com/OrangeDayCom/rhymix-layout" target="_blank">Github</a>
-		&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="https://xetown.com/download/1817419" target="_blank">xetown</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="closeupt"  title="기본-table"><i class='bx bx-x'></i>10Day</a>
-	</div>
+	<!--@if($updt=='Y')-->
+		<div class="last_version">
+			<div class="ti">Update</div>
+			<div>{$current_version} <i class='bx bxs-right-arrow' ></i> {$last_version}</div>
+			<div class="down">
+				<a href="https://github.com/OrangeDayCom/rhymix-layout" target="_blank">Github</a>
+				&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a href="https://xetown.com/download/1817419" target="_blank">xetown</a>
+			</div>
+			<a class="closeupt"  title="기본-table">Close 10Day <i class='bx bx-x'></i></a>
+		</div>
 
-	<style>
-		.last_version { position:fixed; right:10px; top:10px; font-size:1em; z-index:99999; border:var(--oday_listBorder); background-color:var(--oday_mainColor); color:var(--oday_primaryBtnColor) !important; padding:10px 10px 10px 20px; border-radius:6px; text-align:center; display: flex; align-items: center;}
-		.last_version:after { position:absolute; top:-5px; right:20px; content:""; display:block; width:10px; height:10px; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); background-color:var(--oday_mainColor); border:var(--oday_listBorder); border-right:none;  border-bottom:none;}
-		.last_version span { display:flex; align-items: center; margin-right: 30px;}
-		.last_version * { color:var(--oday_primaryBtnColor) !important;}
-		.last_version i.bxs-right-arrow { font-size:.5em; margin:0 1em;}
-		.last_version i.bxs-bell { font-size:1..2em; margin:0 .5em 0 0;}
-		.last_version .closeupt { font-weight:300; font-size:10px}
-	</style>
+		<style>
+			.last_version { position:fixed; right:10px; bottom:60px; font-size:.9em; z-index:99999; border:var(--oday_listBorder); background-color:var(--oday_mainColorDark); color:#fff !important; padding:10px 20px ; border-radius:6px; text-align:center; display: flex; align-items: center; flex-direction: column;}
 
-	<script>
-		$(".closeupt").click(function(){
-			$('.last_version').hide();
-			setCookie( "setUdt", "done" , 10 );
-		});
-		var $getUdt = XE.cookie.get('setUdt');
-		if( $getUdt == "done" ) {
-			$('.last_version').hide();
-		}
-	</script>
+			.last_version:after { position:absolute; bottom:-5px; right:20px; content:""; display:block; width:10px; height:10px; transform: rotate(45deg); background-color:var(--oday_mainColorDark); border:var(--oday_listBorder); border-left:none;  border-top:none;}
+			.last_version > * + * { margin-top:5px}
+			.last_version .ti {font-size:.9em; font-weight:600; color:var(--oday_mainColorLight)}
+			.last_version .down {font-size:1em;  font-weight:500; padding:5px 0}
+			.last_version i.bxs-right-arrow { font-size:.5em; margin:0 1em;}
+			.last_version .closeupt { font-weight:300; font-size:10px}
+			.last_version a {color:#fff !important; }
+		</style>
+
+		<script>
+			$(".closeupt").click(function(){
+				$('.last_version').hide();
+				setCookie( "setUdt", "done" , 10 );
+			});
+			var $getUdt = XE.cookie.get('setUdt');
+			if( $getUdt == "done" ) {
+				$('.last_version').hide();
+			}
+		</script>
+	<!--@end-->
 <!--@end-->

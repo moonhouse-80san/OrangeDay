@@ -16,15 +16,15 @@
 	endif;
 }
 <div class="voteVs">
-	<div class="voteA voteV">
+	<div class="voteA voteV">		
 		<a cond="$oDocument->getMyVote() === false || $oDocument->getMyVote() < 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;" class="voted">
 			<i class='bx bxs-heart' ></i>
 		</a>
 		<a cond="$oDocument->getMyVote() > 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUpCancel','{$oDocument->document_srl}');return false;" class="voted">
 			<i class='bx bxs-heart' ></i>
-		</a>
+		</a>		
 		<span class="active">{$count_v}</span>
-	</div>
+	</div>		
 	<div class="voteGraph<!--@if($oDocument->get('voted_count') || $oDocument->get('blamed_count'))--> activeVs<!--@end-->">
 		<div class="perbar" style="width: <!--@if($oDocument->get('voted_count') || $oDocument->get('blamed_count'))-->{$totalVotePer}<!--@else-->0<!--@end-->%;">
 		<!--@if($oDocument->get('voted_count') || $oDocument->get('blamed_count'))-->
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<div class="voteA voteB">
-		<span class="active">{$count_b}</span>
+		<span class="active">{$count_b}</span>		
 		<a cond="$oDocument->getMyVote() === false || $oDocument->getMyVote() > 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteDown','{$oDocument->document_srl}');return false;" class="voted">
 			<i class='bx bxs-skull' ></i>
 		</a>
@@ -52,7 +52,7 @@
 }
 <div cond="$output->data" class="voteVsTitle"><i class='bx bxs-heart' ></i>  추천인 </div>
 <div cond="$output->data" class="voteVsList">
-
+		
 		<a loop="$output->data=>$key,$val" href="#popup_menu_area" onclick="return false" title="{$val->nick_name}">
 		{@
 			$oMemberModel = getModel('member');
@@ -61,13 +61,13 @@
 		<!--@if($profile_info->src)-->
 		<img src="{$profile_info->src}" title="{$val->nick_name}" class="profile metatooltip">
 		<!--@else-->
-		<span title="{$val->nick_name}" class="profile metatooltip"><i class='bx bxs-ghost'></i></span>
+		<span title="{$val->nick_name}" class="profile metatooltip"><i class='bx bxs-ghost'></i></span>						
 		<!--@end-->
 		</a>
 
 </div>
 <style>
-.voteVs { padding: var(--oday_sideGapLR); opacity:1; display:flex; align-items: center; max-width:var(--oday_maxWidth);
+.voteVs { padding: var(--oday_sideGapLR); opacity:1; display:flex; align-items: center; max-width:var(--oday_maxWidth); 
   margin-bottom:1em;
 }
 .voteGraph {mix-blend-mode: luminosity; opacity:.5}
@@ -88,7 +88,7 @@
 .voteVsTitle { text-align:center; font-size:11px; font-weight:500; padding: var(--oday_sideGapLR); padding-bottom:5px; }
 .voteVsTitle i { font-size:1.4em}
 
-.voteVsList { display:flex; align-items: center; justify-content: center; padding: var(--oday_sideGapLR); margin-bottom:2em; flex-wrap: wrap; max-width:var(--oday_maxWidth)}
+.voteVsList { display:flex; align-items: center; justify-content: center; padding: var(--oday_sideGapLR); margin-bottom:2em; flex-wrap: wrap; max-width:var(--oday_maxWidth)} 
 .voteVsList a { margin-bottom:2px}
 .voteVsList a + a { margin-left:2px;}
 .voteVsList a .profile { width: var(--oday_metaIconSize); height: var(--oday_metaIconSize);  display:flex; align-items: center; justify-content: center; border-radius:100%;
@@ -100,7 +100,7 @@ $(function(){
 	$(".metatooltip").tooltip({
 		delay:0,
 		opacity:1,
-		position: {
+		position: { 
 			my: "center bottom-20", at: "center top+10",
 			using: function( position, feedback ) {
 				$( this ).css( position );
@@ -109,19 +109,19 @@ $(function(){
 				.addClass( feedback.vertical )
 				.addClass( feedback.horizontal )
 				.appendTo( this );
-			}
+			}		
 		}
-	});
+	});	   
 });
 
-</script>
+</script>	
 <script>
 /*
 jQuery(function($){
-	for(var i=0 ; i < $(".voteVsList a .profile").length; i++){
-		var f_color = "#"+(parseInt(Math.random()*0xffffff)).toString(16);
-		$(".voteVsList a .profile").eq(i).css("color",f_color);
-	}
+    for(var i=0 ; i < $(".voteVsList a .profile").length; i++){
+        var f_color = "#"+(parseInt(Math.random()*0xffffff)).toString(16);
+        $(".voteVsList a .profile").eq(i).css("color",f_color);
+    }
 });
 */
 </script>

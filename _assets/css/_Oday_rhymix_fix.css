@@ -49,9 +49,9 @@
 
 .signin > div {background-color:var(--oday_listBgColor); }
 .signin a { color:var(--oday_fontLinkColor)}
-.signin a:hover { color:var(--oday_mainColor)}
-.signin input[type="submit"] {background-color:var(--oday_bodyBgColor);; color:var(--oday_fontColor); display:flex; align-items: center; padding:0 20px !important; cursor:pointer;}
-.signin input[type="submit"]:hover { color:var(--oday_mainColor)}
+.signin a:hover { color:var(--oday_fontHoverColor)}
+.signin input[type="submit"] {background-color:var(--oday_btnBgColor) !important; color:var(--oday_fontColor); display:flex; align-items: center; padding:0 20px !important; cursor:pointer; border:var(--oday_btnBorder) !important; border-radius: calc(var(--oday_btnHeight) / 6); box-shadow: var(--oday_btnShadow); transition:.3s }
+.signin input[type="submit"]:hover { color:var(--oday_fontHoverColor) !important; border:var(--oday_btnBorderHover) !important; }
 
 .signin { width:100%; min-height:100vh; display:flex; align-items: center;justify-content: center;}
 .signin > div { border:var(--oday_listBorder); box-shadow:var(--oday_listShadow); border-radius:var(--oday_listBorderRadius); padding:30px 20px; min-width:400px; max-width:var(--oday_maxWidth)}
@@ -74,7 +74,7 @@
 .nav.nav-tabs { display:flex; justify-content: center; align-items: flex-start; /*  background:linear-gradient(var(--oday_bodyBgColor), rgba(0,0,0,.2) 100px); box-shadow: 0 0 10px 10px var(--oday_bodyBgColor); */ font-size:12px; position: sticky; top: 0px;     background-color: var(--oday_bodyBgColor); /*box-shadow: 0 0 10px 10px var(--oday_bodyBgColor); */ padding-bottom:10px; margin-bottom:15px;  z-index:1; }
 .nav.nav-tabs:after { content:""; position:absolute; display:block; width:100%; height:20px; bottom:-20px; background-image: linear-gradient(var(--oday_bodyBgColor), transparent)}	
 
-.nav.nav-tabs li { border:var(--oday_listBorder); border-top:none; background-color:var(--oday_listBgColor); display:flex; align-items: center; height:38px; padding:0 10px; border-radius:0 0 5px 5px; text-align: center; word-break: keep-all;}
+.nav.nav-tabs li { border:var(--oday_listBorder); background-color:var(--oday_listBgColor); display:flex; align-items: center; height:38px; padding:0 10px; border-radius:5px; text-align: center; word-break: keep-all;}
 .nav.nav-tabs li.active {  border-color:var(--oday_mainColor)}
 .nav.nav-tabs li.active a {color:var(--oday_mainColor); font-weight:500;  }
 .nav.nav-tabs li + li { margin-left:2px;}
@@ -88,21 +88,22 @@
 .term .help-inline { margin-top:5px;}
 .agreement + .agreement {border-top:var(--oday_listBorder)}
 .minfo #profile_imagetag button,
-.minfo .xbtn { color:var(--oday_fontLinkColor); font-size:12px; cursor:pointer; border:var(--oday_listBorder); background-color:var(--oday_listBgColorStress1); /*box-shadow:var(--oday_listShadow); */display:flex; align-items: center; height:var(--oday_iptHeight); padding:0 20px; border-radius:5px; }
+.minfo .xbtn { color:var(--oday_fontLinkColor); font-size:var(--oday_btnFontSize); font-weight:600; cursor:pointer; border:var(--oday_listBorder); background-color:var(--oday_listBgColorUp2) !important; box-shadow:var(--oday_listShadow); display:flex; align-items: center; height:var(--oday_iptHeight); padding:0 20px; border-radius:5px; line-height: 1; padding:0 calc(var(--oday_iptHeight) * .4); border:var(--oday_btnBorder);}
 .minfo .xbtn.big {height:40px; font-size:14px; padding:0 25px;  }
 .minfo #profile_imagetag button,
 .minfo .xbtn.small { height:25px; font-size:12px; padding:0 10px; }
-.minfo .xbtn:hover { color:var(--oday_mainColor) }
+.minfo .xbtn:hover { color:var(--oday_fontHoverColor); border:var(--oday_listBorderHover); }
 
 .minfo h1 { text-align:center; margin:2em 0; color:var(--oday_mainColor) }
 .minfo select { height: }
 .minfo .dl-horizontal { margin:0 auto; width:100%; max-width:var(--oday_maxWidth); padding:50px; background-color:var(--oday_listBgColor); border-radius:var(--oday_listBorderRadius); border:var(--oday_listBorder); box-shadow:var(--oday_listShadow)}
 .dl-horizontal.term {background-color:var(--oday_listBgColor); }
-
+.minfo .dl-horizontal + .btnArea { margin:0 auto !important;  max-width:calc(var(--oday_maxWidth) * .5); }
+.minfo .dl-horizontal + .btnArea a { margin-left:20px !important;}
 .message_btn { padding:30px;display: flex;
     justify-content: center; }
 
-table.mtbl {  width:100%; max-width:var(--oday_maxWidth); margin:0 auto; border-top:var(--oday_listBorder); font-family:inherit; font-size:inherit; border-spacing: 0;}
+table.mtbl {  width:100%;  margin:0 auto; border-top:var(--oday_listBorder); font-family:inherit; font-size:inherit; border-spacing: 0;}
 table.mtbl tr th { width:120px}
 table.mtbl tr th,
 table.mtbl tr td { border-bottom:var(--oday_listBorder); padding:15px 10px;  }
@@ -122,11 +123,11 @@ table.mtbl .controls > * + * { margin-top:5px;}
 table.mtbl input[type=file]::file-selector-button { width: ; height: 25px; font-size:12px; background: var(--oday_listBgColor); border: var(--oday_listBorder); border-radius: 5px; cursor: pointer; color:var(--oday_fontLinkColor); }
 table.mtbl input:read-only { border:none !important; background-color:unset; width: fit-content;} 
 
-table.mtbl.list {margin:0 auto; width:100%; max-width:var(--oday_maxWidth);}
+table.mtbl.list {margin:0 auto; width:100%;}
 table.mtbl.list caption { text-align:right; padding:0 0 10px 0}
 table.mtbl.list tr th { width:unset; padding:10px 10px; background-color:var(--oday_listBgColor);white-space:nowrap;  text-align:center }
 table.mtbl.list tr td { width:unset; font-size:1em; white-space:nowrap; text-align:center; }
-table.mtbl.list tr .title { width:100%; text-align:left; }
+table.mtbl.list tr .title { width:100%; text-align:left; white-space: normal; }
 table.mtbl.list.withbtn tr td {padding:10px 5px; }
 
 table.mtbl.list tr th.messagetitle { text-align:left; padding:20px 0; background-color:unset; font-size:1.2em;     border-style: dashed;}
@@ -134,7 +135,7 @@ table.mtbl.list tr td.messagemeta { text-align:right;  padding:10px 0;}
 table.mtbl.list tr td.messageview { text-align:left; padding:30px 0; line-height:1.4}
 table.mtbl.list tr td.messageview * + * { margin-top:10px;}
 
-.bd_head {margin:0 auto; width:100%; max-width:var(--oday_maxWidth); display:flex; margin-bottom:1em}
+.bd_head {margin:0 auto; width:100%;  display:flex; margin-bottom:1em}
 
 .bd_head .xbtnArea {display:flex; justify-content: center; align-items: flex-end;}
 .bd_head.mess .xbtnArea + *,
@@ -207,7 +208,9 @@ table.mtbl.list tr td.messageview * + * { margin-top:10px;}
 	border:var(--oday_btnBorder) !important; 
 	box-shadow: var(--oday_btnShadow) !important; 
 	color:var(--oday_fontColor) !important;
+	transition:.3s;
 }
+.btn-group .btn:hover { border: var(--oday_btnBorderHover) !important; color: var(--oday_fontHoverColor) !important;}
 .x .x_span2 {width:unset}
 
 @media screen and (max-width:768px){
@@ -221,7 +224,8 @@ table.mtbl.list tr td.messageview * + * { margin-top:10px;}
 	.minfo .xbtn.big { height:30px; font-size:12px; padding:0 15px;  margin-bottom:10px}
 }
 
-
+.message.error { border: var(--oday_listBorder); background-color:var(--oday_bodyBgColor); color:var(--oday_mainColor)}
+.message.info  { border: var(--oday_listBorder); background-color:var(--oday_bodyBgColor); color:var(--oday_mainColor)}
 /*//////////
 
 		에디터 수정
@@ -276,10 +280,31 @@ body.cke_ltr::-webkit-scrollbar-thumb { width: 5px; background: var(--oday_scrol
     align-items: center;
     justify-content: center;}
 #fo_write > div { margin-top:10px; margin-right:0 !important;}
-#fo_write input:not( [type="submit"]) { width:100%;}
+#fo_write input:not( [type="submit"]) { width:100%; height: var(--oday_iptHeight) !important; padding: 0 10px !important;}
 #fo_write input[type="submit"] {}
 #fo_write input + p { margin-top:10px;}
-
+#fo_write .btnArea > * + * { margin-left:5px !important; }
+#fo_write .btnArea > * {
+all:unset;
+height: var(--oday_btnHeight) !important;
+    width: fit-content;
+    padding: 0 calc(var(--oday_btnHeight)* .5);
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--oday_btnFontWeight);
+    line-height: 1;
+    font-size: var(--oday_btnFontSize);
+    background-color: var(--oday_btnBgColor);
+    border: var(--oday_btnBorder);
+    border-radius: calc(var(--oday_btnHeight) / 6);
+    box-shadow: var(--oday_btnShadow);
+    transition: 0.3s;
+    cursor: pointer;
+    white-space: nowrap;
+}
+#fo_write .btnArea > *:hover { border: var(--oday_btnBorderHover) !important; color: var(--oday_mainColor);}
 .cke_panel_container { }
 /* 에디터 */
 .cke_chrome.cke_reset {
@@ -346,7 +371,7 @@ a.cke_button:hover {
 }
 .cke_notification_message { }
 body.cke_editable {
-	background-color: var(--oday_listBgColorStress1) !important; border-left: var(--oday_btnBorder) !important;border-right: var(--oday_btnBorder) !important;
+	background-color: var(--oday_listBgColorUp1) !important; border-left: var(--oday_btnBorder) !important;border-right: var(--oday_btnBorder) !important;
 	color: var(--oday_fontColor) !important; font-weight: var(--oday_fw-regular) !important; font-size: var(--oday_fontSize) !important;
 }
 .cke_bottom.cke_reset_all {
@@ -360,7 +385,7 @@ body.cke_editable {
 .xe-clearfix:before, .xe-clearfix:after { content: unset}
 .xefu-container {
 	border: var(--oday_btnBorder) !important;
-	background-color: var(--oday_listBgColorStress1) !important;
+	background-color: var(--oday_listBgColorUp1) !important;
 }
 .xefu-dropzone {
 	background-color: unset !important;
@@ -400,7 +425,7 @@ body.cke_editable {
 .xefu-list-images .xefu-act-set-cover i { color:#fff }
 .xefu-is-cover-image {border-color:  var(--oday_mainColor) !important}
 .xefu-list-files {
-	border-top: var(--oday_iptBorderStress) !important;
+	border-top: var(--oday_iptBorderUp) !important;
 	padding: 10px;
 	margin: 0 !important;
 }

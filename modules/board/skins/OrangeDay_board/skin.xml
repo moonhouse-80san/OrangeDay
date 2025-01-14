@@ -8,8 +8,10 @@
 	</author>
 	<license>LGPL v2</license>
 	<extra_vars>
+
 		<group>
 			<title xml:lang="ko">레이아웃 제어</title>
+
 			<var name="use_sidewing" type="radio">
 				<title xml:lang="ko">사이드 사용</title>
 				<description xml:lang="ko">🚨 오렌지데이 호라이즌 레이아웃 전용 : 메인 레이아웃의 양쪽 사이드 섹션의 사용을 중지합니다.</description>
@@ -35,6 +37,7 @@
 
 		<group>
 			<title xml:lang="ko">테마</title>
+
 			<var name="use_darkMode" type="radio">
 				<title xml:lang="ko">다크모드 사용자 제어</title>
 				<description xml:lang="ko">방문자의 다크모드 제어판 사용 여부
@@ -106,6 +109,7 @@
 
 		<group>
 			<title xml:lang="ko">게시판 유형 선택</title>
+
 			<var name="default_style" type="radio">
 				<title xml:lang="ko">목록 유형</title>
 				<options value="listtable">
@@ -123,6 +127,9 @@
 				<options value="webzine">
 					<title xml:lang="ko">웹진박스형</title>
 				</options>
+				<options value="firstthumbs">
+					<title xml:lang="ko">처음만 썸네일형</title>
+				</options>
 				<options value="bookmark">
 					<title xml:lang="ko">북마크형</title>
 				</options>
@@ -138,20 +145,18 @@
 				<options value="history">
 					<title xml:lang="ko">히스토리</title>
 				</options>
-				<options value="firstthumbs">
-					<title xml:lang="ko">처음만 썸네일형</title>
-				</options>
-				<options value="youtube">
-					<title xml:lang="ko">유튜브</title>
+				<!--options value="youtube">
+					<title xml:lang="ko">유투브</title>
 				</options>
 				<options value="history_step">
 					<title xml:lang="ko">히스토리 스텝</title>
-				</options>
+				</options -->
 			</var>
 		</group>
 
 		<group>
 			<title xml:lang="ko">공통 설정</title>
+
 			<var name="wizard" type="radio">
 				<title xml:lang="ko">위저드 사용</title>
 				<description xml:lang="ko">스킨 설정을 할 수 있는 내비게이션을 게시판 브라우저 좌측에 출력합니다.</description>
@@ -264,6 +269,7 @@
 
 		<group>
 			<title xml:lang="ko">읽기 페이지 설정</title>
+
 			<var name="read_location" type="radio">
 				<title xml:lang="ko">현재 위치 바</title>
 				<options value="use">
@@ -284,7 +290,7 @@
 			</var>
 			<var name="read_meta" type="radio">
 				<title xml:lang="ko">작성자 정보</title>
-				<description xml:lang="ko">이름, 작성일, 조회수 등 일괄 보기 설정 
+				<description xml:lang="ko">이름, 작성일, 조회수 등 일괄 보기 설정
 				❤ 표시 항목</description>
 				<options value="use">
 					<title xml:lang="ko">보기</title>
@@ -303,7 +309,7 @@
 				</options>
 			</var>
 			<var name="read_meta_ip" type="radio">
-				<title xml:lang="ko">작성자 정보 > IP</title>
+				<title xml:lang="ko">작성자 IP ❤</title>
 				<options value="use">
 					<title xml:lang="ko">보기</title>
 				</options>
@@ -505,6 +511,7 @@
 
 		<group>
 			<title xml:lang="ko">댓글 설정</title>
+
 			<var name="comment_style" type="radio">
 				<title xml:lang="ko">스타일</title>
 				<description xml:lang="ko">댓글의 표현 방식을 정할 수 있습니다.
@@ -558,6 +565,7 @@
 
 		<group>
 			<title xml:lang="ko">갤러리형 게시판 설정</title>
+
 			<var name="view_cell" type="radio">
 				<title xml:lang="ko">목록 형식</title>
 				<description xml:lang="ko">썸네일+내용 보기, 썸네일만, 내용만을 선택할 수 있습니다.</description>
@@ -574,7 +582,7 @@
 			<var name="title_line" type="text" default="0">
 				<title xml:lang="ko">제목 줄 개수</title>
 				<description xml:lang="ko">제목의 줄 개수를 정할 수 있습니다.
-				1,2,3 등의 숫자로 입력해 주세요. 
+				1,2,3 등의 숫자로 입력해 주세요.
 				0을 입력하시면 줄 잘림 없이 전체 제목이 출력됩니다.
 				</description>
 			</var>
@@ -642,6 +650,7 @@
 
 		<group>
 			<title xml:lang="ko">블로그 설정</title>
+
 			<var name="blog_layout" type="radio">
 				<title xml:lang="ko">카테고리 메뉴 위치</title>
 				<description xml:lang="ko">메뉴 위치 선택</description>
@@ -665,6 +674,7 @@
 
 		<group>
 			<title xml:lang="ko">히스토리 게시판 설정</title>
+
 			<var name="con_date" type="text">
 				<title xml:lang="ko">시작년도</title>
 			</var>
@@ -678,6 +688,7 @@
 
 		<group>
 			<title xml:lang="ko">배경 이미지</title>
+
 			<!-- var name="con_bg_type" type="radio">
 				<title xml:lang="ko">배경 : 타입</title>
 				<description xml:lang="ko">링크 또는 첨부한 배경 이미지의 밝기를 정해 주세요.
@@ -714,6 +725,7 @@
 
 		<group>
 			<title xml:lang="ko">첫게시글만 썸네일설정(FT)</title>
+
 			<var name="first_thumb_user" type="radio">
 				<title>★첫 게시글만 썸네일 출력</title>
 				<description>"첫	글만 썸네일 출력 웹진" 스킨 사용시</description>
@@ -1221,6 +1233,7 @@
 
 		<group>
 			<title xml:lang="ko">졸졸이스토커 설정</title>
+
 			<var name="side_alway_stalker" type="radio">
 				<title>졸졸이스토커</title>
 				<description>사이드 졸졸이스토커의 출력을 결정하세요.</description>

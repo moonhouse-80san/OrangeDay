@@ -64,12 +64,16 @@
 					</div>
 					&nbsp;
 					<button type="submit" class="obtn"><i class='bx bx-book-bookmark'></i> 방명록 작성하기</button>
+
 				</li>
 			</ul>
 		</form>
 		<div cond="!$grant->write_document" class="bd_guest_no">
 			{$lang->cmd_write} {$lang->msg_not_permitted}
 		</div>
+		<!--@if($mi->use_backbg=='no')-->
+			<div class="hr"></div>
+		<!--@end-->
 	</div>
 </div>
 
@@ -116,9 +120,9 @@
 
 					<div style="float:right">
 						<span cond="$oDocument->get('readed_count')>0" class="color"><i class='bx bxs-show' ></i> {number_format($oDocument->get('readed_count')>0?$oDocument->get('readed_count'):'0')}</span>
-						<a class="color" cond="$oDocument->getMyVote() === false || $oDocument->getMyVote() < 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" title="이 글이 {$lang->cmd_vote}" style="margin-left:10px"><i class='bx bxs-heart'></i><span> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
-						<a class="color" cond="$oDocument->getMyVote() > 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" title="이 글이 {$lang->cmd_vote}" style="margin-left:10px"><i class='bx bxs-heart color'></i><span class="color"> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
-						<a cond="!$mi->scrap_user == ''" href="#" onclick="doCallModuleAction('member','procMemberScrapDocument','{$oDocument->document_srl}'); return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" title="스크랩 추가" style="margin-left:10px"><i class='bx bxs-customize color'></i></a>
+						<a class="color pr_tooltip" cond="$oDocument->getMyVote() === false || $oDocument->getMyVote() < 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" pr_color="dark" pr_position="top" title="이 글이 {$lang->cmd_vote}" style="margin-left:10px"><i class='bx bxs-heart'></i><span> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
+						<a class="color pr_tooltip" cond="$oDocument->getMyVote() > 0" href="#" onclick="doCallModuleAction('document','procDocumentVoteUp','{$oDocument->document_srl}');return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" pr_color="dark" pr_position="top" title="이 글이 {$lang->cmd_vote}" style="margin-left:10px"><i class='bx bxs-heart color'></i><span class="color"> {$oDocument->get('voted_count')>0?$oDocument->get('voted_count'):'0'}</span></a>
+						<a class="pr_tooltip" cond="!$mi->scrap_user == ''" href="#" onclick="doCallModuleAction('member','procMemberScrapDocument','{$oDocument->document_srl}'); return false;"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged" pr_color="dark" pr_position="top" title="스크랩 추가" style="margin-left:10px"><i class='bx bxs-customize color'></i></a>
 					</div>
 				</div>
 				<div class="metabox">
@@ -196,7 +200,7 @@
 									<block cond="!$listCheck">
 										<div class="action">
 											<div>
-												<a class="bd_login" title="이 댓글이 {$lang->cmd_vote}" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"><i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
+												<a class="bd_login pr_tooltip" pr_color="dark" pr_position="top" title="이 댓글이 {$lang->cmd_vote}" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged" onclick="alert('로그인 후 이용 가능합니다.')"|cond="!$is_logged"><i class="bx bxs-heart<!--@if($comment->get('voted_count')!=0)--> active<!--@end-->"></i> {$comment->get('voted_count')?$comment->get('voted_count'):0}</a>
 											</div>
 
 											<div class="actionpack">
@@ -334,17 +338,19 @@
 				</form>
 			</div>
 		</details>
-
 		<div cond="!$grant->write_document" style="height:3em">&nbsp;</div>
 		{@ $rd_idx=1}
+		<!--@if($mi->use_backbg=='no')-->
+			<div class="hr"></div>
+		<!--@end-->
 	</div>
+
 	<!--@end-->
 </div>
-
 <include target="opt_list/_list__opt_pagenavi.html" />
 <include target="opt_list/_list__opt_btnbox.html" />
 <style>
-	#list_guest,
-	#list_guest .box + .box {margin-top:{$mi->gall_cell_gap}px;}
+#list_guest,
+#list_guest .box + .box {margin-top:{$mi->gall_cell_gap}px;}
 </style>
 

@@ -32,15 +32,14 @@
 	if(!$oi->use_colorTheme) $oi->use_colorTheme = 'yes';
 	if(!$oi->use_colorTheme_set) $oi->use_colorTheme_set = 'orange';
 	if(!$oi->use_brightTheme_set) $oi->use_brightTheme_set = 'd2';
-}
 
+}
 <!--// 쪽지  -->
 {@
 	$args = new stdClass();
 	$args->receiver_srl = $logged_info->member_srl;
 	$output = executeQuery('communication.getNewMessage', $args);
 }
-
 <!--// 레벨 -->
 {@
 	$oPointModel = getModel('point');
@@ -56,43 +55,41 @@
 }
 
 <!--@if($oi->googleAnalytics)-->
-	<script async src="https://www.googletagmanager.com/gtag/js?id={$oi->googleAnalytics}"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id={$oi->googleAnalytics}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-	  gtag('config', '{$oi->googleAnalytics}');
-	</script>
+  gtag('config', '{$oi->googleAnalytics}');
+</script>
 <!--@end-->
 
 <load target="/_assets/js/_Oday_script.js" index="-100000000" />
 <!--@if($oi->use_darkMode == 'yes')-->
-	<load target="/_assets/js/_Oday_script_darkMode.js" index="-100000000" />
+<load target="/_assets/js/_Oday_script_darkMode.js" index="-100000000" />
 <!--@else-->
-	<script>
-		setColorScheme("{$oi->use_darkMode_set}");
-		$('iframe.cke_wysiwyg_frame').contents().find('body').removeClass("color_scheme_dark, color_scheme_light");
-		$('iframe.cke_wysiwyg_frame').contents().find('body').addClass("color_scheme_{$oi->use_darkMode_set}");
-		document.documentElement.setAttribute('color-theme', '{$oi->use_darkMode_set}');
-		//$('body').addClass("color_scheme_{$oi->use_darkMode_set}");
-	</script>
+<script>
+	setColorScheme("{$oi->use_darkMode_set}");
+	$('iframe.cke_wysiwyg_frame').contents().find('body').removeClass("color_scheme_dark, color_scheme_light");
+	$('iframe.cke_wysiwyg_frame').contents().find('body').addClass("color_scheme_{$oi->use_darkMode_set}");
+	document.documentElement.setAttribute('color-theme', '{$oi->use_darkMode_set}');
+	//$('body').addClass("color_scheme_{$oi->use_darkMode_set}");
+</script>
 <!--@end-->
-
 <!--@if($oi->use_colorTheme == 'yes')-->
-	<load target="/_assets/js/_Oday_script_colorTheme.js" index="-100000000" />
+<load target="/_assets/js/_Oday_script_colorTheme.js" index="-100000000" />
 <!--@else-->
-	<script>
-		$('body').removeClass("color_theme_white color_theme_gray color_theme_orange color_theme_blue color_theme_green color_theme_red bright_theme_d1 bright_theme_d2 bright_theme_d3");
-		$('body').addClass("color_theme_{$oi->use_colorTheme_set} bright_theme_{$oi->use_brightTheme_set}");
-	</script>
+<script>
+	$('body').removeClass("color_theme_white color_theme_gray color_theme_orange color_theme_blue color_theme_green color_theme_red bright_theme_d1 bright_theme_d2 bright_theme_d3");
+	$('body').addClass("color_theme_{$oi->use_colorTheme_set} bright_theme_{$oi->use_brightTheme_set}");
+</script>
 <!--@end-->
 
 <load target="/_assets/js/jscookie.js" index="-100000000" />
 <load target="/_assets/js/nice-select.js" />
 <load target="/_assets/css/nice-select.css" />
 <load target="/_assets/css/_Oday_default.css" />
-<load target="/_assets/css/_Oday_rhymix_fix.css" />
 <load target="/_assets/css/_Oday_rhymix_fix.css" />
 
 <load target="/_assets/js/jquery-ui.min.js" />
@@ -146,10 +143,10 @@
 </style>
 
 <script>
-	jQuery(function($){
-		NProgress.start();
-		setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
-	});
+jQuery(function($){
+	NProgress.start();
+	setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+});
 </script>
 
 <ul class="searchWrap">
@@ -157,11 +154,12 @@
 		<h3>SEARCH</h3>
 		<div class="wrapsearch">
 			통합검색
-			<form action="{\RX_BASEURL}" method="GET">
-			  <input type="hidden" name="mid" value="{$mid}" />
-			  <input type="hidden" name="act" value="IS" />
-			  <input type="text" name="is_keyword"  value="{$is_keyword}"  class="inbox"/>
-			  <input type="submit" value="{$lang->cmd_search}" />
+			<form action="{getUrl()}" method="get" class="searchall" no-error-return-url="true">
+				<input type="hidden" name="act" value="IS" />
+				<input type="hidden" name="mid" value="" />
+				<input type="text" name="is_keyword" value="{$is_keyword}" title="{$lang->cmd_search}" />
+				<!-- input type="submit" value="{$lang->cmd_search}" / -->
+				<button type="submit"><i class='bx bx-search'></i></button>
 			</form>
 		</div>
 		<!--@if($oi->googleSearch)-->
@@ -191,7 +189,6 @@
 	</a>
 	<a onclick="viewGnb();" class="viewgnb"><i class='bx bx-menu' ></i></a>
 </header>
-
 <ul class="setBox vp" cond="$oi->use_gnb == 'yes' || $oi->use_darkMode == 'yes' || $oi->use_colorTheme == 'yes'">
 	<li class="cog"><i class='bx bxs-cog' ></i></li>
 	<li class="setBoxlist">
@@ -247,7 +244,6 @@
 		</ul>
 	</li>
 </ul>
-
 <ul id="odaylayout">
 	<li id="ol_left" <!--@if(Mobile::isMobileCheckByAgent())-->class="gnbfull"<!--@end-->>
 		<div class="left_box">
@@ -412,11 +408,13 @@
 						</div>
 					<!--@end-->
 				</li>
+
 				<li class="comsummury vp" cond="$oi->site_address || $oi->site_copyright">
 					<span class="address" cond="$oi->site_address">{$oi->site_address}</span>
 					<span class="copy"><i class='bx bx-copyright'></i>&nbsp;{$oi->site_copyright}&nbsp;all rights reserved.</span>
 					<span class="address"><i class="fa-brands fa-rockrms" style="color:red"></i> Rhymix Version<a href="https://rhymix.org/" target="_blank"> {\RX_VERSION}</a></span>
 				</li>
+
 				<!--@if($oi->site_badge=='yes')-->
 				<li class="layout">
 					<div class="powered">
@@ -426,6 +424,7 @@
 				<!--@else-->
 					<div style="display:none;">by OrangeDay</div>
 				<!--@end-->
+
 			</ul>
 		</div>
 	</li>
@@ -446,16 +445,20 @@
 				<!--@end-->
 			<!--@else-->
 				<!--@if($_is_indexmodule && $module_info)-->
+
 					<!--@if($oi->site_column_con)-->
 						{$oi->site_column_con}
 					<!--@else-->
 						<include target="_page_con.html" />
 					<!--@end-->
+
 				<!--@else-->
+
 					<!--@if(strpos($act,"dispBoardAdmin") !== false || !$module_info || $module_info->module=='member')-->
 					<!--@else-->
 					<include target="pagetitle.html" />
 					<!--@end-->
+
 					<!--@if(strpos($act,"dispBoardAdmin") !== false)-->
 						<div class="templatepage vboard">{$content}</div>
 					<!--@elseif($module_info->module=='member')-->
@@ -465,9 +468,11 @@
 					<!--@else-->
 						<div class="templatepage">{$content}</div>
 					<!--@end-->
+
 				<!--@end-->
 			<!--@end-->
 		<!--@end-->
+
 		<div class="hr"></div>
 
 		<footer>
@@ -495,193 +500,191 @@
 		</footer>
 	</li>
 </ul>
-
 <!--@if($module_info->module != 'board')-->
-	<div class="gototop layout" style="display:none;"><a><i class='bx bx-chevron-up'></i></a></div>
+<div class="gototop layout" style="display:none;"><a><i class='bx bx-chevron-up'></i></a></div>
 <!--@end-->
 
 <include target="/_assets/version.html" />
 
 <style>
-	.viewTraffic .xe-widget-wrapper { overflow: unset;}
-	.tviewer .pop,
-	#ol_left .meta li.login_info .levelbarWrap .levelinfo { left: 5px;  width:calc({$oi->gnb_width}px - 30px);}
-	#odaylayout #ol_left,
-	#odaylayout #ol_left > div{ width:{$oi->gnb_width}px; flex-shrink: 0;}
+.viewTraffic .xe-widget-wrapper { overflow: unset;}
+.tviewer .pop,
+#ol_left .meta li.login_info .levelbarWrap .levelinfo { left: 5px;  width:calc({$oi->gnb_width}px - 30px);}
+#odaylayout #ol_left,
+#odaylayout #ol_left > div{ width:{$oi->gnb_width}px; flex-shrink: 0;}
 
-	<!--@if($oi->layout_align=='full')-->
-		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); padding: 0 10px;}
-		.setBox { left: {$oi->gnb_width}px; }
-	<!--@elseif($oi->layout_align=='left')-->
-		body {  background-color : var(--oday_bodyBgColor); }
-		#odaylayout { width:100%;  max-width:{$oi->site_width}px;  }
-		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
-		.slidebanner {width:100%; max-width: calc(100vw - {$oi->gnb_width}px - var(--oday_scrollWidth)) }
-		.setBox { left: {$oi->gnb_width}px; }
-	<!--@elseif($oi->layout_align=='center')-->
-		body {  background-color : var(--oday_bodyBgColor); }
-		#odaylayout { width:100%;  max-width:{$oi->site_width}px; margin:0 auto; box-shadow:var(--oday_listShadowR);}
-		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px);max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
-		.slidebanner {width:100%; max-width: calc(100vw - {$oi->gnb_width}px - var(--oday_scrollWidth)) }
-		.setBox { left: 0px; }
-		.setBox li.cog { left:0; color:var(--oday_mainColorDark)}
-		:is(.color_scheme_dark),
-		:root[color-theme='dark'] {
-			.setBox li.cog { left:0; color:var(--oday_mainColorLight)}
-		}
-	<!--@else-->
-		#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); }
-		.setBox { left: {$oi->gnb_width}px; }
-	<!--@end-->
 
-	@media screen and (max-width:768px){
-		#odaylayout #ol_left { width:100%;}
-		#odaylayout #ol_left > div { width:100%; }
-		#odaylayout #ol_right { width:100%; padding:0 }
-		.slidebanner { max-width:100%;}
+<!--@if($oi->layout_align=='full')-->
+	#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); padding: 0 10px;}
+	.setBox { left: {$oi->gnb_width}px; }
+<!--@elseif($oi->layout_align=='left')-->
+	body {  background-color : var(--oday_bodyBgColor); }
+	#odaylayout { width:100%;  max-width:{$oi->site_width}px;  }
+	#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
+	.slidebanner {width:100%; max-width: calc(100vw - {$oi->gnb_width}px - var(--oday_scrollWidth)) }
+	.setBox { left: {$oi->gnb_width}px; }
+<!--@elseif($oi->layout_align=='center')-->
+	body {  background-color : var(--oday_bodyBgColor); }
+	#odaylayout { width:100%;  max-width:{$oi->site_width}px; margin:0 auto; box-shadow:var(--oday_listShadowR);}
+	#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px);max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
+	.slidebanner {width:100%; max-width: calc(100vw - {$oi->gnb_width}px - var(--oday_scrollWidth)) }
+	.setBox { left: 0px; }
+	.setBox li.cog { left:0; color:var(--oday_mainColorDark)}
+	:is(.color_scheme_dark),
+	:root[color-theme='dark'] {
+		.setBox li.cog { left:0; color:var(--oday_mainColorLight)}
 	}
+<!--@else-->
+	#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); }
+	.setBox { left: {$oi->gnb_width}px; }
+<!--@end-->
+
+@media screen and (max-width:768px){
+	#odaylayout #ol_left { width:100%;}
+	#odaylayout #ol_left > div { width:100%; }
+	#odaylayout #ol_right { width:100%; padding:0 }
+	.slidebanner { max-width:100%;}
+}
 </style>
-
 <script>
-	var $ = jQuery;
-	/* 바닥 스크롤 잠금 */
-	function scrollDisable(){
-		$('body').addClass('scrollDisable').on('scroll touchmove mousewheel', function(e){
-		   // e.preventDefault();
-		});
-	}
-	function scrollAble(){
-		$('body').removeClass('scrollDisable').off('scroll touchmove mousewheel');
-	}
-	/* GNB 열고 닫기 - 모바일 */
-	function viewGnb() {
-		scrollDisable();
-		$("#ol_left").show();
-	}
-	function closeGnb() {
-		scrollAble();
-		$("#ol_left").hide();
-	}
-	//서브메뉴 펼치기
-	$(".morelist").click(function(){
-		$("#ol_left .lt_gnb .depth2").slideUp();
-		$(".morelist").html("<i class='bx bx-plus'></i>");
-		if(!$(this).next().is(":visible")){
-			$(this).next().slideDown();
-			$(this).html("<i class='bx bx-minus'></i>");
-		}
+var $ = jQuery;
+/* 바닥 스크롤 잠금 */
+function scrollDisable(){
+	$('body').addClass('scrollDisable').on('scroll touchmove mousewheel', function(e){
+	   // e.preventDefault();
 	});
-	//서브 메뉴 이동시 해당 메뉴 열어 놓기
-	$(".lt_gnb li").has(".active1, .active2").find(".depth2").show();
-	$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-minus'></i>");
-	//스크롤시 액션
-	$(window).scroll(function () {
-		Yposition = $(this).scrollTop();
-		if (Yposition >= 100) {
-			$(".gototop.layout").fadeIn();
-			$("header").addClass("scrollchange");
-		}else {
-			$(".gototop.layout").fadeOut();
-			$("header").removeClass("scrollchange");
-		}
-	});
-	//상단이동
-	$(".gototop").click(function(){
-		$('html, body').animate({scrollTop: 0}, 500);
-	});
-	//상단이동 - 메뉴
-	$(".gnbup a").click(function(){
-		$('#odaylayout #ol_left.gnbfull > div').animate({scrollTop: 0}, 0);
-	});
-	//어드민 페이지 / 세팅 페이지에서 제목 감추기
-	var itemsWithOnClassaAdmin = $('.x, .xm, .xc, #access, .signin');
-	if (itemsWithOnClassaAdmin.length > 0) {
-		$('.pagelocation').hide();
+}
+function scrollAble(){
+	$('body').removeClass('scrollDisable').off('scroll touchmove mousewheel');
+}
+/* GNB 열고 닫기 - 모바일 */
+function viewGnb() {
+	scrollDisable();
+	$("#ol_left").show();
+}
+function closeGnb() {
+	scrollAble();
+	$("#ol_left").hide();
+}
+//서브메뉴 펼치기
+$(".morelist").click(function(){
+	$("#ol_left .lt_gnb .depth2").slideUp();
+	$(".morelist").html("<i class='bx bx-plus'></i>");
+	if(!$(this).next().is(":visible")){
+		$(this).next().slideDown();
+		$(this).html("<i class='bx bx-minus'></i>");
+	}
+});
+//서브 메뉴 이동시 해당 메뉴 열어 놓기
+$(".lt_gnb li").has(".active1, .active2").find(".depth2").show();
+$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-minus'></i>");
+//스크롤시 액션
+$(window).scroll(function () {
+	Yposition = $(this).scrollTop();
+	if (Yposition >= 100) {
+		$(".gototop.layout").fadeIn();
+		$("header").addClass("scrollchange");
+	}else {
+		$(".gototop.layout").fadeOut();
+		$("header").removeClass("scrollchange");
+	}
+});
+//상단이동
+$(".gototop").click(function(){
+	$('html, body').animate({scrollTop: 0}, 500);
+});
+//상단이동 - 메뉴
+$(".gnbup a").click(function(){
+	$('#odaylayout #ol_left.gnbfull > div').animate({scrollTop: 0}, 0);
+});
+//어드민 페이지 / 세팅 페이지에서 제목 감추기
+var itemsWithOnClassaAdmin = $('.x, .xm, .xc, #access, .signin');
+if (itemsWithOnClassaAdmin.length > 0) {
+	$('.pagelocation').hide();
+}
+
+<!--@if($oi->use_gnb == 'yes')-->
+	/* GNB 항상 열기 체크 */
+	var $getGnbopen = XE.cookie.get('setOdayGnbopen');
+	if( $getGnbopen == "open" ) {
+		$("#ol_left .lt_gnb .depth2").show();
+		$(".morelist").hide();
+		$(".gnbup").addClass("active");
+		$("input:checkbox[id='gnbsubopen']").prop("checked", true);
+	}
+	/* GNB 높이 체크 */
+	var $getGnbheight = XE.cookie.get('setOdayGnbheight');
+	if( $getGnbheight == "maximize" ) {
+		$("#odaylayout #ol_left").addClass("gnbfull");
+		$("input:checkbox[id='gnbheightmaximize']").prop("checked", true);
 	}
 
-	<!--@if($oi->use_gnb == 'yes')-->
-		/* GNB 항상 열기 체크 */
-		var $getGnbopen = XE.cookie.get('setOdayGnbopen');
-		if( $getGnbopen == "open" ) {
-			$("#ol_left .lt_gnb .depth2").show();
+<!--@else-->
+	<!--@if($oi->use_gnb_allways_open == 'yes')-->
+		$("#ol_left .lt_gnb .depth2").show();
+		$(".morelist").hide();
+		$(".gnbup").addClass("active");
+		$("input:checkbox[id='gnbsubopen']").prop("checked", true);
+	<!--@end-->
+
+	<!--@if($oi->use_gnb_max_height == 'yes')-->
+		$("#odaylayout #ol_left").addClass("gnbfull");
+	<!--@end-->
+<!--@end-->
+
+$(function(){
+	/* GNB 열고 닫기 */
+	$("#gnbsubopen").change(function(){
+		if($(this).is(":checked")){
+			$("#ol_left .lt_gnb .depth2").slideDown();
 			$(".morelist").hide();
 			$(".gnbup").addClass("active");
-			$("input:checkbox[id='gnbsubopen']").prop("checked", true);
+			setCookie( "setOdayGnbopen", "open" , 365 );
+		}else{
+			$("#ol_left .lt_gnb .depth2").slideUp();
+			$(".morelist").show();
+			$(".gnbup").removeClass("active");
+			$(".morelist").html("<i class='bx bx-plus'></i>");
+			$(".lt_gnb li").has(".active1, .active2").find(".depth2").slideDown();
+			$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-minus'></i>");
+			setCookie( "setOdayGnbopen", "" , 365 );
 		}
-		/* GNB 높이 체크 */
-		var $getGnbheight = XE.cookie.get('setOdayGnbheight');
-		if( $getGnbheight == "maximize" ) {
+	});
+	/* GNB 높이 꽉채우기 */
+	$("#gnbheightmaximize").change(function(){
+		if($(this).is(":checked")){
 			$("#odaylayout #ol_left").addClass("gnbfull");
-			$("input:checkbox[id='gnbheightmaximize']").prop("checked", true);
+			setCookie( "setOdayGnbheight", "maximize" , 365 );
+		}else{
+			$("#odaylayout #ol_left").removeClass("gnbfull");
+			setCookie( "setOdayGnbheight", "" , 365 );
 		}
+	});
+	/* 활성메뉴 열때 바로 위 뎁스 액티브 제거 */
+	$itemsWithClass2 = $('.active3');
+	$itemsWithClass3 = $('.active4');
+	$itemsWithClass4 = $('.active5');
+	if ($itemsWithClass2.length > 0) { $('a.active2').removeClass('active2'); }
+	if ($itemsWithClass3.length > 0) { $('a.active3').removeClass('active3'); }
+	if ($itemsWithClass4.length > 0) { $('a.active4').removeClass('active4'); }
 
-	<!--@else-->
-		<!--@if($oi->use_gnb_allways_open == 'yes')-->
-			$("#ol_left .lt_gnb .depth2").show();
-			$(".morelist").hide();
-			$(".gnbup").addClass("active");
-			$("input:checkbox[id='gnbsubopen']").prop("checked", true);
-		<!--@end-->
-
-		<!--@if($oi->use_gnb_max_height == 'yes')-->
-			$("#odaylayout #ol_left").addClass("gnbfull");
+	/* 설정메뉴 잠깐 보이기 - 메인에서만 */
+	<!--@if($_is_indexmodule)-->
+		<!--@if($act != 'IS')-->
+			$(".setBoxlist").addClass('active');
+			setTimeout(function() {
+				$(".setBoxlist").removeClass('active');
+			}, 500);
 		<!--@end-->
 	<!--@end-->
 
-	$(function(){
-		/* GNB 열고 닫기 */
-		$("#gnbsubopen").change(function(){
-			if($(this).is(":checked")){
-				$("#ol_left .lt_gnb .depth2").slideDown();
-				$(".morelist").hide();
-				$(".gnbup").addClass("active");
-				setCookie( "setOdayGnbopen", "open" , 365 );
-			}else{
-				$("#ol_left .lt_gnb .depth2").slideUp();
-				$(".morelist").show();
-				$(".gnbup").removeClass("active");
-				$(".morelist").html("<i class='bx bx-plus'></i>");
-				$(".lt_gnb li").has(".active1, .active2").find(".depth2").slideDown();
-				$(".lt_gnb li").has(".active1, .active2").find(".morelist").html("<i class='bx bx-minus'></i>");
-				setCookie( "setOdayGnbopen", "" , 365 );
-			}
-		});
-
-		/* GNB 높이 꽉채우기 */
-		$("#gnbheightmaximize").change(function(){
-			if($(this).is(":checked")){
-				$("#odaylayout #ol_left").addClass("gnbfull");
-				setCookie( "setOdayGnbheight", "maximize" , 365 );
-			}else{
-				$("#odaylayout #ol_left").removeClass("gnbfull");
-				setCookie( "setOdayGnbheight", "" , 365 );
-			}
-		});
-		/* 활성메뉴 열때 바로 위 뎁스 액티브 제거 */
-		$itemsWithClass2 = $('.active3');
-		$itemsWithClass3 = $('.active4');
-		$itemsWithClass4 = $('.active5');
-		if ($itemsWithClass2.length > 0) { $('a.active2').removeClass('active2'); }
-		if ($itemsWithClass3.length > 0) { $('a.active3').removeClass('active3'); }
-		if ($itemsWithClass4.length > 0) { $('a.active4').removeClass('active4'); }
-
-		/* 설정메뉴 잠깐 보이기 - 메인에서만 */
-		<!--@if($_is_indexmodule)-->
-			<!--@if($act != 'IS')-->
-				$(".setBoxlist").addClass('active');
-				setTimeout(function() {
-					$(".setBoxlist").removeClass('active');
-				}, 500);
-			<!--@end-->
-		<!--@end-->
-	});
-
-	/* 검색 열고 닫기 */
-	$(".search-open").click(function(){
-		$('.searchWrap').addClass('active');
-		$('.gsc-search-button-v2').html('<i class="bx bx-search"></i>');
-	});
-	$(".search-close, .searchBg").click(function(){
-		$('.searchWrap').removeClass('active');
-	});
+});
+/* 검색 열고 닫기 */
+$(".search-open").click(function(){
+	$('.searchWrap').addClass('active');
+	$('.gsc-search-button-v2').html('<i class="bx bx-search"></i>');
+});
+$(".search-close, .searchBg").click(function(){
+	$('.searchWrap').removeClass('active');
+});
 </script>

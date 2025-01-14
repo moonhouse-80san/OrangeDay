@@ -3,6 +3,7 @@
 		<h2><i class="xi-comment"></i>&nbsp;{$lang->comment}&nbsp;<em>{$oDocument->getCommentcount()}</em></h2>
 		<!--@if($mi->comment_style == 'chat')-->
 			<ul class="com_chat_list">
+
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
 					<li class="comlist
 					indent<!--@if($comment->get('depth'))-->{($comment->get('depth'))}<!--@end-->
@@ -37,12 +38,16 @@
 								<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
 								<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
 							</div>
+
 						</div>
 					</li>
 				<!--@end-->
+
+
 			</ul>
 		<!--@elseif($mi->comment_style == 'chat_tree')-->
 			<ul class="com_chat_tree_list">
+
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
 					<li class="comlist
 					indent<!--@if($comment->get('depth'))-->{($comment->get('depth'))}<!--@end-->
@@ -79,20 +84,23 @@
 
 									<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
 									<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
+
 									<!--@if($mi->comment_count >= $comment->get('depth'))-->
-										<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}"
-										onclick="<!--@if(!$grant->write_comment || !$oDocument->isEnableComment())-->alert('{$lang->msg_not_permitted}')<!--@else-->
-										reComment({$comment->get('document_srl')},{$comment->get('comment_srl')},
-										'{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}')
-										<!--@end-->;return false;"><i class='bx bx-subdirectory-right' ></i> 댓글</a>
+									<a cond="$grant->write_comment" class="re_comment tooltip" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}"
+									onclick="<!--@if(!$grant->write_comment || !$oDocument->isEnableComment())-->alert('{$lang->msg_not_permitted}')<!--@else-->
+									reComment({$comment->get('document_srl')},{$comment->get('comment_srl')},
+									'{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}')
+									<!--@end-->;return false;"><i class='bx bx-subdirectory-right' ></i> 댓글</a>
 									<!--@end-->
+
+
 								</div>
 							</div>
 						</div>
 					</li>
 				<!--@end-->
-			</ul>
 
+			</ul>
 			<script>
 				jQuery(document).ready(function($) {
 					$('li.indent').prev('li.comlist').css({
@@ -123,6 +131,7 @@
 			</script>
 		<!--@else-->
 			<ul class="comList">
+
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
 					<li id="comment_{$comment->comment_srl}"  class="fbItem nodepth"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')"
 					<!--@if(Mobile::isMobileCheckByAgent())-->
@@ -135,6 +144,7 @@
 							<li class="meta<!--@if($comment->get('depth'))--> depth<!--@end-->">
 								<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
 								<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="40"></div>
+							</li>
 							</li>
 							<li class="comCon">
 								<div class="authorwrap">
@@ -159,9 +169,7 @@
 								</form>
 								<!--@else-->
 								{$comment->getContent(false)|noescape}
-
 								<include target="opt_read/_read_opt_com_download.html" cond="$mi->read_download == 'use'" />
-
 								<div class="action">
 										<div>
 											<a class="bd_login" title="{$lang->cmd_vote}"
@@ -189,7 +197,6 @@
 					</li>
 				<!--@end-->
 			</ul>
-
 			<script>
 				jQuery(document).ready(function($) {
 					$('li.nodepth').prev('li.indent').css({

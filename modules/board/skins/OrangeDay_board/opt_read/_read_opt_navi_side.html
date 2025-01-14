@@ -16,7 +16,7 @@
 			<!--@end-->
 		</block>
 		<!--@if($document_list[$no-1]->document_srl)-->
-				<li><div><span>{$document_list[$no-1]->getTitle()} </span></div><a href="{getUrl('document_srl',$document_list[$no-1]->document_srl)}"> <i class='bx bxs-chevron-right'></i></a></li>
+			<li><div><span>{$document_list[$no-1]->getTitle()} </span></div><a href="{getUrl('document_srl',$document_list[$no-1]->document_srl)}"> <i class='bx bxs-chevron-right'></i></a></li>
 		<!--@else-->
 			<!--@if($is_prevnext=='P' || $is_prevnext=='' )-->
 				<li class="disabled"><a><i class='bx bxs-chevron-right'></i></a></li>
@@ -37,12 +37,12 @@
 			<!--@end-->
 		</li>
 		<!--@if($grant->write_document)-->
-		<li cond="$oDocument->isEditable()" class="btngrant gap"><div class="red">수정</div><a href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" target="_top"><i class='bx bx-edit'></i></a></li>
-		<li cond="$oDocument->isEditable()" class="btngrant"><div class="red">삭제</div><a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-trash'></i></a></li>
-		<li cond="$oDocument->isEditable() && $grant->manager" class="btngrant"><div class="red">설정</div><a href="{getUrl('act','dispBoardAdminBoardInfo')}"><i class='bx bx-slider'></i></a></li>
+			<li cond="$oDocument->isEditable()" class="btngrant gap"><div class="red">수정</div><a href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" target="_top"><i class='bx bx-edit'></i></a></li>
+			<li cond="$oDocument->isEditable()" class="btngrant"><div class="red">삭제</div><a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-trash'></i></a></li>
+			<li cond="$oDocument->isEditable() && $grant->manager && !$mo" class="btngrant"><div class="red">설정</div><a href="{getUrl('act','dispBoardAdminSkinInfo')}" target="_blank"><i class='bx bx-slider'></i></a></li>
 		<!--@end-->
-
 	</ul>
+
 	<div cond="$oDocument->getCommentCount()" class="naviadd gotoComInNavi"><a class="comcount"><i class='bx bxs-message-rounded' ></i><div>{$oDocument->getCommentCount()}</div></a></div>
 	<div class="naviadd gotoTopInNavi hiddengo"><a><i class='bx bxs-chevron-up' ></i></a></div>
 	<div class="naviadd gotoListNavi hiddengo"><a><i class='bx bxs-chevron-down' ></i></a></div>
@@ -52,6 +52,7 @@
 	.naviBoxSide .naviadd.gotoTopInNavi { margin-top:15px}
 	.hiddengo a { background-color: var(--oday_mainColor); color: var(--oday_primaryBtnColor); border:none; width:var(--oday_sideNaviBtnWidth); height:var(--oday_sideNaviBtnWidth);}
 	.hiddengo a:hover { background-color: var(--oday_mainColorDark);}
+
 	@media screen and (max-width:768px){
 		.naviBoxSide.is-pinned { border-radius:20px 20px 0 0; padding:5px; box-shadow:0px -1px 10px 0px rgba(0,0,0,.4);  background-color: var(--oday_listBgColor); }
 		.naviBoxSide.is-pinned ul { box-shadow:unset;  background-color:unset;}

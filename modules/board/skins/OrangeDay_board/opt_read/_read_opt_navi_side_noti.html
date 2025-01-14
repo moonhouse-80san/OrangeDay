@@ -46,6 +46,7 @@
 	</block>
 {@ break;}
 </block>
+
 <div class="naviBoxSide"> 
 	<ul>
 		<block cond="$grant->manager">
@@ -74,22 +75,24 @@
 		</block>
 		<li class="btngolist"><div class="yellow">목록</div><a onclick="golistPage();" title="목록 보기(창 닫기)"><i class='bx bxs-grid-alt' ></i></a></li>
 		<!--@if($grant->write_document)-->
-		<li cond="$oDocument->isEditable()" class="btngrant gap"><div class="red">수정</div><a href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-edit'></i></a></li>
-		<li cond="$oDocument->isEditable()" class="btngrant"><div class="red">삭제</div><a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-trash'></i></a></li>
-		<li cond="$oDocument->isEditable() && $grant->manager" class="btngrant"><div class="red">설정</div><a href="{getUrl('act','dispBoardAdminBoardInfo')}"><i class='bx bx-slider'></i></a></li>
+			<li cond="$oDocument->isEditable()" class="btngrant gap"><div class="red">수정</div><a href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-edit'></i></a></li>
+			<li cond="$oDocument->isEditable()" class="btngrant"><div class="red">삭제</div><a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-trash'></i></a></li>
+			<li cond="$oDocument->isEditable() && $grant->manager && !$mo" class="btngrant"><div class="red">설정</div><a href="{getUrl('act','dispBoardAdminSkinInfo')}" target="_blank"><i class='bx bx-slider'></i></a></li>
 		<!--@end-->
-
 	</ul>
+
 	<div cond="$oDocument->getCommentCount()" class="naviadd gotoComInNavi"><a class="comcount"><i class='bx bxs-message-rounded' ></i><div>{$oDocument->getCommentCount()}</div></a></div>
 	<div class="naviadd gotoTopInNavi" style="display:none;"><a><i class='bx bxs-chevron-up'></i></a></div>
 </div>
+
 <style>
-@media screen and (max-width:768px){
-	.naviBoxSide.is-pinned { border-radius:30px 30px 0 0; padding:5px; border:var(--bd_listBorderStress); box-shadow: var(--bd_listShadow);  background-color: #000; }
-	.naviBoxSide.is-pinned a { background-color: #333; color: #fff; }
-	.gotoTopInNavi { display:block !important}
-}
+	@media screen and (max-width:768px){
+		.naviBoxSide.is-pinned { border-radius:30px 30px 0 0; padding:5px; border:var(--bd_listBorderStress); box-shadow: var(--bd_listShadow);  background-color: #000; }
+		.naviBoxSide.is-pinned a { background-color: #333; color: #fff; }
+		.gotoTopInNavi { display:block !important}
+	}
 </style>
+
 <script>
 	$(window).scroll(function () {
 		Yposition = $(this).scrollTop();
@@ -109,7 +112,6 @@
 	});
 	$(".gotoTopInNavi").click(function(){$('html, body').animate({scrollTop: 0}, 500);});
 
-
 	$(function() {
 		const el = document.querySelector(".naviBoxSide")
 		const observer = new IntersectionObserver( 
@@ -118,5 +120,4 @@
 		);
 		observer.observe(el);
 	});
-
 </script>

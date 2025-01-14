@@ -1,14 +1,20 @@
- // 왼쪽메뉴 제이쿼리와 연동 스크롤(wrapper)
-	jQuery(function($){
-		$(window).scroll(function() {
-			_top = $(document).scrollTop();
-			setTimeout(function() {
-				$('#alwayStalker').stop().animate({ top: _top }, 1500, 'easeOutBack');
-			}, 10);
-		});
-	});
-	
-	//페이지 하단으로 보내버려
-	function pageScroll(){
-		window.scroll(0, document.documentElement.scrollHeight || document.body.scrollHeight); 
-	}
+// Fixed menu scroll animation
+$(window).scroll(function() {
+  const scrollTop = $(document).scrollTop();
+  $('#alwayStalker').stop().animate({
+	top: scrollTop
+  }, 500); // Reduced animation time for better responsiveness
+});
+
+// Scroll to bottom function 
+function scrollToBottom() {
+  window.scrollTo({
+	top: document.documentElement.scrollHeight || document.body.scrollHeight,
+	behavior: 'smooth'
+  });
+}
+
+//페이지 하단으로 보내버려
+function pageScroll(){
+	window.scroll(0, document.documentElement.scrollHeight || document.body.scrollHeight); 
+}
