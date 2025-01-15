@@ -1246,15 +1246,15 @@
 			</var>
 			<var name="stalker_w" type="text">
 				<title>이미지가로 or 가로크기</title>
-				<description>이미지의 가로나 텍스트졸졸이 폭 크기를 입력하세요.(기본 150 숫자만)</description>
+				<description>이미지의 가로나 텍스트졸졸이 폭 크기를 입력하세요.(기본 110 숫자만)</description>
 			</var>
 			<var name="s_lm" type="text">
 				<title>스토커의 우측 위치</title>
-				<description>Contact와 스토커의 우측 마진을 선택하세요.(기본 40)</description>
+				<description>Contact와 스토커의 우측 마진을 선택하세요.(기본 125)</description>
 			</var>
 			<var name="stalker_top" type="text">
 				<title>스토커의 탑위치</title>
-				<description>스토커의 탑위치를 선택하세요.(기본 200)</description>
+				<description>스토커의 탑위치를 선택하세요.(기본 10)</description>
 			</var>
 			<var name="s_menu" type="radio">
 				<title>출력형태</title>
@@ -1322,4 +1322,3 @@
 
 	</extra_vars>
 </skin>
-
