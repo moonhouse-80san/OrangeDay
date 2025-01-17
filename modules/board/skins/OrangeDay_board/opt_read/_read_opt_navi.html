@@ -46,14 +46,14 @@
 	</block>
 {@ break;}
 </block>
-<ul class="naviList">
 
+<ul class="naviList">
 	<!--@if($document_list[$no+1]->document_srl)-->
-			<li><a href="{getUrl('document_srl',$document_list[$no+1]->document_srl)}"><i class='bx bxs-chevron-left'></i></a><div>{$document_list[$no+1]->getTitle()}</div></li>
+		<li><a href="{getUrl('document_srl',$document_list[$no+1]->document_srl)}"><i class='bx bxs-chevron-left'></i></a><div>{$document_list[$no+1]->getTitle()}</div></li>
 	<!--@else-->
 		<!--@if(!$is_prevnext=='P')-->
 			<li class="disabled"><span><i class='bx bxs-chevron-left' ></i></span></li>
-		<!--@end-->	
+		<!--@end-->
 	<!--@end-->
 	<!--// 현재목록 외 이전글-다음글 -->
 	<block cond="$is_prevnext">
@@ -64,11 +64,10 @@
 		<!--@end-->
 	</block>
 	<!--@if($document_list[$no-1]->document_srl)-->
-			<li><a href="{getUrl('document_srl',$document_list[$no-1]->document_srl)}"><i class='bx bxs-chevron-right'></i></a><div>{$document_list[$no-1]->getTitle()} </div></li>
+		<li><a href="{getUrl('document_srl',$document_list[$no-1]->document_srl)}"><i class='bx bxs-chevron-right'></i></a><div>{$document_list[$no-1]->getTitle()} </div></li>
 	<!--@else-->
 		<!--@if($is_prevnext=='P' || $is_prevnext=='' )-->
 			<li class="disabled"><span><i class='bx bxs-chevron-right'></i></span></li>
 		<!--@end-->
 	<!--@end-->
-
 </ul>

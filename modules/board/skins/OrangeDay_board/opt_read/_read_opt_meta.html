@@ -2,11 +2,11 @@
 	<ul class="rTitle">
 		<li class="meta">
 			<!--@if($mi->read_meta_name == 'use')-->
-			<div cond="!$oDocument->isNotice()">
-				<img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" alt="Profile" class="profile" />
-				<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="../img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}"></div>
-			</div>
-			<div cond="$oDocument->isNotice()" class="profile notice"><i class='bx bx-microphone'></i></div>
+				<div cond="!$oDocument->isNotice()">
+					<img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" alt="Profile" class="profile" />
+					<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="../img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}"></div>
+				</div>
+				<div cond="$oDocument->isNotice()" class="profile notice"><i class='bx bx-microphone'></i></div>
 			<!--@end-->
 			<ul>
 				<!--@if($mi->read_meta_name == 'use')-->
@@ -24,8 +24,8 @@
 						<span class="od_date" cond="$oDocument->get('regdate') != $oDocument->get('last_update')">{getTimeGap($oDocument->get('last_update'), "Y.m.d - H:i")}</span>
 						<span class="" cond="$oDocument->get('regdate') != $oDocument->get('last_update')"><i class='bx bxs-chevron-left' ></i></span>
 						<span class="od_date">{getTimeGap($oDocument->get('regdate'), "Y.m.d - H:i")}</span>
-						<!--@end-->
-						<!--@if($mi->read_meta_count == 'use')-->
+					<!--@end-->
+					<!--@if($mi->read_meta_count == 'use')-->
 						<span class="count"><i class='bx bxs-show' ></i>&nbsp;{$oDocument->get('readed_count')}</span>
 						<span class="count" cond="$oDocument->getCommentCount()"><i class='bx bxs-message-rounded-dots'></i>&nbsp;{$oDocument->getCommentCount()}</span>
 						<span class="count" cond="$oDocument->get('voted_count')!=0"><i class='bx bxs-heart'></i>&nbsp;{$oDocument->get('voted_count')}</span>

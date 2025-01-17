@@ -47,15 +47,15 @@
 {@ break;}
 </block>
 
-<div class="naviBoxSide"> 
+<div class="naviBoxSide">
 	<ul>
 		<block cond="$grant->manager">
 			<!--@if($document_list[$no+1]->document_srl)-->
-					<li><div><span>{$document_list[$no+1]->getTitle()}</span></div><a href="{getUrl('document_srl',$document_list[$no+1]->document_srl)}"> <i class='bx bxs-chevron-left'></i></a></li>
+				<li><div><span>{$document_list[$no+1]->getTitle()}</span></div><a href="{getUrl('document_srl',$document_list[$no+1]->document_srl)}"> <i class='bx bxs-chevron-left'></i></a></li>
 			<!--@else-->
 				<!--@if(!$is_prevnext=='P')-->
 					<li class="disabled"><a> <i class='bx bxs-chevron-left' ></i></a></li>
-				<!--@end-->	
+				<!--@end-->
 			<!--@end-->
 			<!--// 현재목록 외 이전글-다음글 -->
 			<block cond="$is_prevnext">
@@ -66,18 +66,18 @@
 				<!--@end-->
 			</block>
 			<!--@if($document_list[$no-1]->document_srl)-->
-					<li><div><span>{$document_list[$no-1]->getTitle()} </span></div><a href="{getUrl('document_srl',$document_list[$no-1]->document_srl)}"> <i class='bx bxs-chevron-right'></i></a></li>
+				<li><div><span>{$document_list[$no-1]->getTitle()} </span></div><a href="{getUrl('document_srl',$document_list[$no-1]->document_srl)}"> <i class='bx bxs-chevron-right'></i></a></li>
 			<!--@else-->
 				<!--@if($is_prevnext=='P' || $is_prevnext=='' )-->
 					<li class="disabled"><a><i class='bx bxs-chevron-right'></i></a></li>
 				<!--@end-->
-			<!--@end-->		
+			<!--@end-->
 		</block>
 		<li class="btngolist"><div class="yellow">목록</div><a onclick="golistPage();" title="목록 보기(창 닫기)"><i class='bx bxs-grid-alt' ></i></a></li>
 		<!--@if($grant->write_document)-->
 			<li cond="$oDocument->isEditable()" class="btngrant gap"><div class="red">수정</div><a href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-edit'></i></a></li>
 			<li cond="$oDocument->isEditable()" class="btngrant"><div class="red">삭제</div><a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-trash'></i></a></li>
-			<li cond="$oDocument->isEditable() && $grant->manager && !$mo" class="btngrant"><div class="red">설정</div><a href="{getUrl('act','dispBoardAdminSkinInfo')}" target="_blank"><i class='bx bx-slider'></i></a></li>
+			<li cond="$oDocument->isEditable() && $grant->manager" class="btngrant"><div class="red">설정</div><a href="{getUrl('act','dispBoardAdminSkinInfo')}" target="_blank"><i class='bx bx-slider'></i></a></li>
 		<!--@end-->
 	</ul>
 
@@ -114,7 +114,7 @@
 
 	$(function() {
 		const el = document.querySelector(".naviBoxSide")
-		const observer = new IntersectionObserver( 
+		const observer = new IntersectionObserver(
 		  ([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
 		  { threshold: [1] }
 		);

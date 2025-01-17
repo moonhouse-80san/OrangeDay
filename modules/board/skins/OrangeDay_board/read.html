@@ -63,30 +63,27 @@
 		<include target="_read_gallery.html" />
 	<!--@end-->
 	</div>
-		
 <!--@elseif($mi->default_style=='galleryView')-->
 	<div class="widthSideNavi">
 	<include target="_read_galleryView.html" />
 	</div>
-		
 <!--@elseif($mi->default_style=='youtube')-->
-	<div class="widthSideNavi">
-		<include target="_read_youtube.html" />
-	</div>	
-<!--@elseif($mi->default_style=='blog')-->
-	<div class="widthSideNavi4blog">
-	<include target="_read_blog.html" />
-	</div>
-	<style>.pagelocation, .board-message { display:none}</style>
-	
-<!--@elseif($mi->default_style=='history_step')-->
-	<include target="_read_history_step.html" />
-	
-<!--@else-->
-	<div class="widthSideNavi">
-		<include target="_read_normal.html" />
-	</div>
+		<div class="widthSideNavi">
+			<include target="_read_youtube.html" />
+		</div>
+	<!--@elseif($mi->default_style=='blog')-->
+		<div class="widthSideNavi4blog">
+			<include target="_read_blog.html" />
+		</div>
+		<style>.pagelocation, .board-message { display:none}</style>
+	<!--@elseif($mi->default_style=='history_step')-->
+		<include target="_read_history_step.html" />
+	<!--@else-->
+		<div class="widthSideNavi">
+			<include target="_read_normal.html" />
+		</div>
 <!--@end-->
+
 <div class="readend"></div>
 <div class="iframeBg4Click" style="display:none;"></div>
 <style>
@@ -111,16 +108,17 @@
 		}	
 	<!--@end-->
 </style>
+
 <script>
-window.onload = function(){
-	$(".widthSideNavi").addClass("loading-done");
-	//$(".loading-page").hide();
-}
-if (window.self != window.top) { /* 아이프레임 */
-	$(".iframe-x").hide();
-	$(".iframe-o").show();
-} else {
-	$(".iframe-x").show();
-	$(".iframe-o").hide();
-}
+	window.onload = function(){
+		$(".widthSideNavi").addClass("loading-done");
+		//$(".loading-page").hide();
+	}
+	if (window.self != window.top) { /* 아이프레임 */
+		$(".iframe-x").hide();
+		$(".iframe-o").show();
+	} else {
+		$(".iframe-x").show();
+		$(".iframe-o").hide();
+	}
 </script>

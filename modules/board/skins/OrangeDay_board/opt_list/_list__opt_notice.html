@@ -21,12 +21,12 @@
 								<!--@if($grant->write_comment && $oDocument->isEnableComment() )-->
 								<a href="{getUrl('', 'mid', $mid, 'act','dispBoardWriteComment','document_srl',$document->document_srl)}" class="btn"><span>{$lang->cmd_comment_registration}</span></a>
 								<!--@end-->
-								
+
 								<!--@if($document->isEditable())-->
-									<!--@if(!( !$grant->manager && $document->getCommentCount()))-->	
+									<!--@if(!( !$grant->manager && $document->getCommentCount()))-->
 									<a href="{getUrl('', 'mid', $mid, 'act','dispBoardWrite','document_srl',$document->document_srl,'comment_srl','')}" class="btn"><span>{$lang->cmd_modify}</span></a>
 									<!--@end-->
-									<!--@if(!( !$grant->manager && $oDocument->getCommentCount()))-->	
+									<!--@if(!( !$grant->manager && $oDocument->getCommentCount()))-->
 									<a href="{getUrl('', 'mid', $mid, 'act','dispBoardDelete','document_srl',$document->document_srl,'comment_srl','')}" class="btn"><span>{$lang->cmd_delete}</span></a>
 									<!--@end-->
 							<!--@end-->
@@ -38,7 +38,7 @@
 							summary.notice_fold { display: block; }
 							summary.notice_fold { position: relative; padding-left: 1.2em; cursor: pointer; }
 
-							summary.notice_fold::before { content: ""; position: absolute;	 border-top: 0.5em solid transparent; border-bottom: 0.5em solid transparent; border-left: 0.75em solid yellowgreen; top: 0em; left: 0; transition: .25s transform; }
+							summary.notice_fold::before { content: ""; position: absolute;	 border-top: 0.5em solid transparent; border-bottom: 0.5em solid transparent; border-left: 0.75em solid yellowgreen; top: 0em; left: 0; transition: .25s transform; margin-top:3px; }
 							details[open] summary:before { transform: rotateZ(90deg); }
 
 							details[open] > summary::-webkit-details-marker { transform:rotate3d(0, 0, 1, 180deg);}
@@ -53,7 +53,7 @@
 			<span cond="$document->getCommentCount()" class="count vp">
 					<i class='bx bxs-message-rounded-dots com'></i>&nbsp;{$document->getCommentCount()}
 				</span>
-			<span cond="$document->printExtraImages(60*60*$mi->duration_new)" class="newicon 
+			<span cond="$document->printExtraImages(60*60*$mi->duration_new)" class="newicon
 				<!--@foreach($document->getExtraImages() as $key=>$val)-->
 				<!--@if($val == 'secret')-->S<!--@end-->
 				<!--@if($val == 'new')-->N<!--@end-->

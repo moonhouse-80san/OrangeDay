@@ -7,7 +7,7 @@
 		<include target="opt_read/_read_opt_title.html" cond="$mi->read_title == 'use'" />	
 		<include target="opt_read/_read_opt_meta.html" cond="$mi->read_meta == 'use'"/>
 		<div class="rMain">
-		{$oDocument->getContent(false)|noescape}
+			{$oDocument->getContent(false)|noescape}
 		</div>
 		<include target="opt_read/_read_opt_extravar.html" />
 		<include target="opt_read/_read_opt_vote.html" cond="$mi->read_vote == 'use'" />
@@ -22,5 +22,5 @@
 	<include target="opt_read/_read_opt_btnbox.html" />
 	<!-- include target="opt_read/_read_opt_urlinfo.html" / -->
 </article>
-<include target="opt_read/_read_opt_navi_side.html" />
 
+<include target="opt_read/_read_opt_navi_side.html" />

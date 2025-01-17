@@ -5,8 +5,7 @@
 			<ul class="com_chat_list">
 
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
-					<li class="comlist
-					indent<!--@if($comment->get('depth'))-->{($comment->get('depth'))}<!--@end-->
+					<li class="comlist indent<!--@if($comment->get('depth'))-->{($comment->get('depth'))}<!--@end-->
 					<!--@if($comment->getUserID())-->
 					<!--@if($comment->getUserID() === $oDocument->getUserID())--> onwer<!--@else--> no_onwer<!--@end-->
 					<!--@else--> no_onwer<!--@end-->" id="comment_{$comment->comment_srl}">
@@ -38,22 +37,17 @@
 								<span class="od_link"><a href="{$oDocument->getUrl()}#comment_{$comment->comment_srl}" class="copy_comment_url"><i class='bx bx-copy'></i> #comment_{$comment->comment_srl}</a></span>
 								<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify" rel="nofollow"><i class='bx bxs-eraser'></i> {$lang->cmd_modify}</a>
 							</div>
-
 						</div>
 					</li>
 				<!--@end-->
-
-
 			</ul>
 		<!--@elseif($mi->comment_style == 'chat_tree')-->
 			<ul class="com_chat_tree_list">
-
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
-					<li class="comlist
-					indent<!--@if($comment->get('depth'))-->{($comment->get('depth'))}<!--@end-->
-					<!--@if($comment->getUserID())-->
-					<!--@if($comment->getUserID() === $oDocument->getUserID())--> onwer<!--@else--> no_onwer<!--@end-->
-					<!--@else--> no_onwer<!--@end-->" id="comment_{$comment->comment_srl}">
+					<li class="comlist indent<!--@if($comment->get('depth'))-->{($comment->get('depth'))}<!--@end-->
+						<!--@if($comment->getUserID())-->
+						<!--@if($comment->getUserID() === $oDocument->getUserID())--> onwer<!--@else--> no_onwer<!--@end-->
+						<!--@else--> no_onwer<!--@end-->" id="comment_{$comment->comment_srl}">
 						<div class="wraptree">
 							<div class="treelink"></div>
 							<div class="tree"></div>
@@ -99,8 +93,8 @@
 						</div>
 					</li>
 				<!--@end-->
-
 			</ul>
+
 			<script>
 				jQuery(document).ready(function($) {
 					$('li.indent').prev('li.comlist').css({
@@ -131,15 +125,14 @@
 			</script>
 		<!--@else-->
 			<ul class="comList">
-
 				<!--@foreach($oDocument->getComments() as $key => $comment)-->
-					<li id="comment_{$comment->comment_srl}"  class="fbItem nodepth"|cond="!$comment->get('depth')" class="fbItem indent indent{($comment->get('depth'))}"|cond="$comment->get('depth')"
-					<!--@if(Mobile::isMobileCheckByAgent())-->
-						style="padding-left:calc({($comment->get('depth'))}0px * 1.2);"
-					<!--@else-->
-						style="padding-left:calc({($comment->get('depth'))}0px * 2);"
-					<!--@end-->
-					>
+					<li id="comment_{$comment->comment_srl}"  class="fbItem nodepth"|cond="!$comment->get('depth')" class="fbItem indent ndent{($comment->get('depth'))}"|cond="$comment->get('depth')"
+						<!--@if(Mobile::isMobileCheckByAgent())-->
+							style="padding-left:calc({($comment->get('depth'))}0px * 1.2);"
+						<!--@else-->
+							style="padding-left:calc({($comment->get('depth'))}0px * 2);"
+						<!--@end-->
+						>
 						<ul class="comListSub">
 							<li class="meta<!--@if($comment->get('depth'))--> depth<!--@end-->">
 								<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />

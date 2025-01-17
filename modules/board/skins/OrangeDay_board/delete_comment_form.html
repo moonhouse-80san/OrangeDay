@@ -1,4 +1,5 @@
 <include target="_header.html" />
+
 <ul class="wrapUtilitytWin">
 	<li>
 		<div cond="$oComment->isExists()" class="utilitytWin">
@@ -13,9 +14,9 @@
 						<td>{$oComment->getContent(false)|noescape}</td>
 					</tr>
 				</table>
-			
 			</div>
 		</div>
+
 		<form action="./" method="get" onsubmit="return procFilter(this, delete_comment)" class="utilitytWin">
 			<input type="hidden" name="mid" value="{$mid}" />
 			<input type="hidden" name="page" value="{$page}" />
@@ -33,5 +34,7 @@
 		</form>
 	</li>
 </ul>
+
 <style>.utilitytWin .xe_content {margin-top: 0; padding-top: 0;border-top:none;}</style>
+
 </div>

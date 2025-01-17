@@ -1,5 +1,5 @@
-
 <include target="_header.html" />
+
 <form action="./" method="post" onsubmit="return procFilter(this, window.insert)" id="writeBox" class="bd-all" style="font-size:{$mi->font_size}px">
 	<input type="hidden" name="mid" value="{$mid}" />
 	<input type="hidden" name="content" value="{$oDocument->getContentText()}" />
@@ -18,7 +18,7 @@
 					</block>
 				</block>
 				<block cond="!$GNB->list">
-				<a href="/" class="gotohome"><i class='bx bxs-home'></i></a>
+					<a href="/" class="gotohome"><i class='bx bxs-home'></i></a>
 				</block>
 			</div>
 			<div class="require"><i class='bx bx-health'></i> {$lang->is_required}</div>
@@ -43,26 +43,26 @@
 					</select>
 					<script>
 						$(document).ready(function() { $('select').niceSelect(); });
-					</script>					
+					</script>
 				</td>
 			</tr>
 			<tr>
 				<th scope="row">{$lang->title}</th>
 				<td>
 					<input cond="$oDocument->getTitleText()" type="text" name="title" class="iText" title="{$lang->title}" value="{htmlspecialchars($oDocument->getTitleText())}" />
-					<input cond="!$oDocument->getTitleText()" type="text" name="title" class="iText" title="{$lang->title}" />				
+					<input cond="!$oDocument->getTitleText()" type="text" name="title" class="iText" title="{$lang->title}" />
 				</td>
 			</tr>
 		</table>
 	</div>
-	
-	<div class="exForm" cond="count($extra_keys)">		
-		<table cond="count($extra_keys)" summary="Extra Form" class="tbl_rymix">			
+
+	<div class="exForm" cond="count($extra_keys)">
+		<table cond="count($extra_keys)" summary="Extra Form" class="tbl_rymix">
 			<tr loop="$extra_keys=>$key,$val">
 				<th scope="row">{$val->name} <i cond="$val->is_required=='Y'" class='bx bx-health'></i></th>
 				<td>{$val->getFormHTML()|noescape}</td>
 			</tr>
-		</table>		
+		</table>
 	</div>
 
 	<ul class="formBox<!--@if(!$oDocument->isExists() || $oDocument->get('status') == 'TEMP')--> split<!--@end-->">
@@ -103,17 +103,17 @@
 			</div>
 
 			<block cond="$is_logged">
-			<div>
-				<input type="checkbox" name="notify_message" class="iCheck" value="Y" checked="checked"|cond="$oDocument->useNotify()" id="notify_message" />
-				<label for="notify_message">{$lang->notify}</label>
-			</div>
+				<div>
+					<input type="checkbox" name="notify_message" class="iCheck" value="Y" checked="checked"|cond="$oDocument->useNotify()" id="notify_message" />
+					<label for="notify_message">{$lang->notify}</label>
+				</div>
 			</block>
 			<!--@if(is_array($status_list))-->
 				<!--@foreach($status_list AS $key=>$value)-->
-				<div>
-					<input type="radio" name="status" value="{$key}" id="{$key}" <!--@if($oDocument->get('status') == $key || ($key == 'PUBLIC' && !$document_srl))-->checked="checked"<!--@end--> /> 
-					<label for="{$key}">{$value}</label>
-				</div>
+					<div>
+						<input type="radio" name="status" value="{$key}" id="{$key}" <!--@if($oDocument->get('status') == $key || ($key == 'PUBLIC' && !$document_srl))-->checked="checked"<!--@end--> />
+						<label for="{$key}">{$value}</label>
+					</div>
 				<!--@end-->
 			<!--@end-->
 		</li>
@@ -142,16 +142,19 @@
 			<button type="submit" class="obtn primary"><i class='bx bxs-save' ></i> {$lang->cmd_registration}</button>
 		</li>
 	</ul>
-
 </form>
+
 <style>
 	.pagelocation { display:none}
 </style>
+
 <load target="asset/autosize.min.js" />
+
 <script>
-$(function() {
-	autosize($('textarea'));
-	$( ".hasDatepicker" ).attr("readonly", true); 
-});
+	$(function() {
+		autosize($('textarea'));
+		$( ".hasDatepicker" ).attr("readonly", true);
+	});
 </script>
+
 <include target="_footer.html" />

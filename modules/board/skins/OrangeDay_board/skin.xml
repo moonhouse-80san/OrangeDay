@@ -265,6 +265,26 @@
 				</options>
 				<description xml:lang="ko">공지글 클릭시 폴딩 형식 출력을 선택합니다.</description>
 			</var>
+			<var name="category_user" type="radio">
+				<title xml:lang="ko">카테고리 출력</title>
+				<options value="">
+					<title xml:lang="ko">출력(기본)</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">출력않음</title>
+				</options>
+				<description xml:lang="ko">리스트 상단에 카테고리 영역의 출력을 선택합니다.</description>
+			</var>
+			<var name="category_folder" type="radio">
+				<title xml:lang="ko">　┖ 카테고리 폴딩</title>
+				<options value="">
+					<title xml:lang="ko">펼치기(기본)</title>
+				</options>
+				<options value="Y">
+					<title xml:lang="ko">접기</title>
+				</options>
+				<description xml:lang="ko">리스트 상단에 카테고리 출력시 접고 펴는 폴딩형식 선택</description>
+			</var>
 		</group>
 
 		<group>
@@ -1254,7 +1274,7 @@
 			</var>
 			<var name="stalker_top" type="text">
 				<title>스토커의 탑위치</title>
-				<description>스토커의 탑위치를 선택하세요.(기본 10)</description>
+				<description>스토커의 탑위치를 선택하세요.(기본 130)</description>
 			</var>
 			<var name="s_menu" type="radio">
 				<title>출력형태</title>

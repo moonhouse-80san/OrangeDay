@@ -3,10 +3,10 @@
 	$member_info = $MemberModel->getMemberInfoByMemberSrl($oDocument->get('member_srl'));
 }
 {@
-  	$oPointModel = getModel('point');
+	$oPointModel = getModel('point');
 	$oModuleModel = &getModel('module');
 	$config = $oModuleModel->getModuleConfig('point');
-	
+
 	$point = $oPointModel->getPoint($oDocument->get('member_srl'));
 	$level = $oPointModel->getLevel($point, $config->level_step);
 	$next_point = $config->level_step[$level+1];
@@ -16,8 +16,9 @@
 	$remain_point = (int)($need_point - $get_point);
 	if($next_point > 0) $percenttemp =  (int)(($get_point / $need_point*1000));
 	$percent = $percenttemp / 10;
-	
+
 }
+
 <ul class="sign" cond="$oDocument->getSignature()">
 	<li>
 		<div class="smeta">
@@ -33,12 +34,9 @@
 			<h3 cond="$member_info->mex_signtitle">{$member_info->mex_signtitle}</h3>
 			{$oDocument->getSignature()}
 			<div class="exp-info" cond="$oDocument->isEditable()">
-				 <div class="exp-graph"><div class="bar" style="width: {$percent}%;"></div></div>
+				<div class="exp-graph"><div class="bar" style="width: {$percent}%;"></div></div>
 				<div class="exp-sum">다음 레벨 {$next_point} - 총 획득 {$point} ( 필요 {$need_point} = 획득 {$get_point} + 남음 {$remain_point} &nbsp;|&nbsp; <span>{$percent}</span>%)</div>
 			</div>
 		</div>
 	</li>
 </ul>
-<style>
-
-</style>

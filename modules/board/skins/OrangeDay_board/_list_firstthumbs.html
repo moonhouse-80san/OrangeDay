@@ -28,7 +28,7 @@
 <load target="asset/masonry.pkgd.min.js" />
 
 <div class='stickyTopBox wide'>
-	<include target="opt_list/_list__opt_category.html" />
+	<include cond="$mi->category_user ==''" target="opt_list/_list__opt_category.html" />
 	<include target="opt_list/_list__opt_search.html" />
 </div>
 
@@ -168,51 +168,97 @@
 						<span cond="$val->eid=='rating'">{$val->name} : <strong class="starRating"><span style="width:{$document->getExtraValueHTML($val->idx)*10}%">{$document->getExtraValueHTML($val->idx)}</span></strong></span>
 					</div>
 				</div>
-
-				<!-- 코멘트 리스트 시작 -->
-				<!--@if(!$mi->list_replyContent =='')-->
-					<!--@if(!($oDocument->isExists() && $grant->view))-->
-						{@if(!$mi->comment_lineno) $mi->comment_lineno = 5;}
-						{@$comments_list = $document->getComments();}
-						<!--@if(!$mi->comment_order == '')-->{@$comments_list = array_reverse($comments_list);}<!--@else-->{@$comments_list = array_slice($comments_list, -$mi->comment_lineno, $mi->comment_lineno);}<!--@end-->
-						{@$j = 0}
-						<!--@if($document->getCommentCount())-->
-							<div class="CommArea">
-								<a cond="$document->getCommentCount() > $mi->comment_lineno" href="{getUrl('document_srl', $document->document_srl)}#{$document->document_srl}_comment">
-									<span class="bookmark">댓글 [{$document->getCommentCount()}]</span>
-								</a>
-								<!--@foreach($comments_list as $key => $val)-->
-									<!--@if(!$mi->comment_line == '')-->
-										<include target="list_webzin_comment.html" cond="$j< $mi->comment_lineno"/>
-									<!--@else-->
-										<include target="list_webzin_comment.html" />
-									<!--@end-->
-								<!--@end-->
-							</div>
-						<!--@end-->
-					<!--@end-->
-				<!--@end-->
-				<!-- 코멘트 리스트 끝 -->
 			</div>
 
-			<!--// 목록에 에드센스 출력 -->
-				<!--@if(in_array($i+1, array($mi->ad1, $mi->ad2, $mi->ad3)) && $mi->list_ads=='Y' && !$mo)-->
-					<div class="ads">
-						{$mi->ads_code}
-					</div>
-				<!--@end-->
-				<!--@if(in_array($i+1, array($mi->ad1, $mi->ad2, $mi->ad3)) && $mi->list_ads=='Y' && $mo)-->
-					<div class="adsm">
-						{$mi->ads_mcode}
-					</div>
-				<!--@end-->
-				<style>
-					.bd_ft .ads { margin:0 !important; padding:0; }
-
-					@media all and (max-width:480px) {
-						.bd_ft .ads { margin:25px 0 0 0 !important; border-top:1px solid #f1f1f1; }
+			<!-- 코멘트 리스트 시작 -->
+			<!--@if(!$mi->list_replyContent =='')-->
+				<!--@if(!($oDocument->isExists() && $grant->view))-->
+					{@
+						if(!$mi->comment_lineno) $mi->comment_lineno = 5;
+						$comments_list = $document->getComments();
+						$comments_cl = $document->getCommentCount() > $mi->comment_lineno;
 					}
-				</style>
+					<!--@if(!$mi->comment_order == '')-->{@$comments_list = array_reverse($comments_list);}<!--@else-->{@$comments_list = array_slice($comments_list, -$mi->comment_lineno, $mi->comment_lineno);}<!--@end-->
+					{@$j = 0}
+					<!--@if($document->getCommentCount())-->
+						<div class="CommArea" <!--@if($comments_cl)-->style="margin-top:15px;"<!--@end-->>
+							<a cond="$comments_cl" href="{getUrl('document_srl', $document->document_srl)}#{$document->document_srl}_comment">
+								<span class="bookmark">댓글 [{$document->getCommentCount()}]</span>
+							</a>
+							<!--@foreach($comments_list as $key => $val)-->
+								<!--@if(!$mi->comment_line == '')-->
+									<include target="list_webzin_comment.html" cond="$j< $mi->comment_lineno"/>
+								<!--@else-->
+									<include target="list_webzin_comment.html" />
+								<!--@end-->
+							<!--@end-->
+						</div>
+					<!--@end-->
+				<!--@end-->
+			<!--@end-->
+			<!-- 코멘트 리스트 끝 -->
+
+			<!--// 목록에 에드센스 출력 -->
+			<!--@if(in_array($i+1, array($mi->ad1, $mi->ad2, $mi->ad3)) && $mi->list_ads=='Y' && !$mo)-->
+				<div class="ads adsense-container">
+					{$mi->ads_code}
+				</div>
+			<!--@end-->
+			<!--@if(in_array($i+1, array($mi->ad1, $mi->ad2, $mi->ad3)) && $mi->list_ads=='Y' && $mo)-->
+				<div class="adsm adsense-container">
+					{$mi->ads_mcode}
+				</div>
+			<!--@end-->
+			<style>
+				.adsense-container:empty,
+				.adsense-container ins:empty,
+				.adsense-container ins[data-ad-status="unfilled"],
+				.adsense-container ins.adsbygoogle[data-adsbygoogle-status="done"]:empty {
+					display: none !important;
+					height: 0 !important;
+					min-height: 0 !important;
+					padding: 0 !important;
+					margin: 0 !important;
+				}
+
+				/* 부모 div도 함께 숨김 */
+				.adsense-container:has(ins:empty),
+				.adsense-container:has(ins[data-ad-status="unfilled"]),
+				.adsense-container:has(ins.adsbygoogle[data-adsbygoogle-status="done"]:empty) {
+					display: none !important;
+					height: 0 !important;
+					min-height: 0 !important;
+					padding: 0 !important;
+					margin: 0 !important;
+				}
+			</style>
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					function checkAds() {
+						document.querySelectorAll('.adsense-container').forEach(container => {
+							const adElement = container.querySelector('ins.adsbygoogle');
+							if (!adElement || 
+								adElement.innerHTML.trim() === '' || 
+								adElement.getAttribute('data-ad-status') === 'unfilled' ||
+								(adElement.getAttribute('data-adsbygoogle-status') === 'done' && adElement.innerHTML.trim() === '')) {
+								container.style.display = 'none';
+								container.style.height = '0';
+								container.style.minHeight = '0';
+								container.style.padding = '0';
+								container.style.margin = '0';
+							}
+						});
+					}
+
+					// 초기 체크
+					checkAds();
+
+					// 주기적으로 체크 (광고 로드 실패를 감지하기 위해)
+					setTimeout(checkAds, 1000);
+					setTimeout(checkAds, 2000);
+					setTimeout(checkAds, 3000);
+				});
+			</script>
 		{@$i++}
 		</div>
 	</div>

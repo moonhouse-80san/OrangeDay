@@ -3,7 +3,7 @@
 		<ul>
 			<li cond="$oDocument->isEditable()" class="btngrant gap"><div class="red">수정</div><a href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" target="_top"><i class='bx bx-edit'></i></a></li>
 			<li cond="$oDocument->isEditable()" class="btngrant"><div class="red">삭제</div><a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class='bx bx-trash'></i></a></li>
-			<li cond="$oDocument->isEditable() && $grant->manager && !$mo" class="btngrant"><div class="red">설정</div><a href="{getUrl('act','dispBoardAdminSkinInfo')}" target="_blank"><i class='bx bx-slider'></i></a></li>
+			<li cond="$oDocument->isEditable() && $grant->manager" class="btngrant"><div class="red">설정</div><a href="{getUrl('act','dispBoardAdminSkinInfo')}" target="_blank"><i class='bx bx-slider'></i></a></li>
 		</ul>
 	<!--@end-->
 

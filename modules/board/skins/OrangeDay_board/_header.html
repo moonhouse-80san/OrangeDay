@@ -84,37 +84,37 @@
 <!--@end-->
 
 <!--@if($listStyle=='list')-->
-{@ $mi->default_style = 'list'}
-<!--@elseif($listStyle=='listtable')-->
-{@ $mi->default_style = 'listtable'}
-<!--@elseif($listStyle=='gallery')-->
-{@ $mi->default_style = 'gallery'}
-<!--@elseif($listStyle=='galleryView')-->
-{@ $mi->default_style = 'galleryView'}
-<!--@elseif($listStyle=='webzine')-->
-{@ $mi->default_style = 'webzine'}
-<!--@elseif($listStyle=='webzinelist')-->
-{@ $mi->default_style = 'webzinelist'}
-<!--@elseif($listStyle=='firstthumbs')-->
-{@ $mi->default_style = 'firstthumbs'}
-<!--@elseif($listStyle=='bookmark')-->
-{@ $mi->default_style = 'bookmark'}
-<!--@elseif($listStyle=='guest')-->
-{@ $mi->default_style = 'guest'}
-<!--@elseif($listStyle=='guestView')-->
-{@ $mi->default_style = 'guestView'}
-<!--@elseif($listStyle=='inputform')-->
-{@ $mi->default_style = 'inputform'}
-<!--@elseif($listStyle=='blog')-->
-{@ $mi->default_style = 'blog'}
-<!--@elseif($listStyle=='history')-->
-{@ $mi->default_style = 'history'}
-<!--@elseif($listStyle=='youtube')-->
-{@ $mi->default_style = 'youtube'}
-<!--@elseif($listStyle=='history_step')-->
-{@ $mi->default_style = 'history_step'}
-<!--@elseif(!in_array($mi->default_style,array('list','listtable','gallery','webzine','webzinelist','firstthumbs','bookmark','guest','inputform','blog','history','youtube','history_step')))-->
-{@ $mi->default_style = 'list'}
+	{@ $mi->default_style = 'list'}
+	<!--@elseif($listStyle=='listtable')-->
+	{@ $mi->default_style = 'listtable'}
+	<!--@elseif($listStyle=='gallery')-->
+	{@ $mi->default_style = 'gallery'}
+	<!--@elseif($listStyle=='galleryView')-->
+	{@ $mi->default_style = 'galleryView'}
+	<!--@elseif($listStyle=='webzine')-->
+	{@ $mi->default_style = 'webzine'}
+	<!--@elseif($listStyle=='webzinelist')-->
+	{@ $mi->default_style = 'webzinelist'}
+	<!--@elseif($listStyle=='firstthumbs')-->
+	{@ $mi->default_style = 'firstthumbs'}
+	<!--@elseif($listStyle=='bookmark')-->
+	{@ $mi->default_style = 'bookmark'}
+	<!--@elseif($listStyle=='guest')-->
+	{@ $mi->default_style = 'guest'}
+	<!--@elseif($listStyle=='guestView')-->
+	{@ $mi->default_style = 'guestView'}
+	<!--@elseif($listStyle=='inputform')-->
+	{@ $mi->default_style = 'inputform'}
+	<!--@elseif($listStyle=='blog')-->
+	{@ $mi->default_style = 'blog'}
+	<!--@elseif($listStyle=='history')-->
+	{@ $mi->default_style = 'history'}
+	<!--@elseif($listStyle=='youtube')-->
+	{@ $mi->default_style = 'youtube'}
+	<!--@elseif($listStyle=='history_step')-->
+	{@ $mi->default_style = 'history_step'}
+	<!--@elseif(!in_array($mi->default_style,array('list','listtable','gallery','webzine','webzinelist','firstthumbs','bookmark','guest','inputform','blog','history','youtube','history_step')))-->
+	{@ $mi->default_style = 'list'}
 <!--@end-->
 
 <!--@if(strpos($layout_info->layout,"Oday") === false)-->
@@ -135,7 +135,6 @@
 	});
 </script>
 
-
 <!--@if($layout_info->layout =='Oday_horizon')-->
 	<style>
 		:root {
@@ -143,51 +142,49 @@
 			--oday_maxWidth: 100%;
 		}
 		.stickyTopBox { top:50px; }
-		@media screen and (max-width:768px){
+
+		@media screen and (max-width:768px) {
 			.stickyTopBox { top:0; }
 		}
 	</style>
-<!--@elseif($layout_info->layout =='Oday_blog')-->
-
+	<!--@elseif($layout_info->layout =='Oday_blog')-->
+		<style>
+			:root {
+				--oday_listHeight:{$mi->normal_list_height}px !important;
+				--oday_maxWidth: 100%;
+			}
+			.stickyTopBox { top:0; }
+		</style>
+	<!--@else-->
 	<style>
-	:root {
-		--oday_listHeight:{$mi->normal_list_height}px !important;
-		--oday_maxWidth: 100%;
-	}
-	.stickyTopBox { top:0; }
-	</style>
-
-<!--@else-->
-	<style>
-	.stickyTopBox { top:0; }
+		.stickyTopBox { top:0; }
 	</style>
 	<!--@if($mi->page_align=='center' || $mi->page_align=='left')-->
-	<style>
-	:root {
-		--oday_listHeight:{$mi->normal_list_height}px !important;
-		--oday_maxWidth:  {$mi->page_width}px;
-	}
-	</style>
+		<style>
+			:root {
+				--oday_listHeight:{$mi->normal_list_height}px !important;
+				--oday_maxWidth:  {$mi->page_width}px;
+			}
+		</style>
 	<!--@elseif($mi->page_align=='full')-->
-	<style>
-	:root {
-		--oday_listHeight:{$mi->normal_list_height}px !important;
-		--oday_maxWidth: 100%;
-	}
-	</style>
+		<style>
+			:root {
+				--oday_listHeight:{$mi->normal_list_height}px !important;
+				--oday_maxWidth: 100%;
+			}
+		</style>
 	<!--@end-->
 <!--@end-->
 
 <!--@if($mi->default_style=='history')-->
-<style>
-	.pagelocation {display:none; }
-	.greetinginpage .since span { color:var(--oday_mainColor)}
-	.greetinginpage .sum { opacity:.8}
-</style>
+	<style>
+		.pagelocation {display:none; }
+		.greetinginpage .since span { color:var(--oday_mainColor)}
+		.greetinginpage .sum { opacity:.8}
+	</style>
 <!--@end-->
 
 <!--@if($mi->con_bg || $mi->con_bg_dr)-->
-
 	<style>
 		.parallax-mirror:after { content:"";position:absolute; top: 0; left: 0; width: 100%; height: 100%;}
 		.insideTopBg { position:absolute; top: 0px; left: 0; width: 100%;  margin: 0 0 50px 0; }
@@ -217,7 +214,6 @@
 				0 5px 10px rgba(0,0,0,.2);
 			}
 			.greetinginpage { color:#fff; text-shadow: 0 0 5px rgba(0,0,0,.5);}
-
 		<!--@elseif( $mi->con_font_color == "black")-->
 			.greetinginpage li.title h1,
 			.b_title a,
@@ -230,7 +226,6 @@
 			}
 			.greetinginpage { color:#000; text-shadow: 0 0 5px rgba(255,255,255,.5);}
 		<!--@end-->
-
 	</style>
 <!--@end-->
 
@@ -247,124 +242,115 @@
 </div>
 
 <!--@if($mi->preview=='use' || $mi->theme_use == 'use')-->
-<div class="preview_btn">
-	<a class="view_opt"><i class='bx bx-cog' ></i></a>
-	<!--@if($mi->preview=='use')-->
-		<ul class="cate1" style="display:none">
-			<li class="on"|cond="$mi->default_style=='listtable'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','listtable','act','','document_srl','')}" title="기본-table"><i class='bx bx-table' ></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='list'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','list','act','','document_srl','')}" title="기본-ul"><i class='bx bx-menu' ></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='guest'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','guest','act','','document_srl','')}" title="방명록"><i class='bx bxs-user' ></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='webzinelist'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','webzinelist','act','','document_srl','')}" title="웹진리스트"><i class='bx bx-list-ul' ></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='webzine'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','webzine','act','','document_srl','')}" title="웹진박스"><i class='bx bxs-grid' ></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='firstthumbs'">
-				<a class="bubble tooltip" href="{getUrl('listStyle','firstthumbs','act','','document_srl','')}" title="처음만 썸네일"><i class='bx bx-layer'></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='bookmark'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','bookmark','act','','document_srl','')}" title="북마크"><i class='bx bxs-star' ></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='inputform'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','inputform','act','','document_srl','')}" title="입력폼"><i class='bx bx-edit' ></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='blog'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','blog','act','','document_srl','')}" title="블로그(매뉴얼/강좌)"><i class='bx bx-file' ></i></a>
-			</li>
-			<li class="on"|cond="$mi->default_style=='history'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','history','act','','document_srl','')}" title="히스토리"><i class='bx bx-history' ></i></a>
-			</li>
-
-			<!-- li class="on"|cond="$mi->default_style=='youtube'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','youtube','act','','document_srl','')}" title="유튜브"><i class='bx bxl-youtube'></i></a>
-			</li -->
-			<li class="on gall"|cond="$mi->default_style=='gallery'">
-				<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','gallery','act','','document_srl','')}" title="갤러리"><i class='bx bx-image-alt' ></i></a>
-
-				<!--@if($mi->default_style=='gallery')-->
-					<ul class="date2">
-						<li class="on"|cond="$mi->view_cell=='all'">
-							<a class="bubble tooltip tooltipTheme" href="{getUrl('onlyimg','all','act','','document_srl','')}" title="썸네일 + 제목">A</a>
-						</li>
-						<li class="on"|cond="$mi->view_cell=='thum'">
-							<a class="bubble tooltip tooltipTheme" href="{getUrl('onlyimg','thum','act','','document_srl','')}" title="썸네일">T</a>
-						</li>
-						<li class="on"|cond="$mi->view_cell=='sum'">
-							<a class="bubble tooltip tooltipTheme" href="{getUrl('onlyimg','sum','act','','document_srl','')}" title="제목">C</a>
-						</li>
-					</ul>
-				<!--@end-->
-
-			</li>
-		</ul>
-	<!--@end-->
-
-	<!--@if(strpos($layout_info->layout,"Oday") === false)-->
-
-		<!--@if($mi->use_darkMode == 'yes')-->
+	<div class="preview_btn">
+		<a class="view_opt"><i class='bx bx-cog' ></i></a>
+		<!--@if($mi->preview=='use')-->
 			<ul class="cate1" style="display:none">
-				<li><a onclick="setThemeDark()" class="viewDark "><i class='bx bxs-moon'></i></a></li>
-				<li><a onclick="setThemeLight()" class="viewLight "><i class='bx bxs-sun' ></i></a> </li>
-			</ul>
-		<!--@end-->
-
-		<!--@if($mi->use_colorTheme == 'yes')-->
-			<ul class="cate1" style="display:none">
-				<li class="titlecon mod-theme color">
-					<div>
-						<a onclick="setTheme_color('white');"><i class='bx bxs-palette white' ></i></a>
-						<a onclick="setTheme_color('gray');"><i class='bx bxs-palette gray' ></i></a>
-						<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a>
-						<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a>
-						<a onclick="setTheme_color('green');"><i class='bx bxs-palette green' ></i></a>
-						<a onclick="setTheme_color('red');"><i class='bx bxs-palette red' ></i></a>
-					</div>
+				<li class="on"|cond="$mi->default_style=='listtable'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','listtable','act','','document_srl','')}" title="기본-table"><i class='bx bx-table' ></i></a>
 				</li>
-				<li class="titlecon mod-theme bright">
-					<div>
-						<a onclick="setTheme_bright('d1');"><i class='bx bx-signal-1 d1' ></i></a>
-						<a onclick="setTheme_bright('d2');"><i class='bx bx-signal-3 d2' ></i></a>
-						<a onclick="setTheme_bright('d3');"><i class='bx bx-signal-5 d3' ></i></a>
-					</div>
+				<li class="on"|cond="$mi->default_style=='list'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','list','act','','document_srl','')}" title="기본-ul"><i class='bx bx-menu' ></i></a>
+				</li>
+				<li class="on"|cond="$mi->default_style=='guest'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','guest','act','','document_srl','')}" title="방명록"><i class='bx bxs-user' ></i></a>
+				</li>
+				<li class="on"|cond="$mi->default_style=='webzinelist'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','webzinelist','act','','document_srl','')}" title="웹진리스트"><i class='bx bx-list-ul' ></i></a>
+				</li>
+				<li class="on"|cond="$mi->default_style=='webzine'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','webzine','act','','document_srl','')}" title="웹진박스"><i class='bx bxs-grid' ></i></a>
+				</li>
+				<li class="on"|cond="$mi->default_style=='firstthumbs'">
+					<a class="bubble tooltip" href="{getUrl('listStyle','firstthumbs','act','','document_srl','')}" title="처음만 썸네일"><i class='bx bx-layer'></i></a>
+				</li>
+				<li class="on"|cond="$mi->default_style=='bookmark'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','bookmark','act','','document_srl','')}" title="북마크"><i class='bx bxs-star' ></i></a>
+				</li>
+				<li class="on"|cond="$mi->default_style=='inputform'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','inputform','act','','document_srl','')}" title="입력폼"><i class='bx bx-edit' ></i></a>
+				</li>
+				<li class="on"|cond="$mi->default_style=='blog'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','blog','act','','document_srl','')}" title="블로그(매뉴얼/강좌)"><i class='bx bx-file' ></i></a>
+				</li>
+				<li class="on"|cond="$mi->default_style=='history'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','history','act','','document_srl','')}" title="히스토리"><i class='bx bx-history' ></i></a>
+				</li>
+				<!-- li class="on"|cond="$mi->default_style=='youtube'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','youtube','act','','document_srl','')}" title="유튜브"><i class='bx bxl-youtube'></i></a>
+				</li -->
+				<li class="on gall"|cond="$mi->default_style=='gallery'">
+					<a class="bubble tooltip tooltipTheme" href="{getUrl('listStyle','gallery','act','','document_srl','')}" title="갤러리"><i class='bx bx-image-alt' ></i></a>
+					<!--@if($mi->default_style=='gallery')-->
+						<ul class="date2">
+							<li class="on"|cond="$mi->view_cell=='all'">
+								<a class="bubble tooltip tooltipTheme" href="{getUrl('onlyimg','all','act','','document_srl','')}" title="썸네일 + 제목">A</a>
+							</li>
+							<li class="on"|cond="$mi->view_cell=='thum'">
+								<a class="bubble tooltip tooltipTheme" href="{getUrl('onlyimg','thum','act','','document_srl','')}" title="썸네일">T</a>
+							</li>
+							<li class="on"|cond="$mi->view_cell=='sum'">
+								<a class="bubble tooltip tooltipTheme" href="{getUrl('onlyimg','sum','act','','document_srl','')}" title="제목">C</a>
+							</li>
+						</ul>
+					<!--@end-->
 				</li>
 			</ul>
 		<!--@end-->
 
-	<!--@end-->
+		<!--@if(strpos($layout_info->layout,"Oday") === false)-->
+			<!--@if($mi->use_darkMode == 'yes')-->
+				<ul class="cate1" style="display:none">
+					<li><a onclick="setThemeDark()" class="viewDark "><i class='bx bxs-moon'></i></a></li>
+					<li><a onclick="setThemeLight()" class="viewLight "><i class='bx bxs-sun' ></i></a> </li>
+				</ul>
+			<!--@end-->
+			<!--@if($mi->use_colorTheme == 'yes')-->
+				<ul class="cate1" style="display:none">
+					<li class="titlecon mod-theme color">
+						<div>
+							<a onclick="setTheme_color('white');"><i class='bx bxs-palette white' ></i></a>
+							<a onclick="setTheme_color('gray');"><i class='bx bxs-palette gray' ></i></a>
+							<a onclick="setTheme_color('orange');"><i class='bx bxs-palette orange' ></i></a>
+							<a onclick="setTheme_color('blue');"><i class='bx bxs-palette blue' ></i></a>
+							<a onclick="setTheme_color('green');"><i class='bx bxs-palette green' ></i></a>
+							<a onclick="setTheme_color('red');"><i class='bx bxs-palette red' ></i></a>
+						</div>
+					</li>
+					<li class="titlecon mod-theme bright">
+						<div>
+							<a onclick="setTheme_bright('d1');"><i class='bx bx-signal-1 d1' ></i></a>
+							<a onclick="setTheme_bright('d2');"><i class='bx bx-signal-3 d2' ></i></a>
+							<a onclick="setTheme_bright('d3');"><i class='bx bx-signal-5 d3' ></i></a>
+						</div>
+					</li>
+				</ul>
+			<!--@end-->
+		<!--@end-->
 
-	<script>
-		$(function(){
-		   $(".tooltipTheme").tooltip({
-			delay:0,
-			opacity:1,
-			position: { my: "left center", at: "right center" }
-		   });
-		});
-		$(".view_opt").click(function(){
-			$(this).parent().find('ul').slideUp(200);
-			if(!$(this).parent().find('ul').is(":visible")){
-				$(this).parent().find('ul').slideDown(200);
-			}
-		});
-	</script>
-</div>
+		<script>
+			$(function(){
+			   $(".tooltipTheme").tooltip({
+				delay:0,
+				opacity:1,
+				position: { my: "left center", at: "right center" }
+			   });
+			});
+			$(".view_opt").click(function(){
+				$(this).parent().find('ul').slideUp(200);
+				if(!$(this).parent().find('ul').is(":visible")){
+					$(this).parent().find('ul').slideDown(200);
+				}
+			});
+		</script>
+	</div>
 <!--@end-->
-
 
 <!--@if(strpos($layout_info->layout,"Oday") === false && $_SERVER['HTTP_SEC_FETCH_DEST']=='document' && $mi->use_btitle == 'yes')-->
-<h1 class="b_title"><a href="{getFullUrl('','mid',Context::get('mid'))}" target="_top">{$mi->browser_title}</a></h1>
+	<h1 class="b_title"><a href="{getFullUrl('','mid',Context::get('mid'))}" target="_top">{$mi->browser_title}</a></h1>
 <!--@end-->
 <!--@if(strpos($layout_info->layout,"Oday") === false && $_SERVER['HTTP_SEC_FETCH_DEST']=='document' && $mi->use_btitle == 'no')-->
-&nbsp;
+	&nbsp;
 <!--@end-->
 
 <div class="od-bord<!--@if($mi->use_backbg=='no')--> no_bd_bg<!--@end-->" id="bd_{$mi->module_srl}_{$oDocument->document_srl}" data-default_style="{$mi->default_style}">
-
-

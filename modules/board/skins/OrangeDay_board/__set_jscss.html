@@ -14,11 +14,10 @@
 <!--@if($mi->use_colorTheme == 'yes')-->
 	<load target="/_assets/js/_Oday_script_colorTheme.js" index="-100000000" />
 <!--@else-->
-
-<script>
-	$('body').removeClass("color_theme_white color_theme_gray color_theme_orange color_theme_blue color_theme_green color_theme_red bright_theme_d1 bright_theme_d2 bright_theme_d3"); 
-	$('body').addClass("color_theme_{$mi->use_colorTheme_set} bright_theme_{$mi->use_brightTheme_set}");
-</script>
+	<script>
+		$('body').removeClass("color_theme_white color_theme_gray color_theme_orange color_theme_blue color_theme_green color_theme_red bright_theme_d1 bright_theme_d2 bright_theme_d3"); 
+		$('body').addClass("color_theme_{$mi->use_colorTheme_set} bright_theme_{$mi->use_brightTheme_set}");
+	</script>
 <!--@end-->
 
 <load target="/_assets/js/jscookie.js" index="-100000000" />
@@ -37,7 +36,7 @@
 	var $ = jQuery;
 	function scrollDisable(){
 		$('body').addClass('scrollDisable').on('scroll touchmove mousewheel', function(e){
-		   e.preventDefault();
+			e.preventDefault();
 		});
 	}
 	function scrollAble(){

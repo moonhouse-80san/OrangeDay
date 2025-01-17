@@ -1,9 +1,11 @@
 {@ if($_SERVER['HTTP_SEC_FETCH_DEST']!="document") Context::set('layout','none');}
+
 {@
 	if(!$layout_info->gnb_width) $layout_info->gnb_width = '180';
 	if(!$layout_info->site_width) $layout_info->site_width = '1200';
 	$layout_apply_width = $layout_info->site_width - $layout_info->gnb_width;
 }
+
 <!--@if($_SERVER['HTTP_SEC_FETCH_DEST']!='document')-->
 	<include target="__set_jscss.html" />
 <!--@end-->
@@ -13,11 +15,11 @@
 		<include target="opt_read/_read_opt_secret.html" />
 		<include target="opt_read/_read_opt_navi_bottom.html" cond="$mi->read_bnavi == 'use'" />
 	<!--@else--><!-- 비밀글 분기 -->
-		<include target="opt_read/_read_opt_location.html" cond="$mi->read_location == 'use'" />	
-		<include target="opt_read/_read_opt_title.html" cond="$mi->read_title == 'use'" />	
+		<include target="opt_read/_read_opt_location.html" cond="$mi->read_location == 'use'" />
+		<include target="opt_read/_read_opt_title.html" cond="$mi->read_title == 'use'" />
 		<include target="opt_read/_read_opt_meta.html" cond="$mi->read_meta == 'use'"/>
 		<div class="rMain">
-		{$oDocument->getContent(false)|noescape}
+			{$oDocument->getContent(false)|noescape}
 		</div>
 		<include target="opt_read/_read_opt_extravar.html" />
 		<include target="opt_read/_read_opt_vote.html" cond="$mi->read_vote == 'use'" />
@@ -32,22 +34,24 @@
 	<include target="opt_read/_read_opt_btnbox.html" />
 	<!-- include target="opt_read/_read_opt_urlinfo.html" / -->
 </article>
-<include target="opt_read/_read_opt_navi_side.html" />
-<style>
-<!--@if($_SERVER['HTTP_SEC_FETCH_DEST']!='document')-->
-	body {background-color:transparent}
-	.preview_btn { display: none; }
-	.iframeBg4Click { display:block !important; }	
-	.od-bord { margin:0 auto; max-width:1000px;  padding-bottom:0; }
-	.powered {display: none;}
-	<!--@if($layout_info->layout_align=='left')-->
-		.od-bord { width:{$layout_apply_width}px; margin:0 auto; }
-	<!--@end-->
 
-<!--@else-->
-	body {background-color:var(--oday_bodyBgColor)}
-<!--@end-->
+<include target="opt_read/_read_opt_navi_side.html" />
+
+<style>
+	<!--@if($_SERVER['HTTP_SEC_FETCH_DEST']!='document')-->
+		body {background-color:transparent}
+		.preview_btn { display: none; }
+		.iframeBg4Click { display:block !important; }
+		.od-bord { margin:0 auto; max-width:1000px;  padding-bottom:0; }
+		.powered {display: none;}
+		<!--@if($layout_info->layout_align=='left')-->
+			.od-bord { width:{$layout_apply_width}px; margin:0 auto; }
+		<!--@end-->
+	<!--@else-->
+		body {background-color:var(--oday_bodyBgColor)}
+	<!--@end-->
 </style>
+
 <script>
 	/** 배경 설정 **/
 	$(function() {
@@ -57,29 +61,29 @@
 			backControl(callbackFunction);
 		} else {
 			$("body").css('background-color','var(--oday_bodyBgColor)');
-		}		
+		}
 	});
 	<!--@if($_SERVER['HTTP_SEC_FETCH_DEST']!='document')-->
 		$(function() {
 			$('.iframeBg4Click').click(function(){ golistPage(); });
 			backControl(callbackFunction);
-		});	
+		});
 		/* 브라우저 백 버튼 감지 */
 		var backControl = function(callbackFunction) {
-			 window.innerDoc = false; 		
-			 window.addEventListener('mouseover', function(event) {    
+			 window.innerDoc = false;
+			 window.addEventListener('mouseover', function(event) {
 				window.innerDoc = true;
-			 }); 
-			 window.addEventListener('mouseout', function(event) {                
+			 });
+			 window.addEventListener('mouseout', function(event) {
 				window.innerDoc = false;
 			 });
 			parent.history.pushState({page:"child"}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}');
 			history.pushState({page:"child"}, '{$oDocument->getTitle()}', '{$oDocument->getPermanentUrl()}');
-			window.addEventListener('popstate', function(event) { 
+			window.addEventListener('popstate', function(event) {
 				event.preventDefault();
-				if (!window.innerDoc) { 
+				if (!window.innerDoc) {
 					callbackFunction();
-				} 
+				}
 			});
 		}
 		var callbackFunction = function() {
@@ -90,4 +94,3 @@
 		}
 	<!--@end-->
 </script>
-
