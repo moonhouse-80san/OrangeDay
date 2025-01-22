@@ -4,7 +4,7 @@
 			<!--@if($mi->read_meta_name == 'use')-->
 				<div cond="!$oDocument->isNotice()">
 					<img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" alt="Profile" class="profile" />
-					<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="../img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}"></div>
+					<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="../img/profile/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}"></div>
 				</div>
 				<div cond="$oDocument->isNotice()" class="profile notice"><i class='bx bx-microphone'></i></div>
 			<!--@end-->

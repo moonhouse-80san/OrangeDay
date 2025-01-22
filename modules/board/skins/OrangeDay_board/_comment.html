@@ -12,7 +12,7 @@
 						<div class="tree"></div>
 						<div class="profilewrap">
 							<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-							<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="40"></div>
+							<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/profile/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="40"></div>
 							<span class="comvote">
 								<a class="bd_login" title="{$lang->cmd_vote}"
 								onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged"
@@ -53,7 +53,7 @@
 							<div class="tree"></div>
 							<div class="profilewrap">
 								<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-								<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="40"></div>
+								<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/profile/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="40"></div>
 								<span class="comvote">
 									<a class="bd_login" title="{$lang->cmd_vote}"
 									onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}');return false"|cond="$is_logged"
@@ -136,7 +136,7 @@
 						<ul class="comListSub">
 							<li class="meta<!--@if($comment->get('depth'))--> depth<!--@end-->">
 								<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-								<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="40"></div>
+								<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/profile/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="40"></div>
 							</li>
 							</li>
 							<li class="comCon">

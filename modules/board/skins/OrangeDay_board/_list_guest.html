@@ -93,7 +93,7 @@
 				<li class="meta size2">
 					<span class="number">{$no}</span>
 					<img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" alt="profile" title="{$oDocument->getNickName()}" class="profile" />
-					<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}"></div>
+					<div cond="!$oDocument->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/profile/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}"></div>
 				</li>
 				<li class="gCon">
 					<span cond="$oDocument->printExtraImages(60*60*$mi->duration_new)" class="newicon
@@ -169,7 +169,7 @@
 								<li style="font-size:2em; margin:2px 10px 0 10px; color:var(--oday_mainColorLight)"><i class='bx bxs-share bx-rotate-180'></i></li>
 								<li class="meta">
 									<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-									<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="30"></div>
+									<div cond="!$comment->getProfileImage()" class="profile" title="{$oDocument->getNickName()}"><img src="img/profile/{$oNickBgUtil->getNickBgColor($oDocument->getNickName())}" width="30"></div>
 								</li>
 								<li class="comCon">
 									<div class="authorwrap">

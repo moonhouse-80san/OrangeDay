@@ -76,7 +76,7 @@
 			<!--@end-->
 			<div cond="!$mi->profile_img" class="pf">
 				<img cond="$document->getProfileImage()" class="profile1" src="{$document->getProfileImage()}" alt="profile" />
-				<span cond="!$document->getProfileImage() && !$mi->pname == ''" class="profile1 pf_rimg" style="background:url('{$tpl_path}img/{$oNickBgUtil->getNickBgColor($document->getNickName())}') 1px 1px no-repeat">
+				<span cond="!$document->getProfileImage() && !$mi->pname == ''" class="profile1 pf_rimg" style="background:url('{$tpl_path}img/profile/{$oNickBgUtil->getNickBgColor($document->getNickName())}') 1px 1px no-repeat">
 					{@ $fisrt_nick_str = mb_substr($document->getNickName(),0,2)}
 					<span class="nick">{$fisrt_nick_str}</span>
 				</span>
