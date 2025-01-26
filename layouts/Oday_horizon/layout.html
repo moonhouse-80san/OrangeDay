@@ -49,8 +49,6 @@
 	if(!$oi->use_colorTheme) $oi->use_colorTheme = 'yes';
 	if(!$oi->use_colorTheme_set) $oi->use_colorTheme_set = 'orange';
 	if(!$oi->use_brightTheme_set) $oi->use_brightTheme_set = 'd2';
-
-
 }
 <!--@if($layout_info->layout_align== 'num')-->
 {@
@@ -79,11 +77,7 @@ $now_point = $config->level_step[$level];
 $need_point = (int)($next_point-$now_point);
 $need_point2 = (int)($point-$now_point);
 if($next_point > 0) $per = (int)($need_point2 / $need_point*1000);
-
-
-
 }
-
 
 <!--@if($oi->googleAnalytics)-->
 <script async src="https://www.googletagmanager.com/gtag/js?id={$oi->googleAnalytics}"></script>
@@ -182,7 +176,6 @@ if($next_point > 0) $per = (int)($need_point2 / $need_point*1000);
 .horizon li.main.wr {width:calc((100% - {$oi->site_wing_width}px) - {$oi->site_wing_gap}px)}
 .horizon li.main.wl.wr { width:calc((100% - ({$oi->site_wing_width}px * 2)) - ({$oi->site_wing_gap}px * 2))}
 
-
 .horizon.sub > li { width:100%}
 .horizon.sub li.force  { width:calc((100% - {$oi->site_wing_width}px) - {$oi->site_wing_gap}px); position:relative;  }
 .horizon.sub li.force_nono  { width:calc((100% - {$oi->site_wing_width}px) - {$oi->site_wing_gap}px); position:relative;  }
@@ -245,8 +238,6 @@ if($next_point > 0) $per = (int)($need_point2 / $need_point*1000);
 		}
 	}
 <!--@end-->
-
-
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
 	:root {
@@ -406,15 +397,14 @@ jQuery(function($){
 			<div class="vm meta_m">
 			<include target="meta.html" />
 			</div>
-
 		</li>
 	</ul>
 
 	<div class="vp meta_p">
 	<include target="meta.html" />
 	</div>
-
 </header>
+
 <div class="header_bg">
 	<ul>
 		<li class="company">
@@ -445,96 +435,97 @@ jQuery(function($){
 	<!--@end-->
 <!--@end-->
 
-<div id="contents" <!--@if($oi->layout_align== 'num')-->style="width:100%; max-width:calc({$oi->site_width}px + 20px)"<!--@else-->style="width:100%;"<!--@end-->>
-	<!--@if($q && $_is_indexmodule)-->
-		<div class="pagelocation"><a>구글 검색</a></div>
-		<div class="gcse-searchbox-only" data-resultsUrl="/"></div>
-		<div class="gcse-searchresults-only"></div>
-	<!--@elseif(!$module_info || $module_info->module=='member' || strpos($act,"dispSociall") !== false)-->
-		<div class="templatepage vmeta">{$content}</div>
-	<!--@elseif($act && $_is_indexmodule)-->
-		<include target="pagetitle.html" />
-		<div class="templatepage vsearch">{$content}</div>
-	<!--@elseif(strpos($act,"dispBoardAdmin") !== false)-->
-		<include target="pagetitle.html" />
-		<div class="templatepage vboard">{$content}</div>
+<div id="main_board">
+	<div id="contents" <!--@if($oi->layout_align== 'num')-->style="width:100%; max-width:calc({$oi->site_width}px + 20px) "<!--@else-->style="width:100%"<!--@end-->>
+		<!--@if($q && $_is_indexmodule)-->
+			<div class="pagelocation"><a>구글 검색</a></div>
+			<div class="gcse-searchbox-only" data-resultsUrl="/"></div>
+			<div class="gcse-searchresults-only"></div>
+		<!--@elseif(!$module_info || $module_info->module=='member' || strpos($act,"dispSociall") !== false)-->
+			<div class="templatepage vmeta">{$content}</div>
+		<!--@elseif($act && $_is_indexmodule)-->
+			<include cond="$oi->border_top_area==''" target="pagetitle.html" />
+			<div class="templatepage vsearch">{$content}</div>
+		<!--@elseif(strpos($act,"dispBoardAdmin") !== false)-->
+			<include cond="$oi->border_top_area==''" target="pagetitle.html" />
+			<div class="templatepage vboard">{$content}</div>
 
-	<!--@elseif(!$_is_indexmodule && ($cnd_oi=='PnonoFyesyes' || $cnd_oi=='PyesyesFnoyes'))-->
-		<ul class="horizon sub">
-			<!--@if($oi->use_snb_location=='left' && ($module_info->module =='page' || $module_info->use_sidewing == 'yes'))-->
-				<!--@if(!Mobile::isMobileCheckByAgent())-->
-					<li class="wing">
-						<include target="snb.html" />
-					</li>
-				<!--@end-->
-			<!--@end-->
-
-			<li class="force<!--@if($module_info->use_sidewing == 'no')--> wide<!--@end-->">
-				<include target="pagetitle.html" />
-				<!--@if($module_info->module =='page')-->
-					<div class="templatepage vpage">{$content}</div>
-				<!--@else-->
-					<div class="templatepage">{$content}</div>
-				<!--@end-->
-
-			</li>
-			<!--@if($oi->use_snb_location=='right' && ($module_info->module =='page' || $module_info->use_sidewing == 'yes'))-->
-				<!--@if(!Mobile::isMobileCheckByAgent())-->
-					<li class="wing">
-						<include target="snb.html" />
-					</li>
-				<!--@end-->
-			<!--@end-->
-		</ul>
-
-	<!--@else-->
-
-		<ul class="horizon">
-			<li cond="$oi->site_column_c1=='yes'" class="wing-left<!--@if($oi->site_column_c1=='yes' && $oi->site_column_c3=='no')--> only-wl<!--@end-->">
-				 <!--@if(!Mobile::isMobileCheckByAgent())-->
-					<!--@if($oi->use_snb == 'yes' && $oi->use_snb_location=='left')-->
-					<include target="snb.html" />
+		<!--@elseif(!$_is_indexmodule && ($cnd_oi=='PnonoFyesyes' || $cnd_oi=='PyesyesFnoyes'))-->
+			<ul class="horizon sub">
+				<!--@if($oi->use_snb_location=='left' && ($module_info->module =='page' || $module_info->use_sidewing == 'yes'))-->
+					<!--@if(!Mobile::isMobileCheckByAgent())-->
+						<li class="wing">
+							<include target="snb.html" />
+						</li>
 					<!--@end-->
 				<!--@end-->
-				<!--@if($oi->site_column_c1_con)-->
-					{$oi->site_column_c1_con}
-				<!--@else-->
-					<include target="_page_left.html" />
-				<!--@end-->
-			</li>
-			<li class="main<!--@if($_is_indexmodule)--> start<!--@end--><!--@if($oi->site_column_c1=='yes')--> wl<!--@end--><!--@if($oi->site_column_c3=='yes')--> wr<!--@end-->">
-				<!--@if($_is_indexmodule && $module_info)-->
-					<!--@if($oi->site_column_c2_con)-->
-						{$oi->site_column_c2_con}
+
+				<li class="force<!--@if($module_info->use_sidewing == 'no')--> wide<!--@end-->">
+					<include cond="$oi->border_top_area==''" target="pagetitle.html" />
+					<!--@if($module_info->module =='page')-->
+						<div class="templatepage vpage">{$content}</div>
 					<!--@else-->
-						<include target="_page_center.html" />
+						<div class="templatepage">{$content}</div>
 					<!--@end-->
-				<!--@else-->
 
-					<include target="pagetitle.html" />
-					<div class="templatepage">{$content}</div>
-
-				<!--@end-->
-			</li>
-			<li class="wing-right<!--@if($oi->site_column_c1=='no' && $oi->site_column_c3=='yes')--> only-wr<!--@end-->" cond="$oi->site_column_c3 == 'yes'">
-				 <!--@if(!Mobile::isMobileCheckByAgent())-->
-					<!--@if($oi->use_snb == 'yes' && $oi->use_snb_location=='right')-->
-					<include target="snb.html" />
+				</li>
+				<!--@if($oi->use_snb_location=='right' && ($module_info->module =='page' || $module_info->use_sidewing == 'yes'))-->
+					<!--@if(!Mobile::isMobileCheckByAgent())-->
+						<li class="wing">
+							<include target="snb.html" />
+						</li>
 					<!--@end-->
 				<!--@end-->
+			</ul>
 
-				<!--@if($oi->site_column_c3_con)-->
-					{$oi->site_column_c3_con}
-					<!--@if($oi->cafe24Traffic)-->
-						<include target="traffic.html" />
+		<!--@else-->
+
+			<ul class="horizon">
+				<li cond="$oi->site_column_c1=='yes'" class="wing-left<!--@if($oi->site_column_c1=='yes' && $oi->site_column_c3=='no')--> only-wl<!--@end-->">
+					 <!--@if(!Mobile::isMobileCheckByAgent())-->
+						<!--@if($oi->use_snb == 'yes' && $oi->use_snb_location=='left')-->
+						<include target="snb.html" />
+						<!--@end-->
 					<!--@end-->
-				<!--@else-->
-					<include target="_page_right.html" />
-				<!--@end-->
-			</li>
-		</ul>
-	<!--@end-->
+					<!--@if($oi->site_column_c1_con)-->
+						{$oi->site_column_c1_con}
+					<!--@else-->
+						<include target="_page_left.html" />
+					<!--@end-->
+				</li>
+				<li class="main<!--@if($_is_indexmodule)--> start<!--@end--><!--@if($oi->site_column_c1=='yes')--> wl<!--@end--><!--@if($oi->site_column_c3=='yes')--> wr<!--@end-->">
+					<!--@if($_is_indexmodule && $module_info)-->
+						<!--@if($oi->site_column_c2_con)-->
+							{$oi->site_column_c2_con}
+						<!--@else-->
+							<include target="_page_center.html" />
+						<!--@end-->
+					<!--@else-->
 
+						<include cond="$oi->border_top_area==''" target="pagetitle.html" />
+						<div class="templatepage">{$content}</div>
+
+					<!--@end-->
+				</li>
+				<li class="wing-right<!--@if($oi->site_column_c1=='no' && $oi->site_column_c3=='yes')--> only-wr<!--@end-->" cond="$oi->site_column_c3 == 'yes'">
+					 <!--@if(!Mobile::isMobileCheckByAgent())-->
+						<!--@if($oi->use_snb == 'yes' && $oi->use_snb_location=='right')-->
+						<include target="snb.html" />
+						<!--@end-->
+					<!--@end-->
+
+					<!--@if($oi->site_column_c3_con)-->
+						{$oi->site_column_c3_con}
+						<!--@if($oi->cafe24Traffic)-->
+							<include target="traffic.html" />
+						<!--@end-->
+					<!--@else-->
+						<include target="_page_right.html" />
+					<!--@end-->
+				</li>
+			</ul>
+		<!--@end-->
+	</div>
 </div>
 
 <footer id="footer">
@@ -689,6 +680,7 @@ jQuery(function($){
 </footer>
 <div class="gototop"><a style="display: none;"><i class='bx bx-chevron-up' ></i></a></div>
 <include target="/_assets/version.html" />
+
 <script>
 var $ = jQuery;
 
