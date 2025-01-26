@@ -313,7 +313,7 @@ header { display:none}
 
 //////////*/
 #odaylayout #ol_right { position: relative; padding:0 10px; }
-footer ul.comsummury { padding:0 0 50px 0 ;}
+footer ul.comsummury { padding:0 0 50px 0; color:var(--oday_fontColor); }
 footer ul.comsummury li { padding: 0 20px; text-align:center; }
 footer ul.comsummury li.company_name { font-size:12px; font-weight:700; margin-bottom:5px;}
 footer ul.comsummury li.address { font-size:11px; }
