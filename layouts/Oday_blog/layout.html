@@ -263,7 +263,7 @@ jQuery(function($){
 					<!--@end-->
 
 					<!--@if($oi->lgo_view_text == 'yes')-->
-						<a href="{geturl('')}" style="font-size:{$oi->lgo_font_size}px">
+						<a href="{geturl('')}" style="font-size:{$oi->lgo_font_size}px; color:var(--oday_fontColor);">
 						<!--@if(!Mobile::isMobileCheckByAgent())-->
 							<!--@if($oi->site_title1)-->
 								<span>{$oi->site_title1}</span>
@@ -456,7 +456,7 @@ jQuery(function($){
 
 					<!--@if(strpos($act,"dispBoardAdmin") !== false || !$module_info || $module_info->module=='member')-->
 					<!--@else-->
-					<include target="pagetitle.html" />
+					<include cond="$oi->border_top_area==''" target="pagetitle.html" />
 					<!--@end-->
 
 					<!--@if(strpos($act,"dispBoardAdmin") !== false)-->
@@ -515,7 +515,7 @@ jQuery(function($){
 
 
 <!--@if($oi->layout_align=='full')-->
-	#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); padding: 0 10px;}
+	#odaylayout #ol_right { padding: 0 10px;}
 	.setBox { left: {$oi->gnb_width}px; }
 <!--@elseif($oi->layout_align=='left')-->
 	body {  background-color : var(--oday_bodyBgColor); }
@@ -525,7 +525,7 @@ jQuery(function($){
 	.setBox { left: {$oi->gnb_width}px; }
 <!--@elseif($oi->layout_align=='center')-->
 	body {  background-color : var(--oday_bodyBgColor); }
-	#odaylayout { width:100%;  max-width:{$oi->site_width}px; margin:0 auto; box-shadow:var(--oday_listShadowR);}
+	#odaylayout { width:100%; max-width:{$oi->site_width}px; margin:0 auto; box-shadow:var(--oday_listShadowR);}
 	#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px);max-width:{$layout_apply_width}px;  border-right:var(--oday_listBorder); box-shadow:var(--oday_listShadow); }
 	.slidebanner {width:100%; max-width: calc(100vw - {$oi->gnb_width}px - var(--oday_scrollWidth)) }
 	.setBox { left: 0px; }
@@ -537,6 +537,17 @@ jQuery(function($){
 <!--@else-->
 	#odaylayout #ol_right { width:calc(100% - {$oi->gnb_width}px); }
 	.setBox { left: {$oi->gnb_width}px; }
+<!--@end-->
+
+<!--@if($oi->mh_user=='Y')-->
+	<!--@if($oi->layout_align=='full')-->
+		#odaylayout #ol_right { width:{$oi->site_width1}px; margin:0 auto; padding: 0 10px; }
+	<!--@end-->
+	<!--@if($oi->mh_color_user=='Y')-->
+		#odaylayout { background-color: var(--oday_listBgColor);}
+		#odaylayout #ol_right { background-color: var(--oday_listBgColor);}
+		.pagelocation { background-color: var(--oday_listBgColor); }
+	<!--@end-->
 <!--@end-->
 
 @media screen and (max-width:768px){

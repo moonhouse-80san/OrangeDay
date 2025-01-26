@@ -83,7 +83,7 @@ header { display:none}
 	header.scrollchange a.viewgnb {     background-color: var(--oday_mainColorDark);
 	color: var(--oday_primaryBtnColor);}
 }
-#odaylayout { display:flex; flex-direction: row;}
+#odaylayout { display:flex; flex-direction: row; }
 
 /*//////////
 
@@ -145,7 +145,7 @@ header { display:none}
 #logo li.gnbtitle span.eng { font-size:26px !important;  font-family:"Montserrat Alternates" !important; font-weight:700 !important; padding:0 0 5px 0;}
 #logo li.gnbtitle.korean span {font-weight:900;font-size:20px; margin-top:5px; }
 #logo li.gnbtitle.korean span + span { margin-top:-2px; }
-#logo li.gnbtitle .dec { line-height:1; font-size:.85em; }
+#logo li.gnbtitle .dec { line-height:1; font-size:.85em; color:var(--oday_fontColor);}
 /**/
 #ol_left .left_box {border-right:var(--oday_iptBorderLight)}
 #ol_left .lt_gnb::-webkit-scrollbar {width: 1px;}
@@ -278,12 +278,12 @@ header { display:none}
 #ol_left .meta li.login_info .levelbarWrap .levelinfo .leveltitle em { font-size:16px; font-weight:900}
 #ol_left .meta li.login_info .levelbarWrap .levelinfo .levelinfoDetail { margin-top:8px !important; padding-top:8px; border-top:var(--oday_listBorder)}
 #ol_left .meta li.login_info .levelbarWrap .levelinfo .levelinfoDetail .gap { margin-top:8px !important; padding-top:8px; border-top:var(--oday_listBorder)}
-#ol_left .meta li.login_info .levelbarWrap .levelinfo .levelinfoDetail li {font-weight:400; display:flex;justify-content: space-between; font-size:11px !important; }
+#ol_left .meta li.login_info .levelbarWrap .levelinfo .levelinfoDetail li {font-weight:400; display:flex;justify-content: space-between; font-size:11px !important; color:var(--oday_fontColor); }
 #ol_left .meta li.login_info .levelbarWrap .levelinfo .levelinfoDetail li span + span { margin-left:7px; }
 #ol_left .meta li.login_info .levelbarWrap .levelinfo .levelinfoDetail li + li {margin-top:2px !important}
 
 /**/
-#ol_left .meta li.comsummury { padding: 0; flex-direction: column; }
+#ol_left .meta li.comsummury { padding: 0; flex-direction: column; color:var(--oday_fontColor); }
 #ol_left .meta li.comsummury span { display:block; opacity:.8;  font-size:10px; }
 #ol_left .meta li.comsummury span + span { margin-top:5px;}
 #ol_left .meta li.comsummury span.company_name { font-weight:700}
@@ -312,7 +312,7 @@ header { display:none}
 		#ol_right
 
 //////////*/
-#odaylayout #ol_right { position: relative; padding:0 10px}
+#odaylayout #ol_right { position: relative; padding:0 10px; }
 footer ul.comsummury { padding:0 0 50px 0 ;}
 footer ul.comsummury li { padding: 0 20px; text-align:center; }
 footer ul.comsummury li.company_name { font-size:12px; font-weight:700; margin-bottom:5px;}
@@ -491,7 +491,7 @@ footer ul.comsummury li.location a:nth-child(n+2) i.bx { display:none; }
 }
 
 .pagelocation + .searchall,
-.templatepage > .x  {padding:var(--oday_sideGap);}
+.templatepage > .x  {padding:var(--oday_sideGap); background-color: var(--oday_listBgColor); }
 .templatepage h1 + div {padding:var(--oday_sideGapLR);}
 .templatepage h1 { padding:var(--oday_sideGap); }
 
