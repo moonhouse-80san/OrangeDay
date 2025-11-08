@@ -356,7 +356,7 @@
 		</group>
 
 		<group>
-			<title xml:lang="ko">문하우스</title>
+			<title xml:lang="ko">MH설정</title>
 			<var name="mh_user" type="radio">
 				<title xml:lang="ko">문하우스 적용</title>
 				<options value="">
